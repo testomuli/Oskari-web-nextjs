@@ -1,0 +1,73 @@
+.nav {
+  height: 7.5rem;
+  width: 100%;
+
+  &.dark {
+    background-color: var(--color-dark);
+    color: #fff;
+  }
+
+  &__container {
+    display: grid;
+    grid-template-columns: 1.5fr 1fr 2fr 0.5fr;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  &__search {
+    position: relative;
+
+    input {
+      border: var(--border);
+      border-radius: var(--border-radius);
+      padding: 0.8rem 2.2rem;
+      padding-right: calc(1rem + 32px + 0.5rem);
+      width: 300px;
+      height: 50px;
+    }
+
+    &::after {
+      content: '';
+      position: absolute;
+      right: 1rem;
+      top: 0.5rem;
+      width: 32px;
+      height: 32px;
+      background-image: url('/assets/icons/search.svg');
+    }
+  }
+
+  &__logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    img {
+      max-height: 5.63rem;
+      width: auto;
+      height: auto;
+    }
+  }
+
+  &__menu {
+    &__container {
+      display: flex;
+      justify-content: flex-end;
+      align-items: center;
+    }
+    &__list {
+      list-style: none;
+      display: flex;
+      gap: 2.5rem;
+    }
+    &__item {
+      display: inline-block;
+      a {
+        display: flex;
+        align-items: center;
+        font-family: 'League Spartan';
+        font-weight: 700;
+      }
+    }
+  }
+}
