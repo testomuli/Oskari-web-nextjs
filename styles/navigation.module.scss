@@ -4,6 +4,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  z-index: 10;
+  position: relative;
 
   &.dark {
     background-color: var(--color-dark);
@@ -31,28 +33,6 @@
     img {
       height: 80px;
       width: auto;
-    }
-  }
-
-  &__menu {
-    &__container {
-      display: flex;
-      justify-content: flex-end;
-      align-items: center;
-    }
-    &__list {
-      list-style: none;
-      display: flex;
-      gap: 2.5rem;
-    }
-    &__item {
-      display: inline-block;
-      a {
-        display: flex;
-        align-items: center;
-        font-family: 'League Spartan';
-        font-weight: 700;
-      }
     }
   }
 

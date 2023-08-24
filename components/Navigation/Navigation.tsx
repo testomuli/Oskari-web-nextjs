@@ -8,7 +8,7 @@ import NavigationMenu from './NavigationMenu'
 
 export default function Navigation() {
   return (
-    <div className={`${style.nav}`}>
+    <header className={`${style.nav}`}>
       <div className={`${style.nav__container} container`}>
         <div className={style.nav__logo}>
           <Image
@@ -25,6 +25,6 @@ export default function Navigation() {
           <Button title='Download' variant='primary' />
         </div>
       </div>
-    </div>
+    </header>
   )
 }

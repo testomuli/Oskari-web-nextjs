@@ -2,6 +2,7 @@
   // COLORS
   --color-text: #222222;
   --color-dark: #222222;
+  --color-light: #fff;
   --color-primary: #000;
   --color-secondary: #fff;
   --color-accent: #ffd400;
@@ -21,4 +22,7 @@
   --breakpoint-md: 768px;
   --breakpoint-lg: 992px;
   --breakpoint-xl: 1200px;
+
+  // MISC
+  --box-shadow: -5px 0px 5px rgba(0, 0, 0, 0.1);
 }

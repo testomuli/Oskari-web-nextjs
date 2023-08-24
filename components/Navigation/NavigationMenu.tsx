@@ -26,15 +26,17 @@ export default function NavigationMenu() {
 
   return (
     <div className={styles.navMenu}>
-      <button
-        className={`${styles.menuButton} ${isOpen ? styles.open : ''}`}
-        onClick={toggleMenu}
-      >
-        <span></span>
-        <span></span>
-        <span></span>
-      </button>
       <nav className={styles.navMenu__container}>
+        <button
+          type='button'
+          title='Toggle navigation menu'
+          className={`${styles.menuButton} ${isOpen ? styles.open : ''}`}
+          onClick={toggleMenu}
+        >
+          <span></span>
+          <span></span>
+          <span></span>
+        </button>
         <ul className={styles.navMenu__list}>
           {NAVIGATION_ITEMS.map((item) => (
             <li className={styles.navMenu__item} key={item.path}>

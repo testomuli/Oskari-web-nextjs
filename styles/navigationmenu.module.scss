@@ -7,9 +7,24 @@
   &__list {
     list-style: none;
     display: flex;
+    align-items: center;
     gap: 2.5rem;
     @media (max-width: 992px) {
-      display: none;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      gap: 3rem;
+      position: fixed;
+      top: 120px;
+      bottom: 0;
+      right: 0;
+      left: 0;
+      background-color: var(--color-light);
+      transform: translateX(100%);
+      transition: all 0.3s ease-in-out;
+      font-size: 1.8rem;
     }
   }
   &__item {
@@ -19,6 +34,11 @@
       align-items: center;
       font-family: 'League Spartan';
       font-weight: 700;
+    }
+
+    img {
+      width: 24px;
+      height: 24px;
     }
   }
 }
@@ -83,6 +103,14 @@
       &:last-child {
         transform: rotate(135deg);
         bottom: calc(50% - var(--thickness) / 2);
+      }
+    }
+
+    @media screen and (max-width: 992px) {
+      & ~ .navMenu {
+        &__list {
+          transform: translateX(0);
+        }
       }
     }
   }
