@@ -5,7 +5,7 @@
     justify-content: center;
     align-items: center;
     @media screen and (max-width: 992px) {
-      height: calc(90vh - 120px);
+      height: calc(100vh - 120px);
       align-items: center;
       aspect-ratio: unset;
     }

@@ -1,21 +1,8 @@
 @import 'reset';
+@import 'variables';
 @import 'fonts';
 @import 'buttons';
 @import 'layout';
-
-:root {
-  --color-text: #222222;
-  --color-dark: #222222;
-  --color-primary: #000;
-  --color-secondary: #fff;
-  --color-accent: #ffd400;
-
-  --border-radius: 50rem;
-  --border: 1px solid var(--color--dark);
-
-  --container-width: 1920px;
-  --font-primary: 'League Spartan', sans-serif;
-}
 
 /* @media (prefers-color-scheme: dark) {
   :root {

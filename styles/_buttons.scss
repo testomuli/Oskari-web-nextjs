@@ -1,9 +1,18 @@
 .btn {
-  background-color: var(--color-accent);
+  display: inline-block;
+  line-height: 1.5;
+  text-align: center;
+  text-decoration: none;
+  vertical-align: middle;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  user-select: none;
+  font-size: 1rem;
+  background-color: transparent;
   color: var(--color-text);
   font-weight: 700;
   font-family: var(--font-primary);
-  font-size: inherit;
   padding: 0.8rem 1.6rem;
   border-radius: var(--border-radius);
   border: none;

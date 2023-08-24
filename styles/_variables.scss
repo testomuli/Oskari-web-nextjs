@@ -1,0 +1,24 @@
+:root {
+  // COLORS
+  --color-text: #222222;
+  --color-dark: #222222;
+  --color-primary: #000;
+  --color-secondary: #fff;
+  --color-accent: #ffd400;
+
+  // BORDERS
+  --border-radius: 50rem;
+  --border: 1px solid var(--color-dark);
+
+  // FONTS
+  --font-primary: 'League Spartan', sans-serif;
+
+  // LAYOUT
+  --container-width: 1920px;
+
+  // BREAKPOINTS
+  --breakpoint-sm: 576px;
+  --breakpoint-md: 768px;
+  --breakpoint-lg: 992px;
+  --breakpoint-xl: 1200px;
+}

@@ -1,10 +1,10 @@
 import * as React from 'react'
-import Navigation from './Navigation'
+import Navigation from './Navigation/Navigation'
 import '../styles/main.scss'
 
 const Layout = ({ children }: React.PropsWithChildren) => {
   return (
-    <div className="page-wrapper">
+    <div className='page-wrapper'>
       <Navigation />
       {children}
     </div>
