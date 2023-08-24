@@ -2,6 +2,8 @@ import Link from 'next/link'
 import style from '../styles/navigation.module.scss'
 import Image from 'next/image'
 import { NAVIGATION_ITEMS } from '@/utils/constants'
+import Button from './Button'
+import Search from './Search'
 
 const renderChildren = (children: NavigationItem[]) => {
   return (
@@ -18,19 +20,17 @@ const renderChildren = (children: NavigationItem[]) => {
 export default function Navigation() {
   return (
     <div className={`${style.nav} ${style.dark}`}>
-      <div className={style.nav__container}>
+      <div className={`${style.nav__container} container`}>
         <div className={style.nav__logo}>
           <Image
-            src='../assets/images/oskari-logo.svg'
+            src='/assets/images/oskari-logo.svg'
             alt='Oskari Logo'
             width={200}
-            height={80}
+            height={90}
             priority={true}
           />
         </div>
-        <div className={style.nav__search}>
-          <input type='text' placeholder='Search' />
-        </div>
+        <Search />
         <div className={style.nav__menu}>
           <nav className={style.nav__menu__container}>
             <ul className={style.nav__menu__list}>
@@ -46,7 +46,7 @@ export default function Navigation() {
           </nav>
         </div>
         <div className={style.nav__cta}>
-          <button>Download</button>
+          <Button title='Download' variant='primary' />
         </div>
       </div>
     </div>

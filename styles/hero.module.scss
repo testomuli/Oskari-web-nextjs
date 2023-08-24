@@ -1,0 +1,37 @@
+.hero {
+  &__container {
+    aspect-ratio: 16/9;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    @media screen and (max-width: 992px) {
+      height: calc(90vh - 120px);
+      align-items: center;
+      aspect-ratio: unset;
+    }
+  }
+
+  &__content {
+    padding: 0 4rem;
+    display: flex;
+    justify-content: space-between;
+    gap: 3rem;
+
+    & > *:first-child {
+      display: flex;
+      flex-direction: column;
+      row-gap: 2.5rem;
+    }
+    @media screen and (max-width: 992px) {
+      flex-direction: column;
+    }
+    & > * {
+      flex: 1;
+    }
+  }
+
+  &__title {
+    font-size: min(8vmin, 3.375rem);
+    line-height: 1.1;
+  }
+}

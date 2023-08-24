@@ -1,8 +1,24 @@
-button {
+.btn {
   background-color: var(--color-accent);
   color: var(--color-text);
   font-weight: 700;
-  font-family: 'League Spartan';
-  font-size: 16px;
+  font-family: var(--font-primary);
+  font-size: inherit;
   padding: 0.8rem 1.6rem;
+  border-radius: var(--border-radius);
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  display: inline-block;
+
+  &--primary {
+    background-color: var(--color-accent);
+    color: var(--color-text);
+  }
+  &--dark {
+    background-color: var(--color-dark);
+    color: #fff;
+  }
 }
