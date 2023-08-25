@@ -3,6 +3,7 @@
 @import 'fonts';
 @import 'buttons';
 @import 'layout';
+@import 'navigation';
 
 /* @media (prefers-color-scheme: dark) {
   :root {
@@ -35,6 +36,8 @@ body {
   font-family: var(--font-primary);
   font-weight: 400;
   color: var(--color--text);
+  // -webkit-font-smoothing: antialiased;
+  // -moz-osx-font-smoothing: grayscale;
 }
 
 a {

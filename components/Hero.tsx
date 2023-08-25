@@ -9,7 +9,7 @@ export default function Hero() {
         <div className={`${styles.hero__content} container`}>
           <div>
             <h1 className={styles.hero__title}>
-              Oskari - a mapping tool that adapts to your needs
+              Oskari – a mapping tool that adapts to your needs
             </h1>
             <div className={styles.hero__cta}>
               <Button title='Download' variant='dark' />

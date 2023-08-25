@@ -15,13 +15,21 @@
     padding: 0 4rem;
     display: flex;
     justify-content: space-between;
-    gap: 3rem;
+    gap: 4rem;
 
     & > *:first-child {
+      flex: 1.5;
       display: flex;
       flex-direction: column;
+      justify-content: center;
       row-gap: 2.5rem;
     }
+    & > *:nth-child(2) {
+      display: flex;
+      align-items: flex-start;
+      flex: 1;
+    }
+
     @media screen and (max-width: 992px) {
       flex-direction: column;
     }
@@ -31,7 +39,7 @@
   }
 
   &__title {
-    font-size: min(8vmin, 3.375rem);
+    font-size: clamp(2.5rem, 7vmin, 5rem);
     line-height: 1.1;
   }
 }

@@ -1,5 +1,4 @@
 import Link from 'next/link'
-import style from '@/styles/navigation.module.scss'
 import Image from 'next/image'
 import { NAVIGATION_ITEMS } from '@/utils/constants'
 import Button from '../Button'
@@ -8,9 +7,9 @@ import NavigationMenu from './NavigationMenu'
 
 export default function Navigation() {
   return (
-    <header className={`${style.nav}`}>
-      <div className={`${style.nav__container} container`}>
-        <div className={style.nav__logo}>
+    <header className='nav'>
+      <div className='nav__container container'>
+        <div className='nav__logo'>
           <Image
             src='/assets/images/oskari-logo.svg'
             alt='Oskari Logo'
@@ -21,7 +20,7 @@ export default function Navigation() {
         </div>
         <Search />
         <NavigationMenu />
-        <div className={style.nav__cta}>
+        <div className='nav__cta'>
           <Button title='Download' variant='primary' />
         </div>
       </div>

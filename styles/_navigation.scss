@@ -4,6 +4,8 @@
   display: flex;
   justify-content: center;
   align-items: center;
+  z-index: 10;
+  position: relative;
 
   &.dark {
     background-color: var(--color-dark);
@@ -15,6 +17,9 @@
     width: 100%;
     display: grid;
     grid-template-columns: 1.5fr 1fr 2fr 0.5fr;
+    @media screen and (max-width: 1200px) {
+      grid-template-columns: 1.5fr 1fr;
+    }
     align-items: center;
     gap: 1rem;
     height: 100%;
@@ -22,7 +27,7 @@
 
   &__logo {
     display: flex;
-    justify-content: center;
+    justify-content: flex-start;
     align-items: center;
 
     img {
@@ -31,25 +36,172 @@
     }
   }
 
-  &__menu {
-    &__container {
+  &__cta {
+    display: flex;
+    justify-content: flex-end;
+
+    @media screen and (max-width: 1200px) {
+      display: none;
+    }
+  }
+}
+.navMenu {
+  &__container {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+  }
+  &__list {
+    list-style: none;
+    display: flex;
+    align-items: center;
+    gap: 2.5rem;
+    @media (max-width: 1200px) {
       display: flex;
-      justify-content: flex-end;
+      flex-direction: column;
+      justify-content: center;
       align-items: center;
+      text-align: center;
+      position: fixed;
+      gap: 3rem;
+      top: 120px;
+      bottom: 0;
+      right: 0;
+      left: 0;
+      background-color: var(--color-light);
+      transform: translateX(100%);
+      transition: transform 0.3s ease-in-out;
+      font-size: 1.8rem;
     }
-    &__list {
-      list-style: none;
-      display: flex;
-      gap: 2.5rem;
+  }
+  &__item {
+    display: inline-block;
+    font-family: var(--font-primary);
+    font-weight: 700;
+    font-size: 1rem;
+    @media screen and (max-width: 1200px) {
+      font-size: 2rem;
     }
-    &__item {
-      display: inline-block;
-      a {
-        display: flex;
-        align-items: center;
-        font-family: 'League Spartan';
-        font-weight: 700;
+
+    .arrowIcon {
+      transform: translateY(-2px);
+      height: 20px;
+      width: 20px;
+      @media screen and (max-width: 1200px) {
+        height: 2rem;
+        width: 2rem;
       }
     }
+
+    a,
+    span {
+      display: flex;
+      align-items: center;
+      font-family: var(--font-primary);
+      font-weight: 700;
+    }
+
+    img {
+      width: 24px;
+      height: 24px;
+    }
+  }
+}
+
+.menuButton {
+  --thickness: 2px;
+  margin-left: auto;
+  display: none;
+  height: 22px;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  position: relative;
+  width: 30px;
+
+  @media (max-width: 1200px) {
+    display: block;
+    flex-direction: column;
+    justify-content: space-between;
+
+    & > span {
+      &:first-child,
+      &:nth-child(2),
+      &:nth-child(3) {
+        display: block;
+        position: absolute;
+        width: 30px;
+        right: 0;
+        height: var(--thickness);
+        background-color: var(--color-text);
+        transition: all 0.3s ease-in-out;
+      }
+
+      &:first-child {
+        top: 0;
+      }
+
+      &:nth-child(2) {
+        top: calc(50% - var(--thickness) / 2);
+        transition-delay: 0.3s;
+      }
+
+      &:last-child {
+        bottom: 0;
+      }
+    }
+  }
+
+  &.open {
+    & > span {
+      &:first-child {
+        transform: rotate(-135deg);
+        top: calc(50% - var(--thickness) / 2);
+      }
+
+      &:nth-child(2) {
+        transform: translateX(-20px);
+        opacity: 0;
+        transition-delay: 0s;
+      }
+
+      &:last-child {
+        transform: rotate(135deg);
+        bottom: calc(50% - var(--thickness) / 2);
+      }
+    }
+
+    @media screen and (max-width: 1200px) {
+      & ~ .navMenu {
+        &__list {
+          transform: translateX(0);
+        }
+      }
+    }
+  }
+}
+
+.navigationsubmenu {
+  height: auto;
+  grid-template-rows: 0fr;
+  transition: all 0.3s ease-in-out;
+
+  &:not(.open) {
+    height: 0;
+    overflow: hidden;
+  }
+  @media screen and (max-width: 1200px) {
+    display: grid;
+  }
+
+  &__list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+  }
+
+  &.open {
+    grid-template-rows: 1fr;
+    height: auto;
   }
 }

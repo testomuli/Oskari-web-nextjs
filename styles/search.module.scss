@@ -1,7 +1,7 @@
 .search {
   display: flex;
   justify-content: center;
-  @media screen and (max-width: 992px) {
+  @media screen and (max-width: 1200px) {
     display: none;
   }
 
@@ -10,11 +10,14 @@
     &::after {
       content: '';
       position: absolute;
-      right: 1rem;
-      top: 0.5rem;
+      right: 0rem;
+      transform: translate(-50%, calc(-50% - 1px));
+      top: 50%;
       width: 32px;
       height: 32px;
       background-image: url('/assets/icons/search.svg');
+      background-repeat: no-repeat;
+      background-size: contain;
     }
   }
   input {

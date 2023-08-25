@@ -1,5 +1,4 @@
 .btn {
-  display: inline-block;
   line-height: 1.5;
   text-align: center;
   text-decoration: none;
@@ -8,7 +7,7 @@
   -webkit-user-select: none;
   -moz-user-select: none;
   user-select: none;
-  font-size: 1rem;
+  font-size: inherit;
   background-color: transparent;
   color: var(--color-text);
   font-weight: 700;
@@ -17,10 +16,10 @@
   border-radius: var(--border-radius);
   border: none;
   cursor: pointer;
-  display: flex;
+  display: inline-flex;
   align-items: center;
   justify-content: center;
-  display: inline-block;
+  letter-spacing: 1px;
 
   &--primary {
     background-color: var(--color-accent);
