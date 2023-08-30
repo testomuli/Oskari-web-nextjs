@@ -238,3 +238,10 @@
     display: none;
   }
 }
+
+body.nav-open {
+  overflow: hidden;
+  position: fixed;
+  height: 100vh;
+  width: 100%;
+}
