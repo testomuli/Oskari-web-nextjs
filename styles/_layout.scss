@@ -4,4 +4,12 @@
   margin-right: auto;
   padding-left: 1rem;
   padding-right: 1rem;
+
+  &--content {
+    max-width: var(--container-content-width);
+    margin-left: auto;
+    margin-right: auto;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
 }

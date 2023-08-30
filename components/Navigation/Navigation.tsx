@@ -1,6 +1,4 @@
-import Link from 'next/link'
 import Image from 'next/image'
-import { NAVIGATION_ITEMS } from '@/utils/constants'
 import Button from '../Button'
 import Search from '../Search'
 import NavigationMenu from './NavigationMenu'
