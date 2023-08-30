@@ -5,9 +5,10 @@
     justify-content: center;
     align-items: center;
     @media screen and (max-width: 992px) {
-      height: calc(100vh - 120px);
-      align-items: center;
+      min-height: 100vh;
+      align-items: flex-start;
       aspect-ratio: unset;
+      padding: 4rem 0;
     }
   }
 
@@ -41,5 +42,13 @@
   &__title {
     font-size: clamp(2.5rem, 7vmin, 5rem);
     line-height: 1.1;
+  }
+
+  &__imageContainer {
+    img {
+      aspect-ratio: 16/9;
+      object-fit: cover;
+      object-position: top;
+    }
   }
 }

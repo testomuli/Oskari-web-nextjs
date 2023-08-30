@@ -3,6 +3,8 @@ import { NAVIGATION_ITEMS } from '@/utils/constants'
 import Link from 'next/link'
 import { useState } from 'react'
 import NavigationSubMenu from './NavigationSubMenu'
+import Button from '../Button'
+import Search from '../Search'
 
 export default function NavigationMenu() {
   const [isOpen, setIsOpen] = useState(false)
@@ -24,19 +26,25 @@ export default function NavigationMenu() {
           <span></span>
           <span></span>
         </button>
-        <ul className='navMenu__list'>
-          {NAVIGATION_ITEMS.map((item) => (
-            <li className='navMenu__item' key={item.path}>
-              {item.children && item.children.length > 0 ? (
-                <NavigationSubMenu title={item.name} items={item.children} />
-              ) : (
-                <Link className='navMenu__link' href={item.path}>
-                  {item.name}
-                </Link>
-              )}
-            </li>
-          ))}
-        </ul>
+        <div className='navMenu__list-container'>
+          <div className='mobile-sub-nav'>
+            <Search />
+            <Button title='Download' variant='primary' />
+          </div>
+          <ul role='menu' className='navMenu__list'>
+            {NAVIGATION_ITEMS.map((item) => (
+              <li className='navMenu__item' key={item.path}>
+                {item.children && item.children.length > 0 ? (
+                  <NavigationSubMenu title={item.name} items={item.children} />
+                ) : (
+                  <Link className='navMenu__link' href={item.path}>
+                    {item.name}
+                  </Link>
+                )}
+              </li>
+            ))}
+          </ul>
+        </div>
       </nav>
     </div>
   )

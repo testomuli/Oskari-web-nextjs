@@ -18,7 +18,9 @@ export default function Navigation() {
             priority={true}
           />
         </div>
-        <Search />
+        <div className='nav__search'>
+          <Search />
+        </div>
         <NavigationMenu />
         <div className='nav__cta'>
           <Button title='Download' variant='primary' />

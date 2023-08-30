@@ -15,7 +15,7 @@ export default function Hero() {
               <Button title='Download' variant='dark' />
             </div>
           </div>
-          <div>
+          <div className={styles.hero__imageContainer}>
             <Image
               src='/assets/images/header-hero-image.png'
               width={600}
