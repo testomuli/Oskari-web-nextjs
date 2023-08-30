@@ -6,6 +6,9 @@ const useWindowDimensions = () => {
     height: 0,
   })
 
+  const isSmall = windowDimensions.width < 1200
+  const isLarge = windowDimensions.width >= 1200
+
   useEffect(() => {
     const getWindowDimensions = () => {
       const { innerWidth: width, innerHeight: height } = window
@@ -17,7 +20,12 @@ const useWindowDimensions = () => {
     return () => window.removeEventListener('resize', handleResize)
   }, [])
 
-  return windowDimensions
+  return {
+    height: windowDimensions.height,
+    width: windowDimensions.width,
+    isSmall,
+    isLarge,
+  }
 }
 
 export default useWindowDimensions

@@ -6,6 +6,14 @@ export default function Hero() {
   return (
     <div className={styles.hero}>
       <div className={styles.hero__container}>
+        <div className={styles.blobs}>
+          <Image
+            src='/assets/images/hero-blobs.svg'
+            alt='blob'
+            width={1920}
+            height={700}
+          />
+        </div>
         <div className={`${styles.hero__content} container`}>
           <div>
             <h1 className={styles.hero__title}>

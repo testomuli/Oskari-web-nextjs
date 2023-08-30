@@ -4,6 +4,7 @@
     display: flex;
     justify-content: center;
     align-items: center;
+    position: relative;
     @media screen and (max-width: 992px) {
       min-height: 100vh;
       align-items: flex-start;
@@ -17,6 +18,7 @@
     display: flex;
     justify-content: space-between;
     gap: 4rem;
+    z-index: 5;
 
     & > *:first-child {
       flex: 1.5;
@@ -50,5 +52,17 @@
       object-fit: cover;
       object-position: top;
     }
+  }
+}
+
+.blobs {
+  & > img {
+    width: 100%;
+    height: auto;
+    position: absolute;
+    top: 50%;
+    left: 0;
+    right: 0;
+    transform: translate(0, -50%);
   }
 }
