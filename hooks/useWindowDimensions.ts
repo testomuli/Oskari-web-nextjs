@@ -1,3 +1,4 @@
+'use client'
 import { useEffect, useState } from 'react'
 
 const getWindowDimensions = () => {
@@ -13,7 +14,6 @@ const useWindowDimensions = () => {
 
   useEffect(() => {
     const handleResize = () => setWindowDimensions(getWindowDimensions())
-
     window.addEventListener('resize', handleResize)
     return () => window.removeEventListener('resize', handleResize)
   }, [])
