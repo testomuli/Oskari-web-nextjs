@@ -15,7 +15,10 @@
 }
 
 .section-padding {
-  --section-padding: 6rem;
+  --section-padding: 4rem;
+  &:first-child {
+    padding-top: calc(var(--section-padding) + 2rem);
+  }
   padding-top: var(--section-padding);
   padding-bottom: var(--section-padding);
 }

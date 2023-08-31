@@ -9,3 +9,10 @@ export type FeaturesItemType = {
   description: string
   icon?: string
 }
+
+export type CardItemType = {
+  date: string
+  title: string
+  description: string
+  href: string
+}
