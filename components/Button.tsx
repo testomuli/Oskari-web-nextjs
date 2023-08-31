@@ -1,4 +1,5 @@
 import { ChevronDownIcon } from '@heroicons/react/20/solid'
+import Link from 'next/link'
 import React from 'react'
 
 type ButtonProps = {
@@ -9,8 +10,21 @@ type ButtonProps = {
   expandable?: boolean
 }
 
-const Button = ({ variant, title, handleClick, expandable }: ButtonProps) => {
+const Button = ({
+  variant,
+  title,
+  handleClick,
+  expandable,
+  href,
+}: ButtonProps) => {
   const variantStyle = variant ? `btn--${variant}` : ''
+  if (href) {
+    return (
+      <Link className={`btn ${variantStyle}`} href={href}>
+        {title}
+      </Link>
+    )
+  }
   return (
     <button className={`btn ${variantStyle}`} onClick={handleClick}>
       {title}{' '}
