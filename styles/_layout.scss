@@ -13,3 +13,9 @@
     padding-right: 1rem;
   }
 }
+
+.section-padding {
+  --section-padding: 6rem;
+  padding-top: var(--section-padding);
+  padding-bottom: var(--section-padding);
+}

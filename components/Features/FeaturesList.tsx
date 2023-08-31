@@ -5,12 +5,18 @@ import FeaturesItem from './FeaturesItem'
 const FeaturesList = ({
   data,
   title,
+  padding = true,
 }: {
   data: FeaturesItemType[]
   title: string
+  padding?: boolean
 }) => {
   return (
-    <div className={`${styles.featuresGrid} container--content`}>
+    <section
+      className={`${styles.featuresGrid} container--content ${
+        padding ? 'section-padding' : ''
+      }`}
+    >
       {title && <h2 className={styles.featuresGrid__title}>{title}</h2>}
       {data.map(({ title, icon, description }: FeaturesItemType) => (
         <FeaturesItem
@@ -20,7 +26,7 @@ const FeaturesList = ({
           description={description}
         />
       ))}
-    </div>
+    </section>
   )
 }
 
