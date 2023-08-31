@@ -1,0 +1,18 @@
+[
+  {
+    "src": "/assets/images/tilastokeskus_logo.png",
+    "alt": "Tilastokeskus logo"
+  },
+  {
+    "src": "/assets/images/tampere_logo.png",
+    "alt": "Tampere logo"
+  },
+  {
+    "src": "/assets/images/hsy_logo.png",
+    "alt": "Hsy logo"
+  },
+  {
+    "src": "/assets/images/fintraffic_logo.png",
+    "alt": "Fintraffic logo"
+  }
+]
