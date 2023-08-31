@@ -10,7 +10,7 @@ const FeaturesItem = ({ icon, title, description }: FeaturesItemType) => {
       </div>
       <div className={styles.featuresItem__content}>
         <h3 className={styles.featuresItem__title}>{title}</h3>
-        <p className={styles.featuresItem__description}>{description}</p>
+        <span className={styles.featuresItem__description}>{description}</span>
       </div>
     </div>
   )
