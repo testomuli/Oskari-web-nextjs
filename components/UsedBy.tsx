@@ -11,7 +11,7 @@ const UsedBy = ({
   return (
     <div className='section-padding'>
       <section className={styles.usedBy}>
-        <div className='container--content'>
+        <div className={`container--content ${styles.usedBy__wrapper}`}>
           <h2 className={styles.usedBy__title}>{title}</h2>
           <div className={styles.usedBy__container}>
             <div className={styles.usedBy__list}>
@@ -23,6 +23,7 @@ const UsedBy = ({
                       alt={item.alt}
                       width={240}
                       height={125}
+                      loading='eager'
                     />
                   </div>
                 ))}
@@ -36,6 +37,7 @@ const UsedBy = ({
                       alt={item.alt}
                       width={240}
                       height={126}
+                      loading='eager'
                     />
                   </div>
                 ))}

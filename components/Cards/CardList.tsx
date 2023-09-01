@@ -12,7 +12,7 @@ const CardList = ({ title, data }: { title: string; data: CardItemType[] }) => {
           <Card data={item} key={item.href} />
         ))}
         <div className={styles.cardList__cta}>
-          <Button variant='primary' title='Go to blog' />
+          <Button variant='primary' href='/blog' title='Go to blog' />
         </div>
       </div>
     </section>

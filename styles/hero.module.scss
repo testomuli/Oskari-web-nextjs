@@ -17,10 +17,10 @@
   }
 
   &__content {
-    padding: 0 10%;
+    padding: 0 5%;
     display: flex;
     justify-content: space-between;
-    gap: 15%;
+    gap: 10vmin;
     z-index: 5;
 
     & > *:first-child {

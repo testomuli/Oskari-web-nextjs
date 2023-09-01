@@ -1,11 +1,15 @@
 .card {
-  padding: 2.7rem 3.75rem;
   display: flex;
   flex-direction: column;
   gap: 1.25rem;
   box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.1);
   border-radius: 60px;
   background-color: var(--color-light);
+  width: clamp(350px, 640px, 100%);
+  padding: 2.7rem 3.75rem;
+  @media screen and (max-width: 992px) {
+    padding: 2.7rem 2.75rem;
+  }
 
   &__date {
     font-family: var(--font-secondary);
@@ -22,9 +26,10 @@
 }
 
 .cardList {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(640px, 1fr));
+  display: flex;
+  flex-wrap: wrap;
   gap: 3.75rem;
+  justify-content: center;
 
   &__heading {
     font-size: 2.5rem;
@@ -34,7 +39,7 @@
   }
 
   &__cta {
-    grid-column: 1 / -1;
+    width: 100%;
     display: flex;
     justify-content: center;
   }

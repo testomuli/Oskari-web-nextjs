@@ -14,7 +14,7 @@ export default function Hero() {
             height={700}
           />
         </div>
-        <div className={`${styles.hero__content} container`}>
+        <div className={`${styles.hero__content} container--content`}>
           <div>
             <h1 className={styles.hero__title}>
               Oskari – a mapping tool that adapts to your needs

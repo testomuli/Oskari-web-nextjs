@@ -1,5 +1,6 @@
 import CardList from '@/components/Cards/CardList'
 import FeaturesList from '@/components/Features/FeaturesList'
+import Footer from '@/components/Footer'
 import Hero from '@/components/Hero'
 import Navigation from '@/components/Navigation/Navigation'
 import UsedBy from '@/components/UsedBy'
@@ -17,6 +18,7 @@ export default function Home() {
         <UsedBy title='Used by' data={usedbyItems} />
         <CardList data={whatsnew} title='What´s new' />
       </main>
+      <Footer />
     </>
   )
 }
