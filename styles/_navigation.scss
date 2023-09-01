@@ -1,28 +1,34 @@
 .nav {
-  height: 7.5rem;
+  --padding: 1rem;
   width: 100%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 10;
-  position: relative;
+  z-index: 20;
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  background-color: var(--color-light);
+  color: var(--color-dark);
 
   &.dark {
     background-color: var(--color-dark);
-    color: #fff;
+    color: var(--color-light);
   }
 
   &__container {
     max-width: var(--container-width);
+    padding-top: 1rem;
+    padding-bottom: 1rem;
     width: 100%;
     display: grid;
     grid-template-columns: 1fr 1.5fr 2fr 0.5fr;
-    @media screen and (max-width: 1200px) {
-      grid-template-columns: 1.5fr 1fr;
-    }
     align-items: center;
     gap: 1rem;
-    height: 100%;
+    height: var(--navigation-height);
+
+    @media screen and (max-width: 1200px) {
+      grid-template-columns: 1.5fr 1fr;
+      --navigation-height: 5rem;
+    }
   }
 
   &__logo {
@@ -31,7 +37,7 @@
     align-items: center;
 
     img {
-      height: 80px;
+      height: calc(var(--navigation-height) - var(--padding) * 2);
       width: auto;
     }
   }
@@ -54,6 +60,11 @@
       display: none;
     }
   }
+
+  &__spacer {
+    width: 100%;
+    height: var(--navigation-height);
+  }
 }
 .navMenu {
   &__container {
@@ -67,7 +78,7 @@
       flex-direction: column;
       position: fixed;
       gap: 2rem;
-      top: 120px;
+      top: var(--navigation-height);
       bottom: 0;
       right: 0;
       left: 0;
