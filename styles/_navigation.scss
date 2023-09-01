@@ -2,10 +2,8 @@
   --padding: 1rem;
   width: 100%;
   z-index: 20;
-  position: fixed;
+  position: sticky;
   top: 0;
-  left: 0;
-  right: 0;
   background-color: var(--color-light);
   color: var(--color-dark);
 
@@ -27,7 +25,6 @@
 
     @media screen and (max-width: 1200px) {
       grid-template-columns: 1.5fr 1fr;
-      --navigation-height: 5rem;
     }
   }
 
@@ -59,11 +56,6 @@
     @media screen and (max-width: 1200px) {
       display: none;
     }
-  }
-
-  &__spacer {
-    width: 100%;
-    height: var(--navigation-height);
   }
 }
 .navMenu {

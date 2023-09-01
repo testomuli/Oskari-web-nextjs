@@ -8,11 +8,12 @@
     justify-content: center;
     align-items: center;
     position: relative;
+    transform: translateY(calc(var(--navigation-height) * -1));
     @media screen and (max-width: 992px) {
       min-height: 100vh;
-      align-items: flex-start;
+      align-items: center;
+      justify-content: center;
       aspect-ratio: unset;
-      padding: 4rem 0;
     }
   }
 
