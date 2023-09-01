@@ -16,6 +16,11 @@
     background-color: #000;
   }
 
+  &__wave {
+    transform: translateY(2px);
+    width: 100vw;
+  }
+
   &__container {
     max-width: var(--container-content-width);
     margin-left: auto;

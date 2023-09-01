@@ -12,7 +12,7 @@ const Footer = () => {
         height={95}
         width={1920}
         alt='Footer wave'
-        style={{ transform: 'translateY(2px)' }}
+        className={styles.footer__wave}
       />
       <div className={styles.footer__wrapper}>
         <div className={`${styles.footer__container} container`}>
