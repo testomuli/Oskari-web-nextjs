@@ -2,17 +2,37 @@ import Image from 'next/image'
 import styles from '../styles/hero.module.scss'
 import Button from './Button'
 
-export default function Hero() {
+const renderHeroImage = (small: boolean = false) => {
+  if (small) {
+    return (
+      <Image
+        src='/assets/images/hero-pills.svg'
+        alt='blob'
+        width={1920}
+        height={500}
+      />
+    )
+  }
+  return (
+    <Image
+      src='/assets/images/hero-blobs.svg'
+      alt='blob'
+      width={1920}
+      height={700}
+    />
+  )
+}
+
+export default function Hero({ small = true }) {
   return (
     <div className={styles.hero}>
-      <div className={styles.hero__container}>
+      <div
+        className={`${
+          small ? styles['hero__container--small'] : styles.hero__container
+        }`}
+      >
         <div className={styles.blobs}>
-          <Image
-            src='/assets/images/hero-blobs.svg'
-            alt='blob'
-            width={1920}
-            height={700}
-          />
+          {renderHeroImage(small ? true : false)}
         </div>
         <div className={`${styles.hero__content} container--content`}>
           <div>

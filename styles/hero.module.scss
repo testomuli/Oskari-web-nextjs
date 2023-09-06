@@ -15,6 +15,12 @@
       justify-content: center;
       aspect-ratio: unset;
     }
+    &--small {
+      @extend .hero__container;
+      transform: none;
+      height: 500px;
+      aspect-ratio: unset;
+    }
   }
 
   &__content {
