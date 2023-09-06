@@ -27,7 +27,10 @@ const Footer = () => {
             <h3>Sitemap</h3>
             <ul role='navigation' className={styles['footer__sitemap-links']}>
               {sitemap.map((item) => (
-                <li key={item.title}>
+                <li
+                  key={item.title}
+                  className={styles['footer__sitemap-links-item']}
+                >
                   <Link href={item.path}>{item.title}</Link>
                 </li>
               ))}

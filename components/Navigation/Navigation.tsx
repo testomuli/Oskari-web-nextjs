@@ -10,7 +10,7 @@ export default function Navigation() {
         <div className='nav__container'>
           <div className='nav__logo'>
             <Image
-              src='/assets/images/oskari-logo.svg'
+              src='/assets/images/oskari_logo_black_horizontal.svg'
               alt='Oskari Logo'
               width={200}
               height={90}
