@@ -33,19 +33,26 @@ const mavenPro = Maven_Pro({
 interface LayoutProps {
   children: React.ReactNode
   meta: { title: string; description: string }
+  heroSmall?: boolean
+  heroTitle?: string
 }
 
 export default function Layout({ children, ...props }: LayoutProps) {
+  const {
+    meta,
+    heroSmall = false,
+    heroTitle = 'Oskari – a mapping tool that adapts to your needs',
+  } = props
   return (
     <MDXProvider components={MdxComponents}>
       <Head>
         <html lang='en' />
         <body className={`${mavenPro.variable} ${leagueSpartan.variable}`} />
-        <title>{props.meta.title}</title>
-        <meta name='description' content={props.meta.description} />
+        <title>{meta.title}</title>
+        <meta name='description' content={meta.description} />
       </Head>
       <Navigation />
-      <Hero small />
+      <Hero small={heroSmall} title={heroTitle} />
       <main className='content-wrapper'>{children}</main>
       <Footer />
     </MDXProvider>

@@ -10,4 +10,8 @@ Discover Oskari's great features and learn how to use them.
 
 <Features />
 
-export default ({ children }) => <Layout meta={meta}>{children}</Layout>
+export default ({ children }) => (
+  <Layout meta={meta} heroSmall heroTitle='Discover Oskari'>
+    {children}
+  </Layout>
+)

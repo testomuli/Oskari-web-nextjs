@@ -1,5 +1,4 @@
 .hero {
-  max-width: var(--container-width);
   margin-left: auto;
   margin-right: auto;
   &__container {
@@ -30,6 +29,12 @@
     gap: 10vmin;
     z-index: 5;
 
+    &--small {
+      @extend .hero__content;
+      padding-left: 1.5rem;
+      padding-right: 1.5rem;
+    }
+
     & > *:first-child {
       flex: 1.5;
       display: flex;
@@ -52,7 +57,7 @@
   }
 
   &__title {
-    font-size: clamp(2.5rem, 7vmin, 5rem);
+    font-size: clamp(2.5rem, 7vmin, 54px);
     line-height: 1.1;
   }
 
