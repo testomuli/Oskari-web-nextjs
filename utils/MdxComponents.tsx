@@ -11,4 +11,5 @@ export const MdxComponents = {
   ),
   UsedBy: () => <UsedBy title='Used by' data={usedbyItems} />,
   WhatsNew: () => <CardList data={whatsnew} title='What´s new' />,
+  p: ({ children }: any) => <p className='container--content'>{children}</p>,
 }

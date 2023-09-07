@@ -6,6 +6,12 @@ export const meta = {
     'Oskari is a framework for easily building multipurpose web mapping applications utilizing distributed Spatial Data Infrastructures like INSPIRE.',
 }
 
-Contribute Oskari Map Application Platform
+<div class='container--content'>
+  # Contribute Oskari Map Application Platform
+</div>
 
-export default ({ children }) => <Layout meta={meta}>{children}</Layout>
+export default ({ children }) => (
+  <Layout meta={meta} heroSmall heroTitle='Contribute'>
+    {children}
+  </Layout>
+)
