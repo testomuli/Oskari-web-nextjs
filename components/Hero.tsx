@@ -6,8 +6,8 @@ export default function Hero({
   small = false,
   title,
 }: {
-  title: string
-  small: boolean
+  title?: string
+  small?: boolean
 }) {
   const renderHeroImage = () => {
     if (small) {
