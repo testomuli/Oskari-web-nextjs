@@ -40,11 +40,11 @@ export default function Home() {
           and mobile map services to their citizens and consumers. With Oskari,
           you can embed a working map on your website. By adding layers of other
           location data on top of the background map, in the simplest case your
-          organization's office locations, you get a map service that is exactly
-          what you need. You can add tools to the map, such as user positioning.
-          Oskari supports the EU directive INSPIRE and OGC standards. The name
-          Oskari comes from the words open-source map window (open source
-          karttaikkuna).
+          organization&apos;s office locations, you get a map service that is
+          exactly what you need. You can add tools to the map, such as user
+          positioning. Oskari supports the EU directive INSPIRE and OGC
+          standards. The name Oskari comes from the words open-source map window
+          (open source karttaikkuna).
         </p>
 
         <FeatureCard
