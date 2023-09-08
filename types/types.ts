@@ -16,3 +16,9 @@ export type CardItemType = {
   description: string
   href: string
 }
+
+export type DiscoverFeatureDataType = {
+  title: string
+  img: string
+  features: FeaturesItemType[]
+}

@@ -19,7 +19,14 @@
       @extend .hero__container;
       transform: none;
       height: 500px;
+      min-height: unset;
       aspect-ratio: unset;
+
+      img {
+        min-height: 100%;
+        object-position: center;
+        object-fit: cover;
+      }
     }
   }
 

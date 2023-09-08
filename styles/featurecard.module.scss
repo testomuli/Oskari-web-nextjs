@@ -3,15 +3,15 @@
   align-items: center;
   justify-content: space-evenly;
   gap: 4rem;
-  padding: 0 5%;
+  padding: 4rem 5%;
 
-  @media screen and (max-width: 768px) {
+  @media screen and (max-width: 992px) {
     flex-direction: column;
     gap: 5rem;
   }
 
   &__content {
-    flex: 1 1 auto;
+    flex: 1;
     display: flex;
     gap: 2.5rem;
     flex-direction: column;
@@ -29,9 +29,10 @@
         background-color: #000;
         border-radius: 50%;
         overflow: hidden;
+        flex: 0 0 auto;
       }
       &-text {
-        flex: 1;
+        flex: 1 1 auto;
         display: flex;
         flex-direction: column;
         justify-content: center;
@@ -43,19 +44,26 @@
     }
   }
   &__image {
-    flex: 2;
-    flex-shrink: 0;
-    border-radius: 50%;
-    overflow: hidden;
-    max-width: 460px;
+    flex: 1 0;
     img {
+      border-radius: 50%;
       width: 100%;
+      max-width: 460px;
       height: auto;
       object-fit: cover;
+      margin-left: auto;
     }
   }
 }
 
 .flexRowReverse {
   flex-direction: row-reverse;
+
+  & > .featureCard__image img {
+    margin-right: auto;
+    margin-left: unset;
+  }
+  @media screen and (max-width: 992px) {
+    flex-direction: column;
+  }
 }

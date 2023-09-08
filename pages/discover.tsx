@@ -1,6 +1,7 @@
 import FeatureCard from '@/components/Cards/FeatureCard'
 import Container from '@/components/Container'
 import Layout from '@/components/Layout'
+import { DISCOVER_FEATURE_DATA } from '@/utils/data/whychooseoskari'
 
 const meta = {
   title: 'Oskari Map Application Platform',
@@ -8,29 +9,11 @@ const meta = {
     'Oskari is a framework for easily building multipurpose web mapping applications utilizing distributed Spatial Data Infrastructures like INSPIRE.',
 }
 
-const FEATURE_DATA = [
-  {
-    icon: '',
-    title: 'RPC functionality improves the user experience',
-    description: "The map reacts in real time to the user's actions.",
-  },
-  {
-    icon: '',
-    title: 'RPC functionality improves the user experience',
-    description: "The map reacts in real time to the user's actions.",
-  },
-  {
-    icon: '',
-    title: 'RPC functionality improves the user experience',
-    description: "The map reacts in real time to the user's actions.",
-  },
-]
-
 export default function Home() {
   return (
     <Layout meta={meta} heroSmall heroTitle='Discover Oskari'>
       <Container
-        style={{ display: 'flex', flexDirection: 'column', gap: '4rem' }}
+        style={{ display: 'flex', flexDirection: 'column', gap: '5rem' }}
       >
         <p>
           Oskari is a Finnish open-source software for building web maps and
@@ -47,17 +30,15 @@ export default function Home() {
           (open source karttaikkuna).
         </p>
 
-        <FeatureCard
-          features={FEATURE_DATA}
-          title='Adaptive software'
-          imageSrc='/assets/images/lounaistieto.png'
-        />
-        <FeatureCard
-          features={FEATURE_DATA}
-          title='Adaptive software'
-          imageSrc='/assets/images/lounaistieto.png'
-          reverse
-        />
+        {DISCOVER_FEATURE_DATA?.map((feature, index) => (
+          <FeatureCard
+            key={feature.title}
+            features={feature.features}
+            title={feature.title}
+            imageSrc={feature.img}
+            reverse={index % 2 === 0}
+          />
+        ))}
       </Container>
     </Layout>
   )
