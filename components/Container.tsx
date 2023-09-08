@@ -3,7 +3,7 @@ import React from 'react'
 type ContainerProps = {
   children: React.ReactNode
   props?: never
-  style: React.CSSProperties
+  style?: React.CSSProperties
 }
 
 const Container = ({ children, ...props }: ContainerProps) => (

@@ -8,6 +8,7 @@ type ButtonProps = {
   handleClick?: () => void
   href?: string
   expandable?: boolean
+  style?: React.CSSProperties
 }
 
 const Button = ({

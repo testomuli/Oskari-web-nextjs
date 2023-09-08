@@ -1,0 +1,28 @@
+.highlightBox {
+  --otter-height: 92px;
+  @media screen and (max-width: 992px) {
+    --otter-height: 54px;
+  }
+  --otter-top-position: calc(var(--otter-height) / 2 * -1 + 10px); // -36px
+  background-color: var(--color-beige);
+  width: 100vw;
+
+  &__content {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding-top: 8.5rem;
+    padding-bottom: 8.5rem;
+    margin-top: calc(var(--otter-top-position) * -1); // to positive number 36px
+  }
+
+  &__otter {
+    position: absolute;
+    height: var(--otter-height);
+    width: auto;
+    top: var(--otter-top-position);
+    right: 15%;
+  }
+}

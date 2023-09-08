@@ -1,0 +1,32 @@
+import React from 'react'
+import styles from '@/styles/highlightbox.module.scss'
+import Image from 'next/image'
+
+type HighlightBoxProps = {
+  children: React.ReactNode
+  otter?: boolean
+  style?: React.CSSProperties
+}
+
+export default function HighlightBox({
+  children,
+  otter = true,
+  ...props
+}: HighlightBoxProps) {
+  return (
+    <div className={styles.highlightBox} {...props}>
+      <div className={`${styles.highlightBox__content} container--content`}>
+        {otter && (
+          <Image
+            src='/assets/images/oskari_swim_logo_black.svg'
+            className={styles.highlightBox__otter}
+            height={92}
+            width={330}
+            alt='Oskari Otter'
+          />
+        )}
+        {children}
+      </div>
+    </div>
+  )
+}
