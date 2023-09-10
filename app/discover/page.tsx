@@ -1,5 +1,6 @@
 import Button from '@/components/Button'
 import FeatureCard from '@/components/Cards/FeatureCard'
+import ImageCard from '@/components/Cards/ImageCard'
 import Container from '@/components/Container'
 import HighlightBox from '@/components/HighlightBox'
 import Layout from '@/components/Layout'
@@ -101,6 +102,18 @@ export default function DiscoverPage() {
           <Button variant='dark' title='Try Oskari' />
         </div>
       </HighlightBox>
+      <ImageCard
+        imageSrc='/assets/images/placeholder.png'
+        altText='Placeholder'
+        title='Card title'
+        content='This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.'
+      />
+      <ImageCard
+        imageSrc='/assets/images/placeholder.png'
+        altText='Placeholder'
+        title='Card title'
+        content='This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.'
+      />
     </Layout>
   )
 }

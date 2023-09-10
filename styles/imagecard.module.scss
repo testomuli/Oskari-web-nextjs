@@ -1,0 +1,25 @@
+.imageCard {
+  border-radius: 12px;
+  background-color: var(--color-light);
+  color: var(--color-text);
+  width: 364px;
+  overflow: hidden;
+  box-shadow: 10px 10px 20px 0px #0000001a;
+
+  &__image {
+    width: 100%;
+    img {
+      width: 100%;
+      height: auto;
+      min-height: 214px;
+      object-fit: cover;
+    }
+  }
+  &__content {
+    padding: 1.5rem;
+
+    h3 {
+      margin-bottom: 1rem;
+    }
+  }
+}
