@@ -56,7 +56,7 @@ export default function NavigationMenu() {
                 ) : (
                   <Link
                     className={`navMenu__link ${
-                      pathname === item.path && 'active'
+                      pathname === item.path && pathname !== '/' && 'active'
                     }`}
                     href={item.path}
                   >
