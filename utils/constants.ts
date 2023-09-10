@@ -2,6 +2,10 @@ import { NavigationItemType } from '@/types/types'
 
 export const NAVIGATION_ITEMS: Array<NavigationItemType> = [
   {
+    name: 'Home',
+    path: '/',
+  },
+  {
     name: 'Discover Oskari',
     path: '/discover',
   },

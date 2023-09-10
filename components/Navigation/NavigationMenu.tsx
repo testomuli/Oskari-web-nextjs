@@ -1,4 +1,5 @@
 'use client'
+
 import { NAVIGATION_ITEMS } from '@/utils/constants'
 import Link from 'next/link'
 import { useEffect, useState } from 'react'
@@ -6,10 +7,12 @@ import NavigationSubMenu from './NavigationSubMenu'
 import Button from '../Button'
 import Search from '../Search'
 import useWindowDimensions from '@/hooks/useWindowDimensions'
+import { usePathname } from 'next/navigation'
 
 export default function NavigationMenu() {
   const [isOpen, setIsOpen] = useState(false)
   const { width, height } = useWindowDimensions()
+  const pathname = usePathname()
 
   useEffect(() => {
     closeMenu()
@@ -51,7 +54,12 @@ export default function NavigationMenu() {
                 {item.children && item.children.length > 0 ? (
                   <NavigationSubMenu title={item.name} items={item.children} />
                 ) : (
-                  <Link className='navMenu__link' href={item.path}>
+                  <Link
+                    className={`navMenu__link ${
+                      pathname === item.path && 'active'
+                    }`}
+                    href={item.path}
+                  >
                     {item.name}
                   </Link>
                 )}
