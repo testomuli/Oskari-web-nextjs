@@ -1,33 +1,17 @@
-export const NAVIGATION_ITEMS = [
+import { NavigationItemType } from '@/types/types'
+
+export const NAVIGATION_ITEMS: Array<NavigationItemType> = [
   {
     name: 'Discover Oskari',
     path: '/discover',
-    children: [
-      {
-        name: 'Resources',
-        path: '/resources',
-      },
-    ],
   },
   {
     name: 'Resources',
     path: '/resources',
-    children: [
-      {
-        name: 'Resources',
-        path: '/resources',
-      },
-    ],
   },
   {
     name: 'Community',
     path: '/community',
-    children: [
-      {
-        name: 'Resources',
-        path: '/resources',
-      },
-    ],
   },
   {
     name: 'Blog',

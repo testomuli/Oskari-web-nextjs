@@ -5,16 +5,15 @@ import HighlightBox from '@/components/HighlightBox'
 import Layout from '@/components/Layout'
 import Text from '@/components/Text'
 import { DISCOVER_FEATURE_DATA } from '@/utils/data/whychooseoskari'
+import { Metadata } from 'next'
 
-const meta = {
-  title: 'Oskari Map Application Platform',
-  description:
-    'Oskari is a framework for easily building multipurpose web mapping applications utilizing distributed Spatial Data Infrastructures like INSPIRE.',
+export const metadata: Metadata = {
+  title: 'Discover',
 }
 
-export default function Home() {
+export default function DiscoverPage() {
   return (
-    <Layout meta={meta} heroSmall heroTitle='Discover Oskari'>
+    <Layout heroSmall heroTitle={'Discover Oskari'}>
       <Container
         style={{
           display: 'flex',

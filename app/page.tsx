@@ -6,7 +6,7 @@ import featureItems from '@/utils/data/features.json'
 import usedbyItems from '@/utils/data/usedby.json'
 import whatsnew from '@/utils/data/whatsnew.json'
 
-export default function Home() {
+export default function HomePage() {
   return (
     <Layout>
       <FeaturesList title='With Oskari you can...' data={featureItems} />
