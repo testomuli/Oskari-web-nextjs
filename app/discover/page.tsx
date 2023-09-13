@@ -104,42 +104,49 @@ export default function DiscoverPage() {
         </div>
       </HighlightBox>
       <CardCarousel
+        title='Use cases'
         items={[
           <ImageCard
             imageSrc='/assets/images/placeholder.png'
             altText='Placeholder'
             title='Card title'
             content='This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.'
+            key={1}
           />,
           <ImageCard
             imageSrc='/assets/images/placeholder.png'
             altText='Placeholder'
             title='Card title'
             content='This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.'
+            key={2}
           />,
           <ImageCard
             imageSrc='/assets/images/placeholder.png'
             altText='Placeholder'
             title='Card title'
             content='This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.'
+            key={3}
           />,
           <ImageCard
             imageSrc='/assets/images/placeholder.png'
             altText='Placeholder'
             title='Card title'
             content='This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.'
+            key={4}
           />,
           <ImageCard
             imageSrc='/assets/images/placeholder.png'
             altText='Placeholder'
             title='Card title'
             content='This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.'
+            key={5}
           />,
           <ImageCard
             imageSrc='/assets/images/placeholder.png'
             altText='Placeholder'
             title='Card title'
             content='This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer.'
+            key={6}
           />,
         ]}
       />

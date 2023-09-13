@@ -2,9 +2,9 @@
   border-radius: 12px;
   background-color: var(--color-light);
   color: var(--color-text);
-  width: 364px;
   overflow: hidden;
   box-shadow: 10px 10px 20px 0px #0000001a;
+  margin-bottom: 20px;
 
   &__image {
     width: 100%;
@@ -13,6 +13,7 @@
       height: auto;
       min-height: 214px;
       object-fit: cover;
+      aspect-ratio: 16 / 9;
     }
   }
   &__content {

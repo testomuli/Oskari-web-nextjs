@@ -1,61 +1,57 @@
 'use client'
 
 import React from 'react'
-import Button from '@/components/Button'
+import Slider from 'react-slick'
 import styles from '@/styles/cardcarousel.module.scss'
-/*
-1. Create a carousel that displays the items passed in as props
-2. The carousel should display three items at a time or props
-3. The carousel should have a button to go to the next three items
-4. The carousel should have a button to go to the previous three items
-*/
+import 'slick-carousel/slick/slick.css'
+import 'slick-carousel/slick/slick-theme.css'
 
 type CardCarouselProps = {
   items: Array<React.ReactNode>
+  title?: string
 }
-export default function CardCarousel({ items }: CardCarouselProps) {
-  const [activeItem, setActiveItem] = React.useState(0)
-
-  const ITEMS_LENGTH = items.length
-  const ITEMS_TO_SHOW = 3
-
-  const handleNext = () => {
-    if (activeItem + ITEMS_TO_SHOW < ITEMS_LENGTH) {
-      setActiveItem((prev) => prev + ITEMS_TO_SHOW)
-    }
-    if (activeItem + ITEMS_TO_SHOW >= ITEMS_LENGTH) {
-      setActiveItem(ITEMS_LENGTH)
-    }
-  }
-
-  const handlePrev = () => {
-    if (activeItem - ITEMS_TO_SHOW >= 0) {
-      setActiveItem((prev) => prev - ITEMS_TO_SHOW)
-    }
-    if (activeItem - ITEMS_TO_SHOW < 0) {
-      setActiveItem(0)
-    }
+export default function CardCarousel({ items, title }: CardCarouselProps) {
+  const settings = {
+    dots: true,
+    infinite: false,
+    speed: 500,
+    slidesToShow: 3,
+    slidesToScroll: 3,
+    initialSlide: 0,
+    responsive: [
+      {
+        breakpoint: 992,
+        settings: {
+          slidesToShow: 2,
+          slidesToScroll: 2,
+          infinite: true,
+          centerMode: true,
+          className: 'center',
+        },
+      },
+      {
+        breakpoint: 768,
+        settings: {
+          slidesToShow: 1,
+          slidesToScroll: 1,
+          infinite: true,
+          centerMode: true,
+          className: 'center',
+        },
+      },
+    ],
   }
 
   return (
-    <div className={styles.cardCarousel}>
-      <div className={styles.cardCarousel__container}>
-        <Button
-          handleClick={handlePrev}
-          // disabled={activeItem === 0}
-          title='<'
-        />
+    <div className={`${styles.cardCarousel} container--content`}>
+      {title && <h2>{title}</h2>}
+      <Slider {...settings}>
         {items.map((item, index) => (
-          <div key={index} className={styles.cardCarousel__item}>
-            {item}
+          <div key={index}>
+            <div className={styles.cardCarousel__item}>{item}</div>
           </div>
         ))}
-        <Button
-          handleClick={handleNext}
-          // disabled={activeItem + ITEMS_TO_SHOW >= ITEMS_LENGTH}
-          title='>'
-        />
-      </div>
+      </Slider>
     </div>
   )
 }
