@@ -15,7 +15,7 @@ export const metadata: Metadata = {
 
 export default function DiscoverPage() {
   return (
-    <Layout heroSmall heroTitle={'Discover Oskari'}>
+    <Layout heroSmall heroTitle='Discover Oskari'>
       <Container
         style={{
           display: 'flex',

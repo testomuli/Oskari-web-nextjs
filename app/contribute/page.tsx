@@ -8,7 +8,7 @@ export const metadata: Metadata = {
 
 export default function ContributePage() {
   return (
-    <Layout heroSmall heroTitle={'Contribute'}>
+    <Layout heroSmall heroTitle='Contribute'>
       <Container>asd</Container>
     </Layout>
   )

@@ -27,6 +27,7 @@ export default function CardCarousel({ items, title }: CardCarouselProps) {
           infinite: true,
           centerMode: true,
           className: 'center',
+          centerPadding: '16px',
         },
       },
       {
@@ -37,6 +38,7 @@ export default function CardCarousel({ items, title }: CardCarouselProps) {
           infinite: true,
           centerMode: true,
           className: 'center',
+          centerPadding: '16px',
         },
       },
     ],
