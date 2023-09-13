@@ -39,18 +39,23 @@ const Footer = () => {
           <div className={styles.footer__social}>
             <h3>Follow us</h3>
             <ul role='menu' className={styles['footer__social-links']}>
-              {socials.map((item) => (
-                <li key={item.icon}>
-                  <Link href={item.url}>
-                    <Image
-                      width={52}
-                      height={52}
-                      src={item.icon}
-                      alt={item.name}
-                    />
-                  </Link>
-                </li>
-              ))}
+              {(Object.keys(socials) as Array<keyof typeof socials>).map(
+                (key) => {
+                  const item = socials[key]
+                  return (
+                    <li key={item.icon}>
+                      <Link href={item.url}>
+                        <Image
+                          width={52}
+                          height={52}
+                          src={item.icon}
+                          alt={item.name}
+                        />
+                      </Link>
+                    </li>
+                  )
+                }
+              )}
             </ul>
           </div>
           <div className={styles.footer__community}>

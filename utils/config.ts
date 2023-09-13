@@ -2,18 +2,18 @@ export const SITE_CONFIG = {
   title: 'My Blog',
   description: 'My Blog Description',
 
-  socials: [
-    {
+  socials: {
+    twitter: {
       name: 'Twitter - Oskari.org',
-      url: 'https://github.com/oskariorg/',
+      url: 'https://twitter.com/oskari_org',
       icon: '/assets/icons/twitter.svg',
     },
-    {
+    github: {
       name: 'GitHub - Oskari.org',
-      url: 'https://twitter.com/oskari_org',
+      url: 'https://github.com/oskariorg/',
       icon: '/assets/icons/github.svg',
     },
-  ],
+  },
 
   sitemap: [
     {

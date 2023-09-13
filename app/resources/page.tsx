@@ -5,6 +5,9 @@ import RoadMap from '@/components/RoadMap'
 import Text from '@/components/Text'
 import { Metadata } from 'next'
 import roadmap from '@/utils/data/roadmap.json'
+import HighlightBox from '@/components/HighlightBox'
+import { SITE_CONFIG } from '@/utils/config'
+import Button from '@/components/Button'
 
 export const metadata: Metadata = {
   title: 'Contribute',
@@ -52,6 +55,32 @@ export default function ResourcesPage() {
             ))}
           </RoadMap>
         </div>
+        <HighlightBox
+          style={{
+            margin: '8rem 0',
+          }}
+        >
+          <div
+            style={{
+              display: 'flex',
+              flexDirection: 'column',
+              gap: '3rem',
+              textAlign: 'center',
+              alignItems: 'center',
+            }}
+          >
+            <h3 style={{ fontSize: '1.625rem' }}>Give it a try!</h3>
+            <p style={{ textAlign: 'center', fontSize: '1.125rem' }}>
+              How to view and visualise maps with Oskari? Try the sample
+              application!
+            </p>
+            <Button
+              variant='primary'
+              title='See source code (Github)'
+              href={SITE_CONFIG.socials.github.url}
+            />
+          </div>
+        </HighlightBox>
       </Container>
     </Layout>
   )
