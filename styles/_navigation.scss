@@ -87,6 +87,7 @@
     justify-content: space-evenly;
     gap: 1.5rem;
     font-size: 1.8rem;
+    overflow: auto;
     @media (max-width: 1200px) {
       display: flex;
       flex-direction: column;

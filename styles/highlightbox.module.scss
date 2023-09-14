@@ -1,7 +1,7 @@
 .highlightBox {
-  --otter-height: 92px;
+  --otter-height: 54px;
   @media screen and (max-width: 992px) {
-    --otter-height: 54px;
+    --otter-height: 48px;
   }
   --otter-top-position: calc(var(--otter-height) / 2 * -1 + 10px); // -36px
   background-color: var(--color-beige);

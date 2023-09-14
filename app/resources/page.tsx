@@ -55,33 +55,35 @@ export default function ResourcesPage() {
             ))}
           </RoadMap>
         </div>
-        <HighlightBox
+      </Container>
+
+      <HighlightBox
+        style={{
+          margin: '8rem 0',
+          backgroundColor: '#FAFAFA',
+        }}
+      >
+        <div
           style={{
-            margin: '8rem 0',
+            display: 'flex',
+            flexDirection: 'column',
+            gap: '3rem',
+            textAlign: 'center',
+            alignItems: 'center',
           }}
         >
-          <div
-            style={{
-              display: 'flex',
-              flexDirection: 'column',
-              gap: '3rem',
-              textAlign: 'center',
-              alignItems: 'center',
-            }}
-          >
-            <h3 style={{ fontSize: '1.625rem' }}>Give it a try!</h3>
-            <p style={{ textAlign: 'center', fontSize: '1.125rem' }}>
-              How to view and visualise maps with Oskari? Try the sample
-              application!
-            </p>
-            <Button
-              variant='primary'
-              title='See source code (Github)'
-              href={SITE_CONFIG.socials.github.url}
-            />
-          </div>
-        </HighlightBox>
-      </Container>
+          <h3 style={{ fontSize: '1.625rem' }}>Give it a try!</h3>
+          <p style={{ textAlign: 'center', fontSize: '1.125rem' }}>
+            How to view and visualise maps with Oskari? Try the sample
+            application!
+          </p>
+          <Button
+            variant='primary'
+            title='See source code (Github)'
+            href={SITE_CONFIG.socials.github.url}
+          />
+        </div>
+      </HighlightBox>
     </Layout>
   )
 }

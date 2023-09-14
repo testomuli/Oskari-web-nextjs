@@ -48,7 +48,7 @@ export default function NavigationMenu() {
             <Search />
             <Button title='Download' variant='primary' />
           </div>
-          <ul role='menu' className='navMenu__list'>
+          <ul className='navMenu__list'>
             {NAVIGATION_ITEMS.map((item) => (
               <li className='navMenu__item' key={item.path}>
                 {item.children && item.children.length > 0 ? (
@@ -59,6 +59,7 @@ export default function NavigationMenu() {
                       pathname === item.path && pathname !== '/' && 'active'
                     }`}
                     href={item.path}
+                    onClick={closeMenu}
                   >
                     {item.name}
                   </Link>
