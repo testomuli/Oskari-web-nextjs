@@ -1,0 +1,64 @@
+.accordion {
+  box-shadow: 10px 10px 20px 0px #0000001a;
+  border-radius: 1.875rem;
+  overflow: hidden;
+
+  &__header {
+    background-color: var(--color-light);
+    font-size: 1.125rem;
+    font-weight: 700;
+    font-family: var(--font-primary);
+    padding: 1.25rem 2rem;
+    cursor: pointer;
+    transition: background-color 0.25s ease-out 0.175s;
+    display: block;
+  }
+
+  &__wrapper {
+    display: grid;
+    grid-template-rows: 0fr;
+    overflow: hidden;
+    transition: grid-template-rows 0.25s ease;
+    background-color: var(--color-light);
+  }
+
+  &__content {
+    background-color: var(--color-light);
+    min-height: 0;
+    padding: 0 2rem;
+    transition: padding 0.25s ease;
+  }
+
+  &.open {
+    .accordion {
+      &__header {
+        background-color: var(--color-beige);
+      }
+
+      &__wrapper {
+        grid-template-rows: 1fr;
+      }
+
+      &__content {
+        padding: 1.25rem 2rem;
+      }
+    }
+  }
+}
+
+.accordionGroup {
+  & > * {
+    &:first-child {
+      border-bottom-left-radius: 0;
+      border-bottom-right-radius: 0;
+    }
+    &:not(:first-child) {
+      border-radius: 0;
+      border-top: 1px solid #f3f3f3;
+    }
+    &:last-child {
+      border-bottom-left-radius: 1.875rem;
+      border-bottom-right-radius: 1.875rem;
+    }
+  }
+}
