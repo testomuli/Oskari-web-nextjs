@@ -29,7 +29,7 @@ export default function DocsPage() {
           style={{
             display: 'grid',
             gridTemplateColumns: '1fr 4fr',
-            gap: '5vmin',
+            gap: '2.5rem',
           }}
         >
           <aside
