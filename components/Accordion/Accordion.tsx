@@ -1,6 +1,7 @@
 'use client'
 import React, { useEffect, useRef, useState } from 'react'
 import styles from '@/styles/accordion.module.scss'
+import Image from 'next/image'
 
 export default function Accordion({
   title,
@@ -24,7 +25,7 @@ export default function Accordion({
             child.classList.remove(styles.open)
             return
           }
-          child.classList.add(styles.open)
+          child.classList.toggle(styles.open)
         })
       }
       return
@@ -42,7 +43,7 @@ export default function Accordion({
 
   return (
     <div
-      className={`${styles.accordion} ${isOpen && styles.open}`}
+      className={`${styles.accordion} ${isOpen ? styles.open : ''}`}
       ref={accordionRef}
     >
       <div
@@ -51,6 +52,14 @@ export default function Accordion({
         onClick={toggleAccordion}
       >
         {title}
+        <span className={styles.arrowIndicator}>
+          <Image
+            src='/assets/icons/arrow_down.svg'
+            height={24}
+            width={24}
+            alt='down-arrow'
+          />
+        </span>
       </div>
       <div className={styles.accordion__wrapper}>
         <div className={styles.accordion__content}>{content}</div>

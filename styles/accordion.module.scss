@@ -12,6 +12,10 @@
     cursor: pointer;
     transition: background-color 0.25s ease-out 0.175s;
     display: block;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 1rem;
   }
 
   &__wrapper {
@@ -61,4 +65,15 @@
       border-bottom-right-radius: 1.875rem;
     }
   }
+}
+
+.accordion.open {
+  .arrowIndicator {
+    transform: rotate(180deg);
+  }
+}
+.arrowIndicator {
+  transition: transform 0.25s ease;
+  transform: rotate(0deg);
+  flex-shrink: 0;
 }
