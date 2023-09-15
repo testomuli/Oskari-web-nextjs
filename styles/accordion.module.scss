@@ -77,3 +77,21 @@
   transform: rotate(0deg);
   flex-shrink: 0;
 }
+
+.accordionMenu {
+  list-style: none;
+  padding: 0;
+  margin: -1.5rem -2rem;
+
+  li {
+    a {
+      padding: 1.25rem 2rem;
+      width: 100%;
+      display: block;
+    }
+
+    &:not(:first-child) {
+      border-top: 1px solid #f3f3f3;
+    }
+  }
+}
