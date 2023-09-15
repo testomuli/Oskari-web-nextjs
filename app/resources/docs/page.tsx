@@ -32,11 +32,19 @@ export default function DocsPage() {
             gap: '5vmin',
           }}
         >
-          <aside>
-            <h3>Select version</h3>
-            <select>
-              <option value='1.0'>1.0</option>
-            </select>
+          <aside
+            style={{ display: 'flex', gap: '3rem', flexDirection: 'column' }}
+          >
+            <div>
+              <h3>Select version</h3>
+              <Accordion
+                title='2.11.0'
+                content={renderMenuContent([
+                  { title: '2.11.0', to: '2.11.0' },
+                  { title: '2.10.15', to: '2.10.15' },
+                ])}
+              />
+            </div>
             <AccordionGroup>
               <Accordion
                 title='Application environment'
