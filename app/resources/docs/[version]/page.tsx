@@ -19,7 +19,7 @@ export default async function VersionPage({
     (version) => version !== params.version
   )
 
-  const renderVersionMenu = (items: string[]) => (
+  const renderMenuContent = (items: string[]) => (
     <ul className={styles.accordionMenu}>
       {items?.map((item) => (
         <li key={item}>
@@ -46,7 +46,7 @@ export default async function VersionPage({
               <h3 style={{ fontSize: '1.125rem' }}>Select version</h3>
               <Accordion
                 title={params.version}
-                content={renderVersionMenu(versionsWithoutSelected)}
+                content={renderMenuContent(versionsWithoutSelected)}
               />
             </div>
             <AccordionGroup>

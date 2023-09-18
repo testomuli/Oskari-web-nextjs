@@ -16,6 +16,8 @@ interface DocumentMetadata {
   content: string
 }
 
+const docsDirectory = path.join(process.cwd(), '_docs')
+
 export function getAllVersions(): string[] {
   const docsDirectory = path.join(process.cwd(), '_docs')
   const contents = fs.readdirSync(docsDirectory)
@@ -72,4 +74,44 @@ export function getAllDocuments(version?: string): DocumentMetadata[] {
   })
 
   return contentData
+}
+
+export function getDocument(version?: string): DocumentMetadata[] {
+  if (!version) return []
+
+  const docsDirectory = path.join(process.cwd(), `_docs/${version}`)
+  const fileNames = fs.readdirSync(docsDirectory)
+  const contentData: DocumentMetadata[] = []
+
+  fileNames.forEach((fileName) => {
+    const filePath = path.join(docsDirectory, fileName)
+    const fileContents = fs.readFileSync(filePath, 'utf8')
+    const { data, content } = matter(fileContents)
+    console.log(content)
+    contentData.push({
+      title: data.title,
+      slug: data.slug,
+      version: data.version,
+      content: content,
+    })
+  })
+
+  return contentData
+}
+
+export function getDocumentBySlug(
+  version: string,
+  slug: string
+): DocumentMetadata {
+  const realSlug = slug.replace(/\.md$/, '')
+  const fullPath = path.join(`${docsDirectory}/${version}`, `${realSlug}.md`)
+  const fileContents = fs.readFileSync(fullPath, 'utf8')
+  const { data, content } = matter(fileContents)
+
+  return {
+    title: data.title,
+    slug: data.slug,
+    version: data.version,
+    content: content,
+  }
 }
