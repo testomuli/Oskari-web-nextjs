@@ -11,11 +11,26 @@ import { compareSemanticVersions } from '@/utils/misc'
 
 interface DocumentMetadata {
   title: string
+  slug: string
   version: string
   content: string
 }
 
 export function getAllVersions(): string[] {
+  const docsDirectory = path.join(process.cwd(), '_docs')
+  const contents = fs.readdirSync(docsDirectory)
+
+  const directories = contents.filter((item) => {
+    const itemPath = path.join(docsDirectory, item)
+    return fs.statSync(itemPath).isDirectory()
+  })
+
+  const sortedVersions = directories.sort(compareSemanticVersions).reverse()
+
+  return sortedVersions
+}
+
+export function _getAllVersions(): string[] {
   const docsDirectory = path.join(process.cwd(), '_docs')
   const fileNames = fs.readdirSync(docsDirectory)
   const versions: string[] = []
@@ -36,22 +51,25 @@ export function getAllVersions(): string[] {
   return sortedVersions
 }
 
-export function getAllDocuments(): DocumentMetadata[] {
-  const docsDirectory = path.join(process.cwd(), '_docs')
+export function getAllDocuments(version?: string): DocumentMetadata[] {
+  if (!version) return []
+
+  const docsDirectory = path.join(process.cwd(), `_docs/${version}`)
   const fileNames = fs.readdirSync(docsDirectory)
-  const versions: DocumentMetadata[] = []
+  const contentData: DocumentMetadata[] = []
 
   fileNames.forEach((fileName) => {
     const filePath = path.join(docsDirectory, fileName)
     const fileContents = fs.readFileSync(filePath, 'utf8')
-    const { data } = matter(fileContents)
+    const { data, content } = matter(fileContents)
 
-    versions.push({
+    contentData.push({
       title: data.title,
+      slug: data.slug,
       version: data.version,
-      content: data.content,
+      content: content,
     })
   })
 
-  return versions
+  return contentData
 }

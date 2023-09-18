@@ -2,27 +2,28 @@ import React from 'react'
 import Layout from '@/components/Layout'
 import Accordion from '@/components/Accordion/Accordion'
 import AccordionGroup from '@/components/Accordion/AccordionGroup'
-import Text from '@/components/Text'
 import Link from 'next/link'
 import styles from '@/styles/accordion.module.scss'
-import { getAllVersions } from '@/lib/api'
+import { getAllDocuments, getAllVersions } from '@/lib/api'
+import Card from '@/components/Cards/Card'
 
 export default async function VersionPage({
   params,
 }: {
   params: { version: string }
 }) {
-  console.log(params)
   const versionsData = getAllVersions()
+  const documentData = getAllDocuments(params.version)
+  const [versions, data] = await Promise.all([versionsData, documentData])
+  const versionsWithoutSelected = versions.filter(
+    (version) => version !== params.version
+  )
 
-  const [versions] = await Promise.all([versionsData])
-
-  console.log(versions)
-  const renderMenuContent = (items: string[]) => (
+  const renderVersionMenu = (items: string[]) => (
     <ul className={styles.accordionMenu}>
       {items?.map((item) => (
         <li key={item}>
-          <Link href={item}>{item}</Link>
+          <Link href={`/resources/docs/${item}`}>{item}</Link>
         </li>
       ))}
     </ul>
@@ -31,7 +32,6 @@ export default async function VersionPage({
   return (
     <Layout heroSmall heroTitle='Documentation'>
       <div className='container'>
-        {JSON.stringify(versions)}
         <div
           style={{
             display: 'grid',
@@ -43,56 +43,27 @@ export default async function VersionPage({
             style={{ display: 'flex', gap: '3rem', flexDirection: 'column' }}
           >
             <div>
-              <h3>Select version</h3>
-              <Accordion title='2.11.0' content={renderMenuContent(versions)} />
+              <h3 style={{ fontSize: '1.125rem' }}>Select version</h3>
+              <Accordion
+                title={params.version}
+                content={renderVersionMenu(versionsWithoutSelected)}
+              />
             </div>
             <AccordionGroup>
-              <Accordion title='Application environment' content='asd' />
-              <Accordion
-                title='Application environment'
-                content={renderMenuContent([])}
-              />
+              {data.map((item) => (
+                <Accordion title={item.title} content='asd' key={item.slug} />
+              ))}
             </AccordionGroup>
           </aside>
           <article>
-            <h2>Application environment</h2>
-            <Text>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-              enim ad minim veniam, quis nostrud exercitation ullamco laboris
-              nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
-              reprehenderit in voluptate velit esse cillum dolore eu fugiat
-              nulla pariatur. Excepteur sint occaecat cupidatat non proident,
-              sunt in culpa qui officia deserunt mollit anim id est laborum.
-            </Text>
-            <Text>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-              enim ad minim veniam, quis nostrud exercitation ullamco laboris
-              nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
-              reprehenderit in voluptate velit esse cillum dolore eu fugiat
-              nulla pariatur. Excepteur sint occaecat cupidatat non proident,
-              sunt in culpa qui officia deserunt mollit anim id est laborum.
-            </Text>
-            <h3 id='#1.1-frontend'>1.1 Frontend</h3>
-            <Text>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-              enim ad minim veniam, quis nostrud exercitation ullamco laboris
-              nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
-              reprehenderit in voluptate velit esse cillum dolore eu fugiat
-              nulla pariatur. Excepteur sint occaecat cupidatat non proident,
-              sunt in culpa qui officia deserunt mollit anim id est laborum.
-            </Text>
-            <Text>
-              Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-              eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut
-              enim ad minim veniam, quis nostrud exercitation ullamco laboris
-              nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in
-              reprehenderit in voluptate velit esse cillum dolore eu fugiat
-              nulla pariatur. Excepteur sint occaecat cupidatat non proident,
-              sunt in culpa qui officia deserunt mollit anim id est laborum.
-            </Text>
+            {data?.map((item) => (
+              <a
+                href={`/resources/docs/${params.version}/${item.slug}`}
+                key={item.slug}
+              >
+                <Card data={{ title: item.title, description: '' }} />
+              </a>
+            ))}
           </article>
         </div>
       </div>

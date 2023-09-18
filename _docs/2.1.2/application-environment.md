@@ -1,5 +1,6 @@
 ---
 title: Application Environment
+slug: application-environment
 version: 2.1.2
 ---
 

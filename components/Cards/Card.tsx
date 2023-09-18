@@ -6,12 +6,14 @@ const Card = ({ data }: { data: CardItemType }) => {
   const { date, title, description, href } = data
   return (
     <div className={styles.card}>
-      <div className={styles.card__date}>{date}</div>
+      {date && <div className={styles.card__date}>{date}</div>}
       <h3 className={styles.card__title}>{title}</h3>
       <div className={styles.card__description}>{description}</div>
-      <div className={styles.card__cta}>
-        <Button variant='primary' href={href} title='Read more' />
-      </div>
+      {href && (
+        <div className={styles.card__cta}>
+          <Button variant='primary' href={href} title='Read more' />
+        </div>
+      )}
     </div>
   )
 }
