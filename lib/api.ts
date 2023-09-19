@@ -3,12 +3,6 @@ import path from 'path'
 import matter from 'gray-matter'
 import { compareSemanticVersions } from '@/utils/misc'
 
-// interface DocumentMetadata {
-//   title: string
-//   version: string
-//   content: string
-// }
-
 interface DocumentMetadata {
   title: string
   slug: string

@@ -18,3 +18,14 @@ export const compareSemanticVersions = (a: string, b: string) => {
   //
   return b1.length - a1.length
 }
+
+export const getHeadersFromMarkdownContent = (markdown: string) => {
+  const headingsRegEx = /(?<flag>#{1,6})\s+(?<content>.+)/g
+  const headings = Array.from(markdown.matchAll(headingsRegEx)).map(
+    (match) => ({
+      heading: `h${match.groups!.flag.length}`,
+      content: match.groups!.content,
+    })
+  )
+  return headings
+}
