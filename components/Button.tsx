@@ -1,6 +1,5 @@
 import { ChevronDownIcon } from '@heroicons/react/20/solid'
 import Link from 'next/link'
-import React from 'react'
 
 type ButtonProps = {
   variant?: 'primary' | 'secondary' | 'dark' | 'link'

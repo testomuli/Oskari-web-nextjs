@@ -1,4 +1,3 @@
-import React from 'react'
 import styles from '@/styles/accordion.module.scss'
 export default function AccordionGroup({
   children,

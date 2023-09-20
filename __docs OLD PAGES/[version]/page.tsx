@@ -1,29 +1,28 @@
-import React from 'react'
 import Layout from '@/components/Layout'
 import Accordion from '@/components/Accordion/Accordion'
 import AccordionGroup from '@/components/Accordion/AccordionGroup'
 import Link from 'next/link'
 import styles from '@/styles/accordion.module.scss'
-import { getDocumentBySlug } from '@/lib/api'
-import markdownToHtml from '@/lib/markdownToHtml'
-import { getHeadersFromMarkdownContent } from '@/utils/misc'
+import { getAllDocuments, getAllVersions } from '@/lib/api'
+import Card from '@/components/Cards/Card'
 
 export default async function VersionPage({
   params,
 }: {
-  params: { version: string; slug: string }
+  params: { version: string }
 }) {
-  const documentBySlug = getDocumentBySlug(params.version, params.slug)
-  const [data] = await Promise.all([documentBySlug])
-  const content = await markdownToHtml(data.content)
-  const headings = getHeadersFromMarkdownContent(data.content)
-  const headingsContent = headings?.map((item) => item.content)
+  const versionsData = getAllVersions()
+  const documentData = getAllDocuments(params.version)
+  const [versions, data] = await Promise.all([versionsData, documentData])
+  const versionsWithoutSelected = versions.filter(
+    (version) => version !== params.version
+  )
 
   const renderMenuContent = (items: string[]) => (
     <ul className={styles.accordionMenu}>
       {items?.map((item) => (
         <li key={item}>
-          <Link href={`/resources/docs/#${item}`}>{item}</Link>
+          <Link href={`/resources/docs/${item}`}>{item}</Link>
         </li>
       ))}
     </ul>
@@ -46,18 +45,25 @@ export default async function VersionPage({
               <h3 style={{ fontSize: '1.125rem' }}>Select version</h3>
               <Accordion
                 title={params.version}
-                content={renderMenuContent([])}
+                content={renderMenuContent(versionsWithoutSelected)}
               />
             </div>
             <AccordionGroup>
-              <Accordion title='Application environment' content='asd' />
-              <Accordion
-                title='Application environment'
-                content={renderMenuContent(headingsContent)}
-              />
+              {data.map((item) => (
+                <Accordion title={item.title} content='asd' key={item.slug} />
+              ))}
             </AccordionGroup>
           </aside>
-          <article dangerouslySetInnerHTML={{ __html: content }}></article>
+          <article>
+            {data?.map((item) => (
+              <a
+                href={`/resources/docs/${params.version}/${item.slug}`}
+                key={item.slug}
+              >
+                <Card data={{ title: item.title, description: '' }} />
+              </a>
+            ))}
+          </article>
         </div>
       </div>
     </Layout>
