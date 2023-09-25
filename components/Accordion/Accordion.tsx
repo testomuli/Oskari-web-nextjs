@@ -20,7 +20,6 @@ export default function Accordion({
 
       if (children.length > 0) {
         children.forEach((child) => {
-          console.log(child.classList)
           if (child !== accordionRef.current) {
             child.classList.remove(styles.open)
             return

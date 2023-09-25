@@ -1,5 +1,4 @@
 import DefaultLayout from '@/components/Layout'
-import VersionSidebar from '@/components/VersionSidebar'
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   return (
@@ -12,8 +11,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
             gap: '2.5rem',
           }}
         >
-          <VersionSidebar selectedVersion={'selectedVersion'} />
-          <article>{children}</article>
+          {children}
         </div>
       </div>
     </DefaultLayout>
