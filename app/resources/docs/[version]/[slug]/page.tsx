@@ -21,7 +21,7 @@ export default async function SlugPage({
       <VersionSidebar
         selectedVersion={params.version}
         subTitle={data.title}
-        subTitleLinks={headings.map((item) => item.content)}
+        subTitleLinks={headings.map((item) => item.headerSlug)}
         params={params}
       />
       <article className='md-content'>

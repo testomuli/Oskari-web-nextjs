@@ -21,11 +21,18 @@ export const compareSemanticVersions = (a: string, b: string) => {
 
 export const getHeadersFromMarkdownContent = (markdown: string) => {
   const headingsRegEx = /(?<flag>#{1,6})\s+(?<content>.+)/g
-  const headings = Array.from(markdown.matchAll(headingsRegEx)).map(
-    (match) => ({
+  const headings = Array.from(markdown.matchAll(headingsRegEx)).map((match) => {
+    // Remove special characters and spaces from the text to create a valid ID
+    const headerSlug = match
+      .groups!.content.trim()
+      .replace(/[^\w\s-]/g, '')
+      .replace(/\s+/g, '-')
+      .toLowerCase()
+    return {
       heading: `h${match.groups!.flag.length}`,
       content: match.groups!.content,
-    })
-  )
+      headerSlug,
+    }
+  })
   return headings
 }
