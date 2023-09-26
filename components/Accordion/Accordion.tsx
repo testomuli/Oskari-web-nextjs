@@ -6,11 +6,13 @@ import Image from 'next/image'
 export default function Accordion({
   title,
   content,
+  initialOpen = false,
 }: {
   title: string
   content: string | React.ReactNode
+  initialOpen?: boolean
 }) {
-  const [isOpen, setIsOpen] = useState(false)
+  const [isOpen, setIsOpen] = useState(initialOpen)
   const [isAccordionGroup, setIsAccordionGroup] = useState(false)
   const accordionRef = useRef<HTMLDivElement>(null)
 
@@ -20,7 +22,6 @@ export default function Accordion({
 
       if (children.length > 0) {
         children.forEach((child) => {
-          console.log(child.classList)
           if (child !== accordionRef.current) {
             child.classList.remove(styles.open)
             return
