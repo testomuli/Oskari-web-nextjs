@@ -1,8 +1,8 @@
 .md-content {
   /* See: node_modules/@tailwindcss/typography/dist/typography.css */
   color: var(--color-text);
-  max-width: 65ch;
-  margin: 0 auto;
+  max-width: 70ch;
+  margin-top: 27px;
 
   ul {
     list-style: none;
@@ -114,7 +114,7 @@
   & h2 {
     font-weight: 700;
     font-size: 1.5em;
-    margin-top: 2em;
+    margin-top: 4em;
     margin-bottom: 1em;
     line-height: 1.3333333;
   }
@@ -122,14 +122,14 @@
   & h3 {
     font-weight: 600;
     font-size: 1.25em;
-    margin-top: 1.6em;
+    margin-top: 3.5em;
     margin-bottom: 0.6em;
     line-height: 1.6;
   }
 
   & h4 {
     font-weight: 600;
-    margin-top: 1.5em;
+    margin-top: 3em;
     margin-bottom: 0.5em;
     line-height: 1.5;
     font-size: 1em;

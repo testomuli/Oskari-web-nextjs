@@ -3,12 +3,12 @@ import DefaultLayout from '@/components/Layout'
 export default function Layout({ children }: { children: React.ReactNode }) {
   return (
     <DefaultLayout heroSmall heroTitle='Documentation'>
-      <div className='container'>
+      <div className='container--content'>
         <div
           style={{
             display: 'grid',
-            gridTemplateColumns: '1fr 4fr',
-            gap: '2.5rem',
+            gridTemplateColumns: '1.5fr 4fr',
+            gap: '4rem',
           }}
         >
           {children}
