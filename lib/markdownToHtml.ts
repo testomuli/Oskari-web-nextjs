@@ -14,14 +14,6 @@ export default async function markdownToHtml(markdown: string) {
     .use(rehypeHighlight)
     .use(rehypeStringify)
     .process(markdown)
-  console.log(String(file))
-
-  // const result = await remark()
-  //   .use(html)
-  //   .use(rehypeHighlight)
-  //   .use(remarkGfm)
-  //   .process(markdown)
-  // return insertIdsToHeaders(result.toString())
   return insertIdsToHeaders(String(file))
 }
 
