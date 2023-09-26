@@ -76,8 +76,7 @@ Watch:
 Fork the oskariorg/oskari and oskariorg/oskari-server repositories, and check out the source code
 from your forks to your local computer.
 
-Read Atlassian's [Git Flow documentation](https://www.atlassian.com/git/tutorials/comparing-
-workflows/gitflow-workflow).
+Read Atlassian's [Git Flow documentation](https://www.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow).
 
 Create a new feature branch with `git checkout -b feature/[name]` and publish/push it into your own GitHub
 repository as a feature branch.

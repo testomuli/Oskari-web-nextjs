@@ -24,12 +24,10 @@ export default async function VersionSidebar({
   selectedVersion,
   subTitle,
   subTitleLinks = [],
-  open = false,
 }: {
   selectedVersion: string
   subTitle?: string
   subTitleLinks?: subtitleLinks[]
-  open?: boolean
 }) {
   const versionsWithoutSelected = await getData(selectedVersion)
 

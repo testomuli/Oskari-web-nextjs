@@ -2,9 +2,6 @@ import fs from 'fs'
 import path from 'path'
 import matter from 'gray-matter'
 import { compareSemanticVersions } from '@/utils/misc'
-import { remark } from 'remark'
-import html from 'remark-html'
-import remarkGfm from 'remark-gfm'
 import markdownToHtml from './markdownToHtml'
 
 interface DocumentMetadata {
