@@ -36,3 +36,11 @@ export const getHeadersFromMarkdownContent = (markdown: string) => {
   })
   return headings
 }
+
+export const createSlug = (text: string) => {
+  return text
+    .trim()
+    .replace(/[^\w\s-]/g, '')
+    .replace(/\s+/g, '-')
+    .toLowerCase()
+}

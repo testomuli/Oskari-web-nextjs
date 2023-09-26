@@ -34,6 +34,22 @@ A note[^1]
 
 How to get set up your Oskari development environment
 
+```js
+const insertIdsToHeaders = (htmlString: string) => {
+  const headerRegex = /<h([1-6])>(.*?)<\/h\1>/g
+  const newHtmlString = htmlString.replace(
+    headerRegex,
+    function (match: string, level: string, content: string) {
+      const slug = createSlug(content)
+
+      return `<h${level} id="${slug}">${content}</h${level}>`
+    }
+  )
+
+  return newHtmlString
+}
+```
+
 ### 1. GitHub, the collaboration platform
 
 The Oskari source code is stored in several separate Git repositories hosted under the [oskariorg](https://github.com/oskariorg) organization on GitHub.

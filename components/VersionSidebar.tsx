@@ -15,16 +15,21 @@ export async function getData(selectedVersion?: string) {
   return versionsWithoutSelected
 }
 
+type subtitleLinks = {
+  slug: string
+  title: string
+}
+
 export default async function VersionSidebar({
   selectedVersion,
   subTitle,
   subTitleLinks = [],
-  params,
+  open = false,
 }: {
   selectedVersion: string
   subTitle?: string
-  subTitleLinks?: string[]
-  params: { version: string; slug: string }
+  subTitleLinks?: subtitleLinks[]
+  open?: boolean
 }) {
   const versionsWithoutSelected = await getData(selectedVersion)
 
@@ -38,15 +43,11 @@ export default async function VersionSidebar({
     </ul>
   )
 
-  const renderMenuContent = (items: string[]) => (
+  const renderMenuContent = (items: { slug: string; title: string }[]) => (
     <ul className={styles.accordionMenu}>
       {items?.map((item) => (
-        <li key={item}>
-          <Link
-            href={`/resources/docs/${params.version}/${params.slug}#${item}`}
-          >
-            {item}
-          </Link>
+        <li key={item.slug}>
+          <Link href={`#${item.slug}`}>{item.title}</Link>
         </li>
       ))}
     </ul>
@@ -64,6 +65,7 @@ export default async function VersionSidebar({
         <Accordion
           title={subTitle || ''}
           content={renderMenuContent(subTitleLinks)}
+          initialOpen={true}
         />
       )}
     </aside>
