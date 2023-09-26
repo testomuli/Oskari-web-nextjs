@@ -14,7 +14,6 @@ export default async function SlugPage({
 }) {
   const data = await getDocumentData(params.slug, params.version)
   const headings = getHeadersFromMarkdownContent(data._raw)
-  console.log(headings)
 
   return (
     <>

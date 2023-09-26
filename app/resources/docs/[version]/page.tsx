@@ -14,9 +14,8 @@ export default async function VersionPage({
 }: {
   params: { version: string; slug: string }
 }) {
-  console.log(params)
   const data = await getDocumentsByVersion(params.version)
-  console.log(data)
+
   return (
     <>
       {params.slug}

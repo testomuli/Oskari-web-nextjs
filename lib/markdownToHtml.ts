@@ -1,11 +1,28 @@
 import { createSlug } from '@/utils/misc'
-import { remark } from 'remark'
 import remarkGfm from 'remark-gfm'
-import html from 'remark-html'
+import rehypeStringify from 'rehype-stringify'
+import rehypeHighlight from 'rehype-highlight'
+import remarkParse from 'remark-parse'
+import remarkRehype from 'remark-rehype'
+import { unified } from 'unified'
 
 export default async function markdownToHtml(markdown: string) {
-  const result = await remark().use(html).use(remarkGfm).process(markdown)
-  return insertIdsToHeaders(result.toString())
+  const file = await unified()
+    .use(remarkParse)
+    .use(remarkGfm)
+    .use(remarkRehype)
+    .use(rehypeHighlight)
+    .use(rehypeStringify)
+    .process(markdown)
+  console.log(String(file))
+
+  // const result = await remark()
+  //   .use(html)
+  //   .use(rehypeHighlight)
+  //   .use(remarkGfm)
+  //   .process(markdown)
+  // return insertIdsToHeaders(result.toString())
+  return insertIdsToHeaders(String(file))
 }
 
 const insertIdsToHeaders = (htmlString: string) => {

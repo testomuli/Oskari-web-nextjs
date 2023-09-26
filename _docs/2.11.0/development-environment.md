@@ -22,8 +22,9 @@ A note[^1]
 
 ## Table
 
-| a   | b   |   c |  d  |
-| --- | :-- | --: | :-: |
+| aasdsa | basdsd | casdsd | dasd |
+| ------ | :----- | -----: | :--: |
+| asd    | asd    |    asd | asd  |
 
 ## Tasklist
 
@@ -34,7 +35,7 @@ A note[^1]
 
 How to get set up your Oskari development environment
 
-```js
+```typescript
 const insertIdsToHeaders = (htmlString: string) => {
   const headerRegex = /<h([1-6])>(.*?)<\/h\1>/g
   const newHtmlString = htmlString.replace(
