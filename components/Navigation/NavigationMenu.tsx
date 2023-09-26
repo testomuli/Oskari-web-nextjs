@@ -8,6 +8,7 @@ import Button from '../Button'
 import Search from '../Search'
 import useWindowDimensions from '@/hooks/useWindowDimensions'
 import { usePathname } from 'next/navigation'
+import React from 'react'
 
 export default function NavigationMenu() {
   const [isOpen, setIsOpen] = useState(false)

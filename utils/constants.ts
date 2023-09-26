@@ -12,6 +12,16 @@ export const NAVIGATION_ITEMS: Array<NavigationItemType> = [
   {
     name: 'Resources',
     path: '/resources',
+    children: [
+      {
+        name: 'FAQ',
+        path: '/resources/faq',
+      },
+      {
+        name: 'Documentation',
+        path: '/resources/docs',
+      },
+    ],
   },
   {
     name: 'Community',
