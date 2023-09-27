@@ -25,6 +25,7 @@ export default async function VersionPage({
           display: 'grid',
           gridTemplateColumns: 'repeat(auto-fill, minmax(250px, 1fr))',
           gap: '2rem',
+          marginTop: 27,
         }}
       >
         {data?.map((item) => (

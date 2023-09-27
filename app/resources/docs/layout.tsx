@@ -1,4 +1,6 @@
 import DefaultLayout from '@/components/Layout'
+import { Suspense } from 'react'
+import Loading from './loading'
 
 export default function Layout({ children }: { children: React.ReactNode }) {
   return (
@@ -11,7 +13,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
             gap: '4rem',
           }}
         >
-          {children}
+          <Suspense fallback={<Loading />}>{children}</Suspense>
         </div>
       </div>
     </DefaultLayout>
