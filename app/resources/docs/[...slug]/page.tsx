@@ -2,30 +2,54 @@
 // import VersionSidebar from '@/components/VersionSidebar'
 
 import { allDocs } from 'contentlayer/generated'
+import Link from 'next/link'
 
 export async function generateStaticParams() {
   return allDocs.map((post) => ({
-    slug: post._raw.flattenedPath,
+    slug: post._raw.flattenedPath.split('/'),
   }))
 }
 
-export async function generateMetadata({
+// export async function generateMetadata({
+//   params,
+// }: {
+//   params: { slug: string }
+// }) {
+//   console.log('params', params)
+//   console.log(
+//     'doc',
+//     allDocs.find((doc) => doc._raw.flattenedPath)
+//   )
+//   const doc = allDocs.find((doc) => doc._raw.flattenedPath === params.slug)
+//   if (!doc) throw new Error(`Failed to find document for slug: ${params.slug}`)
+//   return {
+//     title: doc?.title,
+//   }
+// }
+
+export default async function SingleDocPage({
   params,
 }: {
-  params: { slug: string }
+  params: { slug: string[] }
 }) {
-  console.log(params)
-  const doc = allDocs.find((doc) => doc._raw.flattenedPath === params.slug)
-  if (!doc) throw new Error(`Failed to find document for slug: ${params.slug}`)
-  return {
-    title: doc?.title,
-  }
-}
-
-export default async function SingleDocPage({ params }: any) {
+  const post = allDocs.find(
+    (post) => post._raw.flattenedPath === params.slug.join('/')
+  )
+  const titles = allDocs.filter((post) => post.version === params.slug[0])
   return (
-    <>
-      {JSON.stringify(params)}
+    <div>
+      {post?.body.html ? (
+        <>
+          <div>{post?.title}</div>
+          <p dangerouslySetInnerHTML={{ __html: post.body.html }}></p>
+        </>
+      ) : (
+        titles.map((item) => (
+          <Link href={`${item._raw.flattenedPath}`} key={item.id}>
+            {item.title}
+          </Link>
+        ))
+      )}
       {/* <div
         style={{
           display: 'grid',
@@ -40,6 +64,6 @@ export default async function SingleDocPage({ params }: any) {
           </a>
         ))}
       </div> */}
-    </>
+    </div>
   )
 }

@@ -27,7 +27,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
           }}
         >
           <Suspense fallback={<Loading />}>
-            <VersionSidebar selectedVersion={'asd'} versions={versions} />
+            <VersionSidebar selectedVersion={''} versions={versions} />
             {children}
           </Suspense>
         </div>
