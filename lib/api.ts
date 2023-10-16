@@ -167,3 +167,14 @@ export async function getDocumentData(id: string, version: string) {
     ...(matterResult.data as { version: string; title: string }),
   }
 }
+
+export async function generateDocuments() {
+  const versions = getAllVersions()
+  const result: any = []
+  versions.map(async (version) => {
+    const docs = await getDocumentsByVersion(version)
+    result.push({ [version]: docs })
+  })
+
+  return result
+}

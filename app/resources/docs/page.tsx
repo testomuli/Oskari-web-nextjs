@@ -1,10 +1,15 @@
-import VersionSidebar from '@/components/VersionSidebar'
+import { allDocs } from '@/.contentlayer/generated'
+import Link from 'next/link'
 
 export default function DocsPage() {
   return (
     <>
-      <VersionSidebar selectedVersion='' />
       <article>
+        {allDocs.map((doc) => (
+          <Link href={doc.url} key={doc._raw.flattenedPath}>
+            {doc.title}
+          </Link>
+        ))}
         <h1>Docs Content</h1>
         <p>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla aliquam
