@@ -1,7 +1,7 @@
 import { allPosts } from '@/.contentlayer/generated'
 import HighlightBox from '@/components/HighlightBox'
 import Layout from '@/components/Layout'
-import Error from '@/components/error'
+import Error from '@/components/Error'
 import styles from '@/styles/blog.module.scss'
 
 export async function generateStaticParams() {
