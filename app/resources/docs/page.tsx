@@ -1,15 +1,20 @@
 import { allDocs } from '@/.contentlayer/generated'
-import Link from 'next/link'
+import VersionSidebar from '@/components/VersionSidebar'
+import { compareSemanticVersions } from '@/utils/misc'
 
 export default function DocsPage() {
+  const versions = [
+    ...new Set(
+      allDocs
+        .map((doc) => doc.version)
+        .sort((a, b) => compareSemanticVersions(a, b))
+        .reverse()
+    ),
+  ]
   return (
     <>
+      <VersionSidebar selectedVersion='' versions={versions} />
       <article>
-        {allDocs.map((doc) => (
-          <Link href={doc.url} key={doc._raw.flattenedPath}>
-            {doc.title}
-          </Link>
-        ))}
         <h1>Docs Content</h1>
         <p>
           Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla aliquam

@@ -1,6 +1,7 @@
 // import DocumentCard from '@/components/Cards/DocumentCard'
 // import VersionSidebar from '@/components/VersionSidebar'
 
+import DocumentCard from '@/components/Cards/DocumentCard'
 import VersionSidebar from '@/components/VersionSidebar'
 import { compareSemanticVersions } from '@/utils/misc'
 import { allDocs } from 'contentlayer/generated'
@@ -52,31 +53,25 @@ export default async function SingleDocPage({
 
       <div>
         {post?.body.html ? (
-          <>
-            <div>{post?.title}</div>
-            <p dangerouslySetInnerHTML={{ __html: post.body.html }}></p>
-          </>
+          <div className='md-content'>
+            <div dangerouslySetInnerHTML={{ __html: post.body.html }}></div>
+          </div>
         ) : (
-          titles.map((item) => (
-            <Link href={`${item._raw.flattenedPath}`} key={item.id}>
-              {item.title}
-            </Link>
-          ))
+          <div
+            style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(auto-fill, minmax(250px, 1fr))',
+              gap: '2rem',
+              marginTop: 27,
+            }}
+          >
+            {titles.map((item) => (
+              <Link href={`${item._raw.flattenedPath}`} key={item.id}>
+                <DocumentCard title={item.title} />
+              </Link>
+            ))}
+          </div>
         )}
-        {/* <div
-        style={{
-          display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fill, minmax(250px, 1fr))',
-          gap: '2rem',
-          marginTop: 27,
-        }}
-      >
-        {data?.map((item) => (
-          <a href={`${params.version}/${item.id}`} key={item.id}>
-            <DocumentCard title={item.title} />
-          </a>
-        ))}
-      </div> */}
       </div>
     </>
   )

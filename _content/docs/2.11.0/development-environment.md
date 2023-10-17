@@ -1,7 +1,5 @@
 ---
 title: Development environment
-slug: development-environment
-version: 2.11.0
 ---
 
 # GFM
