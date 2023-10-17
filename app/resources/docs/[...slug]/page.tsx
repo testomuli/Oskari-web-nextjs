@@ -3,6 +3,7 @@
 
 import DocumentCard from '@/components/Cards/DocumentCard'
 import VersionSidebar from '@/components/VersionSidebar'
+import Error from '@/components/error'
 import { compareSemanticVersions } from '@/utils/misc'
 import { allDocs } from 'contentlayer/generated'
 import Link from 'next/link'
@@ -47,6 +48,7 @@ export default async function SingleDocPage({
         .reverse()
     ),
   ]
+
   return (
     <>
       <VersionSidebar selectedVersion={params.slug[0]} versions={versions} />

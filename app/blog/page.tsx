@@ -8,7 +8,7 @@ export default function BlogPage() {
     <Layout heroTitle='Blog' heroSmall>
       <div className='container--content'>
         <div className={styles.blog__grid}>
-          {allPosts.map((post) => {
+          {allPosts?.map((post) => {
             const item = {
               title: post.title || '',
               date: post.date,

@@ -1,6 +1,7 @@
 import { allPosts } from '@/.contentlayer/generated'
 import HighlightBox from '@/components/HighlightBox'
 import Layout from '@/components/Layout'
+import Error from '@/components/error'
 import styles from '@/styles/blog.module.scss'
 
 export async function generateStaticParams() {
@@ -17,6 +18,10 @@ export default function BlogSinglePostPage({
   const post = allPosts.find(
     (post) => encodeURI(post._raw.flattenedPath.split('/')[1]) === params.slug
   )
+
+  if (!post) {
+    return <Error text='No blog posts found' code='404' />
+  }
 
   return (
     <Layout heroSmall heroTitle='Blog'>
