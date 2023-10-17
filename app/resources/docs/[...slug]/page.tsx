@@ -66,7 +66,7 @@ export default async function SingleDocPage({
               marginTop: 27,
             }}
           >
-            {titles.map((item) => (
+            {titles?.map((item) => (
               <Link href={`${item._raw.flattenedPath}`} key={item._id}>
                 <DocumentCard title={item.title} />
               </Link>
