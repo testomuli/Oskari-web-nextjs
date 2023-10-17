@@ -7,7 +7,7 @@ const Card = ({
   style,
 }: {
   data: CardItemType
-  style: React.CSSProperties
+  style?: React.CSSProperties
 }) => {
   const { date, title, description, href } = data
   return (
