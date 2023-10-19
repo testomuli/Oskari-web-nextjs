@@ -22,23 +22,6 @@ export const generateMetadata = ({
   if (post) return { title: post.title || post.altTitle || '' }
 }
 
-// export async function generateMetadata({
-//   params,
-// }: {
-//   params: { slug: string }
-// }) {
-//   console.log('params', params)
-//   console.log(
-//     'doc',
-//     allDocs.find((doc) => doc._raw.flattenedPath)
-//   )
-//   const doc = allDocs.find((doc) => doc._raw.flattenedPath === params.slug)
-//   if (!doc) throw new Error(`Failed to find document for slug: ${params.slug}`)
-//   return {
-//     title: doc?.title,
-//   }
-// }
-
 export default async function SingleDocPage({
   params,
 }: {
