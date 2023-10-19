@@ -1,6 +1,6 @@
 import { defineDocumentType, makeSource } from 'contentlayer/source-files'
 import rehypeHighlight from 'rehype-highlight'
-// import remarkGfm from 'remark-gfm'
+import remarkGfm from 'remark-gfm'
 
 export const Docs = defineDocumentType(() => ({
   name: 'Doc',
@@ -15,7 +15,16 @@ export const Docs = defineDocumentType(() => ({
     },
     url: {
       type: 'string',
-      resolve: (doc) => doc._raw.flattenedPath,
+      resolve: (doc) => {
+        const splittedUrl = doc._raw.flattenedPath.split('/')
+        return `${splittedUrl[1]}/${splittedUrl[2]}`
+      },
+    },
+    altTitle: {
+      type: 'string',
+      resolve: (doc) => {
+        return doc._raw.sourceFileName.replace('.md', '')
+      },
     },
   },
 }))
@@ -41,7 +50,7 @@ export default makeSource({
   contentDirPath: '_content',
   documentTypes: [Docs, Posts],
   markdown: {
-    // remarkPlugins: [remarkGfm],
+    remarkPlugins: [remarkGfm],
     rehypePlugins: [rehypeHighlight],
   },
 })

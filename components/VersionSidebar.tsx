@@ -16,7 +16,7 @@ export default async function VersionSidebar({
   selectedVersion: string
   subTitle?: string
   subTitleLinks?: subtitleLinks[]
-  versions: string[]
+  versions?: string[]
 }) {
   const versionsWithoutSelected =
     versions?.filter((version) => selectedVersion !== version) || []

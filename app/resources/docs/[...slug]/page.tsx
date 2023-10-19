@@ -35,9 +35,7 @@ export default async function SingleDocPage({
 }: {
   params: { slug: string[] }
 }) {
-  const post = allDocs.find(
-    (post) => post._raw.flattenedPath === params.slug.join('/')
-  )
+  const post = allDocs.find((post) => post.url === params.slug.join('/'))
   const titles = allDocs.filter((post) => post.version === params.slug[0])
   const versions = [
     ...new Set(
@@ -67,8 +65,8 @@ export default async function SingleDocPage({
             }}
           >
             {titles?.map((item) => (
-              <Link href={`${item._raw.flattenedPath}`} key={item._id}>
-                <DocumentCard title={item.title || ''} />
+              <Link href={`/resources/docs/${item.url}`} key={item._id}>
+                <DocumentCard title={item.title || item.altTitle || ''} />
               </Link>
             ))}
           </div>
