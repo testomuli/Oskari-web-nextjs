@@ -1,6 +1,3 @@
-// import DocumentCard from '@/components/Cards/DocumentCard'
-// import VersionSidebar from '@/components/VersionSidebar'
-
 import DocumentCard from '@/components/Cards/DocumentCard'
 import VersionSidebar from '@/components/VersionSidebar'
 import { compareSemanticVersions } from '@/utils/misc'
