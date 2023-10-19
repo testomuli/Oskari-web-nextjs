@@ -53,7 +53,10 @@ export default function NavigationMenu() {
             {NAVIGATION_ITEMS.map((item) => (
               <li className='navMenu__item' key={item.path}>
                 {item.children && item.children.length > 0 ? (
-                  <NavigationSubMenu title={item.name} items={item.children} />
+                  <NavigationSubMenu
+                    title={item.name}
+                    items={[item, ...item.children]}
+                  />
                 ) : (
                   <Link
                     className={`navMenu__link ${

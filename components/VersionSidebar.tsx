@@ -1,19 +1,6 @@
-import { getAllVersions } from '@/lib/api'
 import Link from 'next/link'
 import styles from '@/styles/accordion.module.scss'
 import Accordion from './Accordion/Accordion'
-
-export async function getData(selectedVersion?: string) {
-  const versionsData = getAllVersions()
-  const [versions] = await Promise.all([versionsData])
-  const versionsWithoutSelected = versions.filter(
-    (version) => selectedVersion !== version
-  )
-  if (!selectedVersion) {
-    return versions
-  }
-  return versionsWithoutSelected
-}
 
 type subtitleLinks = {
   slug: string
@@ -24,12 +11,15 @@ export default async function VersionSidebar({
   selectedVersion,
   subTitle,
   subTitleLinks = [],
+  versions,
 }: {
   selectedVersion: string
   subTitle?: string
   subTitleLinks?: subtitleLinks[]
+  versions?: string[]
 }) {
-  const versionsWithoutSelected = await getData(selectedVersion)
+  const versionsWithoutSelected =
+    versions?.filter((version) => selectedVersion !== version) || []
 
   const renderVersionMenuContent = (items: string[]) => (
     <ul className={styles.accordionMenu}>

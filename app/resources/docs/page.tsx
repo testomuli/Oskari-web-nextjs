@@ -1,9 +1,19 @@
+import { allDocs } from '@/.contentlayer/generated'
 import VersionSidebar from '@/components/VersionSidebar'
+import { compareSemanticVersions } from '@/utils/misc'
 
 export default function DocsPage() {
+  const versions = [
+    ...new Set(
+      allDocs
+        .map((doc) => doc.version)
+        .sort((a, b) => compareSemanticVersions(a, b))
+        .reverse()
+    ),
+  ]
   return (
     <>
-      <VersionSidebar selectedVersion='' />
+      <VersionSidebar selectedVersion='' versions={versions} />
       <article>
         <h1>Docs Content</h1>
         <p>

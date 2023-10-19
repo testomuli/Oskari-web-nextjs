@@ -1,7 +1,5 @@
 ---
 title: Application Environment
-slug: application-environment
-version: 2.1.2
 ---
 
 Lorem ipsum dolor sit amet, consectetur adipiscing elit. Quisque fermentum venenatis metus, a suscipit massa eleifend sit amet. Suspendisse facilisis sodales fermentum. Curabitur ex quam, pretium id molestie sed, pellentesque et dolor. Cras id iaculis magna, a euismod tellus. Nulla in mattis augue, vitae hendrerit turpis. Donec euismod ligula eu felis laoreet, id tempus neque molestie.
