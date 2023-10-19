@@ -13,6 +13,15 @@ export async function generateStaticParams() {
   }))
 }
 
+export const generateMetadata = ({
+  params,
+}: {
+  params: { slug: string[] }
+}) => {
+  const post = allDocs.find((post) => post.url === params.slug.join('/'))
+  if (post) return { title: post.title || post.altTitle || '' }
+}
+
 // export async function generateMetadata({
 //   params,
 // }: {

@@ -10,6 +10,13 @@ export async function generateStaticParams() {
   }))
 }
 
+export const generateMetadata = ({ params }: { params: { slug: string } }) => {
+  const post = allPosts.find(
+    (post) => encodeURI(post._raw.flattenedPath.split('/')[1]) === params.slug
+  )
+  if (post) return { title: post.title || '' }
+}
+
 export default function BlogSinglePostPage({
   params,
 }: {
