@@ -76,7 +76,7 @@ export default function DiscoverPage() {
           <Button
             variant='primary'
             title='Read more in documentation'
-            href='/docs'
+            href='/resources/docs'
             style={{ alignSelf: 'center', color: 'red' }}
           />
         </div>

@@ -26,22 +26,44 @@ export default function ResourcesPage() {
       >
         <div>
           <Text>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-            eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim
-            ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut
-            aliquip ex ea commodo consequat. Duis aute irure dolor in
-            reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-            pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
-            culpa qui officia deserunt mollit anim id est laborum. Lorem ipsum
-            dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor
-            incididunt ut labore et dolore magna aliqua. Ut enim ad minim
-            veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex
-            ea commodo consequat. Duis aute irure dolor in reprehenderit in
-            voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-            Excepteur sint occaecat cupidatat non proident, sunt in culpa qui
-            officia deserunt mollit anim id est laborum.
+            This site contains technical instructions for using, configuring and
+            developing Oskari software. The documentation of Oskari assumes that
+            you are somewhat familiar with the basic geographical protocols used
+            extensively in GIS applications, such as WMS (Web Map Service) and
+            WFS (Web Feature Service).
+          </Text>
+          <Text>
+            Also, experience in JavaScript and/or Java development is required
+            to read and understand the developer documentation.
           </Text>
         </div>
+        <HighlightBox
+          style={{
+            margin: '4rem 0',
+            backgroundColor: '#FAFAFA',
+          }}
+        >
+          <div
+            style={{
+              display: 'flex',
+              flexDirection: 'column',
+              gap: '3rem',
+              textAlign: 'center',
+              alignItems: 'center',
+            }}
+          >
+            <h3 style={{ fontSize: '1.625rem' }}>Give it a try!</h3>
+            <p style={{ textAlign: 'center', fontSize: '1.125rem' }}>
+              How to view and visualise maps with Oskari? Try the sample
+              application!
+            </p>
+            <Button
+              variant='primary'
+              title='See source code (Github)'
+              href={SITE_CONFIG.socials.github.url}
+            />
+          </div>
+        </HighlightBox>
         <div>
           <h2 style={{ marginBottom: '6rem' }}>Road map</h2>
           <RoadMap>
@@ -56,34 +78,6 @@ export default function ResourcesPage() {
           </RoadMap>
         </div>
       </Container>
-
-      <HighlightBox
-        style={{
-          margin: '8rem 0',
-          backgroundColor: '#FAFAFA',
-        }}
-      >
-        <div
-          style={{
-            display: 'flex',
-            flexDirection: 'column',
-            gap: '3rem',
-            textAlign: 'center',
-            alignItems: 'center',
-          }}
-        >
-          <h3 style={{ fontSize: '1.625rem' }}>Give it a try!</h3>
-          <p style={{ textAlign: 'center', fontSize: '1.125rem' }}>
-            How to view and visualise maps with Oskari? Try the sample
-            application!
-          </p>
-          <Button
-            variant='primary'
-            title='See source code (Github)'
-            href={SITE_CONFIG.socials.github.url}
-          />
-        </div>
-      </HighlightBox>
     </Layout>
   )
 }
