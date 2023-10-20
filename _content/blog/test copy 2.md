@@ -1,6 +1,6 @@
 ---
 title: Blog post
-date: 18.9.2023
+date: 13.9.2023
 author: Oskari.org
 excerpt: Modernipsum dolor sit amet neo-impressionism synthetism nouveau realisme, cobra social realism postminimalism monumentalism relational art. Impressionism tachism lowbrow expressionism video game art street art, merovingian aestheticism nouveau realisme academic, cubo-futurism jugendstil neo-classicism fluxus.
 ---

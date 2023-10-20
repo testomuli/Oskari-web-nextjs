@@ -1,3 +1,5 @@
+import { parse } from 'date-fns'
+
 export const compareSemanticVersions = (a: string, b: string) => {
   // 1. Split the strings into their parts.
   const a1 = a.split('.')
@@ -44,3 +46,7 @@ export const createSlug = (text: string) => {
     .replace(/\s+/g, '-')
     .toLowerCase()
 }
+
+export const sortByDate = (a: string, b: string) =>
+  parse(b || '', 'd.M.y', new Date()).getTime() -
+  parse(a || '', 'd.M.y', new Date()).getTime()
