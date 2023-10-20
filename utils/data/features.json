@@ -1,23 +1,23 @@
 [
   {
-    "title": "Create GIS data",
-    "description": "You can create GIS data with digitizing tools in Oskari."
+    "title": "View maps",
+    "description": "You can view maps and sort information based on different layers."
   },
   {
-    "title": "Create GIS data",
-    "description": "You can create GIS data with digitizing tools in Oskari."
+    "title": "Build maps by combining data from different sources",
+    "description": "Oskari can be used to connect many different data sources from different interfaces."
   },
   {
-    "title": "Create GIS data",
-    "description": "You can create GIS data with digitizing tools in Oskari."
+    "title": "Analyze geospatial data",
+    "description": "Oskari is a versatile map service that allows you to view and combine a wide range of geospatial data sets, such as maps and statistics."
   },
   {
-    "title": "Create GIS data",
-    "description": "You can create GIS data with digitizing tools in Oskari."
+    "title": "Participate in open source development",
+    "description": "Anyone is welcome to join the community and participate in the open source development of Oskari! "
   },
   {
-    "title": "Create GIS data",
-    "description": "You can create GIS data with digitizing tools in Oskari."
+    "title": "Visualize data with dynamic maps",
+    "description": "Oskari’s RPC, Remote Procedure Call -functionality, enables the maps to interact with the user."
   },
   {
     "title": "Create GIS data",
