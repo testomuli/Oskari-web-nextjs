@@ -37,47 +37,47 @@ export default function ResourcesPage() {
             to read and understand the developer documentation.
           </Text>
         </div>
-        <HighlightBox
+      </Container>
+      <HighlightBox
+        style={{
+          margin: '4rem 0',
+          backgroundColor: '#FAFAFA',
+        }}
+      >
+        <div
           style={{
-            margin: '4rem 0',
-            backgroundColor: '#FAFAFA',
+            display: 'flex',
+            flexDirection: 'column',
+            gap: '3rem',
+            textAlign: 'center',
+            alignItems: 'center',
           }}
         >
-          <div
-            style={{
-              display: 'flex',
-              flexDirection: 'column',
-              gap: '3rem',
-              textAlign: 'center',
-              alignItems: 'center',
-            }}
-          >
-            <h3 style={{ fontSize: '1.625rem' }}>Give it a try!</h3>
-            <p style={{ textAlign: 'center', fontSize: '1.125rem' }}>
-              How to view and visualise maps with Oskari? Try the sample
-              application!
-            </p>
-            <Button
-              variant='primary'
-              title='See source code (Github)'
-              href={SITE_CONFIG.socials.github.url}
-            />
-          </div>
-        </HighlightBox>
-        <div>
-          <h2 style={{ marginBottom: '6rem' }}>Road map</h2>
-          <RoadMap>
-            {roadmap.map((item, index) => (
-              <IconCard
-                title={item.title + (index + 1)}
-                subtitle={item.subtitle}
-                content={item.content}
-                key={index}
-              />
-            ))}
-          </RoadMap>
+          <h3 style={{ fontSize: '1.625rem' }}>Give it a try!</h3>
+          <p style={{ textAlign: 'center', fontSize: '1.125rem' }}>
+            How to view and visualise maps with Oskari? Try the sample
+            application!
+          </p>
+          <Button
+            variant='primary'
+            title='See source code (Github)'
+            href={SITE_CONFIG.socials.github.url}
+          />
         </div>
-      </Container>
+      </HighlightBox>
+      <div className='container--content'>
+        <h2 style={{ marginBottom: '6rem' }}>Road map</h2>
+        <RoadMap>
+          {roadmap.map((item, index) => (
+            <IconCard
+              title={item.title + (index + 1)}
+              subtitle={item.subtitle}
+              content={item.content}
+              key={index}
+            />
+          ))}
+        </RoadMap>
+      </div>
     </Layout>
   )
 }
