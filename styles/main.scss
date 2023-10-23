@@ -115,3 +115,12 @@ h3 {
     margin-bottom: 2rem;
   }
 }
+
+.layout--docs {
+  display: grid;
+  gap: 4rem;
+  grid-template-columns: 0.75fr 4fr;
+  @media screen and (max-width: 768px) {
+    grid-template-columns: 1fr;
+  }
+}

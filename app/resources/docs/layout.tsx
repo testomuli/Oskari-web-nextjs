@@ -6,13 +6,7 @@ export default function Layout({ children }: { children: React.ReactNode }) {
   return (
     <DefaultLayout heroSmall heroTitle='Documentation'>
       <div className='container--content'>
-        <div
-          style={{
-            display: 'grid',
-            gridTemplateColumns: '1.5fr 4fr',
-            gap: '4rem',
-          }}
-        >
+        <div className='layout--docs'>
           <Suspense fallback={<Loading />}>{children}</Suspense>
         </div>
       </div>

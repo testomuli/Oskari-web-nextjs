@@ -6,18 +6,22 @@ type HighlightBoxProps = {
   otter?: boolean
   style?: React.CSSProperties
   contentStyles?: React.CSSProperties
+  left?: boolean
 }
 
 export default function HighlightBox({
   children,
   contentStyles,
   otter = true,
+  left = false,
   ...props
 }: HighlightBoxProps) {
   return (
     <div className={styles.highlightBox} {...props}>
       <div
-        className={`${styles.highlightBox__content} container--content`}
+        className={`${styles.highlightBox__content} container--content ${
+          left ? styles['highlightBox__content--left'] : ''
+        }`}
         style={contentStyles}
       >
         {otter && (

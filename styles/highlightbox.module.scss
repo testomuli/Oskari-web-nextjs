@@ -16,6 +16,10 @@
     padding-top: 8.5rem;
     padding-bottom: 8.5rem;
     margin-top: calc(var(--otter-top-position) * -1); // to positive number 36px
+
+    &--left {
+      align-items: flex-start;
+    }
   }
 
   &__otter {
