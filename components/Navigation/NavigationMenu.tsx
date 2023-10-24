@@ -46,8 +46,7 @@ export default function NavigationMenu() {
         </button>
         <div className='navMenu__list-container'>
           <div className='mobile-sub-nav'>
-            <Search />
-            <Button title='Download' variant='primary' />
+            <Button title='Download' variant='primary' href='/download' />
           </div>
           <ul className='navMenu__list'>
             {NAVIGATION_ITEMS.map((item) => (
@@ -70,6 +69,7 @@ export default function NavigationMenu() {
                 )}
               </li>
             ))}
+            <li className='navMenu__item'></li>
           </ul>
         </div>
       </nav>

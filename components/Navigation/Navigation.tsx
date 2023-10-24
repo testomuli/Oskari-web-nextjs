@@ -1,6 +1,5 @@
 import Image from 'next/image'
 import Button from '../Button'
-import Search from '../Search'
 import NavigationMenu from './NavigationMenu'
 import Link from 'next/link'
 
@@ -19,9 +18,6 @@ export default function Navigation() {
                 priority={true}
               />
             </Link>
-          </div>
-          <div className='nav__search'>
-            <Search />
           </div>
           <NavigationMenu />
           <div className='nav__cta'>
