@@ -10,7 +10,7 @@ import { SITE_CONFIG } from '@/utils/config'
 import Button from '@/components/Button'
 
 export const metadata: Metadata = {
-  title: 'Contribute',
+  title: 'Resources',
 }
 
 export default function ResourcesPage() {

@@ -21,7 +21,7 @@ export default function Navigation() {
           </div>
           <NavigationMenu />
           <div className='nav__cta'>
-            <Button title='Download' variant='primary' />
+            <Button title='Download' variant='primary' href='/download' />
           </div>
         </div>
       </div>

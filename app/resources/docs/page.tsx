@@ -1,6 +1,11 @@
 import { allDocs } from '@/.contentlayer/generated'
 import VersionSidebar from '@/components/VersionSidebar'
 import { compareSemanticVersions } from '@/utils/misc'
+import { Metadata } from 'next'
+
+export const metadata: Metadata = {
+  title: 'Documentation',
+}
 
 export default function DocsPage() {
   const versions = [

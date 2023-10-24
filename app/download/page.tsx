@@ -4,6 +4,11 @@ import Container from '@/components/Container'
 import HighlightBox from '@/components/HighlightBox'
 import Layout from '@/components/Layout'
 import Text from '@/components/Text'
+import { Metadata } from 'next'
+
+export const metadata: Metadata = {
+  title: 'Download',
+}
 
 export default function DownloadPage() {
   return (

@@ -16,7 +16,9 @@ export const generateMetadata = ({
   params: { slug: string[] }
 }) => {
   const post = allDocs.find((post) => post.url === params.slug.join('/'))
-  if (post) return { title: post.title || post.altTitle || '' }
+  if (post) {
+    return { title: post.title || post.altTitle || '' }
+  }
 }
 
 export default async function SingleDocPage({
@@ -38,7 +40,6 @@ export default async function SingleDocPage({
   return (
     <>
       <VersionSidebar selectedVersion={params.slug[0]} versions={versions} />
-
       <div>
         {post?.body.html ? (
           <div className='md-content'>

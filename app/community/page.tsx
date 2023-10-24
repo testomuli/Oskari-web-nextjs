@@ -4,6 +4,11 @@ import HighlightBox from '@/components/HighlightBox'
 import Layout from '@/components/Layout'
 import LogoPill from '@/components/LogoPill'
 import Text from '@/components/Text'
+import { Metadata } from 'next'
+
+export const metadata: Metadata = {
+  title: 'Community',
+}
 
 export default function CommunityPage() {
   return (
