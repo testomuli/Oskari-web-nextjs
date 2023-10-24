@@ -38,7 +38,7 @@ export default function CommunityPage() {
           Oskari coordination is carried out by the technical coordinator, the
           product owners and the communication coordinator.
         </Text>
-        <div className='flex flex-wrap justify-center lg:justify-between py-14 gap-8 gap-y-16 w-full'>
+        <div className='flex flex-wrap justify-center lg:justify-between py-14 gap-x-8 gap-y-16 w-full'>
           {allCoordinators.map((coordinator) => {
             const { name, title, avatar } = coordinator
             return (
@@ -62,7 +62,7 @@ export default function CommunityPage() {
           communication and bug fixing. Joint Development Forum,JDF, meets on a
           monthly basis.
         </Text>
-        <div className='flex flex-wrap justify-center lg:justify-between py-14 gap-8 gap-y-16 w-full'>
+        <div className='flex flex-wrap justify-center xl:justify-between py-14 gap-x-8 gap-y-16 w-full'>
           <LogoPill logo='/assets/images/tampere_logo.png' />
           <LogoPill logo='/assets/images/tampere_logo.png' />
           <LogoPill logo='/assets/images/tampere_logo.png' />
