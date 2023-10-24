@@ -46,9 +46,19 @@ export const Posts = defineDocumentType(() => ({
   },
 }))
 
+export const Coordinators = defineDocumentType(() => ({
+  name: 'Coordinator',
+  filePathPattern: `coordinators/*.md`,
+  fields: {
+    name: { type: 'string', required: true },
+    title: { type: 'string', required: false },
+    avatar: { type: 'string', required: false },
+  },
+}))
+
 export default makeSource({
   contentDirPath: '_content',
-  documentTypes: [Docs, Posts],
+  documentTypes: [Docs, Posts, Coordinators],
   markdown: {
     remarkPlugins: [remarkGfm],
     rehypePlugins: [rehypeHighlight],
