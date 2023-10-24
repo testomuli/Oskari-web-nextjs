@@ -1,5 +1,8 @@
+import { allCoordinators } from '@/.contentlayer/generated'
+import AvatarCard from '@/components/Cards/AvatarCard'
 import HighlightBox from '@/components/HighlightBox'
 import Layout from '@/components/Layout'
+import LogoPill from '@/components/LogoPill'
 import Text from '@/components/Text'
 
 export default function CommunityPage() {
@@ -35,8 +38,39 @@ export default function CommunityPage() {
           Oskari coordination is carried out by the technical coordinator, the
           product owners and the communication coordinator.
         </Text>
+        <div className='flex flex-wrap justify-center lg:justify-between py-14 gap-8 gap-y-16 w-full'>
+          {allCoordinators.map((coordinator) => {
+            const { name, title, avatar } = coordinator
+            return (
+              <AvatarCard
+                key={name}
+                name={name}
+                title={title}
+                avatar={avatar || ''}
+                content={coordinator.body.raw}
+              />
+            )
+          })}
+        </div>
       </HighlightBox>
-      <div className='container--content'></div>
+      <div className='container--content py-10'>
+        <h2>Joint developer forum</h2>
+        <Text>
+          Joint Development Forum is a tight group of organisations that have an
+          interest in developing Oskari togerther. It is formed by several
+          organisational members providing funding for joint development,
+          communication and bug fixing. Joint Development Forum,JDF, meets on a
+          monthly basis.
+        </Text>
+        <div className='flex flex-wrap justify-center lg:justify-between py-14 gap-8 gap-y-16 w-full'>
+          <LogoPill logo='/assets/images/tampere_logo.png' />
+          <LogoPill logo='/assets/images/tampere_logo.png' />
+          <LogoPill logo='/assets/images/tampere_logo.png' />
+          <LogoPill logo='/assets/images/tampere_logo.png' />
+          <LogoPill logo='/assets/images/tampere_logo.png' />
+          <LogoPill logo='/assets/images/tampere_logo.png' />
+        </div>
+      </div>
     </Layout>
   )
 }

@@ -18,7 +18,7 @@
     padding-bottom: 1rem;
     width: 100%;
     display: grid;
-    grid-template-columns: 1fr 1fr 2fr 0.5fr;
+    grid-template-columns: 1fr 7fr auto;
     align-items: center;
     gap: 1rem;
     height: var(--navigation-height);
