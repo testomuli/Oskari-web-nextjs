@@ -46,7 +46,7 @@ export default function Hero({
             <h1 className={styles.hero__title}>{title}</h1>
             {!small && (
               <div className={styles.hero__cta}>
-                <Button title='Download' variant='dark' />
+                <Button title='Download' variant='dark' href='/download' />
               </div>
             )}
           </div>
