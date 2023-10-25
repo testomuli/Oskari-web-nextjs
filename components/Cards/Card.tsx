@@ -13,11 +13,15 @@ const Card = ({
   return (
     <div className={styles.card} style={{ ...style }}>
       {date && <div className={styles.card__date}>{date}</div>}
-      <h3 className={styles.card__title}>{title}</h3>
+      <h2 className={styles.card__title}>{title}</h2>
       <div className={styles.card__description}>{description}</div>
       {href && (
         <div className={styles.card__cta}>
-          <Button variant='primary' href={href} title='Read more' />
+          <Button
+            variant='primary'
+            href={href}
+            title={`Read more - ${title}`}
+          />
         </div>
       )}
     </div>

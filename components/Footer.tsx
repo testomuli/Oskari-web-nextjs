@@ -25,20 +25,22 @@ const Footer = () => {
           </div>
           <div className={styles.footer__sitemap}>
             <h3>Sitemap</h3>
-            <ul role='navigation' className={styles['footer__sitemap-links']}>
-              {sitemap.map((item) => (
-                <li
-                  key={item.title}
-                  className={styles['footer__sitemap-links-item']}
-                >
-                  <Link href={item.path}>{item.title}</Link>
-                </li>
-              ))}
-            </ul>
+            <div role='navigation' aria-label='Footer navigation'>
+              <ul className={styles['footer__sitemap-links']}>
+                {sitemap.map((item) => (
+                  <li
+                    key={item.title}
+                    className={styles['footer__sitemap-links-item']}
+                  >
+                    <Link href={item.path}>{item.title}</Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
           </div>
           <div className={styles.footer__social}>
             <h3>Follow us</h3>
-            <ul role='menu' className={styles['footer__social-links']}>
+            <ul className={styles['footer__social-links']} aria-label='Socials'>
               {(Object.keys(socials) as Array<keyof typeof socials>).map(
                 (key) => {
                   const item = socials[key]
