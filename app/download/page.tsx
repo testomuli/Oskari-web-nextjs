@@ -32,17 +32,37 @@ export default function DownloadPage() {
           pariatur. Excepteur sint occaecat cupidatat non proident, sunt in
           culpa qui officia deserunt mollit anim id est laborum.
         </Text>
-        <div className='my-24 flex flex-wrap justify-center gap-16'>
+        <div className='my-24 flex flex-wrap justify-center gap-16 items-start'>
           <IconCard
             className='!bg-[var(--color-accent)]'
             title='Latest version'
             subtitle='2.10.3'
-            content='Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
+            content={
+              <>
+                <div className='mb-8'>
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
+                  do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                </div>
+                <div className='flex justify-center'>
+                  <Button variant='dark' title='Download' href='#' />
+                </div>
+              </>
+            }
           />
           <IconCard
             className='!bg-[var(--color-accent)]'
             title='Other versions'
-            content='Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.'
+            content={
+              <>
+                <div className='mb-8'>
+                  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed
+                  do eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                </div>
+                <div className='flex justify-center'>
+                  <Button variant='dark' title='Download' href='#' />
+                </div>
+              </>
+            }
           />
         </div>
       </Container>
