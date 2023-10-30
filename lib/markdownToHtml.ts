@@ -1,4 +1,4 @@
-// import { createSlug } from '@/utils/misc'
+import { createSlug } from '../utils/misc'
 // import remarkGfm from 'remark-gfm'
 // import rehypeStringify from 'rehype-stringify'
 // import rehypeHighlight from 'rehype-highlight'
@@ -17,16 +17,36 @@
 //   return insertIdsToHeaders(String(file))
 // }
 
-// const insertIdsToHeaders = (htmlString: string) => {
-//   const headerRegex = /<h([1-6])>(.*?)<\/h\1>/g
-//   const newHtmlString = htmlString.replace(
-//     headerRegex,
-//     function (match: string, level: string, content: string) {
-//       const slug = createSlug(content)
+export const insertIdsToHeaders = (htmlString: string) => {
+  const headerRegex = /<h([1-6])>(.*?)<\/h\1>/g
+  const anchorLinks: Array<{ level: string; content: string; slug: string }> =
+    []
+  const newHtmlString = htmlString.replace(
+    headerRegex,
+    function (match: string, level: string, content: string) {
+      const slug = createSlug(content)
+      anchorLinks.push({ level, content, slug })
+      return `<h${level} id="${slug}">${content}</h${level}>`
+    }
+  )
 
-//       return `<h${level} id="${slug}">${content}</h${level}>`
-//     }
-//   )
+  return {
+    html: newHtmlString,
+    anchorLinks,
+  }
+}
 
-//   return newHtmlString
-// }
+export const getAnchorLinks = (htmlString: string) => {
+  const headerRegex = /<h([1-6])>(.*?)<\/h\1>/g
+  const anchorLinks: Array<{ level: string; content: string; slug: string }> =
+    []
+  htmlString.replace(
+    headerRegex,
+    function (match: string, level: string, content: string) {
+      const slug = createSlug(content)
+      anchorLinks.push({ level, content, slug })
+      return match
+    }
+  )
+  return anchorLinks
+}
