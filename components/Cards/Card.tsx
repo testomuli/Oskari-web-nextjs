@@ -17,11 +17,7 @@ const Card = ({
       <div className={styles.card__description}>{description}</div>
       {href && (
         <div className={styles.card__cta}>
-          <Button
-            variant='primary'
-            href={href}
-            title={`Read more - ${title}`}
-          />
+          <Button variant='primary' href={href} title='Read more' />
         </div>
       )}
     </div>

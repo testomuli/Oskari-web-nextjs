@@ -44,7 +44,11 @@ export default function DownloadPage() {
                   do eiusmod tempor incididunt ut labore et dolore magna aliqua.
                 </div>
                 <div className='flex justify-center'>
-                  <Button variant='dark' title='Download' href='#' />
+                  <Button
+                    variant='dark'
+                    title='Download'
+                    href='https://oskari.org/build/server/oskari-latest-stable.zip'
+                  />
                 </div>
               </>
             }
@@ -59,7 +63,11 @@ export default function DownloadPage() {
                   do eiusmod tempor incididunt ut labore et dolore magna aliqua.
                 </div>
                 <div className='flex justify-center'>
-                  <Button variant='dark' title='Download' href='#' />
+                  <Button
+                    variant='dark'
+                    title='Download'
+                    href='http://download.osgeo.org/oskari/'
+                  />
                 </div>
               </>
             }
