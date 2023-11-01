@@ -1,6 +1,7 @@
 import { defineDocumentType, makeSource } from 'contentlayer/source-files'
 import rehypeHighlight from 'rehype-highlight'
 import remarkGfm from 'remark-gfm'
+import { insertIdsToHeaders } from './lib/markdownToHtml'
 
 export const Docs = defineDocumentType(() => ({
   name: 'Doc',
@@ -24,6 +25,12 @@ export const Docs = defineDocumentType(() => ({
       type: 'string',
       resolve: (doc) => {
         return doc._raw.sourceFileName.replace('.md', '')
+      },
+    },
+    htmlWithIds: {
+      type: 'json',
+      resolve: (doc) => {
+        return insertIdsToHeaders(doc.body.html)
       },
     },
   },

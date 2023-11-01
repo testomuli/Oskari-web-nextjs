@@ -1,8 +1,11 @@
+import Accordion from '@/components/Accordion/Accordion'
+import AccordionGroup from '@/components/Accordion/AccordionGroup'
 import DocumentCard from '@/components/Cards/DocumentCard'
 import VersionSidebar from '@/components/VersionSidebar'
 import { compareSemanticVersions } from '@/utils/misc'
 import { allDocs } from 'contentlayer/generated'
 import Link from 'next/link'
+import styles from '@/styles/accordion.module.scss'
 
 export async function generateStaticParams() {
   return allDocs.map((post) => ({
@@ -37,13 +40,68 @@ export default async function SingleDocPage({
     ),
   ]
 
+  const { anchorLinks } = post?.htmlWithIds || []
+
+  const groupedAnchorLinks: Record<
+    string,
+    { content: string; slug: string }[]
+  > = {}
+  anchorLinks?.forEach((link: { content: string; slug: string }) => {
+    const linkNum = parseInt(link.content).toString()
+    if (!isNaN(parseInt(linkNum))) {
+      groupedAnchorLinks[linkNum] = groupedAnchorLinks[linkNum] || []
+      groupedAnchorLinks[linkNum].push({
+        content: link.content,
+        slug: link.slug,
+      })
+    }
+    if (isNaN(parseInt(linkNum))) {
+      groupedAnchorLinks['other'] = groupedAnchorLinks['other'] || []
+      groupedAnchorLinks['other'].push({
+        content: link.content,
+        slug: link.slug,
+      })
+    }
+  })
+
+  const renderAccordionContent = (
+    items: Array<{ slug: string; content: string }>
+  ) => (
+    <ul className={styles.accordionMenu}>
+      {items?.map((item) => (
+        <li key={item.slug}>
+          <Link href={`#${item.slug}`}>{item.content}</Link>
+        </li>
+      ))}
+    </ul>
+  )
+
   return (
     <>
-      <VersionSidebar selectedVersion={params.slug[0]} versions={versions} />
+      <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
+        <VersionSidebar selectedVersion={params.slug[0]} versions={versions} />
+        {post?.body.html && (
+          <AccordionGroup>
+            {Object.keys(groupedAnchorLinks).map((key) => (
+              <Accordion
+                key={key}
+                title={
+                  key === 'other'
+                    ? 'Other'
+                    : groupedAnchorLinks[key]?.[0].content || `Chapter ${key}`
+                }
+                content={renderAccordionContent(groupedAnchorLinks[key])}
+              />
+            ))}
+          </AccordionGroup>
+        )}
+      </div>
       <div>
         {post?.body.html ? (
           <div className='md-content'>
-            <div dangerouslySetInnerHTML={{ __html: post.body.html }}></div>
+            <div
+              dangerouslySetInnerHTML={{ __html: post.htmlWithIds.html }}
+            ></div>
           </div>
         ) : (
           <div
