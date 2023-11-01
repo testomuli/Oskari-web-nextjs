@@ -46,7 +46,7 @@ export default async function SingleDocPage({
     string,
     { content: string; slug: string }[]
   > = {}
-  anchorLinks.forEach((link: { content: string; slug: string }) => {
+  anchorLinks?.forEach((link: { content: string; slug: string }) => {
     const linkNum = parseInt(link.content).toString()
     if (!isNaN(parseInt(linkNum))) {
       groupedAnchorLinks[linkNum] = groupedAnchorLinks[linkNum] || []
@@ -64,8 +64,6 @@ export default async function SingleDocPage({
     }
   })
 
-  console.log(groupedAnchorLinks)
-
   const renderAccordionContent = (
     items: Array<{ slug: string; content: string }>
   ) => (
@@ -80,7 +78,7 @@ export default async function SingleDocPage({
 
   return (
     <>
-      <div>
+      <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
         <VersionSidebar selectedVersion={params.slug[0]} versions={versions} />
         {post?.body.html && (
           <AccordionGroup>
