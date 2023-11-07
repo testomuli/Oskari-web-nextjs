@@ -8,14 +8,21 @@ marked.use({
   gfm: true,
 })
 
-// const rootFolder = '_content/docs/2.12.0' // Set the root folder path
+export function slugify(input: string): string {
+  return input
+    .toLowerCase()
+    .replace(/[^\w\s.-]/g, '') // Remove special characters
+    .replace(/[\s]+/g, '-') // Replace spaces with hyphens
+    .replace(/[-]+/g, '-') // Replace consecutive hyphens with a single hyphen
+    .replace(/\.md$/, '') // Remove the ".md" extension
+    .trim() // Trim leading/trailing whitespace
+}
 
 function compileMarkdownToHTML(markdown: string): string {
-  return marked(markdown) // You can use markdown-it or other libraries if preferred
+  return marked(markdown)
 }
 
 export function compileMarkdownFilesInDirectory(directoryPath: string): string {
-  // skip if not a directory
   const files: string[] = fs.readdirSync(directoryPath)
   let compiledHTML = ''
 
@@ -49,18 +56,41 @@ export function readVersionDirs(rootFolder: string): string[] {
 export function generateVersionDocs(
   rootFolder: string,
   version: string
-): string {
+): Record<string, unknown> {
   const versionFolder = path.join(rootFolder, version)
-  const docsFolder = path.join(versionFolder, '')
-  const html = compileMarkdownFilesInDirectory(docsFolder)
-  return html
+  const mainTopics = fs.readdirSync(versionFolder)
+  let compiledHTML = ''
+  let slug = ''
+  for (const topic of mainTopics) {
+    const topicFolder = path.join(versionFolder, topic)
+    const subTopics = fs.readdirSync(topicFolder)
+    for (const file of subTopics) {
+      const filePath = path.join(topicFolder, file)
+      slug = slugify(path.basename(filePath, '.md'))
+      const stats = fs.statSync(filePath)
+      if (stats.isFile()) {
+        const fileContent = fs.readFileSync(filePath, 'utf8')
+        const { content } = matter(fileContent)
+        const html = compileMarkdownToHTML(content)
+        compiledHTML += html
+      }
+    }
+  }
+  return {
+    version,
+    slug,
+    url: `/resources/docs/${version}/${slug}`,
+    body: {
+      html: compiledHTML,
+    },
+  }
 }
 
 export function generateAllDocsGroupedByVersion(
   rootFolder: string
-): Record<string, string> {
+): Record<string, unknown> {
   const versionDirs = readVersionDirs(rootFolder)
-  const docsByVersion: Record<string, string> = {}
+  const docsByVersion: Record<string, unknown> = {}
   for (const version of versionDirs) {
     docsByVersion[version] = generateVersionDocs(rootFolder, version)
   }
