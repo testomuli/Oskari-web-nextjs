@@ -3,6 +3,7 @@ import path from 'path'
 import matter from 'gray-matter'
 import { marked } from 'marked'
 import { insertIdsToHeaders } from './markdownToHtml'
+import { DocAnchorLinksType, VersionDocType } from '@/types/types'
 
 marked.use({
   gfm: true,
@@ -18,11 +19,22 @@ export function slugify(input: string): string {
     .trim() // Trim leading/trailing whitespace
 }
 
-function compileMarkdownToHTML(markdown: string): string {
-  return marked(markdown)
+function compileMarkdownToHTML(markdown: string): {
+  html: string
+  anchorLinks: Array<{ level: string; content: string; slug: string }>
+} {
+  const { content } = matter(markdown)
+  const markedHtml = marked(content)
+  const { html, anchorLinks } = insertIdsToHeaders(markedHtml)
+  return {
+    html,
+    anchorLinks,
+  }
 }
 
-export function compileMarkdownFilesInDirectory(directoryPath: string): string {
+export function compileMarkdownFilesInDirectory(
+  directoryPath: string
+): unknown {
   const files: string[] = fs.readdirSync(directoryPath)
   let compiledHTML = ''
 
@@ -37,7 +49,11 @@ export function compileMarkdownFilesInDirectory(directoryPath: string): string {
       compiledHTML += html
     }
   }
-  return insertIdsToHeaders(compiledHTML).html
+  const { html, anchorLinks } = insertIdsToHeaders(compiledHTML)
+  return {
+    html,
+    anchorLinks,
+  }
 }
 
 export function readVersionDirs(rootFolder: string): string[] {
@@ -56,43 +72,61 @@ export function readVersionDirs(rootFolder: string): string[] {
 export function generateVersionDocs(
   rootFolder: string,
   version: string
-): Record<string, unknown> {
+): VersionDocType[] {
   const versionFolder = path.join(rootFolder, version)
   const mainTopics = fs.readdirSync(versionFolder)
-  let compiledHTML = ''
-  let slug = ''
+  const topics = []
+  let anchorLinks: DocAnchorLinksType[] = []
+
   for (const topic of mainTopics) {
     const topicFolder = path.join(versionFolder, topic)
     const subTopics = fs.readdirSync(topicFolder)
+
+    let html = ''
+
     for (const file of subTopics) {
       const filePath = path.join(topicFolder, file)
-      slug = slugify(path.basename(filePath, '.md'))
       const stats = fs.statSync(filePath)
+
       if (stats.isFile()) {
         const fileContent = fs.readFileSync(filePath, 'utf8')
         const { content } = matter(fileContent)
-        const html = compileMarkdownToHTML(content)
-        compiledHTML += html
+        const { html: compiledHTML, anchorLinks: compiledAnchorLinks } =
+          compileMarkdownToHTML(content)
+        anchorLinks = compiledAnchorLinks
+        html += compiledHTML
       }
     }
+
+    topics.push({
+      title: topic,
+      version: version,
+      slug: slugify(topic),
+      url: `${version}/${slugify(topic)}`,
+      html,
+      anchorLinks,
+    })
   }
-  return {
-    version,
-    slug,
-    url: `/resources/docs/${version}/${slug}`,
-    body: {
-      html: compiledHTML,
-    },
-  }
+  return topics
 }
 
-export function generateAllDocsGroupedByVersion(
-  rootFolder: string
-): Record<string, unknown> {
+// export function generateAllDocsGroupedByVersion(
+//   rootFolder: string
+// ): Record<string, unknown> {
+//   const versionDirs = readVersionDirs(rootFolder)
+//   const docsByVersion: Record<string, unknown> = {}
+//   for (const version of versionDirs) {
+//     docsByVersion[version] = generateVersionDocs(rootFolder, version)
+//   }
+//   console.log(docsByVersion)
+//   return docsByVersion
+// }
+
+export function generateAllDocs(rootFolder: string): VersionDocType[] {
   const versionDirs = readVersionDirs(rootFolder)
-  const docsByVersion: Record<string, unknown> = {}
+  const docsByVersion: VersionDocType[] = []
   for (const version of versionDirs) {
-    docsByVersion[version] = generateVersionDocs(rootFolder, version)
+    docsByVersion.push(...generateVersionDocs(rootFolder, version))
   }
   return docsByVersion
 }

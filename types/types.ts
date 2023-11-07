@@ -22,3 +22,18 @@ export type DiscoverFeatureDataType = {
   img: string
   features: FeaturesItemType[]
 }
+
+export type DocAnchorLinksType = {
+  level: string
+  content: string
+  slug: string
+}
+
+export type VersionDocType = {
+  title: string
+  version: string
+  slug: string
+  url: string
+  html: string
+  anchorLinks: DocAnchorLinksType[]
+}
