@@ -21,7 +21,7 @@ export function slugify(input: string): string {
 
 function compileMarkdownToHTML(markdown: string): {
   html: string
-  anchorLinks: Array<{ level: string; content: string; slug: string }>
+  anchorLinks: VersionDocType['anchorLinks']
 } {
   const { content } = matter(markdown)
   const markedHtml = marked(content)
@@ -32,9 +32,10 @@ function compileMarkdownToHTML(markdown: string): {
   }
 }
 
-export function compileMarkdownFilesInDirectory(
-  directoryPath: string
-): unknown {
+export function compileMarkdownFilesInDirectory(directoryPath: string): {
+  html: VersionDocType['html']
+  anchorLinks: VersionDocType['anchorLinks']
+} {
   const files: string[] = fs.readdirSync(directoryPath)
   let compiledHTML = ''
 
@@ -76,7 +77,7 @@ export function generateVersionDocs(
   const versionFolder = path.join(rootFolder, version)
   const mainTopics = fs.readdirSync(versionFolder)
   const topics = []
-  let anchorLinks: DocAnchorLinksType[] = []
+  const anchorLinks: DocAnchorLinksType[] = []
 
   for (const topic of mainTopics) {
     const topicFolder = path.join(versionFolder, topic)
@@ -93,7 +94,7 @@ export function generateVersionDocs(
         const { content } = matter(fileContent)
         const { html: compiledHTML, anchorLinks: compiledAnchorLinks } =
           compileMarkdownToHTML(content)
-        anchorLinks = compiledAnchorLinks
+        anchorLinks.push(...compiledAnchorLinks)
         html += compiledHTML
       }
     }
