@@ -10,21 +10,24 @@ import { generateAllDocs } from '@/lib/utils'
 
 export async function generateStaticParams() {
   const allDocs = generateAllDocs('_content/docs')
-  return allDocs.map((post) => ({
+  const stuff = allDocs.map((post) => ({
     slug: post.url.split('/'),
   }))
+  console.log(stuff)
+  return stuff
 }
 
-// export const generateMetadata = ({
-//   params,Array<{ level: string; content: string; slug: string }>
-// }: {
-//   params: { slug: string[] }
-// }) => {
-//   const post = allDocs.find((post) => post.url === params.slug.join('/'))
-//   if (post) {
-//     return { title: post.title || post.altTitle || '' }
-//   }
-// }
+export const generateMetadata = ({
+  params,
+}: {
+  params: { slug: string[] }
+}) => {
+  const allDocs = generateAllDocs('_content/docs')
+  const post = allDocs.find((post) => post.url === params.slug.join('/'))
+  if (post) {
+    return { title: post.title }
+  }
+}
 
 export default async function SingleDocPage({
   params,
@@ -78,6 +81,25 @@ export default async function SingleDocPage({
       ))}
     </ul>
   )
+
+  if (params.slug.length === 1) {
+    return (
+      <div
+        style={{
+          display: 'grid',
+          gridTemplateColumns: 'repeat(auto-fill, minmax(250px, 1fr))',
+          gap: '2rem',
+          marginTop: 27,
+        }}
+      >
+        {titles?.map((item) => (
+          <Link href={`/resources/docs/${item.url}`} key={item.slug}>
+            <DocumentCard title={item.title || ''} />
+          </Link>
+        ))}
+      </div>
+    )
+  }
 
   return (
     <>
