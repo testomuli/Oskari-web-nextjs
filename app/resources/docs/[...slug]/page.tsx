@@ -9,7 +9,7 @@ import styles from '@/styles/accordion.module.scss'
 import { generateAllDocs } from '@/lib/utils'
 
 export async function generateStaticParams() {
-  const allDocs = generateAllDocs('_content/docs')
+  const allDocs = generateAllDocs()
   const stuff = allDocs.map((post) => ({
     slug: post.url.split('/'),
   }))
@@ -22,7 +22,7 @@ export const generateMetadata = ({
 }: {
   params: { slug: string[] }
 }) => {
-  const allDocs = generateAllDocs('_content/docs')
+  const allDocs = generateAllDocs()
   const post = allDocs.find((post) => post.url === params.slug.join('/'))
   if (post) {
     return { title: post.title }
@@ -34,7 +34,7 @@ export default async function SingleDocPage({
 }: {
   params: { slug: string[] }
 }) {
-  const allDocs = generateAllDocs('_content/docs')
+  const allDocs = generateAllDocs()
   const post = allDocs.find((post) => post.url === params.slug.join('/'))
   const titles = allDocs.filter((post) => post.version === params.slug[0])
   const versions = [
