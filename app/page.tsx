@@ -17,7 +17,6 @@ export default function HomePage() {
     }))
     .slice(0, 4)
     .sort((a, b) => sortByDate(a.date, b.date))
-
   return (
     <Layout>
       <FeaturesList title='With Oskari you can...' data={featureItems} />

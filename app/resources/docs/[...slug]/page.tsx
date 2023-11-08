@@ -3,32 +3,35 @@ import AccordionGroup from '@/components/Accordion/AccordionGroup'
 import DocumentCard from '@/components/Cards/DocumentCard'
 import VersionSidebar from '@/components/VersionSidebar'
 import { compareSemanticVersions } from '@/utils/misc'
-import { allDocs } from 'contentlayer/generated'
+// import { allDocs } from 'contentlayer/generated'
 import Link from 'next/link'
 import styles from '@/styles/accordion.module.scss'
+import { generateAllDocs } from '@/lib/utils'
 
 export async function generateStaticParams() {
+  const allDocs = generateAllDocs('_content/docs')
   return allDocs.map((post) => ({
-    slug: post._raw.flattenedPath.split('/'),
+    slug: post.url.split('/'),
   }))
 }
 
-export const generateMetadata = ({
-  params,
-}: {
-  params: { slug: string[] }
-}) => {
-  const post = allDocs.find((post) => post.url === params.slug.join('/'))
-  if (post) {
-    return { title: post.title || post.altTitle || '' }
-  }
-}
+// export const generateMetadata = ({
+//   params,Array<{ level: string; content: string; slug: string }>
+// }: {
+//   params: { slug: string[] }
+// }) => {
+//   const post = allDocs.find((post) => post.url === params.slug.join('/'))
+//   if (post) {
+//     return { title: post.title || post.altTitle || '' }
+//   }
+// }
 
 export default async function SingleDocPage({
   params,
 }: {
   params: { slug: string[] }
 }) {
+  const allDocs = generateAllDocs('_content/docs')
   const post = allDocs.find((post) => post.url === params.slug.join('/'))
   const titles = allDocs.filter((post) => post.version === params.slug[0])
   const versions = [
@@ -40,7 +43,7 @@ export default async function SingleDocPage({
     ),
   ]
 
-  const { anchorLinks } = post?.htmlWithIds || []
+  const anchorLinks = post?.anchorLinks || []
 
   const groupedAnchorLinks: Record<
     string,
@@ -80,7 +83,7 @@ export default async function SingleDocPage({
     <>
       <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
         <VersionSidebar selectedVersion={params.slug[0]} versions={versions} />
-        {post?.body.html && (
+        {post?.html && (
           <AccordionGroup>
             {Object.keys(groupedAnchorLinks).map((key) => (
               <Accordion
@@ -97,11 +100,9 @@ export default async function SingleDocPage({
         )}
       </div>
       <div>
-        {post?.body.html ? (
+        {post?.html ? (
           <div className='md-content'>
-            <div
-              dangerouslySetInnerHTML={{ __html: post.htmlWithIds.html }}
-            ></div>
+            <div dangerouslySetInnerHTML={{ __html: post.html }}></div>
           </div>
         ) : (
           <div
@@ -113,8 +114,8 @@ export default async function SingleDocPage({
             }}
           >
             {titles?.map((item) => (
-              <Link href={`/resources/docs/${item.url}`} key={item._id}>
-                <DocumentCard title={item.title || item.altTitle || ''} />
+              <Link href={`/resources/docs/${item.url}`} key={item.slug}>
+                <DocumentCard title={item.title || ''} />
               </Link>
             ))}
           </div>
