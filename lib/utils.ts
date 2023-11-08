@@ -58,8 +58,14 @@ export function compileMarkdownFilesInDirectory(directoryPath: string): {
 }
 
 export function readVersionDirs(rootFolder: string): string[] {
+  if (!fs.existsSync(rootFolder) || !fs.statSync(rootFolder).isDirectory()) {
+    throw new Error(
+      `Root folder "${rootFolder}" does not exist or is not a directory.`
+    )
+  }
   const files: string[] = fs.readdirSync(rootFolder)
   const dirs: string[] = []
+
   for (const file of files) {
     const filePath = path.join(rootFolder, file)
     const stat = fs.statSync(filePath)
@@ -67,6 +73,7 @@ export function readVersionDirs(rootFolder: string): string[] {
       dirs.push(file)
     }
   }
+
   return dirs
 }
 
@@ -124,9 +131,26 @@ export function generateVersionDocs(
 // }
 
 export function generateAllDocs(rootFolder: string): VersionDocType[] {
+  if (!fs.existsSync(rootFolder) || !fs.statSync(rootFolder).isDirectory()) {
+    throw new Error(
+      `Root folder "${rootFolder}" does not exist or is not a directory.`
+    )
+  }
   const versionDirs = readVersionDirs(rootFolder)
   const docsByVersion: VersionDocType[] = []
   for (const version of versionDirs) {
+    const versionPath = path.join(rootFolder, version)
+
+    if (
+      !fs.existsSync(versionPath) ||
+      !fs.statSync(versionPath).isDirectory()
+    ) {
+      console.warn(
+        `Version folder "${versionPath}" does not exist or is not a directory.`
+      )
+      continue
+    }
+
     docsByVersion.push(...generateVersionDocs(rootFolder, version))
   }
   return docsByVersion
