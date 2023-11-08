@@ -13,8 +13,11 @@ export async function generateStaticParams() {
   const stuff = allDocs.map((post) => ({
     slug: post.url.split('/'),
   }))
-  console.log(stuff)
-  return stuff
+  const versions = allDocs.map((doc) => ({
+    slug: doc.version,
+  }))
+
+  return [...stuff, versions]
 }
 
 export const generateMetadata = ({

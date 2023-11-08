@@ -131,7 +131,7 @@ export function generateVersionDocs(
 // }
 
 export function generateAllDocs(): VersionDocType[] {
-  const rootFolder = path.join(__dirname, '_content/docs')
+  const rootFolder = '_content/docs'
   if (!fs.existsSync(rootFolder) || !fs.statSync(rootFolder).isDirectory()) {
     throw new Error(
       `Root folder "${rootFolder}" does not exist or is not a directory.`
