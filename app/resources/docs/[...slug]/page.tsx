@@ -14,9 +14,9 @@ export async function generateStaticParams() {
     slug: post.url.split('/'),
   }))
   const versions = allDocs.map((doc) => ({
-    slug: doc.version,
+    slug: [doc.version],
   }))
-
+  console.log(stuff, versions)
   return [...stuff, versions]
 }
 
@@ -38,8 +38,10 @@ export default async function SingleDocPage({
   params: { slug: string[] }
 }) {
   const allDocs = generateAllDocs()
-  const post = allDocs.find((post) => post.url === params.slug.join('/'))
-  const titles = allDocs.filter((post) => post.version === params.slug[0])
+  const post =
+    allDocs?.find((post) => post.url === params.slug.join('/')) || null
+  const titles =
+    allDocs?.filter((post) => post.version === params.slug[0]) || null
   const versions = [
     ...new Set(
       allDocs
