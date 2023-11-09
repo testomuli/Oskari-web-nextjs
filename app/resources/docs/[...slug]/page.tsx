@@ -41,7 +41,8 @@ export default async function SingleDocPage({
   const post =
     allDocs?.find((post) => post.url === params.slug.join('/')) || null
   const titles =
-    allDocs?.filter((post) => post.version === params.slug[0]) || null
+    allDocs?.filter((post) => post.version === params.slug[0]) || []
+
   const versions = [
     ...new Set(
       allDocs
@@ -86,8 +87,8 @@ export default async function SingleDocPage({
       ))}
     </ul>
   )
-
-  if (params.slug.length === 1) {
+  console.log('post', post)
+  if (!post) {
     return (
       <div
         style={{
