@@ -10,14 +10,11 @@ import { generateAllDocs } from '@/lib/utils'
 
 export async function generateStaticParams() {
   const allDocs = generateAllDocs()
-  const stuff = allDocs.map((post) => ({
-    slug: post.url.split('/'),
-  }))
-  const versions = allDocs.map((doc) => ({
-    slug: [doc.version],
-  }))
-  console.log(stuff, versions)
-  return [...stuff, versions]
+  return (
+    allDocs?.map((post) => ({
+      slug: post.url.split('/'),
+    })) || []
+  )
 }
 
 export const generateMetadata = ({
@@ -26,10 +23,12 @@ export const generateMetadata = ({
   params: { slug: string[] }
 }) => {
   const allDocs = generateAllDocs()
-  const post = allDocs.find((post) => post.url === params.slug.join('/'))
+  const post =
+    allDocs?.find((post) => post.url === params.slug.join('/')) || null
   if (post) {
     return { title: post.title }
   }
+  return { title: 'Documentation' }
 }
 
 export default async function SingleDocPage({
@@ -46,9 +45,9 @@ export default async function SingleDocPage({
   const versions = [
     ...new Set(
       allDocs
-        .map((doc) => doc.version)
+        ?.map((doc) => doc.version)
         .sort((a, b) => compareSemanticVersions(a, b))
-        .reverse()
+        .reverse() || []
     ),
   ]
 

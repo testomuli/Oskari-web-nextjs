@@ -135,20 +135,22 @@ export function generateAllDocs(): VersionDocType[] | undefined {
   }
   const versionDirs = readVersionDirs(rootFolder)
   const docsByVersion: VersionDocType[] = []
-  for (const version of versionDirs) {
-    const versionPath = path.join(rootFolder, version)
+  if (versionDirs) {
+    for (const version of versionDirs) {
+      const versionPath = path.join(rootFolder, version)
 
-    if (
-      !fs.existsSync(versionPath) ||
-      !fs.statSync(versionPath).isDirectory()
-    ) {
-      console.warn(
-        `Version folder "${versionPath}" does not exist or is not a directory.`
-      )
-      continue
+      if (
+        !fs.existsSync(versionPath) ||
+        !fs.statSync(versionPath).isDirectory()
+      ) {
+        console.warn(
+          `Version folder "${versionPath}" does not exist or is not a directory.`
+        )
+        continue
+      }
+
+      docsByVersion.push(...generateVersionDocs(rootFolder, version))
     }
-
-    docsByVersion.push(...generateVersionDocs(rootFolder, version))
   }
   return docsByVersion
 }
