@@ -13,6 +13,14 @@ export async function generateStaticParams() {
   )
 }
 
+export const generateMetadata = ({
+  params,
+}: {
+  params: { slug: string; version: string }
+}) => {
+  return { title: params.version || 'Documentation' }
+}
+
 export default function VersionPage({
   params,
 }: {
