@@ -1,30 +1,27 @@
 import Accordion from '@/components/Accordion/Accordion'
 import AccordionGroup from '@/components/Accordion/AccordionGroup'
-import DocumentCard from '@/components/Cards/DocumentCard'
 import VersionSidebar from '@/components/VersionSidebar'
 import { compareSemanticVersions } from '@/utils/misc'
-// import { allDocs } from 'contentlayer/generated'
 import Link from 'next/link'
 import styles from '@/styles/accordion.module.scss'
 import { generateAllDocs } from '@/lib/utils'
 
 export async function generateStaticParams() {
   const allDocs = generateAllDocs()
-  return (
-    allDocs?.map((post) => ({
-      slug: post.url.split('/'),
-    })) || []
-  )
+  return allDocs?.map((post) => ({
+    slug: post.slug,
+  }))
 }
 
 export const generateMetadata = ({
   params,
 }: {
-  params: { slug: string[] }
+  params: { slug: string; version: string }
 }) => {
   const allDocs = generateAllDocs()
   const post =
-    allDocs?.find((post) => post.url === params.slug.join('/')) || null
+    allDocs?.find((post) => post.url === `${params.version}/${params.slug}`) ||
+    null
   if (post) {
     return { title: post.title }
   }
@@ -34,41 +31,12 @@ export const generateMetadata = ({
 export default async function SingleDocPage({
   params,
 }: {
-  params: { slug: string[] }
+  params: { slug: string; version: string }
 }) {
   const allDocs = generateAllDocs()
-  if (params.slug.length === 1) {
-    const titles =
-      allDocs
-        ?.filter((post) => post.version === params.slug[0])
-        ?.map((post) => ({
-          url: post.url,
-          slug: post.slug,
-          title: post.slug,
-        })) || []
-
-    console.log(titles)
-    return (
-      <div
-        style={{
-          display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fill, minmax(250px, 1fr))',
-          gap: '2rem',
-          marginTop: 27,
-        }}
-      >
-        {titles?.map((item) => (
-          <Link href={`/resources/docs/${item.url}`} key={item.slug}>
-            <DocumentCard title={item.title || ''} />
-          </Link>
-        )) || 'no titles'}
-      </div>
-    )
-  }
   const post =
-    allDocs?.find((post) => post.url === params.slug.join('/')) || null
-  const titles =
-    allDocs?.filter((post) => post.version === params.slug[0]) || []
+    allDocs?.find((post) => post.url === `${params.version}/${params.slug}`) ||
+    null
 
   const versions = [
     ...new Set(
@@ -104,20 +72,30 @@ export default async function SingleDocPage({
 
   const renderAccordionContent = (
     items: Array<{ slug: string; content: string }>
-  ) => (
-    <ul className={styles.accordionMenu}>
-      {items?.map((item) => (
-        <li key={item.slug}>
-          <Link href={`#${item.slug}`}>{item.content}</Link>
-        </li>
-      ))}
-    </ul>
-  )
+  ) => {
+    return (
+      <ul className={styles.accordionMenu}>
+        {items?.map((item) => (
+          <li key={item.slug}>
+            <Link
+              href={
+                parseInt(items[0].slug) === parseInt(params.slug)
+                  ? `#${item.slug}`
+                  : `${items[0].slug}#${item.slug}`
+              }
+            >
+              {item.content}
+            </Link>
+          </li>
+        ))}
+      </ul>
+    )
+  }
 
   return (
     <>
       <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
-        <VersionSidebar selectedVersion={params.slug[0]} versions={versions} />
+        <VersionSidebar selectedVersion={params.version} versions={versions} />
         {post?.html && (
           <AccordionGroup>
             {Object.keys(groupedAnchorLinks).map((key) => (
@@ -140,20 +118,7 @@ export default async function SingleDocPage({
             <div dangerouslySetInnerHTML={{ __html: post.html }}></div>
           </div>
         ) : (
-          <div
-            style={{
-              display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fill, minmax(250px, 1fr))',
-              gap: '2rem',
-              marginTop: 27,
-            }}
-          >
-            {titles?.map((item) => (
-              <Link href={`/resources/docs/${item.url}`} key={item.slug}>
-                <DocumentCard title={item.title || ''} />
-              </Link>
-            ))}
-          </div>
+          <h2>Document not found</h2>
         )}
       </div>
     </>
