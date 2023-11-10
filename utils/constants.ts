@@ -36,3 +36,47 @@ export const NAVIGATION_ITEMS: Array<NavigationItemType> = [
     path: '/contribute',
   },
 ]
+
+export const jointLogos = [
+  'tilastokeskus_fi 1.png',
+  'tampere.png',
+  'hsy.png',
+  'museovirasto.png',
+  'nls.png',
+  'varsinais_suomen_liitto.png',
+  'sitowise.png',
+  'vayla.png',
+]
+
+export const commitee = [
+  {
+    name: 'Sami Mäkinen',
+    img: '',
+    title: 'Chair',
+  },
+  {
+    name: 'Jussi Arpalahti',
+    img: '',
+    title: '',
+  },
+  {
+    name: 'Timo Sallinen',
+    img: '',
+    title: '',
+  },
+  {
+    name: 'Marko Kuosmanen',
+    img: '',
+    title: '',
+  },
+  {
+    name: 'Janne Heikkilä',
+    img: '',
+    title: '',
+  },
+  {
+    name: 'Anniina Iikkanen',
+    img: '',
+    title: '',
+  },
+]

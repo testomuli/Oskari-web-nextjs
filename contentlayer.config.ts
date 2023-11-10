@@ -60,6 +60,7 @@ export const Coordinators = defineDocumentType(() => ({
     name: { type: 'string', required: true },
     title: { type: 'string', required: false },
     avatar: { type: 'string', required: false },
+    order: { type: 'number', required: false },
   },
 }))
 

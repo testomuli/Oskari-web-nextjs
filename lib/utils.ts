@@ -154,3 +154,18 @@ export function generateAllDocs(): VersionDocType[] | undefined {
   }
   return docsByVersion
 }
+
+export async function getMdFile(filepath: string) {
+  const root = process.cwd()
+  const source = fs.readFileSync(
+    path.join(root, '_content', `${filepath}.md`),
+    'utf8'
+  )
+
+  const { data, content } = matter(source)
+
+  return {
+    frontMatter: data,
+    markdownBody: content,
+  }
+}

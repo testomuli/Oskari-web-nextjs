@@ -1,7 +1,8 @@
 ---
 name: Sini Pöytäniemi
-title: Product Owner
+title: product owner National Land Survey of Finland
 avatar: /assets/images/coordinator-placeholder.png
+order: 1
 ---
 
-Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+Product owner is the head of the Joint Development Forum. Product owner is responsible for the overall development of Oskari and organising the JDF meetings.
