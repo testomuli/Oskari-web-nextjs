@@ -39,7 +39,15 @@ export default async function SingleDocPage({
   const allDocs = generateAllDocs()
   if (params.slug.length === 1) {
     const titles =
-      allDocs?.filter((post) => post.version === params.slug[0]) || []
+      allDocs
+        ?.filter((post) => post.version === params.slug[0])
+        ?.map((post) => ({
+          url: post.url,
+          slug: post.slug,
+          title: post.slug,
+        })) || []
+
+    console.log(titles)
     return (
       <div
         style={{
@@ -53,7 +61,7 @@ export default async function SingleDocPage({
           <Link href={`/resources/docs/${item.url}`} key={item.slug}>
             <DocumentCard title={item.title || ''} />
           </Link>
-        ))}
+        )) || 'no titles'}
       </div>
     )
   }
@@ -70,7 +78,6 @@ export default async function SingleDocPage({
         .reverse() || []
     ),
   ]
-  console.log(post)
   const anchorLinks = post?.anchorLinks || []
 
   const groupedAnchorLinks: Record<
