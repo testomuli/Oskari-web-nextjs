@@ -4,6 +4,15 @@ import { generateAllDocs } from '@/lib/utils'
 import Link from 'next/link'
 import { compareSemanticVersions } from '@/utils/misc'
 
+export async function generateStaticParams() {
+  const allDocs = generateAllDocs()
+  return (
+    allDocs?.map((post) => ({
+      version: post.version,
+    })) || []
+  )
+}
+
 export default function VersionPage({
   params,
 }: {
