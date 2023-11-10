@@ -11,6 +11,7 @@ export async function generateStaticParams() {
   return (
     allDocs?.map((post) => ({
       slug: post.slug,
+      version: post.version,
     })) || []
   )
 }
