@@ -37,6 +37,26 @@ export default async function SingleDocPage({
   params: { slug: string[] }
 }) {
   const allDocs = generateAllDocs()
+  if (params.slug.length === 1) {
+    const titles =
+      allDocs?.filter((post) => post.version === params.slug[0]) || []
+    return (
+      <div
+        style={{
+          display: 'grid',
+          gridTemplateColumns: 'repeat(auto-fill, minmax(250px, 1fr))',
+          gap: '2rem',
+          marginTop: 27,
+        }}
+      >
+        {titles?.map((item) => (
+          <Link href={`/resources/docs/${item.url}`} key={item.slug}>
+            <DocumentCard title={item.title || ''} />
+          </Link>
+        ))}
+      </div>
+    )
+  }
   const post =
     allDocs?.find((post) => post.url === params.slug.join('/')) || null
   const titles =
@@ -50,7 +70,7 @@ export default async function SingleDocPage({
         .reverse() || []
     ),
   ]
-
+  console.log(post)
   const anchorLinks = post?.anchorLinks || []
 
   const groupedAnchorLinks: Record<
@@ -86,25 +106,6 @@ export default async function SingleDocPage({
       ))}
     </ul>
   )
-  console.log('post', post)
-  if (!post) {
-    return (
-      <div
-        style={{
-          display: 'grid',
-          gridTemplateColumns: 'repeat(auto-fill, minmax(250px, 1fr))',
-          gap: '2rem',
-          marginTop: 27,
-        }}
-      >
-        {titles?.map((item) => (
-          <Link href={`/resources/docs/${item.url}`} key={item.slug}>
-            <DocumentCard title={item.title || ''} />
-          </Link>
-        ))}
-      </div>
-    )
-  }
 
   return (
     <>
