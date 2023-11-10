@@ -8,9 +8,11 @@ import { generateAllDocs } from '@/lib/utils'
 
 export async function generateStaticParams() {
   const allDocs = generateAllDocs()
-  return allDocs?.map((post) => ({
-    slug: post.slug,
-  }))
+  return (
+    allDocs?.map((post) => ({
+      slug: post.slug,
+    })) || []
+  )
 }
 
 export const generateMetadata = ({
