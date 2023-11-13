@@ -64,9 +64,75 @@ export const Coordinators = defineDocumentType(() => ({
   },
 }))
 
+export const faqDevelopers = defineDocumentType(() => ({
+  name: 'faqDevelopers',
+  filePathPattern: `faq/faq-developers.md`,
+  computedFields: {
+    questionsAndAnswers: {
+      type: 'json',
+      resolve: (item) => {
+        const questions: string[] = []
+        const answers: string[] = []
+        item.body.html.replace(/<h1>(.*?)<\/h1>/g, (match, question) => {
+          questions.push(question)
+          return ''
+        })
+        item.body.html.replace(
+          /<\/h1>(.*?)<h1>|<\/h1>(.*?)$/gs,
+          (match, answer1, answer2) => {
+            answers.push((answer1 || answer2).trim())
+            return ''
+          }
+        )
+
+        const questionsAndAnswers = questions.map((question, index) => {
+          return {
+            question,
+            answer: answers[index],
+          }
+        })
+        return questionsAndAnswers
+      },
+    },
+  },
+}))
+
+export const faqUsers = defineDocumentType(() => ({
+  name: 'faqUsers',
+  filePathPattern: `faq/faq-users.md`,
+  computedFields: {
+    questionsAndAnswers: {
+      type: 'json',
+      resolve: (item) => {
+        const questions: string[] = []
+        const answers: string[] = []
+        item.body.html.replace(/<h1>(.*?)<\/h1>/g, (match, question) => {
+          questions.push(question)
+          return ''
+        })
+        item.body.html.replace(
+          /<\/h1>(.*?)<h1>|<\/h1>(.*?)$/gs,
+          (match, answer1, answer2) => {
+            answers.push((answer1 || answer2).trim())
+            return ''
+          }
+        )
+
+        const questionsAndAnswers = questions.map((question, index) => {
+          return {
+            question,
+            answer: answers[index],
+          }
+        })
+        return questionsAndAnswers
+      },
+    },
+  },
+}))
+
 export default makeSource({
   contentDirPath: '_content',
-  documentTypes: [Docs, Posts, Coordinators],
+  documentTypes: [Docs, Posts, Coordinators, faqDevelopers, faqUsers],
   markdown: {
     remarkPlugins: [remarkGfm],
     rehypePlugins: [rehypeHighlight],

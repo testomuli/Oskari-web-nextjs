@@ -117,7 +117,7 @@ export default async function SingleDocPage({
       </div>
       <div>
         {post?.html ? (
-          <div className='md-content'>
+          <div className='md-content max-w-[70ch] mt-7'>
             <div dangerouslySetInnerHTML={{ __html: post.html }}></div>
           </div>
         ) : (

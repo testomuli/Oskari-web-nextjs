@@ -36,7 +36,7 @@ export default function BlogSinglePostPage({
         <h2 className={styles.post__title}>{post.title}</h2>
         <div className={styles.post__date}>{post.date}</div>
         <div
-          className='md-content'
+          className='md-content max-w-full'
           dangerouslySetInnerHTML={{ __html: post.body.html }}
           style={{ maxWidth: '100%', marginTop: 0 }}
         />
