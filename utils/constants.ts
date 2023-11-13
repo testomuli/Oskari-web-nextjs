@@ -8,6 +8,16 @@ export const NAVIGATION_ITEMS: Array<NavigationItemType> = [
   {
     name: 'Discover Oskari',
     path: '/discover',
+    children: [
+      {
+        name: 'Functionalities',
+        path: '/discover/functionalities',
+      },
+      {
+        name: 'Use cases',
+        path: '/discover/use-cases',
+      },
+    ],
   },
   {
     name: 'Resources',
