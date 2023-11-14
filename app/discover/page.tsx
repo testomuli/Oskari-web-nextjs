@@ -100,7 +100,11 @@ export default function DiscoverPage() {
             How to view and visualise maps with Oskari? Try the sample
             application!
           </p>
-          <Button variant='dark' title='Try Oskari' />
+          <Button
+            variant='dark'
+            title='Try Oskari demo'
+            href='https://demo.oskari.org/'
+          />
         </div>
       </HighlightBox>
       <CardCarousel

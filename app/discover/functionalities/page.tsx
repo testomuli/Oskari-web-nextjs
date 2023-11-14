@@ -48,7 +48,11 @@ export default function DiscoverPage() {
           <p style={{ textAlign: 'center', fontSize: '1.125rem' }}>
             How to view and visualise maps with Oskari? Try the demo!
           </p>
-          <Button variant='dark' title='Try Oskari demo' href='#' />
+          <Button
+            variant='dark'
+            title='Try Oskari demo'
+            href='https://demo.oskari.org/'
+          />
         </div>
       </HighlightBox>
     </Layout>

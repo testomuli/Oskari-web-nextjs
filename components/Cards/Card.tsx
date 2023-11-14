@@ -1,6 +1,7 @@
 import styles from '@/styles/card.module.scss'
 import Button from '../Button'
 import { CardItemType } from '@/types/types'
+import Image from 'next/image'
 
 const Card = ({
   data,
@@ -9,8 +10,8 @@ const Card = ({
   data: CardItemType
   style?: React.CSSProperties
 }) => {
-  const { date, title, description, href } = data
-  return (
+  const { date, title, description, href, image } = data
+  return !image ? (
     <div className={styles.card} style={{ ...style }}>
       {date && <div className={styles.card__date}>{date}</div>}
       <h2 className={styles.card__title}>{title}</h2>
@@ -20,6 +21,31 @@ const Card = ({
           <Button variant='primary' href={href} title='Read more' />
         </div>
       )}
+    </div>
+  ) : (
+    <div
+      className={`${styles.card} !p-0 !flex-row overflow-hidden !grid grid-cols-1 md:grid-cols-[1fr_2fr] !gap-0`}
+      style={{ ...style }}
+    >
+      <div>
+        <Image
+          src={image}
+          alt={title}
+          height={360}
+          width={478}
+          className={`object-cover min-w-full min-h-full`}
+        />
+      </div>
+      <div className='px-[2.75rem] py-[2.7rem] md:px-[3.75rem] flex flex-col gap-5'>
+        {date && <div className={styles.card__date}>{date}</div>}
+        <h2 className={styles.card__title}>{title}</h2>
+        <div className={styles.card__description}>{description}</div>
+        {href && (
+          <div className={styles.card__cta}>
+            <Button variant='primary' href={href} title='Read more' />
+          </div>
+        )}
+      </div>
     </div>
   )
 }

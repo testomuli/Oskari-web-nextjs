@@ -12,6 +12,7 @@ export default function BlogPage() {
         date: post.date || '',
         description: post.excerpt,
         href: post.url,
+        image: post.imagesFromPost?.[0] || null,
       }
       return item
     })

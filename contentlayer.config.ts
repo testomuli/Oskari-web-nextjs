@@ -52,6 +52,17 @@ export const Posts = defineDocumentType(() => ({
       type: 'string',
       resolve: (post) => post._raw.flattenedPath,
     },
+    imagesFromPost: {
+      type: 'list',
+      resolve: (post) => {
+        const images: string[] = []
+        post.body.html.replace(/<img.*?src="(.*?)"/g, (match, src) => {
+          images.push(src)
+          return ''
+        })
+        return images
+      },
+    },
   },
 }))
 
@@ -66,7 +77,7 @@ export const Coordinators = defineDocumentType(() => ({
   },
 }))
 
-export const faqDevelopers = defineDocumentType(() => ({
+export const FaqDevelopers = defineDocumentType(() => ({
   name: 'faqDevelopers',
   filePathPattern: `faq/faq-developers.md`,
   computedFields: {
@@ -99,7 +110,7 @@ export const faqDevelopers = defineDocumentType(() => ({
   },
 }))
 
-export const faqUsers = defineDocumentType(() => ({
+export const FaqUsers = defineDocumentType(() => ({
   name: 'faqUsers',
   filePathPattern: `faq/faq-users.md`,
   computedFields: {
@@ -134,7 +145,7 @@ export const faqUsers = defineDocumentType(() => ({
 
 export default makeSource({
   contentDirPath: '_content',
-  documentTypes: [Docs, Posts, Coordinators, faqDevelopers, faqUsers],
+  documentTypes: [Docs, Posts, Coordinators, FaqDevelopers, FaqUsers],
   markdown: {
     remarkPlugins: [remarkGfm],
     rehypePlugins: [rehypeHighlight],
