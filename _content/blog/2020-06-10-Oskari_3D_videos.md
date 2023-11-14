@@ -20,13 +20,13 @@ If you have not tried yet, test Oskari 3D possibilities with the demo website.
 1. First test the "Blue Marble" as background map and switch to 3D view [go to demo Oskari from here](https://demo.oskari.org/)
 2. You can spin the globe with shift pressed down
 
-<img src="/img/demo_bluemarble.png" class="img-responsive"/>
+![Demo blue marble](/assets/images/blog/demo_bluemarble.png)
 
 3. There are 2 datasets currently available with 3D data in the demo website, so let's check them out. Zoom to Helsinki (Finland).
 4. If the background map gets blurry, change the background map to e.g. "NLS-FI Background map"
 5. Test the mesh dataset (Helsinki city 3D) from Helsinki and the city GML model (Helsinki city 3D buildings with textures). See how the buildings float on top of the map.
 
-<img src="/img/helsinki_3D.png" class="img-responsive"/>
+![Helsinki 3D](/assets/images/blog/helsinki_3D.png)
 
 # Testing the Terrain Height Profile tool with Paikkatietoikkuna
 
@@ -46,8 +46,8 @@ In Paikkatietoikkuna there is also a digital elevation model available (data com
    End the measurement with double click. You get a profile for the terrain in a graph.
 5. You can check the actual height of the terrain with following the graphs profile.
 
-<img src="/img/3D_paikkatietoikkuna.png" class="img-responsive"/>
+![3D Paikkatietoikkuna](/assets/images/blog/3D_paikkatietoikkuna.png)
 
-<img src="/img/terrainheightprofile.png" class="img-responsive"/>
+![Terrain height profile](/assets/images/blog/terrainheightprofile.png)
 
 An example of the [WCS Get Capabilities query used in here](https://beta-karttakuva.maanmittauslaitos.fi/wcs/service/ows?service=WCS&AcceptVersions=2.0.1&request=GetCapabilities).

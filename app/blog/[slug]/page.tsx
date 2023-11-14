@@ -44,29 +44,27 @@ export default function BlogSinglePostPage({
           style={{ maxWidth: '100%', marginTop: 0 }}
         />
       </div>
-      <HighlightBox
-        otter
-        style={{
-          backgroundColor: 'var(--color-beige)',
-          marginTop: '10rem',
-          marginBottom: '10rem',
-        }}
-        contentStyles={{
-          display: 'flex',
-          flexDirection: 'column',
-          textAlign: 'left',
-          paddingTop: '4rem',
-          paddingBottom: '4rem',
-          alignItems: 'flex-start',
-        }}
-      >
-        {post.author && (
-          <>
-            <span>Author</span>
-            <span style={{ fontWeight: 'bold' }}>{post.author}</span>
-          </>
-        )}
-      </HighlightBox>
+      {post.author && (
+        <HighlightBox
+          otter
+          style={{
+            backgroundColor: 'var(--color-beige)',
+            marginTop: '10rem',
+            marginBottom: '10rem',
+          }}
+          contentStyles={{
+            display: 'flex',
+            flexDirection: 'column',
+            textAlign: 'left',
+            paddingTop: '4rem',
+            paddingBottom: '4rem',
+            alignItems: 'flex-start',
+          }}
+        >
+          <span>Author</span>
+          <span style={{ fontWeight: 'bold' }}>{post.author}</span>
+        </HighlightBox>
+      )}
     </Layout>
   )
 }

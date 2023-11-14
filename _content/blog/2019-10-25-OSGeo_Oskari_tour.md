@@ -22,15 +22,15 @@ Thanks for the instructions, NLS-FI Oskari developer team!
 The event was in Finnish and presentations can be found [here](https://drive.google.com/drive/u/0/folders/1bFShE-Pon6NexBL4ZhAkHxTF0iFM0Hb9).
 Thanks again for all the participants and organizers!
 
-<img src="/img/mapquery_oskari.png" width="500" class="img-responsive"/>
+![Oskari map](/assets/images/blog/mapquery_oskari.png)
 
 Public participation is part of the land use planning process. In Tampere they have all the datasets in their Oskari installation, so it was convenient to create a simple query form on top of Oskari embedded map.
 
-<img src="/img/joensuu_gfi_example.png" width="500" class="img-responsive"/>
+![GFI exmaple](/assets/images/blog/joensuu_gfi_example.png)
 
 City of Joensuu has taken Oskari in use during this year and they have created nice looking info-popups with GeoServer GFI and Google Charts API.
 
-<img src="/img/private_road.png" width="500" class="img-responsive"/>
+![Private road](/assets/images/blog/private_road.png)
 
 Private road management information can be informed with a form using Oskari embedded map.
 

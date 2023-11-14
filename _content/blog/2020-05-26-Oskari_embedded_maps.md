@@ -33,23 +33,29 @@ The styling abilities are a bit limited. But you can adjust the style also after
 
 We used QGIS and QuickOSM tool to fetch coffeeshops from the city centre of Turku. At the moment Oskari allows datasets to be imported in zip-format and it supports ESRI .shp, .GPX, Mapinfo .mif and Google .KML-formats.
 
-<img src="/img/owndatasets.png" width="500" class="img-responsive"/>
+![Datasets](/assets/images/blog/owndatasets.png)
 
-<img src="/img/edit_owndata.png" width="500" class="img-responsive"/>
+![Edit own data](/assets/images/blog/edit_owndata.png)
 
 ## 3. Publish the map
 
 - Click on **Map Publishing** and give the map a name and the URL where you want to post it
 
-<img src="/img/publishing.png" width="500" class="img-responsive"/>
+![Publishing](/assets/images/blog/publishing.png)
 
-<img src="/img/embedded_maps_create.png" width="500" class="img-responsive"/>
+![Create map](/assets/images/blog/embedded_maps_create.png)
 
 - Adjust the needed elements and tools to the map
 - Click publish and copy paste the iframe code to your website.
 
-<iframe src="https://kartta.paikkatietoikkuna.fi/published/en/4fc5a1ea-6374-4ecb-a40f-3aa2f665732d" allow="geolocation" style="border: none; width: 500px; height: 500px;"></iframe>
- 
+```html
+<iframe
+  src="https://kartta.paikkatietoikkuna.fi/published/en/4fc5a1ea-6374-4ecb-a40f-3aa2f665732d"
+  allow="geolocation"
+  style="border: none; width: 500px; height: 500px;"
+></iframe>
+```
+
 ## 4. If you want to tailor the embedded map to your own needs, learn RPC
 
 Oskari's published maps can be tailored to make them look exactly as you like. This is done by using Oskari RPC (Remote Procedure Call).
