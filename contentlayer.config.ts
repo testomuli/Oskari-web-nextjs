@@ -81,7 +81,7 @@ export const Coordinators = defineDocumentType(() => ({
 }))
 
 export const FaqDevelopers = defineDocumentType(() => ({
-  name: 'faqDevelopers',
+  name: 'FaqDevelopers',
   filePathPattern: `faq/faq-developers.md`,
   computedFields: {
     questionsAndAnswers: {
@@ -114,7 +114,7 @@ export const FaqDevelopers = defineDocumentType(() => ({
 }))
 
 export const FaqUsers = defineDocumentType(() => ({
-  name: 'faqUsers',
+  name: 'FaqUsers',
   filePathPattern: `faq/faq-users.md`,
   computedFields: {
     questionsAndAnswers: {
