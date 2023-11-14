@@ -4,7 +4,7 @@ title:  "Oskari user interface face lift"
 excerpt : "Oskari UI (user interface) is developed and renewed with joint funding."
 date:   2020-06-17 13:00:00 +0300
 categories: [news]
-tags: [blog]
+tags: blog
 ---
 
 # Oskari user interface is to be given a face lift

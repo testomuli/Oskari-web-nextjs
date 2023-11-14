@@ -4,7 +4,7 @@ title:  "Admin tools in Oskari"
 excerpt : "Guide to use Oskari admin tools"
 date:   2020-06-12 13:00:00 +0300
 categories: [news]
-tags: [blog]
+tags: blog
 ---
 
 # Oskari admin tools have renewed so here is a tutorial for adminstrators

@@ -4,7 +4,7 @@ title:  "What is Oskari RPC?"
 excerpt : "Oskari API is a really nice option for creating light weight map services"
 date:   2019-01-09 13:00:00 +0300
 categories: [news]
-tags: [blog]
+tags: blog
 ---
 
 # Why choose Oskari API over Oskari installation?

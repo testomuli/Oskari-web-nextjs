@@ -4,7 +4,7 @@ title:  "3D capabilities of Oskari with videos"
 excerpt : "3D view and terrain height profile tool"
 date:   2020-06-10 13:00:00 +0300
 categories: [news]
-tags: [blog]
+tags: blog
 ---
 
 # Testing Oskari 3D-possibilities 

@@ -4,7 +4,7 @@ title:  "Testing Oskari embedded maps"
 excerpt : "How easy it is to create your own embedded map to your web site? So easy!"
 date:   2020-05-26 13:00:00 +0300
 categories: [news]
-tags: [blog]
+tags: blog
 ---
 
 # How easy it is to create your own Oskari based map?
