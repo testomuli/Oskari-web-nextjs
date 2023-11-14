@@ -89,13 +89,16 @@ export const FaqDevelopers = defineDocumentType(() => ({
       resolve: (item) => {
         const questions: string[] = []
         const answers: string[] = []
-        item.body.html.replace(/<h1>(.*?)<\/h1>/g, (match, question) => {
-          questions.push(question)
-          return ''
-        })
+        item.body.html.replace(
+          /<h1>(.*?)<\/h1>/g,
+          (_match: unknown, question: string) => {
+            questions.push(question)
+            return ''
+          }
+        )
         item.body.html.replace(
           /<\/h1>(.*?)<h1>|<\/h1>(.*?)$/gs,
-          (match, answer1, answer2) => {
+          (_match: unknown, answer1: string, answer2: string) => {
             answers.push((answer1 || answer2).trim())
             return ''
           }
@@ -122,13 +125,16 @@ export const FaqUsers = defineDocumentType(() => ({
       resolve: (item) => {
         const questions: string[] = []
         const answers: string[] = []
-        item.body.html.replace(/<h1>(.*?)<\/h1>/g, (match, question) => {
-          questions.push(question)
-          return ''
-        })
+        item.body.html.replace(
+          /<h1>(.*?)<\/h1>/g,
+          (_match: unknown, question: string) => {
+            questions.push(question)
+            return ''
+          }
+        )
         item.body.html.replace(
           /<\/h1>(.*?)<h1>|<\/h1>(.*?)$/gs,
-          (match, answer1, answer2) => {
+          (_match: unknown, answer1: string, answer2: string) => {
             answers.push((answer1 || answer2).trim())
             return ''
           }
