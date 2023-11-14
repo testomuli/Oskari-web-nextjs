@@ -40,10 +40,12 @@ export const Posts = defineDocumentType(() => ({
   name: 'Post',
   filePathPattern: `blog/*.md`,
   fields: {
-    title: { type: 'string', required: false },
-    date: { type: 'string', required: false },
-    author: { type: 'string', required: false },
-    excerpt: { type: 'string', required: false },
+    title: { type: 'string', required: true },
+    date: { type: 'string', required: true },
+    author: { type: 'string', required: true },
+    excerpt: { type: 'string', required: true },
+    image: { type: 'string', required: false },
+    tags: { type: 'list', required: false, of: { type: 'string' } },
   },
   computedFields: {
     url: {

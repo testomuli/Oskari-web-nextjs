@@ -1,11 +1,8 @@
 import Button from '@/components/Button'
-import CardCarousel from '@/components/Cards/CardCarousel'
 import FeatureCard from '@/components/Cards/FeatureCard'
-import ImageCard from '@/components/Cards/ImageCard'
 import Container from '@/components/Container'
 import HighlightBox from '@/components/HighlightBox'
 import Layout from '@/components/Layout'
-import Text from '@/components/Text'
 import { DISCOVER_FUNCTIONALITIES } from '@/utils/data/whychooseoskari'
 import { Metadata } from 'next'
 
@@ -51,7 +48,7 @@ export default function DiscoverPage() {
           <p style={{ textAlign: 'center', fontSize: '1.125rem' }}>
             How to view and visualise maps with Oskari? Try the demo!
           </p>
-          <Button variant='dark' title='Try Oskari demo' />
+          <Button variant='dark' title='Try Oskari demo' href='#' />
         </div>
       </HighlightBox>
     </Layout>
