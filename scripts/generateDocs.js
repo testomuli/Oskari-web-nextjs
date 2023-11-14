@@ -4,11 +4,11 @@ const fs = require('fs');
 const path = require('path');
 
 const pathToExternalRepos = path.normalize(path.join(__dirname, '/../../'));
-const version = process?.env?.DOC_VERSION;
+// npm run docs --DOC_V=2.13.0
+const version = process?.env?.npm_config_DOC_V;
 
 if (!version) {
-  // SET DOC_VERSION=2.13.0
-  throw new Error('Env variable DOC_VERSION is required');
+  throw new Error('Parameter `--DOC_V=version` is required');
 }
 
 // init folder for version
@@ -22,9 +22,12 @@ if (!fs.existsSync(pathToVersionRoot)) {
 const pathToDocumentationRepository = path.join(pathToExternalRepos, 'oskari-documentation/');
 fs.cpSync(pathToDocumentationRepository, pathToVersionRoot, {
   preserveTimestamps: true,
-  recursive: true
+  recursive: true,
+  // filter out git metadata so we don't get accidental git submodules
+  filter: (src) => !path.basename(src).startsWith('.git')
 });
 console.log('Initialized docs for version ' + version);
+
 
 
 // https://github.com/oskariorg/oskari-frontend

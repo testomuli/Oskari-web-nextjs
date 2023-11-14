@@ -39,7 +39,7 @@ Clone documentation repos in parallel folders next to this one
 
 1) clone https://github.com/oskariorg/oskari-documentation -> (Should be found in ../oskari-documentation)
 2) clone https://github.com/oskariorg/oskari-frontend -> (Should be found in ../oskari-frontend)
-3) VERSION=2.13.0 npm run docs
+3) Run `npm run docs --DOC_V=[version]` where `[version]` is like `2.13.0`
 
 This:
 - shovels in everything under `oskari-documentation`` to `_content/docs/[version]/`
