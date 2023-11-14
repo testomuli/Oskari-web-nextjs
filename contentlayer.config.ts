@@ -38,6 +38,7 @@ export const Docs = defineDocumentType(() => ({
 
 export const Posts = defineDocumentType(() => ({
   name: 'Post',
+  contentType: 'markdown',
   filePathPattern: `blog/*.md`,
   fields: {
     layout: { type: 'string', required: false },

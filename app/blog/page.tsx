@@ -2,7 +2,6 @@ import { Post, allPosts } from '@/.contentlayer/generated'
 import Card from '@/components/Cards/Card'
 import Layout from '@/components/Layout'
 import styles from '@/styles/blog.module.scss'
-import { sortByDate } from '@/utils/misc'
 
 export default function BlogPage() {
   const posts = allPosts
@@ -16,7 +15,7 @@ export default function BlogPage() {
       }
       return item
     })
-    .sort((a, b) => sortByDate(a.date.toISOString(), b.date.toISOString()))
+    .sort((a, b) => b.date.getTime() - a.date.getTime())
   return (
     <Layout heroTitle='Blog' heroSmall>
       <div className='container--content'>
