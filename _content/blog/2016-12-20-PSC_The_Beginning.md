@@ -4,6 +4,7 @@ title:  "OSGeo PSC - The beginning"
 excerpt : "While not an actual PSC meeting this meeting introduced the OSGeo process and the first PSC was elected in the meeting."
 date:   2016-12-20 13:00:00 +0200
 categories: [psc, psc-memo]
+tags: [blog]
 ---
 
 # Oskari Architecture Group Meeting Memo

@@ -4,6 +4,7 @@ title:  "Hi from communication!"
 excerpt : "I have been privileged to participate in the communication coordination of Oskari software for the past three years. Gosh, how the time flies!"
 date:   2020-08-28 13:00:00 +0300
 categories: [news]
+tags: [blog]
 ---
 
 

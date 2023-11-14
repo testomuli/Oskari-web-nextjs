@@ -4,6 +4,7 @@ title:  "Repository relocation in March 2017"
 excerpt : "Git-repositories will be moved from nls-oskari to new organization oskariorg in March!"
 date:   2017-03-01 13:00:00 +0200
 categories: [documentation]
+tags: [blog]
 ---
 
 # Repository relocation in March 2017

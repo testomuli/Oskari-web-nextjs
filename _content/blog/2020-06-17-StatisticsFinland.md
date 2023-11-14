@@ -4,6 +4,7 @@ title:  "Statistics Finland has a brand new Oskari"
 excerpt : "Time series and thematic maps from Finland"
 date:   2020-06-17 13:00:00 +0300
 categories: [news]
+tags: [blog]
 ---
 
 # Statistics Finland has a brand new Oskari

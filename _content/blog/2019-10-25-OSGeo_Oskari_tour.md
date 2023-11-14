@@ -4,6 +4,7 @@ title:  "Oskari & OSGeo on tour 2019"
 excerpt : "Oskari went on tour with OSGeo Finland to meet some open minded people around Finland"
 date:   2019-10-25 13:00:00 +0300
 categories: [news]
+tags: [blog]
 ---
 
 # Oskari & OSGeo were on tour

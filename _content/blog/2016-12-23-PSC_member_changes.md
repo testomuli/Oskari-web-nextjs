@@ -4,6 +4,7 @@ title:  "OSGeo PSC - New member"
 excerpt : "The first vote of the PSC was to add a new Member to the team: Marko Kuosmanen"
 date:   2016-12-23
 categories: [psc]
+tags: [blog]
 ---
 
 # OSGeo PSC first actions

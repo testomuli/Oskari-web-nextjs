@@ -4,6 +4,7 @@ title:  "Oskari day 5.6.2023"
 excerpt : "Community is a core value of Oskari. Everyone is welcome to participate in the development of Oskari. The Oskari community came together in June to network and share their learnings and ideas on Oskari Day."
 date:   2023-08-23 12:00:00 +0300
 categories: [news]
+tags: [blog]
 ---
 # The Oskari community came together for Oskari Day 5.6.2023
 
