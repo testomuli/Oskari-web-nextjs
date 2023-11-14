@@ -9,13 +9,14 @@ export default function BlogPage() {
     ?.map((post: Post) => {
       const item = {
         title: post.title || '',
-        date: post.date || '',
+        date: new Date(post.date) || '',
         description: post.excerpt,
         href: post.url,
+        image: post.imagesFromPost?.[0] || null,
       }
       return item
     })
-    .sort((a, b) => sortByDate(a.date, b.date))
+    .sort((a, b) => sortByDate(a.date.toISOString(), b.date.toISOString()))
   return (
     <Layout heroTitle='Blog' heroSmall>
       <div className='container--content'>

@@ -1,39 +1,38 @@
 ---
 layout: post
-title:  "Admin tools in Oskari"
-excerpt : "Guide to use Oskari admin tools"
-date:   2020-06-12 13:00:00 +0300
+title: 'Admin tools in Oskari'
+excerpt: 'Guide to use Oskari admin tools'
+date: 2020-06-12 13:00:00 +0300
 categories: [news]
-tags: blog
+tags: ['blog']
 ---
 
 # Oskari admin tools have renewed so here is a tutorial for adminstrators
 
-In the [video](https://youtu.be/xeOM0_1zO2I) there is a tutorial and tests for the relatively new admin side tool in Oskari. 
+In the [video](https://youtu.be/xeOM0_1zO2I) there is a tutorial and tests for the relatively new admin side tool in Oskari.
 
-You can test admin-side tools with Oskari [demo site](https://demo.oskari.org/) which is an Oskari set-up that everyone can try out without their own Oskari installation. 
-Access the admin tool by logging in and use the test passwords, found actually from the start help. 
+You can test admin-side tools with Oskari [demo site](https://demo.oskari.org/) which is an Oskari set-up that everyone can try out without their own Oskari installation.
+Access the admin tool by logging in and use the test passwords, found actually from the start help.
 Remember that all information is deleted from the demo site during the night, so don’t store any crucial datasets there.
 
-Prerequisities for administrators: you have to have some knowledge on OGC standards like [WMS](https://www.ogc.org/standards/wms) and [WFS](https://www.ogc.org/standards/wfs). 
+Prerequisities for administrators: you have to have some knowledge on OGC standards like [WMS](https://www.ogc.org/standards/wms) and [WFS](https://www.ogc.org/standards/wfs).
 
 ## Supported map layer types
 
 <img src="/img/layer_admin.png" class="img-responsive"/>
 
-Oskari supports different standard interfaces like Web Map Service, Web Map Tile Service, Web Feature Service. 
-And you can also add layers from Bing or services providing Mapbox vector tiles or Cesium 3D-tiles. 
-If these are not familiar to you, we suggest you read on how to create WMS-services with GeoServer or similar map server. 
+Oskari supports different standard interfaces like Web Map Service, Web Map Tile Service, Web Feature Service.
+And you can also add layers from Bing or services providing Mapbox vector tiles or Cesium 3D-tiles.
+If these are not familiar to you, we suggest you read on how to create WMS-services with GeoServer or similar map server.
 In short, there are different ways to provide interfaces for your data.
 
 ## 1. Adding data providers and themes
 
-Oskari is originally created for geoportal purposes, so all the datasets should have a data provider and also some kind of category or theme. 
+Oskari is originally created for geoportal purposes, so all the datasets should have a data provider and also some kind of category or theme.
 
 When you are logged in you can add data providers, themes and data thourgh map layers window by clicking the + button.
 
 <img src="/img/admin_button_maplayers.png" class="img-responsive"/>
-
 
 ## 2. Adding a basic information from a WMS/WFS layer
 
@@ -79,9 +78,10 @@ In the next sheet, you can assign some additional information. For WMS and WFS t
 
 ## 5. User rights
 
-You can assign role-based access rights for your map layer for adminstrators, guests and signed in users. 
-- **View:** layer visibility can be restricted to a certain user group. 
-- **View in embedded map:** this option refers to the embedded map and tells if the data can be only viewed within the embedded map. 
+You can assign role-based access rights for your map layer for adminstrators, guests and signed in users.
+
+- **View:** layer visibility can be restricted to a certain user group.
+- **View in embedded map:** this option refers to the embedded map and tells if the data can be only viewed within the embedded map.
 - **Publish:** you can also add restrictions for using the layer in question in published maps
 - **Download:** this possibility is actually used only for WFS data, it allows downloading the attribute data in CSV or Excel format.
 
@@ -89,11 +89,11 @@ You can assign role-based access rights for your map layer for adminstrators, gu
 
 ## 6. Finally: Add the layer to your map
 
-And check if everything is ok. You can always edit the layer information from Map Layers if the pen-tool is active and you are logged in. 
+And check if everything is ok. You can always edit the layer information from Map Layers if the pen-tool is active and you are logged in.
 
 ## 7. Extra: Adding 3D dataset from Cesium
 
-In the video we tested also how to add 3D data from Cesium to the map. 
+In the video we tested also how to add 3D data from Cesium to the map.
 You need to sign in to [Cesium](https://cesium.com/) and find e.g. OpenStreetMap Buildings asset id and you need a token.
 
 <img src="/img/cesium.png" class="img-responsive"/>
@@ -103,7 +103,3 @@ You need to sign in to [Cesium](https://cesium.com/) and find e.g. OpenStreetMap
 3. Add Access Token
 4. Add necessary information, like layer name, data provider, theme
 5. Test in 3D view to see the dataset in action
-
-
-
-

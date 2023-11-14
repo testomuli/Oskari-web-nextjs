@@ -5,6 +5,7 @@ import Accordion from '@/components/Accordion/Accordion'
 import AccordionGroup from '@/components/Accordion/AccordionGroup'
 import Button from '@/components/Button'
 import HighlightBox from '@/components/HighlightBox'
+import { allFaqDevelopers, allFaqUsers } from '@/.contentlayer/generated'
 
 export const metadata: Metadata = {
   title: 'FAQ',
@@ -23,42 +24,42 @@ export default function FaqPage() {
       >
         <h2>For users</h2>
         <AccordionGroup>
-          <Accordion
-            title='Lorem ipsum dolor sit amet, consectetur adipiscing elit.?'
-            content='Lorem ipsum dolor sit amet, consectetur adipiscing elit. Enim lorem hac a ultricies. Id ornare turpis vulputate enim sed magna sit. A id cursus dolor urna. Aliquam diam integer vitae eget. '
-          />
-          <Accordion
-            title='Lorem ipsum dolor sit amet, consectetur adipiscing elit.?'
-            content='Lorem ipsum dolor sit amet, consectetur adipiscing elit. Enim lorem hac a ultricies. Id ornare turpis vulputate enim sed magna sit. A id cursus dolor urna. Aliquam diam integer vitae eget. '
-          />
-          <Accordion
-            title='Lorem ipsum dolor sit amet, consectetur adipiscing elit.?'
-            content='Lorem ipsum dolor sit amet, consectetur adipiscing elit. Enim lorem hac a ultricies. Id ornare turpis vulputate enim sed magna sit. A id cursus dolor urna. Aliquam diam integer vitae eget. '
-          />
-          <Accordion
-            title='Lorem ipsum dolor sit amet, consectetur adipiscing elit.?'
-            content='Lorem ipsum dolor sit amet, consectetur adipiscing elit. Enim lorem hac a ultricies. Id ornare turpis vulputate enim sed magna sit. A id cursus dolor urna. Aliquam diam integer vitae eget. '
-          />
+          {allFaqUsers[0]?.questionsAndAnswers?.map(
+            ({ question, answer }: Record<string, string>) => (
+              <Accordion
+                title={question}
+                content={
+                  <div
+                    className='md-content'
+                    dangerouslySetInnerHTML={{
+                      __html: answer || '',
+                    }}
+                  />
+                }
+                key={question}
+              />
+            )
+          )}
         </AccordionGroup>
 
         <h2>For developers</h2>
         <AccordionGroup>
-          <Accordion
-            title='Lorem ipsum dolor sit amet, consectetur adipiscing elit.?'
-            content='Lorem ipsum dolor sit amet, consectetur adipiscing elit. Enim lorem hac a ultricies. Id ornare turpis vulputate enim sed magna sit. A id cursus dolor urna. Aliquam diam integer vitae eget. '
-          />
-          <Accordion
-            title='Lorem ipsum dolor sit amet, consectetur adipiscing elit.?'
-            content='Lorem ipsum dolor sit amet, consectetur adipiscing elit. Enim lorem hac a ultricies. Id ornare turpis vulputate enim sed magna sit. A id cursus dolor urna. Aliquam diam integer vitae eget. '
-          />
-          <Accordion
-            title='Lorem ipsum dolor sit amet, consectetur adipiscing elit.?'
-            content='Lorem ipsum dolor sit amet, consectetur adipiscing elit. Enim lorem hac a ultricies. Id ornare turpis vulputate enim sed magna sit. A id cursus dolor urna. Aliquam diam integer vitae eget. '
-          />
-          <Accordion
-            title='Lorem ipsum dolor sit amet, consectetur adipiscing elit.?'
-            content='Lorem ipsum dolor sit amet, consectetur adipiscing elit. Enim lorem hac a ultricies. Id ornare turpis vulputate enim sed magna sit. A id cursus dolor urna. Aliquam diam integer vitae eget. '
-          />
+          {allFaqDevelopers[0]?.questionsAndAnswers?.map(
+            ({ question, answer }: Record<string, string>) => {
+              return (
+                <Accordion
+                  title={question}
+                  content={
+                    <div
+                      className='md-content'
+                      dangerouslySetInnerHTML={{ __html: answer || '' }}
+                    />
+                  }
+                  key={question}
+                />
+              )
+            }
+          )}
         </AccordionGroup>
       </Container>
       <HighlightBox

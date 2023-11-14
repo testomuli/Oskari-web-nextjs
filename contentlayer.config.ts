@@ -40,15 +40,30 @@ export const Posts = defineDocumentType(() => ({
   name: 'Post',
   filePathPattern: `blog/*.md`,
   fields: {
-    title: { type: 'string', required: false },
-    date: { type: 'string', required: false },
+    layout: { type: 'string', required: false },
+    categories: { type: 'list', required: false, of: { type: 'string' } },
+    title: { type: 'string', required: true },
+    date: { type: 'date', required: true },
     author: { type: 'string', required: false },
-    excerpt: { type: 'string', required: false },
+    excerpt: { type: 'string', required: true },
+    image: { type: 'string', required: false },
+    tags: { type: 'list', required: false, of: { type: 'string' } },
   },
   computedFields: {
     url: {
       type: 'string',
       resolve: (post) => post._raw.flattenedPath,
+    },
+    imagesFromPost: {
+      type: 'list',
+      resolve: (post) => {
+        const images: string[] = []
+        post.body.html.replace(/<img.*?src="(.*?)"/g, (match, src) => {
+          images.push(src)
+          return ''
+        })
+        return images
+      },
     },
   },
 }))
@@ -60,12 +75,79 @@ export const Coordinators = defineDocumentType(() => ({
     name: { type: 'string', required: true },
     title: { type: 'string', required: false },
     avatar: { type: 'string', required: false },
+    order: { type: 'number', required: false },
+  },
+}))
+
+export const FaqDevelopers = defineDocumentType(() => ({
+  name: 'faqDevelopers',
+  filePathPattern: `faq/faq-developers.md`,
+  computedFields: {
+    questionsAndAnswers: {
+      type: 'json',
+      resolve: (item) => {
+        const questions: string[] = []
+        const answers: string[] = []
+        item.body.html.replace(/<h1>(.*?)<\/h1>/g, (match, question) => {
+          questions.push(question)
+          return ''
+        })
+        item.body.html.replace(
+          /<\/h1>(.*?)<h1>|<\/h1>(.*?)$/gs,
+          (match, answer1, answer2) => {
+            answers.push((answer1 || answer2).trim())
+            return ''
+          }
+        )
+
+        const questionsAndAnswers = questions.map((question, index) => {
+          return {
+            question,
+            answer: answers[index],
+          }
+        })
+        return questionsAndAnswers
+      },
+    },
+  },
+}))
+
+export const FaqUsers = defineDocumentType(() => ({
+  name: 'faqUsers',
+  filePathPattern: `faq/faq-users.md`,
+  computedFields: {
+    questionsAndAnswers: {
+      type: 'json',
+      resolve: (item) => {
+        const questions: string[] = []
+        const answers: string[] = []
+        item.body.html.replace(/<h1>(.*?)<\/h1>/g, (match, question) => {
+          questions.push(question)
+          return ''
+        })
+        item.body.html.replace(
+          /<\/h1>(.*?)<h1>|<\/h1>(.*?)$/gs,
+          (match, answer1, answer2) => {
+            answers.push((answer1 || answer2).trim())
+            return ''
+          }
+        )
+
+        const questionsAndAnswers = questions.map((question, index) => {
+          return {
+            question,
+            answer: answers[index],
+          }
+        })
+        return questionsAndAnswers
+      },
+    },
   },
 }))
 
 export default makeSource({
   contentDirPath: '_content',
-  documentTypes: [Docs, Posts, Coordinators],
+  documentTypes: [Docs, Posts, Coordinators, FaqDevelopers, FaqUsers],
   markdown: {
     remarkPlugins: [remarkGfm],
     rehypePlugins: [rehypeHighlight],

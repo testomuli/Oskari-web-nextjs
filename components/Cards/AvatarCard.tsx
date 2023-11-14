@@ -12,7 +12,7 @@ const AvatarCard = ({
   content: string
 }) => {
   return (
-    <div className='flex flex-col items-center justify-between text-center w-[300px]'>
+    <div className='flex flex-col items-center justify-start text-left w-[300px]'>
       <Image
         src={avatar || '/images/avatars/otter.png'}
         alt={name}

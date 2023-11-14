@@ -3,6 +3,7 @@ import HighlightBox from '@/components/HighlightBox'
 import Layout from '@/components/Layout'
 import Error from '@/components/Error'
 import styles from '@/styles/blog.module.scss'
+import { format } from 'date-fns'
 
 export async function generateStaticParams() {
   return allPosts.map((post) => ({
@@ -34,9 +35,11 @@ export default function BlogSinglePostPage({
     <Layout heroSmall heroTitle='Blog'>
       <div className='container--content'>
         <h2 className={styles.post__title}>{post.title}</h2>
-        <div className={styles.post__date}>{post.date}</div>
+        <div className={styles.post__date}>
+          {format(new Date(post.date), 'yyyy-MM-dd')}
+        </div>
         <div
-          className='md-content'
+          className='md-content max-w-full'
           dangerouslySetInnerHTML={{ __html: post.body.html }}
           style={{ maxWidth: '100%', marginTop: 0 }}
         />
@@ -57,8 +60,12 @@ export default function BlogSinglePostPage({
           alignItems: 'flex-start',
         }}
       >
-        <span>Author</span>
-        <span style={{ fontWeight: 'bold' }}>{post.author}</span>
+        {post.author && (
+          <>
+            <span>Author</span>
+            <span style={{ fontWeight: 'bold' }}>{post.author}</span>
+          </>
+        )}
       </HighlightBox>
     </Layout>
   )

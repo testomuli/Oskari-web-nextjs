@@ -8,6 +8,16 @@ export const NAVIGATION_ITEMS: Array<NavigationItemType> = [
   {
     name: 'Discover Oskari',
     path: '/discover',
+    children: [
+      {
+        name: 'Functionalities',
+        path: '/discover/functionalities',
+      },
+      {
+        name: 'Use cases',
+        path: '/discover/use-cases',
+      },
+    ],
   },
   {
     name: 'Resources',
@@ -34,5 +44,49 @@ export const NAVIGATION_ITEMS: Array<NavigationItemType> = [
   {
     name: 'Contribute',
     path: '/contribute',
+  },
+]
+
+export const jointLogos = [
+  'tilastokeskus_fi 1.png',
+  'tampere.png',
+  'hsy.png',
+  'museovirasto.png',
+  'nls.png',
+  'varsinais_suomen_liitto.png',
+  'sitowise.png',
+  'vayla.png',
+]
+
+export const commitee = [
+  {
+    name: 'Sami Mäkinen',
+    img: '',
+    title: 'Chair',
+  },
+  {
+    name: 'Jussi Arpalahti',
+    img: '',
+    title: '',
+  },
+  {
+    name: 'Timo Sallinen',
+    img: '',
+    title: '',
+  },
+  {
+    name: 'Marko Kuosmanen',
+    img: '',
+    title: '',
+  },
+  {
+    name: 'Janne Heikkilä',
+    img: '',
+    title: '',
+  },
+  {
+    name: 'Anniina Iikkanen',
+    img: '',
+    title: '',
   },
 ]

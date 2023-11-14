@@ -23,6 +23,13 @@
   &__description {
     font-family: var(--font-secondary);
   }
+
+  &__cta {
+    margin-top: auto;
+    display: flex;
+    justify-content: flex-end;
+    align-items: flex-end;
+  }
 }
 
 .cardList {
@@ -42,5 +49,24 @@
     width: 100%;
     display: flex;
     justify-content: center;
+  }
+}
+
+.useCasesCard {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+  border-radius: 2.5rem;
+  overflow: hidden;
+  min-height: 605px;
+  width: 360px;
+  box-shadow: 10px 10px 20px 0px rgba(0, 0, 0, 0.1);
+
+  &__title {
+    font-size: 1.125rem;
+  }
+
+  &__excerpt {
+    color: #222;
   }
 }
