@@ -1,10 +1,10 @@
 ---
 layout: post
-title:  "Repository relocation in March 2017"
-excerpt : "Git-repositories will be moved from nls-oskari to new organization oskariorg in March!"
-date:   2017-03-01 13:00:00 +0200
+title: 'Repository relocation in March 2017'
+excerpt: 'Git-repositories will be moved from nls-oskari to new organization oskariorg in March!'
+date: 2017-03-01 13:00:00 +0200
 categories: [documentation]
-tags: blog
+tags: ['blog']
 ---
 
 # Repository relocation in March 2017
@@ -20,7 +20,6 @@ This is done as part of the process of Oskari becoming an OSGeo project.
 - Current repository: [https://github.com/nls-oskari/oskari](https://github.com/nls-oskari/oskari)
 - New repository: [https://github.com/oskariorg/oskari-frontend](https://github.com/oskariorg/oskari-frontend)
 - Some of the bundles (app-specific etc) will be relocated here: [https://github.com/oskariorg/oskari-frontend-community](https://github.com/oskariorg/oskari-frontend-community)
-
 
 ### Server
 
@@ -40,4 +39,4 @@ This is done as part of the process of Oskari becoming an OSGeo project.
 ## Others
 
 Rest of the repositories under [https://github.com/nls-oskari](https://github.com/nls-oskari) will be relocated as is to [https://github.com/oskariorg](https://github.com/oskariorg).
- Except oskari-liferay and SlickGrid which will remain under nls-oskari for now and propably be removed before/during the summer.
+Except oskari-liferay and SlickGrid which will remain under nls-oskari for now and propably be removed before/during the summer.

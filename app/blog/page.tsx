@@ -9,7 +9,7 @@ export default function BlogPage() {
     ?.map((post: Post) => {
       const item = {
         title: post.title || '',
-        date: post.date || '',
+        date: new Date(post.date) || '',
         description: post.excerpt,
         href: post.url,
         image: post.imagesFromPost?.[0] || null,

@@ -1,10 +1,10 @@
 ---
 layout: post
-title:  "Highlights of Oskari in 2018"
-excerpt : "These were the highlights of the year 2018 for Oskari"
-date:   2019-01-08 13:00:00 +0300
+title: 'Highlights of Oskari in 2018'
+excerpt: 'These were the highlights of the year 2018 for Oskari'
+date: 2019-01-08 13:00:00 +0300
 categories: [news]
-tags: blog
+tags: ['blog']
 ---
 
 # Highlights of Oskari in 2018
@@ -28,6 +28,7 @@ Thematic maps is a core Oskari feature that has the ability to create choropleth
 At the same time the Time Series Tool and Terrain profile tools (WCS-service support) was taken in use.
 
 ## 4. Start crowdfunding Oskari
+
 Oskari community wanted to start promoting crowdfunding for Oskari projects. Some of the needed Oskari tools are community inspired and might gain funding from several instances. Start your crowdfunding campaign today! Oskari community provides the process and helps you with the marketing.
 
 ## 5. Active Oskari community grows
@@ -48,10 +49,8 @@ During the year we have seen lots of good use cases on Oskari API. The Social In
 
 This inspired us to collect all the known Oskari API examples together. Tell us yours!
 
-## 8. Lovely Oskari Otter in the field 
+## 8. Lovely Oskari Otter in the field
 
 Last but not least. Oskari Otter traveled his way into people's hearts in Twitter<3! We had the privilege to start working with Oskari Otter - a laid back full stack developer who has been living most of his life in the basement of National Land Survey of Finland enjoying his share of fish and chips. In the fall 2018 Oskari Otter blew the roof and became the ambassador of open source. Now he travels everywhere Oskari software goes. If you see him, be sure to take a picture and tag him #oskariotter.
 
 <img src="/img/oskari_otter_tre.jpeg" width="300" class="img-responsive"/>
-
-

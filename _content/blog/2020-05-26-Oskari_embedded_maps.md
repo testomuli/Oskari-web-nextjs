@@ -1,21 +1,21 @@
 ---
 layout: post
-title:  "Testing Oskari embedded maps"
-excerpt : "How easy it is to create your own embedded map to your web site? So easy!"
-date:   2020-05-26 13:00:00 +0300
+title: 'Testing Oskari embedded maps'
+excerpt: 'How easy it is to create your own embedded map to your web site? So easy!'
+date: 2020-05-26 13:00:00 +0300
 categories: [news]
-tags: blog
+tags: ['blog']
 ---
 
 # How easy it is to create your own Oskari based map?
 
 In this blog post Jan Lindbom, the CPO/CTO in Sitowise Ltd explains to how to create a light weight map service with Oskari. We shall try to do what he instructs.
 
-## 1.  Access to Oskari
+## 1. Access to Oskari
 
-_“You have to have an access to a Oskari platform that offers the possibility to publish maps,”_ he starts. 
+_“You have to have an access to a Oskari platform that offers the possibility to publish maps,”_ he starts.
 
-So go to a service like [Paikkatietoikkuna](https://kartta.paikkatietoikkuna.fi/?lang=en), [Suomi.fi-maps](https://www.maanmittauslaitos.fi/asioi-verkossa/suomifi-kartat) or similar. 
+So go to a service like [Paikkatietoikkuna](https://kartta.paikkatietoikkuna.fi/?lang=en), [Suomi.fi-maps](https://www.maanmittauslaitos.fi/asioi-verkossa/suomifi-kartat) or similar.
 
 You can also try this with [Oskari demo](https://demo.oskari.org/), but remember it will erase all saved information every day.
 
@@ -27,11 +27,11 @@ This can be done with signing in as a user, choosing a background maps or other 
 
 - **Sign in** to your Oskari instance
 - Add existing map layers to your map if needed
-- Add own datasets if you want and select a suitable style for your points, lines or polygons. 
+- Add own datasets if you want and select a suitable style for your points, lines or polygons.
 
-The styling abilities are a bit limited. But you can adjust the style also afterwards from **My data**-section. Notice, that adding own data is possible only if it is allowed in the used Oskari instance. The abilities of Oskari can vary according to the service provider. But adding own data and publishing maps is a core element of Oskari. 
+The styling abilities are a bit limited. But you can adjust the style also afterwards from **My data**-section. Notice, that adding own data is possible only if it is allowed in the used Oskari instance. The abilities of Oskari can vary according to the service provider. But adding own data and publishing maps is a core element of Oskari.
 
-We used QGIS and QuickOSM tool to fetch coffeeshops from the city centre of Turku. At the moment Oskari allows datasets to be imported in zip-format and it supports ESRI .shp, .GPX, Mapinfo .mif and Google .KML-formats. 
+We used QGIS and QuickOSM tool to fetch coffeeshops from the city centre of Turku. At the moment Oskari allows datasets to be imported in zip-format and it supports ESRI .shp, .GPX, Mapinfo .mif and Google .KML-formats.
 
 <img src="/img/owndatasets.png" width="500" class="img-responsive"/>
 
@@ -46,7 +46,7 @@ We used QGIS and QuickOSM tool to fetch coffeeshops from the city centre of Turk
 <img src="/img/embedded_maps_create.png" width="500" class="img-responsive"/>
 
 - Adjust the needed elements and tools to the map
-- Click publish and copy paste the iframe code to your website. 
+- Click publish and copy paste the iframe code to your website.
 
 <iframe src="https://kartta.paikkatietoikkuna.fi/published/en/4fc5a1ea-6374-4ecb-a40f-3aa2f665732d" allow="geolocation" style="border: none; width: 500px; height: 500px;"></iframe>
  

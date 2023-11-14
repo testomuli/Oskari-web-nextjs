@@ -11,7 +11,7 @@ export type FeaturesItemType = {
 }
 
 export type CardItemType = {
-  date?: string
+  date?: Date
   title: string
   description?: string
   href?: string

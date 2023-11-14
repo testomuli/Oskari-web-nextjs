@@ -2,6 +2,7 @@ import styles from '@/styles/card.module.scss'
 import Button from '../Button'
 import { CardItemType } from '@/types/types'
 import Image from 'next/image'
+import { format } from 'date-fns'
 
 const Card = ({
   data,
@@ -13,7 +14,9 @@ const Card = ({
   const { date, title, description, href, image } = data
   return !image ? (
     <div className={styles.card} style={{ ...style }}>
-      {date && <div className={styles.card__date}>{date}</div>}
+      {date && (
+        <div className={styles.card__date}>{format(date, 'yyyy-MM-dd')}</div>
+      )}
       <h2 className={styles.card__title}>{title}</h2>
       <div className={styles.card__description}>{description}</div>
       {href && (
@@ -37,7 +40,9 @@ const Card = ({
         />
       </div>
       <div className='px-[2.75rem] py-[2.7rem] md:px-[3.75rem] flex flex-col gap-5'>
-        {date && <div className={styles.card__date}>{date}</div>}
+        {date && (
+          <div className={styles.card__date}>{format(date, 'yyyy-MM-dd')}</div>
+        )}
         <h2 className={styles.card__title}>{title}</h2>
         <div className={styles.card__description}>{description}</div>
         {href && (
