@@ -11,12 +11,12 @@ export default function HomePage() {
   const whatsnew = allPosts
     ?.map((post) => ({
       title: post.title || '',
-      date: post.date || '',
+      date: new Date(post.date),
       description: post.excerpt || '',
       href: post.url || '',
     }))
     .slice(0, 4)
-    .sort((a, b) => sortByDate(a.date, b.date))
+    .sort((a, b) => sortByDate(a.date.toISOString(), b.date.toISOString()))
   return (
     <Layout>
       <FeaturesList title='With Oskari you can...' data={featureItems} />
