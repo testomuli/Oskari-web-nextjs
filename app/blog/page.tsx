@@ -16,7 +16,7 @@ export default function BlogPage() {
       }
       return item
     })
-    .sort((a, b) => sortByDate(a.date, b.date))
+    .sort((a, b) => sortByDate(a.date.toISOString(), b.date.toISOString()))
   return (
     <Layout heroTitle='Blog' heroSmall>
       <div className='container--content'>
