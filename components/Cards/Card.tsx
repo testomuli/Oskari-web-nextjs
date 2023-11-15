@@ -3,6 +3,7 @@ import Button from '../Button'
 import { CardItemType } from '@/types/types'
 import Image from 'next/image'
 import { format } from 'date-fns'
+import Link from 'next/link'
 
 const Card = ({
   data,
@@ -31,19 +32,39 @@ const Card = ({
       style={{ ...style }}
     >
       <div>
-        <Image
-          src={image}
-          alt={title}
-          height={360}
-          width={478}
-          className={`object-cover min-w-full min-h-full`}
-        />
+        {href ? (
+          <Link href={href}>
+            <Image
+              src={image}
+              alt={title}
+              height={360}
+              width={478}
+              className={`object-cover min-w-full min-h-full max-h-[360px]`}
+            />
+          </Link>
+        ) : (
+          <Image
+            src={image}
+            alt={title}
+            height={360}
+            width={478}
+            className={`object-cover min-w-full min-h-full max-h-[360px]`}
+          />
+        )}
       </div>
       <div className='px-[2.75rem] py-[2.7rem] md:px-[3.75rem] flex flex-col gap-5'>
         {date && (
           <div className={styles.card__date}>{format(date, 'yyyy-MM-dd')}</div>
         )}
-        <h2 className={styles.card__title}>{title}</h2>
+        <h2 className={styles.card__title}>
+          {href ? (
+            <Link href={href} className='hover:underline'>
+              {title}
+            </Link>
+          ) : (
+            title
+          )}
+        </h2>
         <div className={styles.card__description}>{description}</div>
         {href && (
           <div className={styles.card__cta}>
