@@ -4,6 +4,8 @@ import Layout from '@/components/Layout'
 import Error from '@/components/Error'
 import styles from '@/styles/blog.module.scss'
 import { format } from 'date-fns'
+import Link from 'next/link'
+import { ArrowLeftIcon } from '@heroicons/react/20/solid'
 
 export async function generateStaticParams() {
   return allPosts.map((post) => ({
@@ -34,6 +36,15 @@ export default function BlogSinglePostPage({
   return (
     <Layout heroSmall heroTitle='Blog'>
       <div className='container--content'>
+        <div className='breadcrumbs mb-8 text-sm'>
+          <Link
+            href='/blog'
+            className='flex gap-2 font-bold items-center text-gray-400 transition'
+          >
+            <ArrowLeftIcon className='h-6 w-6' />
+            Back to blog archive
+          </Link>
+        </div>
         <h2 className={styles.post__title}>{post.title}</h2>
         <div className={styles.post__date}>
           {format(new Date(post.date), 'yyyy-MM-dd')}

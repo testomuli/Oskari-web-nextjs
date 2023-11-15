@@ -2,7 +2,7 @@ import { ChevronDownIcon } from '@heroicons/react/20/solid'
 import Link from 'next/link'
 
 type ButtonProps = {
-  variant?: 'primary' | 'secondary' | 'dark' | 'link'
+  variant?: 'primary' | 'secondary' | 'dark' | 'link' | 'black'
   title: string
   handleClick?: () => void
   handleHover?: () => void
