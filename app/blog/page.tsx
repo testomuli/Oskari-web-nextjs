@@ -1,9 +1,9 @@
 'use client'
 import { Post, allPosts } from '@/.contentlayer/generated'
-import Button from '@/components/Button'
 import Card from '@/components/Cards/Card'
 import Layout from '@/components/Layout'
 import styles from '@/styles/blog.module.scss'
+import { ArrowLeftIcon, ArrowRightIcon } from '@heroicons/react/20/solid'
 import { usePathname, useRouter, useSearchParams } from 'next/navigation'
 import { useCallback } from 'react'
 
@@ -62,16 +62,18 @@ export default function BlogPage() {
         </div>
         <nav className='mt-16 mb-8' aria-label='Page navigation'>
           <div
-            className='grid grid-cols-[1fr_2fr_1fr] items-center'
+            className='grid grid-cols-[0.5fr_2fr_0.5fr] gap-4 items-center'
             style={{ gridColumn: '1' }}
           >
             {currentPage > 1 && (
               <div className='flex justify-start'>
-                <Button
-                  handleClick={() => handleSetPage(currentPage - 1)}
-                  title='Previous'
-                  variant='black'
-                />
+                <button
+                  onClick={() => handleSetPage(currentPage - 1)}
+                  className='bg-black text-white rounded-full w-12 h-12 grid place-content-center relative'
+                  aria-label={`Go to page ${currentPage - 1}`}
+                >
+                  <ArrowLeftIcon className='w-6 h-6' />
+                </button>
               </div>
             )}
             <div style={{ gridColumn: '2' }} className='flex justify-center'>
@@ -79,19 +81,22 @@ export default function BlogPage() {
                 <button
                   key={number}
                   onClick={() => handleSetPage(number)}
-                  className='bg-black text-white w-12 h-12 relative flex justify-center items-center first:rounded-l-full last:rounded-r-full border-r border-gray-700 hover:bg-gray-900'
+                  className='bg-black text-white w-12 h-12 flex justify-center items-center first:rounded-l-full last:rounded-r-full  hover:bg-gray-900'
+                  aria-label={`Go to page ${number}`}
                 >
-                  <span className=''>{number}</span>
+                  {number}
                 </button>
               ))}
             </div>
             {currentPage < totalPages && (
-              <div className='flex justify-end' style={{ gridColumn: '3' }}>
-                <Button
-                  handleClick={() => handleSetPage(currentPage + 1)}
-                  title='Next'
-                  variant='black'
-                />
+              <div className='flex justify-end'>
+                <button
+                  onClick={() => handleSetPage(currentPage + 1)}
+                  className='bg-black text-white rounded-full w-12 h-12 grid place-content-center relative'
+                  aria-label={`Go to page ${currentPage + 1}`}
+                >
+                  <ArrowRightIcon className='w-6 h-6' />
+                </button>
               </div>
             )}
           </div>
