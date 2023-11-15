@@ -35,7 +35,7 @@ export default function BlogPage() {
     [searchParams]
   )
 
-  const POSTS_PER_PAGE = 10
+  const POSTS_PER_PAGE = 2
 
   const page = searchParams.get('page') || '1'
   const currentPage = parseInt(page)
@@ -53,6 +53,16 @@ export default function BlogPage() {
     { length: totalPages },
     (_, index) => index + 1
   )
+
+  const filteredPageNumbers = pageNumbers.filter((number) => {
+    const firstPost = number === 1
+    const lastPost = number === totalPages
+    const nearestThreePages =
+      number === currentPage - 1 ||
+      number === currentPage ||
+      number === currentPage + 1
+    if (firstPost || lastPost || nearestThreePages) return true
+  })
 
   return (
     <Layout heroTitle='Blog' heroSmall>
@@ -77,7 +87,7 @@ export default function BlogPage() {
               </div>
             )}
             <div style={{ gridColumn: '2' }} className='flex justify-center'>
-              {pageNumbers.map((number) => (
+              {filteredPageNumbers.map((number) => (
                 <button
                   key={number}
                   onClick={() => handleSetPage(number)}
