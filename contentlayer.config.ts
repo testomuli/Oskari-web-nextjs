@@ -38,6 +38,7 @@ export const Docs = defineDocumentType(() => ({
 
 export const Posts = defineDocumentType(() => ({
   name: 'Post',
+  contentType: 'markdown',
   filePathPattern: `blog/*.md`,
   fields: {
     layout: { type: 'string', required: false },
@@ -80,7 +81,7 @@ export const Coordinators = defineDocumentType(() => ({
 }))
 
 export const FaqDevelopers = defineDocumentType(() => ({
-  name: 'faqDevelopers',
+  name: 'FaqDevelopers',
   filePathPattern: `faq/faq-developers.md`,
   computedFields: {
     questionsAndAnswers: {
@@ -88,13 +89,16 @@ export const FaqDevelopers = defineDocumentType(() => ({
       resolve: (item) => {
         const questions: string[] = []
         const answers: string[] = []
-        item.body.html.replace(/<h1>(.*?)<\/h1>/g, (match, question) => {
-          questions.push(question)
-          return ''
-        })
+        item.body.html.replace(
+          /<h1>(.*?)<\/h1>/g,
+          (_match: unknown, question: string) => {
+            questions.push(question)
+            return ''
+          }
+        )
         item.body.html.replace(
           /<\/h1>(.*?)<h1>|<\/h1>(.*?)$/gs,
-          (match, answer1, answer2) => {
+          (_match: unknown, answer1: string, answer2: string) => {
             answers.push((answer1 || answer2).trim())
             return ''
           }
@@ -113,7 +117,7 @@ export const FaqDevelopers = defineDocumentType(() => ({
 }))
 
 export const FaqUsers = defineDocumentType(() => ({
-  name: 'faqUsers',
+  name: 'FaqUsers',
   filePathPattern: `faq/faq-users.md`,
   computedFields: {
     questionsAndAnswers: {
@@ -121,13 +125,16 @@ export const FaqUsers = defineDocumentType(() => ({
       resolve: (item) => {
         const questions: string[] = []
         const answers: string[] = []
-        item.body.html.replace(/<h1>(.*?)<\/h1>/g, (match, question) => {
-          questions.push(question)
-          return ''
-        })
+        item.body.html.replace(
+          /<h1>(.*?)<\/h1>/g,
+          (_match: unknown, question: string) => {
+            questions.push(question)
+            return ''
+          }
+        )
         item.body.html.replace(
           /<\/h1>(.*?)<h1>|<\/h1>(.*?)$/gs,
-          (match, answer1, answer2) => {
+          (_match: unknown, answer1: string, answer2: string) => {
             answers.push((answer1 || answer2).trim())
             return ''
           }

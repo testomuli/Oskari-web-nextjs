@@ -16,7 +16,7 @@ The plan includes new graphics for menus and icons as well as improved layout de
 
 The plan also has recommendations for available tools, including repositioning, clarifying and removing obsolete ones.
 
-<img src="/img/layout_design.png" class="img-responsive"/>
+![Layout design](/assets/images/blog/layout_design.png)
 
 _Picture 1: New layout design_
 
@@ -28,6 +28,6 @@ The goal of the project is to produce new UI for Oskari therefore increasing the
 
 Read the [issue in GitHub](https://github.com/oskariorg/oskari-docs/issues/110)
 
-<img src="/img/sidepanel.png" class="img-responsive"/>
+![Sidepanel](/assets/images/blog/sidepanel.png)
 
 _Picture 2: Collapsed side panel_

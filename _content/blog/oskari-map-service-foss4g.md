@@ -1,6 +1,6 @@
 ---
 title: The Oskari map service was featured at the international FOSS4G event
-date: 23.8.2023
+date: 2023-08-23 14:00:00 +0300
 author: Sami Mäkinen, National Land Survey of Finland
 excerpt: FOSS4G event is the world’s largest gathering of open-source geospatial users, developers and researchers. The event showcased Oskari’s improvements to existing functionalities and new features introduced during the last year.
 ---

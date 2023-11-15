@@ -5,7 +5,6 @@ import Layout from '@/components/Layout'
 import UsedBy from '@/components/UsedBy'
 import featureItems from '@/utils/data/features.json'
 import usedbyItems from '@/utils/data/usedby.json'
-import { sortByDate } from '@/utils/misc'
 
 export default function HomePage() {
   const whatsnew = allPosts
@@ -16,7 +15,7 @@ export default function HomePage() {
       href: post.url || '',
     }))
     .slice(0, 4)
-    .sort((a, b) => sortByDate(a.date.toISOString(), b.date.toISOString()))
+    .sort((a, b) => b.date.getTime() - a.date.getTime())
   return (
     <Layout>
       <FeaturesList title='With Oskari you can...' data={featureItems} />
