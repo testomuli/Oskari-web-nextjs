@@ -54,25 +54,13 @@ export default function BlogPage() {
     (_, index) => index + 1
   )
 
-  const filteredPageNumbers = pageNumbers.filter((number) => {
-    const firstPost = number === 1
-    const lastPost = number === totalPages
-    const nearPages =
-      number === currentPage - 1 ||
-      number === currentPage - 2 ||
-      number === currentPage ||
-      number === currentPage + 1 ||
-      number === currentPage + 2
-    if (firstPost || lastPost || nearPages) return true
-  })
-
   return (
     <Layout heroTitle='Blog' heroSmall>
       <div className='container--content'>
         <div className={styles.blog__grid}>
           {paginatedPosts?.map((item) => <Card data={item} key={item.title} />)}
         </div>
-        <nav className='mt-16 mb-8' aria-label='Page navigation'>
+        <nav className='mt-16 mb-4' aria-label='Page navigation'>
           <div
             className='grid grid-cols-[0.5fr_2fr_0.5fr] gap-4 items-center'
             style={{ gridColumn: '1' }}
@@ -89,7 +77,7 @@ export default function BlogPage() {
               </div>
             )}
             <div style={{ gridColumn: '2' }} className='flex justify-center'>
-              <div className='flex w-full justify-center gap-4 items-center sm:hidden'>
+              <div className='flex w-full justify-center gap-4 items-center'>
                 <label
                   htmlFor='page-number'
                   className='block font-semibold text-sm'
@@ -100,32 +88,15 @@ export default function BlogPage() {
                   id='page-number'
                   className='bg-black text-white rounded-lg focus:ring-blue-500 focus:border-blue-500 block  dark:placeholder-gray-400 text-center h-8 w-14'
                   onChange={(e) => handleSetPage(parseInt(e.target.value))}
+                  value={currentPage}
                 >
                   {pageNumbers.map((number) => (
-                    <option
-                      selected={number === currentPage}
-                      key={number}
-                      value={number}
-                    >
+                    <option key={number} value={number}>
                       {number}
                     </option>
                   ))}
                 </select>
               </div>
-              {filteredPageNumbers.map((number) => (
-                <>
-                  <button
-                    key={number}
-                    onClick={() => handleSetPage(number)}
-                    className={`bg-black hidden sm:flex text-white w-12 h-12 justify-center items-center first-of-type:rounded-l-full last:rounded-r-full  hover:bg-gray-900 ${
-                      currentPage === number && 'bg-[#FBBF24]'
-                    }`}
-                    aria-label={`Go to page ${number}`}
-                  >
-                    {number}
-                  </button>
-                </>
-              ))}
             </div>
             {currentPage < totalPages && (
               <div className='flex justify-end'>
