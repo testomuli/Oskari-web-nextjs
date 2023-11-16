@@ -35,7 +35,7 @@ export default function BlogPage() {
     [searchParams]
   )
 
-  const POSTS_PER_PAGE = 2
+  const POSTS_PER_PAGE = 10
 
   const page = searchParams.get('page') || '1'
   const currentPage = parseInt(page)
@@ -57,11 +57,13 @@ export default function BlogPage() {
   const filteredPageNumbers = pageNumbers.filter((number) => {
     const firstPost = number === 1
     const lastPost = number === totalPages
-    const nearestThreePages =
+    const nearPages =
       number === currentPage - 1 ||
+      number === currentPage - 2 ||
       number === currentPage ||
-      number === currentPage + 1
-    if (firstPost || lastPost || nearestThreePages) return true
+      number === currentPage + 1 ||
+      number === currentPage + 2
+    if (firstPost || lastPost || nearPages) return true
   })
 
   return (
@@ -87,15 +89,42 @@ export default function BlogPage() {
               </div>
             )}
             <div style={{ gridColumn: '2' }} className='flex justify-center'>
-              {filteredPageNumbers.map((number) => (
-                <button
-                  key={number}
-                  onClick={() => handleSetPage(number)}
-                  className='bg-black text-white w-12 h-12 flex justify-center items-center first:rounded-l-full last:rounded-r-full  hover:bg-gray-900'
-                  aria-label={`Go to page ${number}`}
+              <div className='flex w-full justify-center gap-4 items-center sm:hidden'>
+                <label
+                  htmlFor='page-number'
+                  className='block font-semibold text-sm'
                 >
-                  {number}
-                </button>
+                  Page
+                </label>
+                <select
+                  id='page-number'
+                  className='bg-black text-white rounded-lg focus:ring-blue-500 focus:border-blue-500 block  dark:placeholder-gray-400 text-center h-8 w-14'
+                  onChange={(e) => handleSetPage(parseInt(e.target.value))}
+                >
+                  {pageNumbers.map((number) => (
+                    <option
+                      selected={number === currentPage}
+                      key={number}
+                      value={number}
+                    >
+                      {number}
+                    </option>
+                  ))}
+                </select>
+              </div>
+              {filteredPageNumbers.map((number) => (
+                <>
+                  <button
+                    key={number}
+                    onClick={() => handleSetPage(number)}
+                    className={`bg-black hidden sm:flex text-white w-12 h-12 justify-center items-center first-of-type:rounded-l-full last:rounded-r-full  hover:bg-gray-900 ${
+                      currentPage === number && 'bg-[#FBBF24]'
+                    }`}
+                    aria-label={`Go to page ${number}`}
+                  >
+                    {number}
+                  </button>
+                </>
               ))}
             </div>
             {currentPage < totalPages && (
@@ -111,7 +140,7 @@ export default function BlogPage() {
             )}
           </div>
         </nav>
-        <div className='grid place-content-center text-center text-gray-400'>
+        <div className='grid place-content-center text-center text-gray-400 text-sm'>
           {paginatedPosts && paginatedPosts.length > 0
             ? `Showing ${(currentPage - 1) * POSTS_PER_PAGE + 1} to ${Math.min(
                 currentPage * POSTS_PER_PAGE,
