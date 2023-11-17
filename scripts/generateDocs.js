@@ -4,8 +4,24 @@ const fs = require('fs');
 const path = require('path');
 
 const pathToExternalRepos = path.normalize(path.join(__dirname, '/../../'));
+
 // npm run docs --DOC_V=2.13.0
-const version = process?.env?.npm_config_DOC_V;
+// const version = process?.env?.npm_config_DOC_V;
+
+const argumentsArr = process.argv.slice(2)
+
+function parseArgs(args) {
+  const parsedArgs = {};
+
+  args.forEach(arg => {
+    const [key, value] = arg.split('=');
+    parsedArgs[key.slice(2)] = value;
+  });
+
+  return parsedArgs;
+}
+
+const { DOC_V: version } = parseArgs(argumentsArr);
 
 if (!version) {
   throw new Error('Parameter `--DOC_V=version` is required');
