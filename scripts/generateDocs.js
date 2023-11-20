@@ -51,7 +51,7 @@ const pathToFrontendRepository = path.join(pathToExternalRepos, 'oskari-frontend
 const pathToServerRepository = path.join(pathToExternalRepos, 'oskari-server/');
 const pathToBundlesDocumentation = path.join(pathToVersionRoot, '2 Application functionality/');
 
-const filesToCopy = ['ReleaseNotes.md', 'api/CHANGELOG.md'];
+//const filesToCopy = ['ReleaseNotes.md', 'api/CHANGELOG.md'];
 
 const filesToHandle = [
   path.join(pathToFrontendRepository, 'ReleaseNotes.md'),
@@ -59,17 +59,23 @@ const filesToHandle = [
   path.join(pathToServerRepository, 'ReleaseNotes.md'),
   path.join(pathToServerRepository, 'MigrationGuide.md')
 ]
-const pathToNewFile = path.join(pathToVersionRoot, 'CHANGELOG.md')
+const pathToNewFile = path.join(pathToBundlesDocumentation, 'CHANGELOG.md')
 
 // Delete existing log file
-fs.unlink(pathToNewFile, (err) => {
-  if (err) {
-    console.log(err)
-  } else {
-    console.log('deleted file successfully')
-  }
-})
+if (fs.existsSync(pathToNewFile)) {
+  fs.unlink(pathToNewFile, (err) => {
+    if (err) {
+      console.log(err)
+    } else {
+      console.log('deleted file successfully')
+    }
+  })
+}
 
+
+// TODO: parse the matching version from files and write a page about only current version?
+//  (include link to release notes on GitHub)
+//filesToCopy.forEach(file => fs.copyFileSync(path.join(pathToFrontendRepository, file), path.join(pathToBundlesDocumentation, path.basename(file))));
 // Go through the files one by one
 filesToHandle.forEach(file => {
   // Read the file, take the content corresponding to version
@@ -88,9 +94,6 @@ filesToHandle.forEach(file => {
     })
   }
 })
-// TODO: parse the matching version from files and write a page about only current version?
-//  (include link to release notes on GitHub)
-filesToCopy.forEach(file => fs.copyFileSync(path.join(pathToFrontendRepository, file), path.join(pathToBundlesDocumentation, path.basename(file))));
 
 // TODO: read bundle docs from pathToFrontendRepository + api/**/bundle.md etc
 //  - generate flattened listing of bundles + their requests + events
