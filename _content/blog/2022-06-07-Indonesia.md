@@ -4,7 +4,8 @@ title: 'Case Indonesia: Oskari can help utilizing spatial data anywhere!'
 excerpt: 'The World Bank, in close collaboration with Sitowise, designed and implemented a new kind of data solution that aims at helping local government agencies and other parties in Indonesia to make use of the vast amount of data available from different sources.'
 date: 2022-06-07 12:00:00 +0300
 categories: [news]
-tags: ['blog']
+tags:
+  - blog
 ---
 
 # Case Indonesia: Oskari can help utilizing spatial data anywhere!

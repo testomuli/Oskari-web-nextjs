@@ -4,7 +4,8 @@ title: 'Highlights of Oskari in 2018'
 excerpt: 'These were the highlights of the year 2018 for Oskari'
 date: 2019-01-08 13:00:00 +0300
 categories: [news]
-tags: ['blog']
+tags:
+  - blog
 ---
 
 # Highlights of Oskari in 2018
