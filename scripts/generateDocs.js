@@ -8,6 +8,7 @@ const pathToExternalRepos = path.normalize(path.join(__dirname, '/../../'));
 // npm run docs --DOC_V=2.13.0
 // const version = process?.env?.npm_config_DOC_V;
 
+// npm run docs DOC_V=2.13.0
 const argumentsArr = process.argv.slice(2)
 
 function parseArgs(args) {
@@ -15,7 +16,7 @@ function parseArgs(args) {
 
   args.forEach(arg => {
     const [key, value] = arg.split('=');
-    parsedArgs[key.slice(2)] = value;
+    parsedArgs[key] = value;
   });
 
   return parsedArgs;
