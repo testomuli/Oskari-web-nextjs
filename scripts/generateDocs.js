@@ -31,12 +31,48 @@ fs.cpSync(pathToDocumentationRepository, pathToVersionRoot, {
 console.log('Initialized docs for version ' + version);
 
 
-
 // https://github.com/oskariorg/oskari-frontend
 const pathToFrontendRepository = path.join(pathToExternalRepos, 'oskari-frontend/');
+const pathToServerRepository = path.join(pathToExternalRepos, 'oskari-server/');
 const pathToBundlesDocumentation = path.join(pathToVersionRoot, '2 Application functionality/');
 
 const filesToCopy = ['ReleaseNotes.md', 'api/CHANGELOG.md'];
+
+const filesToHandle = [
+  path.join(pathToFrontendRepository, 'ReleaseNotes.md'),
+  path.join(pathToFrontendRepository, 'api/CHANGELOG.md'),
+  path.join(pathToServerRepository, 'ReleaseNotes.md'),
+  path.join(pathToServerRepository, 'MigrationGuide.md')
+]
+const pathToNewFile = path.join(pathToVersionRoot, 'CHANGELOG.md')
+
+// Delete existing log file
+fs.unlink(pathToNewFile, (err) => {
+  if (err) {
+    console.log(err)
+  } else {
+    console.log('deleted file successfully')
+  }
+})
+
+// Go through the files one by one
+filesToHandle.forEach(file => {
+  // Read the file, take the content corresponding to version
+  content = fs.readFileSync(file, 'utf-8')
+  const start = content.indexOf(version)
+  if (start > -1) {
+    const end = content.indexOf('\n## ', start + version.length,) || content.length - 1
+    const section = content.slice(start + version.length, end).trim()
+    // Write each section to the log file
+    fs.appendFileSync(pathToNewFile, `\n## ${path.basename(file)}\n` + section, (err) => {
+      if (err) {
+        console.log(err)
+      } else {
+        console.log("Section successfully written to file")
+      }
+    })
+  }
+})
 // TODO: parse the matching version from files and write a page about only current version?
 //  (include link to release notes on GitHub)
 filesToCopy.forEach(file => fs.copyFileSync(path.join(pathToFrontendRepository, file), path.join(pathToBundlesDocumentation, path.basename(file))));
