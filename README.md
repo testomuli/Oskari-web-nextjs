@@ -32,3 +32,15 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+
+## Generating versioned documentation
+
+Clone documentation repos in parallel folders next to this one
+
+1) clone https://github.com/oskariorg/oskari-documentation -> (Should be found in ../oskari-documentation)
+2) clone https://github.com/oskariorg/oskari-frontend -> (Should be found in ../oskari-frontend)
+3) Run `npm run docs --DOC_V=[version]` where `[version]` is like `2.13.0`
+
+This:
+- shovels in everything under `oskari-documentation`` to `_content/docs/[version]/`
+- copies `ReleaseNotes.md` and `api/CHANGELOG.md` to  `_content/docs/[version]/2 Application functionality/`
