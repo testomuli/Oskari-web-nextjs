@@ -5,26 +5,12 @@ const path = require('path');
 
 const pathToExternalRepos = path.normalize(path.join(__dirname, '/../../'));
 
-// npm run docs --DOC_V=2.13.0
-// const version = process?.env?.npm_config_DOC_V;
+// npm run docs 2.13.0
 
-const argumentsArr = process.argv.slice(2)
-
-function parseArgs(args) {
-  const parsedArgs = {};
-
-  args.forEach(arg => {
-    const [key, value] = arg.split('=');
-    parsedArgs[key.slice(2)] = value;
-  });
-
-  return parsedArgs;
-}
-
-const { DOC_V: version } = parseArgs(argumentsArr);
+const version = process.argv.slice(2)[0]
 
 if (!version) {
-  throw new Error('Parameter `--DOC_V=version` is required');
+  throw new Error('\'npm run docs {version}\' - version is required');
 }
 
 // init folder for version
