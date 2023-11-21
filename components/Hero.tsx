@@ -13,7 +13,7 @@ export default function Hero({
     if (small) {
       return (
         <Image
-          src='/assets/images/hero-pills.svg'
+          src='/assets/images/hero-blob-small.svg'
           alt='blob'
           width={1920}
           height={500}
@@ -22,7 +22,7 @@ export default function Hero({
     }
     return (
       <Image
-        src='/assets/images/hero-blobs.svg'
+        src='/assets/images/hero-blob.svg'
         alt='blob'
         width={1920}
         height={700}
