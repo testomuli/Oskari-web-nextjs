@@ -44,7 +44,7 @@ export default function CommunityPage() {
           Oskari coordination is carried out by the technical coordinator, the
           product owners and the communication coordinator.
         </Text>
-        <div className='flex flex-wrap justify-center lg:justify-start py-14 gap-x-8 gap-y-16 w-full'>
+        <div className='flex flex-wrap justify-center lg:justify-around py-14 gap-16 w-full'>
           {allCoordinators
             ?.sort((a, b) => (!a.order || !b.order ? -1 : a.order - b.order))
             ?.map((coordinator) => {
@@ -83,7 +83,7 @@ export default function CommunityPage() {
           also advises in issues related to Oskari development. The rules for
           Oskari PSC are adopted from GeoServer, GeoNode & other OSGeo projects.
         </Text>
-        <div className='flex flex-wrap justify-center lg:justify-start py-14 gap-x-8 gap-y-16 w-full'>
+        <div className='flex flex-wrap justify-center lg:justify-around py-16 gap-16 w-full'>
           {commitee.map(({ name, title, img: avatar }) => (
             <AvatarCard
               key={name}
@@ -104,7 +104,7 @@ export default function CommunityPage() {
           communication and bug fixing.
         </Text>
         <Text>Joint Development Forum, JDF, meets on a monthly basis.</Text>
-        <div className='flex flex-wrap justify-center xl:justify-center py-14 gap-x-8 gap-y-16 w-full'>
+        <div className='flex flex-wrap justify-center py-14 gap-x-8 gap-y-16 w-full'>
           {jointLogos.map((logo) => (
             <Image
               src={`/assets/images/logos/${logo}`}
