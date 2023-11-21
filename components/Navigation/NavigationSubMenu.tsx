@@ -22,13 +22,22 @@ export default function NavigationSubMenu({
 
   return (
     <>
+      {isOpen && (
+        <div
+          style={{ position: 'fixed', top: 0, left: 0, right: 0, bottom: 0 }}
+          onClick={handleTitleClick}
+        ></div>
+      )}
       <Button
         variant='link'
         handleClick={handleTitleClick}
         title={title}
         expandable
       />
-      <div className={`navigationsubmenu ${isOpen ? ' open' : ''}`}>
+      <div
+        className={`navigationsubmenu ${isOpen ? ' open' : ''}`}
+        data-sub-menu-open={isOpen ? true : false}
+      >
         <div className='navigationsubmenu__container'>
           <ul className='navigationsubmenu__list'>
             {items.map((item) => (
