@@ -42,7 +42,9 @@ export default function NavigationSubMenu({
           <ul className='navigationsubmenu__list'>
             {items.map((item) => (
               <li className='navMenu__item' key={item.name}>
-                <Link href={item.path}>{item.name}</Link>
+                <Link href={item.path} onClick={handleTitleClick}>
+                  {item.name}
+                </Link>
               </li>
             ))}
           </ul>
