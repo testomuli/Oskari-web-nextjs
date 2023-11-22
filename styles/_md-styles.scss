@@ -155,7 +155,7 @@
     content: '';
   }
 
-  & pre {
+  & pre:not(.mermaid) {
     color: var(--color-light);
     background-color: rgba(0, 0, 0, 0.75);
     overflow-x: auto;
