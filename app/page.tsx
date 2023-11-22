@@ -14,8 +14,8 @@ export default function HomePage() {
       description: post.excerpt || '',
       href: post.url || '',
     }))
-    .slice(0, 4)
     .sort((a, b) => b.date.getTime() - a.date.getTime())
+    .slice(0, 4)
   return (
     <Layout>
       <FeaturesList title='With Oskari you can...' data={featureItems} />
