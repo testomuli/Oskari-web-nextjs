@@ -18,7 +18,8 @@
 
   // LAYOUT
   --container-width: 1920px;
-  --container-content-width: 90rem; // 1440px on 16px base
+  // --container-content-width: 90rem; // 1440px on 16px base
+  // --container-content-width: 90rem; // 1440px on 16px base
   --navigation-height: 5rem;
   @media screen and (max-width: 1280px) {
     grid-template-columns: 1.5fr 1fr;

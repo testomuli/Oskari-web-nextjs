@@ -17,7 +17,7 @@ export default function HighlightBox({
   ...props
 }: HighlightBoxProps) {
   return (
-    <div className={styles.highlightBox} {...props}>
+    <div className={`${styles.highlightBox} full-width`} {...props}>
       <div
         className={`${styles.highlightBox__content} container--content ${
           left ? styles['highlightBox__content--left'] : ''

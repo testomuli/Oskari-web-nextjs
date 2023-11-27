@@ -133,3 +133,29 @@ h3 {
 .content-wrapper {
   margin-top: 6rem;
 }
+
+.content-grid,
+.full-width {
+  --padding: 1.5rem;
+  grid-template-columns:
+    [full-width-start] minmax(var(--padding), 1fr)
+    [content-start] min(calc(100% - (var(--padding) * 2)), 90rem)
+    [content-end] minmax(var(--padding), 1fr)
+    [full-width-end];
+  display: grid;
+}
+
+.content-grid > * {
+  grid-column: content;
+}
+.full-width > * {
+  grid-column: content;
+}
+
+.full-width {
+  grid-column: full-width;
+}
+
+.content {
+  grid-column: content;
+}
