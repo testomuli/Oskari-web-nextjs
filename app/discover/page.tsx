@@ -109,7 +109,7 @@ export default function DiscoverPage() {
           />
         </div>
       </HighlightBox>
-      {/* <CardCarousel
+      <CardCarousel
         title='Use cases'
         items={allPosts
           ?.filter((post: Post) => post.tags?.includes('use case'))
@@ -123,7 +123,7 @@ export default function DiscoverPage() {
               url={url}
             />
           ))}
-      /> */}
+      />
     </Layout>
   )
 }

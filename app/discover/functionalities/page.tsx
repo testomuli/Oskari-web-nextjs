@@ -1,5 +1,8 @@
+import { Post, allPosts } from '@/.contentlayer/generated'
 import Button from '@/components/Button'
+import CardCarousel from '@/components/Cards/CardCarousel'
 import FeatureCard from '@/components/Cards/FeatureCard'
+import ImageCard from '@/components/Cards/ImageCard'
 import Container from '@/components/Container'
 import HighlightBox from '@/components/HighlightBox'
 import Layout from '@/components/Layout'
@@ -55,6 +58,21 @@ export default function DiscoverPage() {
           />
         </div>
       </HighlightBox>
+      <CardCarousel
+        title='Use cases'
+        items={allPosts
+          ?.filter((post: Post) => post.tags?.includes('use case'))
+          ?.map(({ _id: id, title, excerpt, url, image }: Post) => (
+            <ImageCard
+              key={id}
+              imageSrc={image || '/assets/images/placeholder.png'}
+              altText={title}
+              title={title}
+              content={excerpt}
+              url={url}
+            />
+          ))}
+      />
     </Layout>
   )
 }
