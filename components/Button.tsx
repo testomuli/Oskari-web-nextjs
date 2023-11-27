@@ -24,7 +24,14 @@ const Button = ({
   const variantStyle = variant ? `btn--${variant}` : ''
   if (href) {
     return (
-      <Link className={`btn ${variantStyle}`} href={href} aria-label={label}>
+      <Link
+        className={`btn ${variantStyle}`}
+        href={href}
+        aria-label={`${label} – ${title}`}
+      >
+        <span className='opacity-0 h-0 w-0 pointer-events-none absolute top-0'>
+          {label} –{' '}
+        </span>
         {title}
       </Link>
     )
