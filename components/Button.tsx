@@ -9,6 +9,7 @@ type ButtonProps = {
   href?: string
   expandable?: boolean
   style?: React.CSSProperties
+  label?: string
 }
 
 const Button = ({
@@ -18,11 +19,12 @@ const Button = ({
   handleHover,
   expandable,
   href,
+  label,
 }: ButtonProps) => {
   const variantStyle = variant ? `btn--${variant}` : ''
   if (href) {
     return (
-      <Link className={`btn ${variantStyle}`} href={href}>
+      <Link className={`btn ${variantStyle}`} href={href} aria-label={label}>
         {title}
       </Link>
     )

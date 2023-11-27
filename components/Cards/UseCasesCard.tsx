@@ -39,7 +39,12 @@ export default function UseCasesCard({
         <p className={styles.useCasesCard__excerpt}>{excerpt}</p>
       </div>
       <div className='flex justify-end p-10'>
-        <Button href={`/${url}`} title='Read more' variant='primary' />
+        <Button
+          href={`/${url}`}
+          title='Read more'
+          variant='primary'
+          label={`Read more about ${title}`}
+        />
       </div>
     </div>
   )

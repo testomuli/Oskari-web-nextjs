@@ -22,7 +22,12 @@ const Card = ({
       <div className={styles.card__description}>{description}</div>
       {href && (
         <div className={styles.card__cta}>
-          <Button variant='primary' href={href} title='Read more' />
+          <Button
+            variant='primary'
+            href={href}
+            title='Read more'
+            label={`Read more about ${title}`}
+          />
         </div>
       )}
     </div>
@@ -68,7 +73,12 @@ const Card = ({
         <div className={styles.card__description}>{description}</div>
         {href && (
           <div className={styles.card__cta}>
-            <Button variant='primary' href={href} title='Read more' />
+            <Button
+              variant='primary'
+              href={href}
+              title='Read more'
+              label={`Read more about ${title}`}
+            />
           </div>
         )}
       </div>
