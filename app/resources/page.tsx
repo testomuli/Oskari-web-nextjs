@@ -22,7 +22,6 @@ export default function ResourcesPage() {
           flexDirection: 'column',
           justifyContent: 'flex-start',
           gap: '5rem',
-          marginTop: '6rem',
         }}
       >
         <div>
