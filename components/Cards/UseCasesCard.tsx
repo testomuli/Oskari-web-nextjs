@@ -43,7 +43,7 @@ export default function UseCasesCard({
           href={`/${url}`}
           title='Read more'
           variant='primary'
-          label={`Read more about ${title}`}
+          label={`Read full story of ${title}`}
         />
       </div>
     </div>

@@ -78,6 +78,7 @@ export default function DiscoverPage() {
             title='Read more in documentation'
             href='/resources/docs'
             style={{ alignSelf: 'center', color: 'red' }}
+            label="Why to choose Oskari? Go to Oskari's documentation"
           />
         </div>
       </Container>

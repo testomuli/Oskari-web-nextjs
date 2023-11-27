@@ -26,7 +26,7 @@ const Card = ({
             variant='primary'
             href={href}
             title='Read more'
-            label={`Read more about ${title}`}
+            label={`Read full story of ${title}`}
           />
         </div>
       )}
@@ -77,7 +77,7 @@ const Card = ({
               variant='primary'
               href={href}
               title='Read more'
-              label={`Read more about ${title}`}
+              label={`Read full story of ${title}`}
             />
           </div>
         )}
