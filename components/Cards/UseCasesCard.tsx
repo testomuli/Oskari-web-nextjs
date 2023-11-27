@@ -1,6 +1,7 @@
 import styles from '@/styles/card.module.scss'
 import Image from 'next/image'
 import Button from '@/components/Button'
+import { format } from 'date-fns'
 
 type UseCasesCardProps = {
   title: string
@@ -31,7 +32,9 @@ export default function UseCasesCard({
         />
       </div>
       <div className='flex flex-col gap-4 px-10'>
-        <p className={styles.useCasesCard__date}>{date}</p>
+        <p className={styles.useCasesCard__date}>
+          {format(new Date(date), 'yyyy-MM-dd')}
+        </p>
         <h3 className={styles.useCasesCard__title}>{title}</h3>
         <p className={styles.useCasesCard__excerpt}>{excerpt}</p>
       </div>
