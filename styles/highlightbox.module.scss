@@ -14,7 +14,7 @@
     justify-content: center;
     padding-top: 8.5rem;
     padding-bottom: 8.5rem;
-    margin-top: calc(var(--otter-top-position) * -1); // to positive number 36px
+    // margin-top: calc(var(--otter-top-position) * -1); // to positive number 36px
 
     &--left {
       align-items: flex-start;
@@ -25,7 +25,8 @@
     position: absolute;
     height: var(--otter-height);
     width: auto;
-    top: var(--otter-top-position);
+    // top: var(--otter-top-position);
+    top: -20px;
     right: 15%;
   }
 }
