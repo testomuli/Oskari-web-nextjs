@@ -1,15 +1,11 @@
 .hero {
-  margin-left: auto;
-  margin-right: auto;
-
   &__container {
     aspect-ratio: 16/9;
     display: flex;
     justify-content: center;
     align-items: center;
-    position: relative;
-    transform: translateY(calc(var(--navigation-height) * -1));
     @media screen and (max-width: 992px) {
+      transform: translateY(calc(var(--navigation-height) * -1));
       min-height: 100vh;
       align-items: center;
       justify-content: center;
@@ -21,6 +17,7 @@
       height: 500px;
       min-height: unset;
       aspect-ratio: unset;
+      justify-content: flex-start;
 
       img {
         min-height: 100%;

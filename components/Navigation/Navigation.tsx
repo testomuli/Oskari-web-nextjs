@@ -5,7 +5,7 @@ import Link from 'next/link'
 
 export default function Navigation() {
   return (
-    <header className='nav'>
+    <header className='nav content-grid'>
       <div className='nav__wrapper container--content'>
         <div className='nav__container'>
           <div className='nav__logo'>
