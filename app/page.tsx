@@ -20,7 +20,7 @@ export default function HomePage() {
     <Layout>
       <FeaturesList title='With Oskari you can...' data={featureItems} />
       <UsedBy title='Used by' data={usedbyItems} />
-      <CardList data={whatsnew} title='What´s new' />
+      <CardList data={whatsnew} title='What’s new' />
     </Layout>
   )
 }

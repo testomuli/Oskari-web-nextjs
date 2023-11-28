@@ -32,9 +32,10 @@
     display: flex;
     justify-content: flex-start;
     align-items: center;
+    height: 48px;
 
     img {
-      height: calc(var(--navigation-height) - var(--padding) * 2);
+      height: 48px;
       width: auto;
     }
   }

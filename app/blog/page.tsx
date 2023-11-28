@@ -35,7 +35,7 @@ export default function BlogPage() {
     [searchParams]
   )
 
-  const POSTS_PER_PAGE = 10
+  const POSTS_PER_PAGE = 9
 
   const page = searchParams.get('page') || '1'
   const currentPage = parseInt(page)

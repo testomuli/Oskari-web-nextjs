@@ -9,27 +9,6 @@ export default function Hero({
   title?: string
   small?: boolean
 }) {
-  const renderHeroImage = () => {
-    if (small) {
-      return (
-        <Image
-          src='/assets/images/hero-blob-small.svg'
-          alt='blob'
-          width={1920}
-          height={500}
-        />
-      )
-    }
-    return (
-      <Image
-        src='/assets/images/hero-blob.svg'
-        alt='blob'
-        width={1920}
-        height={700}
-      />
-    )
-  }
-
   const heroClass = small
     ? styles['hero__container--small']
     : styles.hero__container
@@ -38,28 +17,36 @@ export default function Hero({
     ? styles['hero__content--small']
     : styles.hero__content
   return (
-    <div className={styles.hero}>
-      <div className={heroClass}>
-        <div className={styles.blobs}>{renderHeroImage()}</div>
-        <div className={`${heroContentClass} container--content`}>
-          <div>
-            <h1 className={styles.hero__title}>{title}</h1>
+    <div className='content-grid relative aspect-video'>
+      <div
+        className={`${
+          !small
+            ? "bg-[url('/assets/images/hero-blob.svg')]"
+            : "bg-[url('/assets/images/hero-blob-small.svg')]"
+        } bg-no-repeat bg-cover inset-0 absolute lg:bg-center full-width`}
+      ></div>
+      <div className={`${styles.hero}`}>
+        <div className={`${heroClass}`}>
+          <div className={`${heroContentClass} container--content`}>
+            <div>
+              <h1 className={styles.hero__title}>{title}</h1>
+              {!small && (
+                <div className={styles.hero__cta}>
+                  <Button title='Download' variant='dark' href='/download' />
+                </div>
+              )}
+            </div>
             {!small && (
-              <div className={styles.hero__cta}>
-                <Button title='Download' variant='dark' href='/download' />
+              <div className={styles.hero__imageContainer}>
+                <Image
+                  src='/assets/images/header-hero-image.png'
+                  width={600}
+                  height={427}
+                  alt='kuva'
+                />
               </div>
             )}
           </div>
-          {!small && (
-            <div className={styles.hero__imageContainer}>
-              <Image
-                src='/assets/images/header-hero-image.png'
-                width={600}
-                height={427}
-                alt='kuva'
-              />
-            </div>
-          )}
         </div>
       </div>
     </div>

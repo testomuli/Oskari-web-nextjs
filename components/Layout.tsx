@@ -17,7 +17,7 @@ export default function Layout({
     <>
       <Navigation />
       <Hero small={heroSmall} title={heroTitle} />
-      <main className='content-wrapper'>{children}</main>
+      <main className='content-wrapper content-grid'>{children}</main>
       <Footer />
     </>
   )

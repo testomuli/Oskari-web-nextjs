@@ -14,7 +14,7 @@ export const metadata: Metadata = {
 export default function CommunityPage() {
   return (
     <Layout heroTitle='Community' heroSmall>
-      <div className='container--content' style={{ marginBottom: '6rem' }}>
+      <div style={{ marginBottom: '6rem' }}>
         <Text>
           Community is Oskari’s core value. Oskari Community includes growing
           group of organizations, individuals and developers putting their
@@ -61,7 +61,7 @@ export default function CommunityPage() {
             })}
         </div>
       </HighlightBox>
-      <div className='container--content my-24'>
+      <div className=' my-24'>
         <h2>Project steering committee</h2>
         <Text>
           Oskari Project Steering Committee (PSC) is responsible for updating
@@ -95,7 +95,7 @@ export default function CommunityPage() {
           ))}
         </div>
       </div>
-      <div className='container--content py-10'>
+      <div className=' py-10'>
         <h2>Joint developer forum</h2>
         <Text>
           Joint Development Forum is a tight group of organisations that have an
