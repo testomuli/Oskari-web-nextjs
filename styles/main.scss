@@ -137,11 +137,16 @@ h3 {
 
 .content-grid,
 .full-width {
-  --padding: 1.5rem;
   grid-template-columns:
-    [full-width-start] minmax(var(--padding), 1fr)
-    [content-start] min(calc(100% - (var(--padding) * 2)), 90rem)
-    [content-end] minmax(var(--padding), 1fr)
+    [full-width-start]
+    minmax(var(--content-padding), 1fr)
+    [content-start]
+    min(
+      calc(100% - (var(--content-padding) * 2)),
+      var(--container-content-width)
+    )
+    [content-end]
+    minmax(var(--content-padding), 1fr)
     [full-width-end];
   display: grid;
   gap: 6rem 0;
