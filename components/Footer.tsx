@@ -14,7 +14,7 @@ const Footer = () => {
         alt='Footer wave'
         className={styles.footer__wave}
       />
-      <div className={styles.footer__wrapper}>
+      <div className={`${styles.footer__wrapper} content-grid`}>
         <div className={`${styles.footer__container} container`}>
           <div className={styles.footer__contact}>
             <h3>Contact</h3>
