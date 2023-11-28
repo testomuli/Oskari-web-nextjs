@@ -17,7 +17,11 @@ export default function Hero({
     ? styles['hero__content--small']
     : styles.hero__content
   return (
-    <div className='content-grid relative aspect-video'>
+    <div
+      className={`content-grid relative ${
+        small ? 'max-h-[500px]' : 'aspect-video'
+      }`}
+    >
       <div
         className={`${
           !small
