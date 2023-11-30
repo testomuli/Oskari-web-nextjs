@@ -13,19 +13,19 @@ if (!version) {
   throw new Error('\'npm run docs {version}\' - version is required');
 }
 
-// init folder for version
+// Init folder for version
 const pathToVersionRoot = path.normalize(path.join(__dirname, '/../_content/docs/', version));
 if (!fs.existsSync(pathToVersionRoot)) {
   fs.mkdirSync(pathToVersionRoot, { recursive: true });
-  console.log('Created folder for version ' + version + ' in: ' + pathToVersionRoot);
+  console.log(`Created folder for version ${version} in ${pathToVersionRoot}`);
 }
 
-// shovel in the documentation from the other repo (https://github.com/oskariorg/oskari-documentation)
+// Shovel in the documentation from the other repo (https://github.com/oskariorg/oskari-documentation)
 const pathToDocumentationRepository = path.join(pathToExternalRepos, 'oskari-documentation/');
 fs.cpSync(pathToDocumentationRepository, pathToVersionRoot, {
   preserveTimestamps: true,
   recursive: true,
-  // filter out git metadata so we don't get accidental git submodules
+  // Filter out git metadata so we don't get accidental git submodules
   filter: (src) => !path.basename(src).startsWith('.git')
 });
 console.log('Initialized docs for version ' + version);
@@ -36,6 +36,7 @@ const pathToFrontendRepository = path.join(pathToExternalRepos, 'oskari-frontend
 const pathToServerRepository = path.join(pathToExternalRepos, 'oskari-server/');
 const pathToBundlesDocumentation = path.join(pathToVersionRoot, '2 Application functionality/');
 
+// Create a summary file highlighting the changes in new version from these files
 const filesToHandle = {
   "Frontend release notes": path.join(pathToFrontendRepository, 'ReleaseNotes.md'),
   "Frontend changelog": path.join(pathToFrontendRepository, 'api/CHANGELOG.md'),
@@ -44,33 +45,21 @@ const filesToHandle = {
 }
 const pathToNewFile = path.join(pathToBundlesDocumentation, 'CHANGELOG.md')
 
-// Delete existing log file
-if (fs.existsSync(pathToNewFile)) {
-  fs.unlink(pathToNewFile, (err) => {
-    if (err) {
-      console.log(err)
-    } else {
-      console.log('deleted file successfully')
-    }
-  })
-}
-
-// Go through the files one by one
-for (const [title, file] of Object.entries(filesToHandle)) {
+if (!fs.existsSync(pathToNewFile)) {
+  // Go through the files one by one
+  for (const [sectionTitle, pathToFile] of Object.entries(filesToHandle)) {
   // Read the file, take the content corresponding to version
-  content = fs.readFileSync(file, 'utf-8')
-  const start = content.indexOf(version)
-  if (start < 0) {
-    console.log("version not found in " + file)
-  } else {
-    // Find end of section, otherwise take the rest of the file
-    const end = content.indexOf('\n## ', start + version.length,) || content.length - 1
-    const section = content.slice(start + version.length, end).trim()
-    // Write each section to the log file
-    fs.appendFileSync(pathToNewFile, `\n## ${title}\n` + section, (err) => {
-      if (err) 
-        console.log(err)
-    })
+    fileContent = fs.readFileSync(pathToFile, 'utf-8')
+    const start = fileContent.indexOf(version)
+    if (start < 0) {
+      console.log(`No mention of version ${version} in ${pathToFile}`)
+    } else {
+      // Find end of section, otherwise take the rest of the file
+      const end = fileContent.indexOf('\n## ', start + version.length) || content.length - 1
+      const section = fileContent.slice(start + version.length, end).trim()
+      // Write each section to the log file
+      fs.appendFileSync(pathToNewFile, `\n## ${sectionTitle}\n\n` + section)
+    }
   }
 }
 
