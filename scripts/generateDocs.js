@@ -18,10 +18,8 @@ if (!version) {
 
 // Init folder for version
 const pathToVersionRoot = path.normalize(path.join(__dirname, '/../_content/docs/', version));
-if (!fs.existsSync(pathToVersionRoot)) {
-  fs.mkdirSync(pathToVersionRoot, { recursive: true });
-  console.log(`Created folder for version ${version} in ${pathToVersionRoot}`);
-}
+fs.mkdirSync(pathToVersionRoot, { recursive: true });
+console.log(`Created folder for version ${version} in ${pathToVersionRoot}`);
 
 
 // Shovel in the documentation from the other repo (https://github.com/oskariorg/oskari-documentation)
@@ -83,12 +81,13 @@ const bundleFiles = fs.readdirSync(
   recursive: true }
 )
   .filter(dirent => dirent.name === "bundle.md")
-  //.map(dirent => path.join(dirent.path, dirent.name))
 
-const bundleFileName = path.join(pathToBundlesDocumentation, 'bundles.md')
+const bundleFileName = path.join(pathToBundlesDocumentation, '2.3 Bundles.md')
+fs.writeFileSync(bundleFileName, `# 2.3 Bundles\n\n`, {recursive: true})
+
+let sectionHeadingCount = 1
 bundleFiles.forEach(
   dirent => {
-    const bundleName = path.basename(dirent.path)
     const fileContent = fs.readFileSync(
       path.join(
         dirent.path,
@@ -96,13 +95,10 @@ bundleFiles.forEach(
       ),
       'utf-8'
     )
-    const start = fileContent.indexOf("## Requests")
-    if (start != -1) {
-      const end  = fileContent.indexOf("## Dependencies") || fileContent.length - 1
-      fs.appendFileSync(
-        bundleFileName,
-        `# ${bundleName}\n\n` + fileContent.slice(start, end)
-      )
-    }
+    fs.appendFileSync(
+      bundleFileName,
+      `# 2.3.${sectionHeadingCount}${fileContent.slice(1, fileContent.length)}\n`
+    )
+    sectionHeadingCount++
   }
 )
