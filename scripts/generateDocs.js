@@ -17,7 +17,7 @@ if (!version) {
 const pathToVersionRoot = path.normalize(path.join(__dirname, '/../_content/docs/', version));
 if (!fs.existsSync(pathToVersionRoot)) {
   fs.mkdirSync(pathToVersionRoot, { recursive: true });
-  console.log('Created folder for version ' + version + ' in:' + pathToVersionRoot);
+  console.log('Created folder for version ' + version + ' in: ' + pathToVersionRoot);
 }
 
 // shovel in the documentation from the other repo (https://github.com/oskariorg/oskari-documentation)
@@ -36,14 +36,12 @@ const pathToFrontendRepository = path.join(pathToExternalRepos, 'oskari-frontend
 const pathToServerRepository = path.join(pathToExternalRepos, 'oskari-server/');
 const pathToBundlesDocumentation = path.join(pathToVersionRoot, '2 Application functionality/');
 
-//const filesToCopy = ['ReleaseNotes.md', 'api/CHANGELOG.md'];
-
-const filesToHandle = [
-  path.join(pathToFrontendRepository, 'ReleaseNotes.md'),
-  path.join(pathToFrontendRepository, 'api/CHANGELOG.md'),
-  path.join(pathToServerRepository, 'ReleaseNotes.md'),
-  path.join(pathToServerRepository, 'MigrationGuide.md')
-]
+const filesToHandle = {
+  "Frontend release notes": path.join(pathToFrontendRepository, 'ReleaseNotes.md'),
+  "Frontend changelog": path.join(pathToFrontendRepository, 'api/CHANGELOG.md'),
+  "Server release notes": path.join(pathToServerRepository, 'ReleaseNotes.md'),
+  "Migration guide": path.join(pathToServerRepository, 'MigrationGuide.md')
+}
 const pathToNewFile = path.join(pathToBundlesDocumentation, 'CHANGELOG.md')
 
 // Delete existing log file
@@ -57,28 +55,24 @@ if (fs.existsSync(pathToNewFile)) {
   })
 }
 
-
-// TODO: parse the matching version from files and write a page about only current version?
-//  (include link to release notes on GitHub)
-//filesToCopy.forEach(file => fs.copyFileSync(path.join(pathToFrontendRepository, file), path.join(pathToBundlesDocumentation, path.basename(file))));
 // Go through the files one by one
-filesToHandle.forEach(file => {
+for (const [title, file] of Object.entries(filesToHandle)) {
   // Read the file, take the content corresponding to version
   content = fs.readFileSync(file, 'utf-8')
   const start = content.indexOf(version)
-  if (start > -1) {
+  if (start < 0) {
+    console.log("version not found in " + file)
+  } else {
+    // Find end of section, otherwise take the rest of the file
     const end = content.indexOf('\n## ', start + version.length,) || content.length - 1
     const section = content.slice(start + version.length, end).trim()
     // Write each section to the log file
-    fs.appendFileSync(pathToNewFile, `\n## ${path.basename(file)}\n` + section, (err) => {
-      if (err) {
+    fs.appendFileSync(pathToNewFile, `\n## ${title}\n` + section, (err) => {
+      if (err) 
         console.log(err)
-      } else {
-        console.log("Section successfully written to file")
-      }
     })
   }
-})
+}
 
 // TODO: read bundle docs from pathToFrontendRepository + api/**/bundle.md etc
 //  - generate flattened listing of bundles + their requests + events
