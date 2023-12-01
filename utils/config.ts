@@ -21,16 +21,16 @@ export const SITE_CONFIG = {
       path: '/discover',
     },
     {
-      title: 'For users',
-      path: '/for-users',
+      title: 'Functionalities',
+      path: '/discover/functionalities',
     },
     {
-      title: 'For admins',
-      path: '/for-admins',
+      title: 'Use cases',
+      path: '/discover/use-cases',
     },
     {
-      title: 'For developers',
-      path: '/for-developers',
+      title: 'Try demo',
+      path: 'https://demo.oskari.org/',
     },
     {
       title: 'Resources',
@@ -38,11 +38,11 @@ export const SITE_CONFIG = {
     },
     {
       title: 'Documentation',
-      path: '/docs',
+      path: '/resources/docs',
     },
     {
       title: 'FAQ',
-      path: '/faq',
+      path: '/resources/faq',
     },
     {
       title: 'Blog',
