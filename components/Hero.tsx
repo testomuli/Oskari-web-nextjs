@@ -35,8 +35,13 @@ export default function Hero({
             <div>
               <h1 className={styles.hero__title}>{title}</h1>
               {!small && (
-                <div className={styles.hero__cta}>
+                <div className={`${styles.hero__cta} flex gap-4`}>
                   <Button title='Download' variant='dark' href='/download' />
+                  <Button
+                    title='Try demo'
+                    variant='dark'
+                    href='https://demo.oskari.org'
+                  />
                 </div>
               )}
             </div>
