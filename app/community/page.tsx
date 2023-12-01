@@ -96,7 +96,7 @@ export default function CommunityPage() {
         </div>
       </div>
       <div className=' py-10'>
-        <h2>Joint developer forum</h2>
+        <h2>Joint development forum</h2>
         <Text>
           Joint Development Forum is a tight group of organisations that have an
           interest in developing Oskari togerther. It is formed by several
