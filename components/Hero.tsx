@@ -26,8 +26,8 @@ export default function Hero({
         className={`${
           !small
             ? "bg-[url('/assets/images/hero-blob.svg')]"
-            : "bg-[url('/assets/images/hero-blob-small.svg')]"
-        } bg-no-repeat bg-cover inset-0 absolute lg:bg-center full-width`}
+            : "bg-[url('/assets/images/hero-blob-small.svg')] !bg-cover"
+        } bg-no-repeat bg-cover lg:bg-contain inset-0 absolute lg:bg-center full-width`}
       ></div>
       <div className={`${styles.hero}`}>
         <div className={`${heroClass}`}>
