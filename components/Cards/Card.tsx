@@ -12,7 +12,7 @@ const Card = ({
   data: CardItemType
   style?: React.CSSProperties
 }) => {
-  const { date, title, description, href, image } = data
+  const { date, title, description, href, image, tags } = data
   return !image ? (
     <div className={styles.card} style={{ ...style }}>
       {date && (
@@ -21,13 +21,28 @@ const Card = ({
       <h2 className={styles.card__title}>{title}</h2>
       <div className={styles.card__description}>{description}</div>
       {href && (
-        <div className={styles.card__cta}>
-          <Button
-            variant='primary'
-            href={href}
-            title='Read more'
-            label={`Read full story of ${title}`}
-          />
+        <div
+          className={`${styles.card__cta} flex justify-between items-center`}
+        >
+          {tags && tags?.length > 0 && (
+            <span className='text-gray-300 text-xs font-medium me-2 px-2.5 py-0.5 rounded border border-gray-300'>
+              {tags
+                .map(
+                  (tag) =>
+                    tag.trim().charAt(0).toUpperCase() +
+                    tag.slice(1).toLowerCase()
+                )
+                .join(', ')}
+            </span>
+          )}
+          <div className='ml-auto'>
+            <Button
+              variant='primary'
+              href={href}
+              title='Read more'
+              label={`Read full story of ${title}`}
+            />
+          </div>
         </div>
       )}
     </div>
@@ -72,13 +87,28 @@ const Card = ({
         </h2>
         <div className={styles.card__description}>{description}</div>
         {href && (
-          <div className={styles.card__cta}>
-            <Button
-              variant='primary'
-              href={href}
-              title='Read more'
-              label={`Read full story of ${title}`}
-            />
+          <div
+            className={`${styles.card__cta} flex justify-between items-center`}
+          >
+            {tags && tags?.length > 0 && (
+              <span className='text-gray-300 text-xs font-medium me-2 px-2.5 py-0.5 rounded border border-gray-300'>
+                {tags
+                  .map(
+                    (tag) =>
+                      tag.trim().charAt(0).toUpperCase() +
+                      tag.slice(1).toLowerCase()
+                  )
+                  .join(', ')}
+              </span>
+            )}
+            <div className='ml-auto'>
+              <Button
+                variant='primary'
+                href={href}
+                title='Read more'
+                label={`Read full story of ${title}`}
+              />
+            </div>
           </div>
         )}
       </div>

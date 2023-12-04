@@ -19,7 +19,8 @@ export default function BlogPage() {
         date: new Date(post.date) || '',
         description: post.excerpt,
         href: post.url,
-        image: post.imagesFromPost?.[0] || null,
+        image: post.image || post.imagesFromPost?.[0] || null,
+        tags: post.tags,
       }
       return item
     })
