@@ -95,7 +95,7 @@ export default function CommunityPage() {
           ))}
         </div>
       </div>
-      <div className=' py-10'>
+      <div className='py-10'>
         <h2>Joint development forum</h2>
         <Text>
           Joint Development Forum is a tight group of organisations that have an

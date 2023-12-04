@@ -42,7 +42,7 @@ export default function BlogSinglePostPage({
             className='flex gap-2 font-bold items-center text-gray-400 transition'
           >
             <ArrowLeftIcon className='h-6 w-6' />
-            Back to blog archive
+            See all posts
           </Link>
         </div>
         <h2 className={styles.post__title}>{post.title}</h2>

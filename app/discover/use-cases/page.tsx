@@ -20,7 +20,12 @@ export default function DiscoverPage() {
       >
         <div className='flex gap-x-10 gap-y-12 flex-wrap justify-center'>
           {allPosts
-            ?.filter((post) => post.tags?.includes('use case'))
+            ?.filter(
+              (post) =>
+                post.tags
+                  ?.map((tag) => tag.toLowerCase().trim())
+                  .includes('use case')
+            )
             ?.map(({ date, _id: id, title, excerpt, url, image }: Post) => (
               <UseCasesCard
                 key={id}
