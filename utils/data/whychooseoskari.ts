@@ -3,7 +3,7 @@ import { DiscoverFeatureDataType } from '@/types/types'
 export const DISCOVER_FEATURE_DATA: Array<DiscoverFeatureDataType> = [
   {
     title: 'Easy to use',
-    img: '/assets/images/lounaistieto.png',
+    img: '/assets/images/discover_1.webp',
     features: [
       {
         icon: '',
@@ -27,7 +27,7 @@ export const DISCOVER_FEATURE_DATA: Array<DiscoverFeatureDataType> = [
   },
   {
     title: 'Adaptive software',
-    img: '/assets/images/lounaistieto.png',
+    img: '/assets/images/discover_2.webp',
     features: [
       {
         icon: '',
@@ -50,7 +50,7 @@ export const DISCOVER_FEATURE_DATA: Array<DiscoverFeatureDataType> = [
   },
   {
     title: 'Based on open standards',
-    img: '/assets/images/lounaistieto.png',
+    img: '/assets/images/discover_3.webp',
     features: [
       {
         icon: '',
@@ -77,7 +77,7 @@ export const DISCOVER_FEATURE_DATA: Array<DiscoverFeatureDataType> = [
 export const DISCOVER_FUNCTIONALITIES = [
   {
     title: 'Import, create and edit geospatial data',
-    img: '/assets/images/lounaistieto.png',
+    img: '/assets/images/discover_4.webp',
     features: [
       {
         icon: '',
@@ -96,7 +96,7 @@ export const DISCOVER_FUNCTIONALITIES = [
   },
   {
     title: 'Analyze and visualize geospatial data',
-    img: '/assets/images/lounaistieto.png',
+    img: '/assets/images/discover_5.webp',
     features: [
       {
         icon: '',
@@ -121,7 +121,7 @@ export const DISCOVER_FUNCTIONALITIES = [
   },
   {
     title: 'Publish and manage geospatial data',
-    img: '/assets/images/lounaistieto.png',
+    img: '/assets/images/discover_6.webp',
     features: [
       {
         icon: '',

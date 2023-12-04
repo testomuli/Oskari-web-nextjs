@@ -41,6 +41,8 @@ export default function Hero({
                     title='Try demo'
                     variant='dark'
                     href='https://demo.oskari.org'
+                    external
+                    newWindow
                   />
                 </div>
               )}

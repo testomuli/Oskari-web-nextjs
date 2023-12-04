@@ -35,7 +35,7 @@ export default function DiscoverPage() {
       </Container>
       <HighlightBox
         style={{
-          margin: '8rem 0',
+          margin: '6rem 0',
         }}
       >
         <div
@@ -55,13 +55,20 @@ export default function DiscoverPage() {
             variant='dark'
             title='Try Oskari demo'
             href='https://demo.oskari.org/'
+            external
+            newWindow
           />
         </div>
       </HighlightBox>
       <CardCarousel
         title='Use cases'
         items={allPosts
-          ?.filter((post: Post) => post.tags?.includes('use case'))
+          ?.filter(
+            (post) =>
+              post.tags
+                ?.map((tag) => tag.toLowerCase().trim())
+                .includes('use case')
+          )
           ?.map(({ _id: id, title, excerpt, url, image }: Post) => (
             <ImageCard
               key={id}

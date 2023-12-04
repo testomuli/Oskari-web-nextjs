@@ -2,7 +2,7 @@
 
 You found a bug? Can you repeat it? Yes: File a bug report at GitHub issues.
 
-- Go to: GitHub
+- Go to: [GitHub](https://github.org/oskariorg)
 - Sign up
 - Press New issue-button
 - Include helpful information: Oskari version, browser, steps to reproduce the error
@@ -10,11 +10,20 @@ You found a bug? Can you repeat it? Yes: File a bug report at GitHub issues.
 
 # Where can I find help with my Oskari issues?
 
-You can ask Oskari related issues by sending a query to Oskari user mailing list or chat in Oskari Gitter.
+You can ask Oskari related issues by sending a query to Oskari user mailing list or [chat in Oskari Gitter](https://app.gitter.im/#/room/#oskariorg_chat:gitter.im).
 
 # What skills do I need to use Oskari?
 
 Oskari is not a software you can set up by just pushing a execute button. It is a comprehensive setup that requires understanding about server side and different software libraries. The setup is also depending on the operating system and server environment. First go to documentation and get familiar with the components. Then ask if you need assistance!
+
+Requirements:
+
+- Version management: Git
+- Frontend: JavaScript, HTML, CSS, OpenLayers 3+
+- Backend: Java, PostgreSQL, PostGIS, GeoServer, GeoTools
+- Build infrastructure & tests: Maven/JUnit for server, Webpack/Jest for frontend.
+- Understanding about the following software: GeoServer, PostGIS, Jetty, Redis, Nginx
+- Understanding OGC standards: WMS, WMTS, WFS, WPS, WCS
 
 # How to develop Oskari?
 
