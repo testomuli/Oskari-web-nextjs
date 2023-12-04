@@ -19,7 +19,7 @@ export default function BlogPage() {
         date: new Date(post.date) || '',
         description: post.excerpt,
         href: post.url,
-        image: post.image || post.imagesFromPost?.[0] || null,
+        image: post.image || post.imagesFromPost?.[0] || '',
         tags: post.tags,
       }
       return item
