@@ -26,7 +26,7 @@ export default function ContributePage() {
       </div>
       <div>
         <h3 className='my-16'>Come and develop Oskari together!</h3>
-        <div className='flex flex-wrap justify-center xl:justify-between gap-x-8 gap-y-16 [&_a]:underline'>
+        <div className='flex flex-wrap justify-center xl:justify-evenly gap-x-8 gap-y-16 [&_a]:underline'>
           <IconCard
             className='!min-w-[24rem]'
             title='Report a bug'
