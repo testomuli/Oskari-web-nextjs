@@ -15,7 +15,7 @@ export default function Hero({
 
   const heroContentClass = small
     ? styles['hero__content--small']
-    : styles.hero__content
+    : `${styles.hero__content} mt-[-80px]`
   return (
     <div
       className={`content-grid relative ${
