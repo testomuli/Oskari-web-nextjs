@@ -28,7 +28,7 @@ export default function UseCasesCard({
           alt={title}
           width={360}
           height={265}
-          className='min-h-full object-cover min-w-full'
+          className='min-h-full object-cover min-w-full object-left-top'
         />
       </div>
       <div className='flex flex-col gap-4 px-10'>
