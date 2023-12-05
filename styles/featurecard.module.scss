@@ -4,6 +4,8 @@
   justify-content: space-evenly;
   gap: 4rem;
   padding: 4rem 5%;
+  flex-wrap: wrap;
+  overflow: hidden;
 
   @media screen and (max-width: 992px) {
     flex-direction: column;
