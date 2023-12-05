@@ -1,8 +1,8 @@
 import IconCard from '@/components/Cards/IconCard'
-import Container from '@/components/Container'
 import Layout from '@/components/Layout'
 import Text from '@/components/Text'
 import { Metadata } from 'next'
+import Link from 'next/link'
 
 export const metadata: Metadata = {
   title: 'Contribute',
@@ -11,7 +11,7 @@ export const metadata: Metadata = {
 export default function ContributePage() {
   return (
     <Layout heroSmall heroTitle='Contribute'>
-      <Container>
+      <div>
         <Text>
           Oskari is an open source software, which means that its source code is
           open to anyone for modifying and enhancing. Oskari stays up-to-date
@@ -23,22 +23,59 @@ export default function ContributePage() {
           site or Oskari in general? There are several ways you can contribute
           to the codebase as well as the community in general.
         </Text>
+      </div>
+      <div>
         <h3 className='my-16'>Come and develop Oskari together!</h3>
-        <div className='flex flex-wrap justify-center xl:justify-between gap-x-8 gap-y-16'>
+        <div className='flex flex-wrap justify-center xl:justify-between gap-x-8 gap-y-16 [&_a]:underline'>
           <IconCard
             className='!min-w-[24rem]'
             title='Report a bug'
-            content='If you encounter a problem while using Oskari, please report it to us.'
+            content={
+              <div>
+                If you encounter a problem while using Oskari, please{' '}
+                <a
+                  href='https://github.com/oskariorg/oskari-docs/issues'
+                  target='_blank'
+                  rel='noopener noreferrer'
+                >
+                  report it to us
+                </a>
+                .
+              </div>
+            }
           />
           <IconCard
             className='!min-w-[24rem]'
             title='Make a pull request'
-            content='By creating a pull request you can propose and collaborate on changes to a repository.'
+            content={
+              <div>
+                By{' '}
+                <a
+                  href='https://github.com/oskariorg/oskari-docs/pulls'
+                  target='_blank'
+                  rel='noopener noreferrer'
+                >
+                  creating a pull request
+                </a>{' '}
+                you can propose and collaborate on changes to a repository.
+              </div>
+            }
           />
           <IconCard
             className='!min-w-[24rem]'
             title='Suggest improvements'
-            content='Tell us how you think Oskari could be improved. All ideas are appreciated.'
+            content={
+              <div>
+                <a
+                  href='https://github.com/oskariorg/oskari-docs/issues'
+                  target='_blank'
+                  rel='noopener noreferrer'
+                >
+                  Tell us how you think
+                </a>{' '}
+                Oskari could be improved. All ideas are appreciated.
+              </div>
+            }
           />
           <IconCard
             className='!min-w-[24rem]'
@@ -48,15 +85,26 @@ export default function ContributePage() {
           <IconCard
             className='!min-w-[24rem]'
             title='Join community groups'
-            content='Join the regular Oskari community meetings and network with other users and developers.'
+            content={
+              <div>
+                Join the regular <Link href='/community'>Oskari community</Link>{' '}
+                meetings and network with other users and developers.
+              </div>
+            }
           />
           <IconCard
             className='!min-w-[24rem]'
             title='Got something else in mind?'
-            content="Don't hesitate to contact us about anything related to Oskari."
+            content={
+              <div>
+                Don&apos;t hesitate to{' '}
+                <a href='mailto:info@oskari.org'>contact us</a> about anything
+                related to Oskari.
+              </div>
+            }
           />
         </div>
-      </Container>
+      </div>
     </Layout>
   )
 }

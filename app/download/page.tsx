@@ -15,18 +15,20 @@ export default function DownloadPage() {
         <IconCard
           className='!bg-[var(--color-accent)]'
           title='Latest version'
-          subtitle='2.10.3'
+          subtitle='2.12.1'
           content={
             <>
               <div className='mb-8'>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                The UI has seen a number of improvements for users with small
+                screens. There has also been improvements in map layer
+                management.
               </div>
               <div className='flex justify-center'>
                 <Button
                   variant='dark'
                   title='Download'
                   href='https://oskari.org/build/server/oskari-latest-stable.zip'
+                  external
                 />
               </div>
             </>
@@ -38,14 +40,16 @@ export default function DownloadPage() {
           content={
             <>
               <div className='mb-8'>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-                eiusmod tempor incididunt ut labore et dolore magna aliqua.
+                Have a look of the release notes of the previous Oskari
+                versions.
               </div>
               <div className='flex justify-center'>
                 <Button
                   variant='dark'
-                  title='Download'
-                  href='http://download.osgeo.org/oskari/'
+                  title='Release notes'
+                  href='https://github.com/oskariorg/oskari-frontend/blob/master/ReleaseNotes.md'
+                  external
+                  newWindow
                 />
               </div>
             </>
@@ -53,11 +57,7 @@ export default function DownloadPage() {
         />
       </div>
       <HighlightBox style={{ marginBottom: '12rem' }}>
-        <h2 className='mb-2'>First timer?</h2>
-        <p className='max-w-md text-center mb-10'>
-          Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do
-          eiusmod tempor incididunt ut labore et dolore magna aliqua.
-        </p>
+        <h2 className='mb-8'>First timer?</h2>
         <Button
           variant='dark'
           title='Read installation instructions'
