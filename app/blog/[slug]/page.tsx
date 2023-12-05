@@ -58,7 +58,7 @@ export default function BlogSinglePostPage({
             src={post.image || post.imagesFromPost[0]}
             alt={post.title}
             className=' w-full h-auto max-h[500px] object-cover rounded-3xl mb-16'
-            width={1200}
+            width={1440}
             height={500}
           />
         )}
