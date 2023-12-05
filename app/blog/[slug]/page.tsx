@@ -7,6 +7,7 @@ import { format } from 'date-fns'
 import Link from 'next/link'
 import { ArrowLeftIcon } from '@heroicons/react/20/solid'
 import { slugify } from '@/lib/utils'
+import Image from 'next/image'
 
 export async function generateStaticParams() {
   return allPosts.map((post) => ({
@@ -52,6 +53,15 @@ export default function BlogSinglePostPage({
         <div className={styles.post__date}>
           {format(new Date(post.date), 'yyyy-MM-dd')}
         </div>
+        {(post.image || post.imagesFromPost) && (
+          <Image
+            src={post.image || post.imagesFromPost[0]}
+            alt={post.title}
+            className=' w-full h-auto max-h[500px] object-cover rounded-3xl mb-16'
+            width={1200}
+            height={500}
+          />
+        )}
         <div
           className='md-content max-w-full'
           dangerouslySetInnerHTML={{ __html: post.body.html }}
