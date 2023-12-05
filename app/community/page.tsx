@@ -89,7 +89,7 @@ export default function CommunityPage() {
               key={name}
               name={name}
               title={title}
-              avatar={avatar || '/assets/images/coordinator-placeholder.png'}
+              avatar={avatar || '/assets/images/kuva_placeholder.png'}
               content=''
             />
           ))}
