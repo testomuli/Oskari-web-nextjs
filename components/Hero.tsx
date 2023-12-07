@@ -15,49 +15,42 @@ export default function Hero({
 
   const heroContentClass = small
     ? styles['hero__content--small']
-    : `${styles.hero__content} mt-[-80px]`
+    : styles.hero__content
+
+  const heroImageClass = small
+    ? "bg-[url('/assets/images/hero-blob-small.svg')] h-[calc(500px+var(--navigation-height))]"
+    : "bg-[url('/assets/images/hero-blob.svg')] aspect-auto min-h-[100svh] lg:min-h-[unset] lg:h-auto lg:aspect-video pt-[calc(var(--navigation-height)+1rem)] pb-[calc(var(--navigation-height)*2+1rem)]"
   return (
     <div
-      className={`content-grid relative ${
-        small ? 'max-h-[500px]' : 'aspect-video'
-      }`}
+      className={`relative full-width ${heroImageClass} bg-no-repeat bg-cover lg:bg-contain inset-0 lg:bg-center`}
     >
-      <div
-        className={`${
-          !small
-            ? "bg-[url('/assets/images/hero-blob.svg')]"
-            : "bg-[url('/assets/images/hero-blob-small.svg')] !bg-cover"
-        } bg-no-repeat bg-cover lg:bg-contain inset-0 absolute lg:bg-center full-width`}
-      ></div>
-      <div className={`${styles.hero}`}>
-        <div className={`${heroClass}`}>
-          <div className={`${heroContentClass} container--content`}>
-            <div>
-              <h1 className={styles.hero__title}>{title}</h1>
-              {!small && (
-                <div className={`${styles.hero__cta} flex gap-4`}>
-                  <Button title='Download' variant='dark' href='/download' />
-                  <Button
-                    title='Try demo'
-                    variant='dark'
-                    href='https://demo.oskari.org'
-                    external
-                    newWindow
-                  />
-                </div>
-              )}
-            </div>
+      <div className={`${heroClass}`}>
+        <div className={heroContentClass}>
+          <div>
+            <h1 className={styles.hero__title}>{title}</h1>
             {!small && (
-              <div className={styles.hero__imageContainer}>
-                <Image
-                  src='/assets/images/header-hero-image.png'
-                  width={600}
-                  height={427}
-                  alt='kuva'
+              <div className={`${styles.hero__cta} flex gap-4`}>
+                <Button title='Download' variant='dark' href='/download' />
+                <Button
+                  title='Try demo'
+                  variant='dark'
+                  href='https://demo.oskari.org'
+                  external
+                  newWindow
                 />
               </div>
             )}
           </div>
+          {!small && (
+            <div className={styles.hero__imageContainer}>
+              <Image
+                src='/assets/images/header-hero-image.png'
+                width={600}
+                height={427}
+                alt='kuva'
+              />
+            </div>
+          )}
         </div>
       </div>
     </div>

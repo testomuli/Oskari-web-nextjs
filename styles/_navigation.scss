@@ -1,9 +1,10 @@
 .nav {
   --padding: 1rem;
-  width: 100%;
   z-index: 20;
-  position: sticky;
+  position: fixed;
   top: 0;
+  left: 0;
+  right: 0;
   background-color: var(--color-light);
   color: var(--color-dark);
 
@@ -16,7 +17,6 @@
     max-width: var(--container-width);
     padding-top: 1rem;
     padding-bottom: 1rem;
-    width: 100%;
     display: grid;
     grid-template-columns: 1fr 7fr auto;
     align-items: center;
