@@ -18,7 +18,7 @@ const AvatarCard = ({
         alt={name}
         width={300}
         height={300}
-        className='rounded-full aspect-square'
+        className='rounded-full aspect-square object-contain'
       />
       <h3 className='font-bold text-xl flex flex-col my-10'>
         <span>
