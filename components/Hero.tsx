@@ -18,7 +18,7 @@ export default function Hero({
     : styles.hero__content
 
   const heroImageClass = small
-    ? "bg-[url('/assets/images/hero-blob-small.svg')] h-[calc(500px+var(--navigation-height))]"
+    ? "bg-[url('/assets/images/hero-blob-small.svg')] h-[calc(500px+var(--navigation-height))] !bg-cover"
     : "bg-[url('/assets/images/hero-blob.svg')] aspect-auto min-h-[100svh] lg:min-h-[unset] lg:h-auto lg:aspect-video pt-[calc(var(--navigation-height)+1rem)] pb-[calc(var(--navigation-height)*2+1rem)]"
   return (
     <div
