@@ -61,7 +61,7 @@ export default function CommunityPage() {
             })}
         </div>
       </HighlightBox>
-      <div className=' my-24'>
+      <div className='my-24'>
         <h2>Project steering committee</h2>
         <Text>
           Oskari Project Steering Committee (PSC) is responsible for updating
@@ -115,6 +115,32 @@ export default function CommunityPage() {
               className='object-contain h-auto'
             />
           ))}
+        </div>
+      </div>
+      <div>
+        <h2>Commercial support</h2>
+        <Text>
+          There are a number of organizations in the Oskari community that offer
+          commercial support for Oskari. Support can be training, developing,
+          installation or service management. Oskari is open source software and
+          free to use but you don&apos;t always have the resources to install,
+          manage and customize the software to your needs so commercial services
+          are essential part of the open source ecosystem. If your organisation
+          provides Oskari services commercially and is not found on the list,
+          please make a pull request.
+        </Text>
+        <div>
+          <h3>Companies offering commercial support</h3>
+          <ul className='list-disc list-inside'>
+            <li>Cybercom Group</li>
+            <li>CGI Finland</li>
+            <li>Sitowise Oy</li>
+            <li>Gispo Ltd</li>
+            <li>Hubble </li>
+            <li>Phz Full Stack </li>
+            <li>Siili </li>
+            <li>Ubigu</li>
+          </ul>
         </div>
       </div>
     </Layout>
