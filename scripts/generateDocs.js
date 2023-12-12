@@ -40,7 +40,6 @@ const pathToBundlesDocumentation = path.join(pathToVersionRoot, '2 Application f
 /*
 * Generate section 5 of documentation
 */
-
 const pathToNewFiles = path.join(pathToVersionRoot, '/5 Changelog');
 // Init folder and heading file
 fs.mkdirSync(pathToNewFiles, {recursive: true});
@@ -75,30 +74,45 @@ for (const [sectionTitle, frontendPath] of Object.entries(filesToHandle)) {
 //  - maybe as a secondary effort try to create links from bundles using the requests/events to ones providing the
 // current code in https://github.com/oskariorg/oskari-docs/tree/master/lib (oskariapi related files/code) maybe helpful
 
-const bundleFiles = fs.readdirSync(
-  path.join(pathToFrontendRepository, "api/"),
-  { withFileTypes: true,
-  recursive: true }
-)
-  .filter(dirent => dirent.name === "bundle.md");
 
-const bundleFileName = path.join(pathToBundlesDocumentation, '2.3 Bundles.md');
-fs.writeFileSync(bundleFileName, `# 2.3 Bundles\n\n`, {recursive: true});
+/*
+* filter: used for filtering the list of dirent objects
+* filename: the filename to be generated
+* fileHeading: the section number of the file, i.e. 2.3, 2.4 etc.
+*/
+const generateFlattenedFile = (filter, filename, fileHeading, ) => {
+  // Get wanted filenames by reading all files in frontend/api and applying filter to result
+  const files = fs.readdirSync(
+    path.join(pathToFrontendRepository, "api/"),
+    { withFileTypes: true,
+    recursive: true }
+  )
+    .filter(filter);
 
-let sectionHeadingCount = 1;
-bundleFiles.forEach(
-  dirent => {
-    const fileContent = fs.readFileSync(
-      path.join(
-        dirent.path,
-        dirent.name
-      ),
-      'utf-8'
-    );
-    fs.appendFileSync(
-      bundleFileName,
-      `# 2.3.${sectionHeadingCount}${fileContent.slice(1, fileContent.length)}\n`
-    );
-    sectionHeadingCount++;
-  }
-);
+  // Construct filename and create the file
+  const flattenedFileName = path.join(pathToBundlesDocumentation, `${fileHeading} ${filename}.md`);
+  fs.writeFileSync(flattenedFileName, `# ${fileHeading} ${filename}\n\n`, {recursive: true});
+  
+  // Copy each files' content to flattenedFilename and append subheading number
+  let sectionHeadingNumber = 1;
+  files.forEach(
+    dirent => {
+      const fileContent = fs.readFileSync(
+        path.join(
+          dirent.path,
+          dirent.name
+        ),
+        'utf-8'
+      );
+      fs.appendFileSync(
+        flattenedFileName,
+        `# ${fileHeading}.${sectionHeadingNumber}${fileContent.slice(1, fileContent.length)}\n`
+      );
+      sectionHeadingNumber++;
+    }
+  );
+}
+
+generateFlattenedFile(dirent => dirent.name === "bundle.md", "Bundles", "2.3");
+generateFlattenedFile(dirent => dirent.name.toLowerCase().includes("request.md"), "Bundle requests", "2.4");
+generateFlattenedFile(dirent => dirent.name.toLowerCase().includes("event.md"), "Bundle events", "2.5");
