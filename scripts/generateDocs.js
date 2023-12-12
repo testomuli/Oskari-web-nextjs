@@ -8,7 +8,7 @@ const pathToExternalRepos = path.normalize(path.join(__dirname, '/../../'));
 
 
 // npm run docs 2.13.0
-const version = process.argv.slice(2)[0]
+const version = process.argv.slice(2)[0];
 
 
 if (!version) {
@@ -41,10 +41,10 @@ const pathToBundlesDocumentation = path.join(pathToVersionRoot, '2 Application f
 * Generate section 5 of documentation
 */
 
-const pathToNewFiles = path.join(pathToVersionRoot, '/5 Changelog')
+const pathToNewFiles = path.join(pathToVersionRoot, '/5 Changelog');
 // Init folder and heading file
-fs.mkdirSync(pathToNewFiles, {recursive: true})
-fs.writeFileSync(path.join(pathToNewFiles, "5 Changelog.md"), "# 5 Changelog\n")
+fs.mkdirSync(pathToNewFiles, {recursive: true});
+fs.writeFileSync(path.join(pathToNewFiles, "5 Changelog.md"), "# 5 Changelog\n");
 
 // Create a summary section highlighting the changes in new version from these files
 const filesToHandle = {
@@ -56,18 +56,18 @@ const filesToHandle = {
 
 // Go through the files one by one
 for (const [sectionTitle, frontendPath] of Object.entries(filesToHandle)) {
-  const sectionFile = path.join(pathToNewFiles, `${sectionTitle}.md`)
+  const sectionFile = path.join(pathToNewFiles, `${sectionTitle}.md`);
   // Read the file, take the content corresponding to version
-  fileContent = fs.readFileSync(frontendPath, 'utf-8')
-  const start = fileContent.indexOf(version)
+  fileContent = fs.readFileSync(frontendPath, 'utf-8');
+  const start = fileContent.indexOf(version);
   if (start < 0) {
-    console.log(`No mention of version ${version} in ${pathToFile}`)
+    console.log(`No mention of version ${version} in ${frontendPath}`);
   } else {
     // Find end of section, otherwise take the rest of the file
-    const end = fileContent.indexOf('\n## ', start + version.length) || content.length - 1
-    const section = fileContent.slice(start + version.length, end).trim()
+    const end = fileContent.indexOf('\n## ', start + version.length) || content.length - 1;
+    const section = fileContent.slice(start + version.length, end).trim();
     // Write each section to the log file
-    fs.writeFileSync(`${sectionFile}`, `# ${sectionTitle}\n\n${section}`)
+    fs.writeFileSync(`${sectionFile}`, `# ${sectionTitle}\n\n${section}`);
   }
 }
 // TODO: read bundle docs from pathToFrontendRepository + api/**/**/bundle.md etc
@@ -80,12 +80,12 @@ const bundleFiles = fs.readdirSync(
   { withFileTypes: true,
   recursive: true }
 )
-  .filter(dirent => dirent.name === "bundle.md")
+  .filter(dirent => dirent.name === "bundle.md");
 
-const bundleFileName = path.join(pathToBundlesDocumentation, '2.3 Bundles.md')
-fs.writeFileSync(bundleFileName, `# 2.3 Bundles\n\n`, {recursive: true})
+const bundleFileName = path.join(pathToBundlesDocumentation, '2.3 Bundles.md');
+fs.writeFileSync(bundleFileName, `# 2.3 Bundles\n\n`, {recursive: true});
 
-let sectionHeadingCount = 1
+let sectionHeadingCount = 1;
 bundleFiles.forEach(
   dirent => {
     const fileContent = fs.readFileSync(
@@ -94,11 +94,11 @@ bundleFiles.forEach(
         dirent.name
       ),
       'utf-8'
-    )
+    );
     fs.appendFileSync(
       bundleFileName,
       `# 2.3.${sectionHeadingCount}${fileContent.slice(1, fileContent.length)}\n`
-    )
-    sectionHeadingCount++
+    );
+    sectionHeadingCount++;
   }
-)
+);
