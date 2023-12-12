@@ -3,24 +3,19 @@ const fs = require('fs');
 //const { lstatSync, readdirSync, existsSync } = require('fs');
 const path = require('path');
 
-
 const pathToExternalRepos = path.normalize(path.join(__dirname, '/../../'));
-
 
 // npm run docs 2.13.0
 const version = process.argv.slice(2)[0];
-
 
 if (!version) {
   throw new Error('\'npm run docs {version}\' - version is required');
 }
 
-
 // Init folder for version
 const pathToVersionRoot = path.normalize(path.join(__dirname, '/../_content/docs/', version));
 fs.mkdirSync(pathToVersionRoot, { recursive: true });
 console.log(`Created folder for version ${version} in ${pathToVersionRoot}`);
-
 
 // Shovel in the documentation from the other repo (https://github.com/oskariorg/oskari-documentation)
 const pathToDocumentationRepository = path.join(pathToExternalRepos, 'oskari-documentation/');
@@ -69,18 +64,16 @@ for (const [sectionTitle, frontendPath] of Object.entries(filesToHandle)) {
     fs.writeFileSync(`${sectionFile}`, `# ${sectionTitle}\n\n${section}`);
   }
 }
-// TODO: read bundle docs from pathToFrontendRepository + api/**/**/bundle.md etc
-//  - generate flattened listing of bundles + their requests + events
-//  - maybe as a secondary effort try to create links from bundles using the requests/events to ones providing the
-// current code in https://github.com/oskariorg/oskari-docs/tree/master/lib (oskariapi related files/code) maybe helpful
-
 
 /*
+* Used for generating a file with listings of bundles, requests, events
+* TODO: add links from requests and events to bundle which includes said request/event, currently includes the old links to oskari.org
+* TODO: images need to be included
 * filter: used for filtering the list of dirent objects
 * filename: the filename to be generated
 * fileHeading: the section number of the file, i.e. 2.3, 2.4 etc.
 */
-const generateFlattenedFile = (filter, filename, fileHeading, ) => {
+const generateFlattenedFile = (filter, filename, fileHeading) => {
   // Get wanted filenames by reading all files in frontend/api and applying filter to result
   const files = fs.readdirSync(
     path.join(pathToFrontendRepository, "api/"),
