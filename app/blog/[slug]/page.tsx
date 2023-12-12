@@ -6,6 +6,8 @@ import styles from '@/styles/blog.module.scss'
 import { format } from 'date-fns'
 import Link from 'next/link'
 import { ArrowLeftIcon } from '@heroicons/react/20/solid'
+import { slugify } from '@/lib/utils'
+import Image from 'next/image'
 
 export async function generateStaticParams() {
   return allPosts.map((post) => ({
@@ -15,7 +17,8 @@ export async function generateStaticParams() {
 
 export const generateMetadata = ({ params }: { params: { slug: string } }) => {
   const post = allPosts.find(
-    (post) => encodeURI(post._raw.flattenedPath.split('/')[1]) === params.slug
+    (post) =>
+      encodeURI(slugify(post._raw.flattenedPath.split('/')[1])) === params.slug
   )
   if (post) return { title: post.title || '' }
 }
@@ -26,7 +29,8 @@ export default function BlogSinglePostPage({
   params: { slug: string }
 }) {
   const post = allPosts.find(
-    (post) => encodeURI(post._raw.flattenedPath.split('/')[1]) === params.slug
+    (post) =>
+      encodeURI(slugify(post._raw.flattenedPath.split('/')[1])) === params.slug
   )
 
   if (!post) {
@@ -42,13 +46,22 @@ export default function BlogSinglePostPage({
             className='flex gap-2 font-bold items-center text-gray-400 transition'
           >
             <ArrowLeftIcon className='h-6 w-6' />
-            Back to blog archive
+            See all posts
           </Link>
         </div>
         <h2 className={styles.post__title}>{post.title}</h2>
         <div className={styles.post__date}>
           {format(new Date(post.date), 'yyyy-MM-dd')}
         </div>
+        {(post.image || post.imagesFromPost) && (
+          <Image
+            src={post.image || post.imagesFromPost[0]}
+            alt={post.title}
+            className=' w-full h-auto max-h[500px] object-cover rounded-3xl mb-16'
+            width={1440}
+            height={500}
+          />
+        )}
         <div
           className='md-content max-w-full'
           dangerouslySetInnerHTML={{ __html: post.body.html }}

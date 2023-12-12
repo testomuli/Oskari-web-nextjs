@@ -1,6 +1,6 @@
 # How do I get the license for Oskari?
 
-The source code for Oskari is open source. It is being kept flexible in order to broaden it with new components, use it with different service platforms and for changing the software libraries if needed. The UI supports multilingualism and there are already multiple languages translated. All source code is being published with MIT/EUPL licenses.
+The source code for Oskari is open source. It is being kept flexible in order to broaden it with new components, use it with different service platforms and for changing the software libraries if needed. The UI supports multilingualism and there are already multiple languages translated. All source code is being published with [MIT/EUPL licenses](https://github.com/oskariorg/oskari-docs/blob/master/documents/LICENSE-MIT.txt).
 
 # How much does Oskari cost?
 
@@ -12,7 +12,7 @@ If you don’t want to set up Oskari installation, don’t worry you can still e
 
 # Why are there no layers in an embedded map?
 
-Check access rights. It might be that users with guest-role (most of the people looking at embedded maps) don't have permission to see layers included in the embedded map. See Oskari permissions [LINK](#)
+Check access rights. It might be that users with guest-role (most of the people looking at embedded maps) don't have permission to see layers included in the embedded map. [See Oskari permissions](/resources/docs)
 
 # How do I tailor my embedded maps?
 

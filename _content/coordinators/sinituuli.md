@@ -1,7 +1,7 @@
 ---
 name: Sinituuli Untamala
 title: communications coordinator Sitowise
-avatar: /assets/images/coordinator-placeholder.png
+avatar: /assets/images/people/Sinituuli.jpeg
 order: 3
 ---
 

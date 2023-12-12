@@ -4,6 +4,8 @@
   justify-content: space-evenly;
   gap: 4rem;
   padding: 4rem 5%;
+  flex-wrap: wrap;
+  overflow: hidden;
 
   @media screen and (max-width: 992px) {
     flex-direction: column;
@@ -45,11 +47,14 @@
   }
   &__image {
     flex: 1 0;
+    aspect-ratio: 1/1;
+    overflow: hidden;
+    display: flex;
+    align-items: center;
+    justify-content: center;
     img {
+      aspect-ratio: 1/1;
       border-radius: 50%;
-      width: 100%;
-      max-width: 460px;
-      height: auto;
       object-fit: cover;
       margin-left: auto;
     }

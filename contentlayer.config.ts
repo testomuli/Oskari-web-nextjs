@@ -2,6 +2,7 @@ import { defineDocumentType, makeSource } from 'contentlayer/source-files'
 import rehypeHighlight from 'rehype-highlight'
 import remarkGfm from 'remark-gfm'
 import { insertIdsToHeaders } from './lib/markdownToHtml'
+import { slugify } from './lib/utils'
 
 export const Docs = defineDocumentType(() => ({
   name: 'Doc',
@@ -53,7 +54,11 @@ export const Posts = defineDocumentType(() => ({
   computedFields: {
     url: {
       type: 'string',
-      resolve: (post) => post._raw.flattenedPath,
+      resolve: (post) =>
+        post._raw.flattenedPath
+          .split('/')
+          .map((path) => slugify(path))
+          .join('/'),
     },
     imagesFromPost: {
       type: 'list',

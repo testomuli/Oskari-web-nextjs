@@ -10,6 +10,8 @@ type ButtonProps = {
   expandable?: boolean
   style?: React.CSSProperties
   label?: string
+  external?: boolean
+  newWindow?: boolean
 }
 
 const Button = ({
@@ -20,14 +22,32 @@ const Button = ({
   expandable,
   href,
   label,
+  external,
+  newWindow,
 }: ButtonProps) => {
   const variantStyle = variant ? `btn--${variant}` : ''
+  if (external) {
+    ;<a
+      className={`btn ${variantStyle}`}
+      href={href}
+      aria-label={`${label} – ${title}`}
+      target={newWindow ? '_blank' : '_self'}
+      rel='noopener noreferrer'
+    >
+      <span className='opacity-0 h-0 w-0 pointer-events-none absolute top-0'>
+        {label} –{' '}
+      </span>
+      {title}
+    </a>
+  }
   if (href) {
     return (
       <Link
         className={`btn ${variantStyle}`}
         href={href}
         aria-label={`${label} – ${title}`}
+        target={newWindow ? '_blank' : '_self'}
+        rel='noopener noreferrer'
       >
         <span className='opacity-0 h-0 w-0 pointer-events-none absolute top-0'>
           {label} –{' '}

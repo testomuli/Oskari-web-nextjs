@@ -61,7 +61,7 @@ export const jointLogos = [
 export const commitee = [
   {
     name: 'Sami Mäkinen',
-    img: '',
+    img: '/assets/images/people/Sami.jpeg',
     title: 'Chair',
   },
   {
@@ -76,17 +76,22 @@ export const commitee = [
   },
   {
     name: 'Marko Kuosmanen',
-    img: '',
+    img: '/assets/images/people/Marko.jpeg',
+    title: '',
+  },
+  {
+    name: 'Oskari Rintamäki',
+    img: '/assets/images/people/Oskari.jpeg',
     title: '',
   },
   {
     name: 'Janne Heikkilä',
-    img: '',
+    img: '/assets/images/people/Janne.png',
     title: '',
   },
   {
     name: 'Anniina Iikkanen',
-    img: '',
+    img: '/assets/images/people/Anniina.jpeg',
     title: '',
   },
 ]

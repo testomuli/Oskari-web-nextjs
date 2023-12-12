@@ -1,20 +1,16 @@
 .hero {
+  // padding: calc(var(--navigation-height) + 1rem) 0
+  //   calc(var(--navigation-height) + 1rem + var(--navigation-height)) 0;
   &__container {
-    aspect-ratio: 16/9;
     display: flex;
     justify-content: center;
     align-items: center;
     @media screen and (max-width: 992px) {
-      transform: translateY(calc(var(--navigation-height) * -1));
-      min-height: 100vh;
-      align-items: center;
-      justify-content: center;
       aspect-ratio: unset;
     }
     &--small {
       @extend .hero__container;
       transform: none;
-      height: 500px;
       min-height: unset;
       aspect-ratio: unset;
       justify-content: flex-start;

@@ -28,17 +28,17 @@ export default function UseCasesCard({
           alt={title}
           width={360}
           height={265}
-          className='min-h-full object-cover min-w-full'
+          className='min-h-full object-cover min-w-full object-left-top'
         />
       </div>
       <div className='flex flex-col gap-4 px-10'>
-        <p className={styles.useCasesCard__date}>
+        <div className={styles.useCasesCard__date}>
           {format(new Date(date), 'yyyy-MM-dd')}
-        </p>
+        </div>
         <h3 className={styles.useCasesCard__title}>{title}</h3>
         <p className={styles.useCasesCard__excerpt}>{excerpt}</p>
       </div>
-      <div className='flex justify-end p-10'>
+      <div className='flex justify-end p-10 mt-auto'>
         <Button
           href={`/${url}`}
           title='Read more'

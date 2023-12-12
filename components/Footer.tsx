@@ -46,14 +46,18 @@ const Footer = () => {
                   const item = socials[key]
                   return (
                     <li key={item.icon}>
-                      <Link href={item.url}>
+                      <a
+                        href={item.url}
+                        rel='noopener noreferrer'
+                        target='_blank'
+                      >
                         <Image
                           width={52}
                           height={52}
                           src={item.icon}
                           alt={item.name}
                         />
-                      </Link>
+                      </a>
                     </li>
                   )
                 }
