@@ -14,8 +14,7 @@ export const DISCOVER_FEATURE_DATA: Array<DiscoverFeatureDataType> = [
       {
         icon: '',
         title: 'Enables versatile geospatial data analysis',
-        description:
-          'Oskari allows its users to view precise regional data. For example, users can view fishing areas or the location of heritage sites.',
+        description: 'Oskari allows its users to view precise regional data.',
       },
       {
         icon: '',
