@@ -49,7 +49,7 @@ const COMMERCIAL_SUPPORT = [
 export default function CommunityPage() {
   return (
     <Layout heroTitle='Community' heroSmall>
-      <div style={{ marginBottom: '6rem' }}>
+      <div>
         <Text>
           Community is Oskari’s core value. Oskari Community includes growing
           group of organizations, individuals and developers putting their
@@ -62,6 +62,13 @@ export default function CommunityPage() {
           different ways people can join Oskari development community.
         </Text>
       </div>
+      <Image
+        src='/assets/images/oskari_organisaatiokaavio.png'
+        alt='Oskari organization chart'
+        width={800}
+        height={600}
+        className='object-contain h-auto mx-auto'
+      />
       <HighlightBox
         otter
         style={{
