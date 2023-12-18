@@ -9,7 +9,7 @@ export const DISCOVER_FEATURE_DATA: Array<DiscoverFeatureDataType> = [
         icon: '',
         title: 'Viewing maps is user-friendly',
         description:
-          'Users can easily view maps and sort information, such as satitstics, based on their own interests.',
+          'Users can easily view maps and sort information, such as statistics, based on their own interests.',
       },
       {
         icon: '',
@@ -30,7 +30,7 @@ export const DISCOVER_FEATURE_DATA: Array<DiscoverFeatureDataType> = [
     features: [
       {
         icon: '',
-        title: 'Customise maps according to your needs',
+        title: 'Customize maps according to your needs',
         description: 'Oskari is a tool for data management and sharing.',
       },
       {
@@ -96,7 +96,7 @@ export const DISCOVER_FUNCTIONALITIES = [
         icon: '',
         title: 'Create thematic maps',
         description:
-          'Users can easily view maps and sort information, such as satitstics, based on their own interests.',
+          'Users can easily view maps and sort information, such as statistics, based on their own interests.',
       },
       {
         icon: '',

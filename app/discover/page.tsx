@@ -46,7 +46,7 @@ export default function DiscoverPage() {
           The first versions of the Oskari software date back to 2009. They were
           created in the context of the piloting and implementation of the
           National Land Survey of Finland&apos;s geographic information portal,
-          the Spatial Information Window (PGI).
+          the Finnish National Geoportal (Paikkatietoikkuna).
         </Text>
         <Text>
           The Oskari community values the contribution of everyone involved in

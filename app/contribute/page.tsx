@@ -86,7 +86,7 @@ export default function ContributePage() {
                 <a href='mailto:info@oskari.org'>
                   tell how your organization uses Oskari?
                 </a>{' '}
-                Oskari's blog is the platform for your ideas.
+                Oskari&apos;s blog is the platform for your ideas.
               </div>
             }
           />
