@@ -5,7 +5,7 @@ import { CardItemType } from '@/types/types'
 
 const CardList = ({ title, data }: { title: string; data: CardItemType[] }) => {
   return (
-    <section className='section-padding container'>
+    <section className='section-padding'>
       <h2 className={styles.cardList__heading}>{title}</h2>
       <div className={styles.cardList}>
         {data.map((item) => (

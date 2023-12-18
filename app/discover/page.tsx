@@ -90,7 +90,7 @@ export default function DiscoverPage() {
         >
           <h3 style={{ fontSize: '1.625rem' }}>Give it a try!</h3>
           <p style={{ textAlign: 'center', fontSize: '1.125rem' }}>
-            How to view and visualise maps with Oskari? Try the sample
+            How to view and visualize maps with Oskari? Try the sample
             application!
           </p>
           <Button
