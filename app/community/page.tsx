@@ -13,8 +13,8 @@ export const metadata: Metadata = {
 
 const COMMERCIAL_SUPPORT = [
   {
-    name: 'Cybercom Group',
-    url: 'https://www.cybercom.com/',
+    name: 'Knowit',
+    url: 'https://www.knowit.fi/',
   },
   {
     name: 'CGI Finland',
