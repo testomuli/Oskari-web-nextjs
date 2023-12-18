@@ -97,9 +97,20 @@ const generateFlattenedFile = (filter, filename, fileHeading) => {
         ),
         'utf-8'
       );
+      
+      const headingEnd = fileContent.indexOf('\n');
+      // Write bundle heading
       fs.appendFileSync(
         flattenedFileName,
-        `# ${fileHeading}.${sectionHeadingNumber}${fileContent.slice(1, fileContent.length)}\n`
+        `# ${fileHeading}.${sectionHeadingNumber}${fileContent.slice(1, headingEnd)}\n`
+      );
+      
+      const descriptionStart = fileContent.indexOf("## Description");
+      const descriptionEnd = fileContent.indexOf("## ", descriptionStart + 1);
+      // Write bundle description
+      fs.appendFileSync(
+        flattenedFileName,
+        `\n${fileContent.slice(descriptionStart, descriptionEnd - 1)}`
       );
       sectionHeadingNumber++;
     }
