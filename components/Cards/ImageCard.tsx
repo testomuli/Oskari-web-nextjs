@@ -31,6 +31,7 @@ export default function ImageCard({
             src={imageSrc}
             alt={altText}
             className='pointer-events-auto'
+            draggable={false}
           />
         </div>
         <div className={styles.imageCard__content}>

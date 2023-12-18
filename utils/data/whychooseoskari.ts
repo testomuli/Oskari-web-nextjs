@@ -30,11 +30,6 @@ export const DISCOVER_FEATURE_DATA: Array<DiscoverFeatureDataType> = [
     features: [
       {
         icon: '',
-        title: 'RPC functionality improves the user experience',
-        description: "The map reacts in real time to the user's actions.",
-      },
-      {
-        icon: '',
         title: 'Customise maps according to your needs',
         description: 'Oskari is a tool for data management and sharing.',
       },
@@ -99,22 +94,15 @@ export const DISCOVER_FUNCTIONALITIES = [
     features: [
       {
         icon: '',
-        title: 'Enables versatile geospatial data analysis',
-        description:
-          'Oskari allows its users to view precise regional data. For example, users can view fishing areas or the location of heritage sites.',
-      },
-      {
-        icon: '',
         title: 'Create thematic maps',
         description:
-          'Users can easily view maps and sort information, such as satitstics, based on their own interests. ',
+          'Users can easily view maps and sort information, such as satitstics, based on their own interests.',
       },
       {
         icon: '',
-        title:
-          'Oskari can be used to combine many different sources of information',
+        title: 'Visualize geospatial data with easy tools',
         description:
-          'Oskari allows you to connect many different data sources through a variety of interfaces. This enables a wide geospatial data service.',
+          'Oskari has easy-to-use and user-friendly visualizing tools.',
       },
     ],
   },

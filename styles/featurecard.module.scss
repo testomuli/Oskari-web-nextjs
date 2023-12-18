@@ -26,8 +26,10 @@
       display: flex;
       gap: 0rem 1.5rem;
       &-icon {
-        width: 4rem;
-        height: 4rem;
+        --dot-size: 1rem;
+        margin-top: calc(var(--dot-size) / 4);
+        width: var(--dot-size);
+        height: var(--dot-size);
         background-color: #000;
         border-radius: 50%;
         overflow: hidden;
