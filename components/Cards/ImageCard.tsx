@@ -19,7 +19,12 @@ export default function ImageCard({
   url,
 }: ImageCardProps) {
   return (
-    <Link href={url} data-label={title} className='pointer-events-none'>
+    <Link
+      href={url}
+      data-label={title}
+      className='pointer-events-none'
+      draggable={false}
+    >
       <div
         className={styles.imageCard}
         style={{ width: width ? `${width}px` : '' }}

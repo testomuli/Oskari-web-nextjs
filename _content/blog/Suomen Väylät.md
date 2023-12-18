@@ -3,7 +3,7 @@ layout: ''
 title: Suomen Väylät
 excerpt: Suomen Väylät is a map service provided by the Finnish Transport Infrastructure Agency.
 date: 2023-12-01 13:00:00 +0200
-image: /assets/images/blog/SuomenVäylät.jpg
+image: /assets/images/blog/SuomenVaylat.jpg
 tags:
   - Use case
 ---

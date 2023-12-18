@@ -4,11 +4,46 @@ import Slider from 'react-slick'
 import styles from '@/styles/cardcarousel.module.scss'
 import 'slick-carousel/slick/slick.css'
 import 'slick-carousel/slick/slick-theme.css'
+import {
+  ArrowLeftCircleIcon,
+  ArrowRightCircleIcon,
+} from '@heroicons/react/24/solid'
 
 type CardCarouselProps = {
   items: Array<React.ReactNode>
   title?: string
 }
+
+function SampleNextArrow({
+  className: slickClass,
+  onClick,
+}: {
+  className: string
+  onClick: () => void
+}) {
+  return (
+    <ArrowRightCircleIcon
+      className={`${slickClass} !h-8 !w-8 fill-black text-black z-50`}
+      onClick={onClick}
+    />
+  )
+}
+
+function SamplePrevArrow({
+  className: slickClass,
+  onClick,
+}: {
+  className: string
+  onClick: () => void
+}) {
+  return (
+    <ArrowLeftCircleIcon
+      className={`${slickClass} !h-8 !w-8 fill-black text-black z-50`}
+      onClick={onClick}
+    />
+  )
+}
+
 export default function CardCarousel({ items, title }: CardCarouselProps) {
   const settings = {
     dots: true,
@@ -17,6 +52,11 @@ export default function CardCarousel({ items, title }: CardCarouselProps) {
     slidesToShow: 3,
     slidesToScroll: 3,
     initialSlide: 0,
+    // @ts-expect-error Slick carousel caused unrelative error
+    nextArrow: <SampleNextArrow />,
+    // @ts-expect-error Slick carousel caused unrelative error
+    prevArrow: <SamplePrevArrow />,
+
     responsive: [
       {
         breakpoint: 992,

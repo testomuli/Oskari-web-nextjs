@@ -76,7 +76,7 @@ export default function DiscoverPage() {
               altText={title}
               title={title}
               content={excerpt}
-              url={url}
+              url={`/${url}`}
             />
           ))}
       />

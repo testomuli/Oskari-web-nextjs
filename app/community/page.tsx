@@ -11,6 +11,41 @@ export const metadata: Metadata = {
   title: 'Community',
 }
 
+const COMMERCIAL_SUPPORT = [
+  {
+    name: 'Cybercom Group',
+    url: 'https://www.cybercom.com/',
+  },
+  {
+    name: 'CGI Finland',
+    url: 'https://www.cgi.com/fi/fi',
+  },
+  {
+    name: 'Sitowise Oy',
+    url: 'https://www.sitowise.com/fi',
+  },
+  {
+    name: 'Gispo Ltd',
+    url: 'https://gispo.fi/',
+  },
+  {
+    name: 'Hubble',
+    url: 'https://hubble.fi/',
+  },
+  {
+    name: 'Phz Full Stack',
+    url: 'https://phz.fi/',
+  },
+  {
+    name: 'Siili',
+    url: 'https://www.siili.com/fi',
+  },
+  {
+    name: 'Ubigu',
+    url: 'https://ubigu.fi/',
+  },
+]
+
 export default function CommunityPage() {
   return (
     <Layout heroTitle='Community' heroSmall>
@@ -131,15 +166,14 @@ export default function CommunityPage() {
         </Text>
         <div>
           <h3>Companies offering commercial support</h3>
-          <ul className='list-disc list-inside'>
-            <li>Cybercom Group</li>
-            <li>CGI Finland</li>
-            <li>Sitowise Oy</li>
-            <li>Gispo Ltd</li>
-            <li>Hubble </li>
-            <li>Phz Full Stack </li>
-            <li>Siili </li>
-            <li>Ubigu</li>
+          <ul className='list-disc list-inside [&_a]:underline'>
+            {COMMERCIAL_SUPPORT.map(({ name, url }) => (
+              <li key={url}>
+                <a href={url} rel='noreferrer nofollow' target='_blank'>
+                  {name}
+                </a>
+              </li>
+            ))}
           </ul>
         </div>
       </div>

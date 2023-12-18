@@ -26,7 +26,7 @@ export default function ContributePage() {
       </div>
       <div>
         <h3 className='my-16'>Come and develop Oskari together!</h3>
-        <div className='flex flex-wrap justify-center xl:justify-evenly gap-x-8 gap-y-16 [&_a]:underline'>
+        <div className='flex flex-wrap justify-center xl:justify-evenly gap-x-8 gap-y-16 [&_a]:underline [text-wrap:pretty]'>
           <IconCard
             className='!min-w-[24rem]'
             title='Report a bug'
@@ -80,7 +80,15 @@ export default function ContributePage() {
           <IconCard
             className='!min-w-[24rem]'
             title='Write in our blog'
-            content="Would you like to share your findings or tell  how your organization uses Oskari? Oskari's blog is the platform for your ideas."
+            content={
+              <div>
+                Would you like to share your findings or{' '}
+                <a href='mailto:info@oskari.org'>
+                  tell how your organization uses Oskari?
+                </a>{' '}
+                Oskari's blog is the platform for your ideas.
+              </div>
+            }
           />
           <IconCard
             className='!min-w-[24rem]'
