@@ -35,7 +35,7 @@ export default function ImageCard({
             height={214}
             src={imageSrc}
             alt={altText}
-            className='pointer-events-auto'
+            className='pointer-events-auto object-cover object-left-top'
             draggable={false}
           />
         </div>
