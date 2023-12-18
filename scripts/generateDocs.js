@@ -73,7 +73,7 @@ for (const [sectionTitle, frontendPath] of Object.entries(filesToHandle)) {
 * filename: the filename to be generated
 * fileHeading: the section number of the file, i.e. 2.3, 2.4 etc.
 */
-const generateFlattenedFile = (filter, filename, fileHeading) => {
+const generateFlattenedFile = (filter, filename, fileHeading, includeLinks) => {
   // Get wanted filenames by reading all files in frontend/api and applying filter to result
   const files = fs.readdirSync(
     path.join(pathToFrontendRepository, "api/"),
@@ -102,21 +102,41 @@ const generateFlattenedFile = (filter, filename, fileHeading) => {
       // Write bundle heading
       fs.appendFileSync(
         flattenedFileName,
-        `# ${fileHeading}.${sectionHeadingNumber}${fileContent.slice(1, headingEnd)}\n`
+        `# ${fileHeading}.${sectionHeadingNumber}${fileContent.slice(1, headingEnd)}`
       );
       
-      const descriptionStart = fileContent.indexOf("## Description");
-      const descriptionEnd = fileContent.indexOf("## ", descriptionStart + 1);
-      // Write bundle description
+      const searchKey = "## Description"
+      let descriptionStart = fileContent.indexOf(searchKey);
+      let descriptionEnd = 0;
+      
+      // If file does not contain the description subheading, append the whole file except the heading
+      if (descriptionStart == -1) {
+        descriptionStart = headingEnd;
+        descriptionEnd = fileContent.length;
+      } else {
+        descriptionEnd = fileContent.indexOf("## ", descriptionStart + 1);
+        descriptionStart = descriptionStart + searchKey.length; 
+      }
+
       fs.appendFileSync(
         flattenedFileName,
-        `\n${fileContent.slice(descriptionStart, descriptionEnd - 1)}`
+        `${fileContent.slice(descriptionStart, descriptionEnd)}\n`
       );
+      
+      // Append links to oskari.org documentation for each request/event
+      if (includeLinks) {
+        const bundleName = path.dirname(dirent.path).split("api")[1].replaceAll('\\', '/');
+        fs.appendFileSync(
+          flattenedFileName,
+          `\n\nIncluded in bundle: [${bundleName}](https://oskari.org/api/bundles#${version}${bundleName})\n\n`
+        );
+      }
+
       sectionHeadingNumber++;
     }
   );
 }
 
-generateFlattenedFile(dirent => dirent.name === "bundle.md", "Bundles", "2.3");
-generateFlattenedFile(dirent => dirent.name.toLowerCase().includes("request.md"), "Bundle requests", "2.4");
-generateFlattenedFile(dirent => dirent.name.toLowerCase().includes("event.md"), "Bundle events", "2.5");
+generateFlattenedFile(dirent => dirent.name === "bundle.md", "Bundles", "2.3", false);
+generateFlattenedFile(dirent => dirent.name.toLowerCase().includes("request.md"), "Bundle requests", "2.4", true);
+generateFlattenedFile(dirent => dirent.name.toLowerCase().includes("event.md"), "Bundle events", "2.5", true);
