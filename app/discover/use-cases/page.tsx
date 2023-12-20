@@ -26,6 +26,9 @@ export default function DiscoverPage() {
                   ?.map((tag) => tag.toLowerCase().trim())
                   .includes('use case')
             )
+            .sort(
+              (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
+            )
             ?.map(({ date, _id: id, title, excerpt, url, image }: Post) => (
               <UseCasesCard
                 key={id}
