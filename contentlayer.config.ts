@@ -162,6 +162,7 @@ export default makeSource({
   documentTypes: [Docs, Posts, Coordinators, FaqDevelopers, FaqUsers],
   markdown: {
     remarkPlugins: [remarkGfm],
-    rehypePlugins: [rehypeHighlight],
+    // ignore mermaid for highlighting (```mermaid ... ```)
+    rehypePlugins: [[rehypeHighlight, { plainText: ['mermaid'] }]],
   },
 })

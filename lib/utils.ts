@@ -1,13 +1,9 @@
 import fs from 'fs'
 import path from 'path'
 import matter from 'gray-matter'
-import { marked } from 'marked'
+import { mdToHtml, MERMAID_SNIPPET } from './customMarked'
 import { insertIdsToHeaders } from './markdownToHtml'
 import { DocAnchorLinksType, VersionDocType } from '@/types/types'
-
-marked.use({
-  gfm: true,
-})
 
 export function slugify(input: string): string {
   return input
@@ -24,7 +20,7 @@ function compileMarkdownToHTML(markdown: string): {
   anchorLinks: VersionDocType['anchorLinks']
 } {
   const { content } = matter(markdown)
-  const markedHtml = marked(content)
+  const markedHtml = mdToHtml(content)
   const { html, anchorLinks } = insertIdsToHeaders(markedHtml)
   return {
     html,
@@ -102,6 +98,18 @@ export function generateVersionDocs(
         anchorLinks.push(...compiledAnchorLinks)
         html += compiledHTML
       }
+    }
+    // inject script to make mermaid js work its magic
+    if (html.includes(MERMAID_SNIPPET)) {
+      html += `<script src="https://cdn.jsdelivr.net/npm/mermaid@10.6.1/dist/mermaid.min.js"></script>
+      <script>
+      mermaid.initialize({
+        startOnLoad:true,
+        htmlLabels:true,
+        theme: 'base'
+      });
+      </script>
+      `
     }
 
     topics.push({
