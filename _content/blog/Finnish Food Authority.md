@@ -29,13 +29,13 @@ The map service is open for anyone to use.
 
 Other map services by the Finnish Food Authority:
 
-Sisaalis (electronic service for providing catch information in fresh water areas)
-Sähi (fish transplanting service)
-Pesä (reporting reindeer damages)
-Kalpa (service for fishing economy regions)
-EPR (animal keeper registry)
-LUOVA (organic actor monitoring service)
-ELTE (animal health and diseases)
-Hyrrä (Information system for project, business and structural aid)
-Ruokapaikka (The Food Authority's internal geographic information portal)
-Mobiiliviljelystarkastussovellus
+- Sisaalis (electronic service for providing catch information in fresh water areas)
+- Sähi (fish transplanting service)
+- Pesä (reporting reindeer damages)
+- Kalpa (service for fishing economy regions)
+- EPR (animal keeper registry)
+- LUOVA (organic actor monitoring service)
+- ELTE (animal health and diseases)
+- Hyrrä (Information system for project, business and structural aid)
+- Ruokapaikka (The Food Authority's internal geographic information portal)
+- Mobiiliviljelystarkastussovellus
