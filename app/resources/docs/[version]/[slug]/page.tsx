@@ -64,6 +64,10 @@ export default async function SingleDocPage({
         slug: link.slug,
       })
     }
+
+    // Case "Other" in version docs -> when we are just stuffing this with all our orphan headings this really ain't makin' any sense and besides all these links lead to nowhere anyway.
+    // Pass for now.
+    /*
     if (isNaN(parseInt(linkNum))) {
       groupedAnchorLinks['other'] = groupedAnchorLinks['other'] || []
       groupedAnchorLinks['other'].push({
@@ -71,6 +75,7 @@ export default async function SingleDocPage({
         slug: link.slug,
       })
     }
+    */
   })
 
   const renderAccordionContent = (
