@@ -38,6 +38,10 @@ export const NAVIGATION_ITEMS: Array<NavigationItemType> = [
     path: '/community',
   },
   {
+    name: 'Blog with contentlayer (old)',
+    path: '/blog-contentlayer',
+  },
+  {
     name: 'Blog',
     path: '/blog',
   },
