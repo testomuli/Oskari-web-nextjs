@@ -121,20 +121,4 @@ export default function BlogsPage() {
       </div>
     </Layout>
   )
-
-
-
-
-
-
-
-  /*
-  return <Layout heroTitle='Blog' heroSmall>
-      <div className='container--content'>
-        <div className={styles.blog__grid}>
-          {blogEntries.map((item) => <Card data={transformItem(item)} key={item.slug} />)}
-        </div>
-      </div>
-  </Layout>;
-  */
 }
