@@ -22,4 +22,4 @@ Users can also download geospatial data and purchase printed maps and customised
 
 The service is open and free of charge for everyone, and no registration is required to use it.
 
-<https://asiointi.maanmittauslaitos.fi/karttapaikka/>
+[https://asiointi.maanmittauslaitos.fi/karttapaikka/](https://asiointi.maanmittauslaitos.fi/karttapaikka/)

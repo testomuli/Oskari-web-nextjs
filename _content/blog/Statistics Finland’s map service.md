@@ -25,5 +25,4 @@ In the map service, it is also possible to make statistical thematic maps. The a
 Anyone interested in statistical regions and statistical data.
 
 ## Find out more!
-
-<https://tilastokeskus-kartta.swgis.fi/>
+[https://tilastokeskus-kartta.swgis.fi/](https://tilastokeskus-kartta.swgis.fi/)

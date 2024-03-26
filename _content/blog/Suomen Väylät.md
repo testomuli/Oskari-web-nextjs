@@ -25,5 +25,4 @@ In Suomen Väylät, you can search for data by name or subject and filter data b
 Anyone who wants to view and download spatial data sets related to the road, rail and waterway network.
 
 ## Find out more!
-
-<https://suomenvaylat.vayla.fi/?lang=en>
+[https://suomenvaylat.vayla.fi/?lang=en](https://suomenvaylat.vayla.fi/?lang=en)
