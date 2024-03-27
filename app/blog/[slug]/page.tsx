@@ -2,8 +2,7 @@ import * as blogEntries from '@/_content/blog/index.json';
 
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const fs = require('fs');
-// eslint-disable-next-line @typescript-eslint/no-var-requires
-const path = require('path');
+
 import { MDXRemote } from 'next-mdx-remote/rsc'
 
 import HighlightBox from '@/components/HighlightBox'
@@ -15,12 +14,9 @@ import Link from 'next/link'
 import { ArrowLeftIcon } from '@heroicons/react/20/solid'
 import Image from 'next/image'
 
-const getBlogPageSerialized = async function(slug: string) {
-  const pathToContentRoot = path.normalize(path.join(__dirname, '../../../../../_content/'));
-  const pathToFile = '/blog/' + slug;
-  const filePath = path.join(pathToContentRoot, pathToFile)
-  const markdown = fs.readFileSync(filePath, 'utf8');
+const getBlogPageSerialized = async function(filePath: string) {
 
+  const markdown = fs.readFileSync(filePath, 'utf8');
   return markdown;
 }
 
@@ -39,12 +35,11 @@ export default async function SingleBlogPage({
   }) {
 
     const post = getPostBySlug(params.slug);
-    const fileName = post?.fileName || undefined;
-    if (!post || !fileName) {
+    if (!post?.path) {
         return <Error text='No blog posts found' code='404' />
     }
 
-    const markdown = await getBlogPageSerialized(fileName);
+    const markdown = await getBlogPageSerialized(post.path);
     return (
         <Layout heroSmall heroTitle='Blog'>
         <div className='container--content'>
