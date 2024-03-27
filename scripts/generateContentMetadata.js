@@ -7,19 +7,20 @@ const slugify = require('slugify');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const grayMatter = require('gray-matter');
 
-function listFilesRecursively(directory) {
+function listFilesRecursively(directory, baseDirectory) {
     const files = fs.readdirSync(directory);
     let fileList = [];
 
     files.forEach(file => {
         const filePath = path.join(directory, file);
+        const relativePath = path.relative(baseDirectory, filePath);
         const stats = fs.statSync(filePath);
         if (stats.isFile()) {
             const ext = path.extname(filePath);
             if (ext === '.md' || ext === '.mdx') {
                 const fileContent = fs.readFileSync(filePath, 'utf-8');
                 const { data } = grayMatter(fileContent);
-                const slug = slugify(file)
+                const slug = slugify(relativePath);
                 const fileData = {
                     ...data,
                     path: filePath,
@@ -29,7 +30,7 @@ function listFilesRecursively(directory) {
                 fileList.push(fileData);
             }
         } else if (stats.isDirectory()) {
-            fileList = fileList.concat(listFilesRecursively(filePath));
+            fileList = fileList.concat(listFilesRecursively(filePath, baseDirectory));
         }
     });
 
@@ -50,6 +51,6 @@ function saveToFile(normalizedPath, data) {
     fs.writeFileSync(normalizedPath + 'index.json',  jsonData);
 }
 
-const normalizedPath = path.normalize(path.join(__dirname, '../_content/blog/'));
-const fileList = listFilesRecursively(normalizedPath);
-saveToFile(normalizedPath, fileList);
+const baseDirectory = path.normalize(path.join(__dirname, '../_content/blog/'));
+const fileList = listFilesRecursively(baseDirectory, baseDirectory);
+saveToFile(baseDirectory, fileList);
