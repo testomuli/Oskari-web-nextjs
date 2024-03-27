@@ -177,3 +177,8 @@ export async function getMdFile(filepath: string) {
     markdownBody: content,
   }
 }
+
+export const readMarkdownFile = async function(filePath: string) {
+  const markdown = fs.readFileSync(filePath, 'utf8');
+  return markdown;
+};
