@@ -37,54 +37,6 @@ export const Docs = defineDocumentType(() => ({
   },
 }))
 
-export const Posts = defineDocumentType(() => ({
-  name: 'Post',
-  contentType: 'markdown',
-  filePathPattern: `blog/*.md`,
-  fields: {
-    layout: { type: 'string', required: false },
-    categories: { type: 'list', required: false, of: { type: 'string' } },
-    title: { type: 'string', required: true },
-    date: { type: 'date', required: true },
-    author: { type: 'string', required: false },
-    excerpt: { type: 'string', required: true },
-    image: { type: 'string', required: false },
-    tags: { type: 'list', required: false, of: { type: 'string' } },
-  },
-  computedFields: {
-    url: {
-      type: 'string',
-      resolve: (post) =>
-        post._raw.flattenedPath
-          .split('/')
-          .map((path) => slugify(path))
-          .join('/'),
-    },
-    imagesFromPost: {
-      type: 'list',
-      resolve: (post) => {
-        const images: string[] = []
-        post.body.html.replace(/<img.*?src="(.*?)"/g, (match, src) => {
-          images.push(src)
-          return ''
-        })
-        return images
-      },
-    },
-  },
-}))
-
-export const Coordinators = defineDocumentType(() => ({
-  name: 'Coordinator',
-  filePathPattern: `coordinators/*.md`,
-  fields: {
-    name: { type: 'string', required: true },
-    title: { type: 'string', required: false },
-    avatar: { type: 'string', required: false },
-    order: { type: 'number', required: false },
-  },
-}))
-
 export const FaqDevelopers = defineDocumentType(() => ({
   name: 'FaqDevelopers',
   filePathPattern: `faq/faq-developers.md`,
@@ -159,7 +111,8 @@ export const FaqUsers = defineDocumentType(() => ({
 
 export default makeSource({
   contentDirPath: '_content',
-  documentTypes: [Docs, Posts, Coordinators, FaqDevelopers, FaqUsers],
+  documentTypes: [Docs, FaqDevelopers, FaqUsers],
+  contentDirExclude: ['*blog/**', '*coordinators/**'],
   markdown: {
     remarkPlugins: [remarkGfm],
     // ignore mermaid for highlighting (```mermaid ... ```)
