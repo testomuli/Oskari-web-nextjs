@@ -24,4 +24,4 @@ Everyone from citizens to GI Specialists.
 
 ## Find out more!
 
-<https:www.kartta.hsy.fi>
+[https:www.kartta.hsy.fi](https:www.kartta.hsy.fi)

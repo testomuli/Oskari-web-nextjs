@@ -24,4 +24,4 @@ Southwest Information is for public authorities and decision-makers, researchers
 
 ## Find out more!
 
-<https://karttapalvelu.lounaistieto.fi/>
+[https://karttapalvelu.lounaistieto.fi/](https://karttapalvelu.lounaistieto.fi/)

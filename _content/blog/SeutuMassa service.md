@@ -24,4 +24,4 @@ For people responsible for land mass management and planning in the Helsinki met
 
 ## Find out more!
 
-<https://seutumassa.hsy.fi/>
+[https://seutumassa.hsy.fi/](https://seutumassa.hsy.fi/)

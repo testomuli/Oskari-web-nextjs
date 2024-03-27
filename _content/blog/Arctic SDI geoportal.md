@@ -23,4 +23,4 @@ Anyone interested in the Arctic geographic data
 
 ## Find out more!
 
-<https://geoportal.arctic-sdi.org/>
+[https://geoportal.arctic-sdi.org/](https://geoportal.arctic-sdi.org/)

@@ -24,4 +24,4 @@ Paikkatietoikkuna is intended for both spatial data professionals and everyone w
 
 ## Find out more!
 
-<https://kartta.paikkatietoikkuna.fi/?lang=en>
+[https://kartta.paikkatietoikkuna.fi/?lang=en](https://kartta.paikkatietoikkuna.fi/?lang=en)

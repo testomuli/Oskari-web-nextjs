@@ -1,30 +1,28 @@
-'use client'
-import { Post, allPosts } from '@/.contentlayer/generated'
-import Card from '@/components/Cards/Card'
-import Layout from '@/components/Layout'
-import styles from '@/styles/blog.module.scss'
-import { ArrowLeftIcon, ArrowRightIcon } from '@heroicons/react/20/solid'
-import { usePathname, useRouter, useSearchParams } from 'next/navigation'
+'use client';
+import * as blogEntries from '@/_content/blog/index.json';
+import Card from '@/components/Cards/Card';
+import Layout from '@/components/Layout';
+import styles from '@/styles/blog.module.scss';
+import { ArrowLeftIcon, ArrowRightIcon } from '@heroicons/react/20/solid';
+import { usePathname, useRouter, useSearchParams } from 'next/navigation';
 import { useCallback } from 'react'
 
-export default function BlogPage() {
+export default function BlogsPage() {
   const router = useRouter()
   const pathname = usePathname()
   const searchParams = useSearchParams()!
 
-  const posts = allPosts
-    ?.map((post: Post) => {
+  const posts = blogEntries.map((post) => {
       const item = {
         title: post.title || '',
-        date: new Date(post.date) || '',
+        date: new Date(post.date),
+        image: post.image || '',
         description: post.excerpt,
-        href: post.url,
-        image: post.image || post.imagesFromPost?.[0] || '',
+        href: 'blog/' + post.slug,
         tags: post.tags,
       }
       return item
-    })
-    .sort((a, b) => b.date.getTime() - a.date.getTime())
+    }).sort((a, b) => b.date.getTime() - a.date.getTime())
 
   const createQueryString = useCallback(
     (name: string, value: string) => {

@@ -22,4 +22,4 @@ Designed for municipal and organisational customers.
 
 ## Find out more!
 
-<https://tilannekartta.maanmittauslaitos.fi/>
+[https://tilannekartta.maanmittauslaitos.fi/](https://tilannekartta.maanmittauslaitos.fi/)
