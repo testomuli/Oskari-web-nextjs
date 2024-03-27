@@ -1,8 +1,5 @@
 import * as blogEntries from '@/_content/blog/index.json';
 
-// eslint-disable-next-line @typescript-eslint/no-var-requires
-const fs = require('fs');
-
 import { MDXRemote } from 'next-mdx-remote/rsc'
 
 import HighlightBox from '@/components/HighlightBox'
@@ -13,12 +10,7 @@ import { format } from 'date-fns'
 import Link from 'next/link'
 import { ArrowLeftIcon } from '@heroicons/react/20/solid'
 import Image from 'next/image'
-
-const getBlogPageSerialized = async function(filePath: string) {
-
-  const markdown = fs.readFileSync(filePath, 'utf8');
-  return markdown;
-}
+import { readMarkdownFile } from '@/lib/utils';
 
 const getPostBySlug = (slug: string) => {
     const found = blogEntries.find((entry) => {
@@ -39,7 +31,7 @@ export default async function SingleBlogPage({
         return <Error text='No blog posts found' code='404' />
     }
 
-    const markdown = await getBlogPageSerialized(post.path);
+    const markdown = await readMarkdownFile(post.path);
     return (
         <Layout heroSmall heroTitle='Blog'>
         <div className='container--content'>
