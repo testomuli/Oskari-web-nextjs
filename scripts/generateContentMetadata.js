@@ -51,6 +51,10 @@ function saveToFile(normalizedPath, data) {
     fs.writeFileSync(normalizedPath + 'index.json',  jsonData);
 }
 
-const baseDirectory = path.normalize(path.join(__dirname, '../_content/blog/'));
-const fileList = listFilesRecursively(baseDirectory, baseDirectory);
-saveToFile(baseDirectory, fileList);
+const baseDirectoryBlogs = path.normalize(path.join(__dirname, '../_content/blog/'));
+const fileListBlogs = listFilesRecursively(baseDirectoryBlogs, baseDirectoryBlogs);
+saveToFile(baseDirectoryBlogs, fileListBlogs);
+
+const baseDirectoryCoordinators = path.normalize(path.join(__dirname, '../_content/coordinators/'));
+const fileListCoordinators = listFilesRecursively(baseDirectoryCoordinators, baseDirectoryCoordinators);
+saveToFile(baseDirectoryCoordinators, fileListCoordinators);
