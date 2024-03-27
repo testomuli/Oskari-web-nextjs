@@ -1,16 +1,24 @@
+import { readMarkdownFile } from '@/lib/utils'
+import { MDXRemote } from 'next-mdx-remote/rsc'
 import Image from 'next/image'
 
-const AvatarCard = ({
+const AvatarCard = async ({
   name,
   title,
   avatar,
-  content,
+  filePath,
+  content
 }: {
   name: string
   title?: string
   avatar: string
-  content: string
+  filePath?: string
+  content?: string
 }) => {
+  let markdown = null;
+  if (filePath) {
+    markdown = await readMarkdownFile(filePath);
+  }
   return (
     <div className='flex flex-col items-center justify-start text-left w-[300px] aspect-square'>
       <Image
@@ -27,7 +35,10 @@ const AvatarCard = ({
         </span>
         {title && <span>{title}</span>}
       </h3>
-      <p>{content}</p>
+      <p>
+        { markdown && <MDXRemote source={markdown} options={{ parseFrontmatter: true }}/>}
+        {!markdown && <>{content}</>}
+      </p>
     </div>
   )
 }

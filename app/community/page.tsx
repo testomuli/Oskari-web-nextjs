@@ -1,4 +1,4 @@
-import { allCoordinators } from '@/.contentlayer/generated'
+import * as allCoordinators from '@/_content/coordinators/index.json';
 import AvatarCard from '@/components/Cards/AvatarCard'
 import HighlightBox from '@/components/HighlightBox'
 import Layout from '@/components/Layout'
@@ -88,8 +88,8 @@ export default function CommunityPage() {
         </Text>
         <div className='flex flex-wrap justify-center lg:justify-around py-14 gap-16 w-full'>
           {allCoordinators
-            ?.sort((a, b) => (!a.order || !b.order ? -1 : a.order - b.order))
-            ?.map((coordinator) => {
+            .sort((a, b) => (!a.order || !b.order ? -1 : a.order - b.order))
+            .map((coordinator) => {
               const { name, title, avatar } = coordinator
               return (
                 <AvatarCard
@@ -97,7 +97,7 @@ export default function CommunityPage() {
                   name={name}
                   title={title}
                   avatar={avatar || ''}
-                  content={coordinator.body.raw}
+                  filePath={coordinator.path}
                 />
               )
             })}
