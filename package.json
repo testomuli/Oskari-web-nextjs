@@ -7,7 +7,7 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "docs": "node scripts/generateDocs.js",
+    "docs": "node scripts/runAll.js",
     "metadata": "node scripts/generateContentMetadata.js"
   },
   "browser": {
