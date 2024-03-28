@@ -1,4 +1,4 @@
-import * as allCoordinators from '@/_content/coordinators/index.json';
+import allPosts from '@/_content/coordinators/';
 import AvatarCard from '@/components/Cards/AvatarCard'
 import HighlightBox from '@/components/HighlightBox'
 import Layout from '@/components/Layout'
@@ -87,7 +87,7 @@ export default function CommunityPage() {
           product owners and the communication coordinator.
         </Text>
         <div className='flex flex-wrap justify-center lg:justify-around py-14 gap-16 w-full'>
-          {allCoordinators
+          {allPosts
             .sort((a, b) => (!a.order || !b.order ? -1 : a.order - b.order))
             .map((coordinator) => {
               const { name, title, avatar } = coordinator

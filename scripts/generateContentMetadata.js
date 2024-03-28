@@ -45,10 +45,19 @@ function sortByDateDescending(files) {
     });
 }
 
-function saveToFile(normalizedPath, data) {
-    const sortedFiles = sortByDateDescending(data);
-    const jsonData = JSON.stringify(sortedFiles, null, 2);
-    fs.writeFileSync(normalizedPath + 'index.json',  jsonData);
+function saveToFile(filePath, data) {
+    const sorted = sortByDateDescending(data);
+    const fileName = 'index.js';
+    const fullPath = filePath + fileName;
+    const jsContent = `const allPosts = ${JSON.stringify(sorted, null, 2)};\n\export default allPosts;`;
+
+    fs.writeFile(fullPath, jsContent, (err) => {
+      if (err) {
+        console.error('Failed to write file ' + fullPath + ', error: ', err);
+        return;
+      }
+      console.log('Saved file:', fullPath);
+    });
 }
 
 const baseDirectoryBlogs = path.normalize(path.join(__dirname, '../_content/blog/'));

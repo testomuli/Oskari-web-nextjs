@@ -1,4 +1,4 @@
-import * as blogEntries from '@/_content/blog/index.json';
+import allPosts from '@/_content/blog/';
 
 import { MDXRemote } from 'next-mdx-remote/rsc'
 
@@ -13,7 +13,7 @@ import Image from 'next/image'
 import { readMarkdownFile } from '@/lib/utils';
 
 const getPostBySlug = (slug: string) => {
-    const found = blogEntries.find((entry) => {
+    const found = allPosts.find((entry) => {
         return (decodeURI(entry.slug) === decodeURI(slug))
     });
 

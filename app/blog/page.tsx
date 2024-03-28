@@ -1,5 +1,5 @@
 'use client';
-import * as blogEntries from '@/_content/blog/index.json';
+import allPosts from '@/_content/blog/';
 import Card from '@/components/Cards/Card';
 import Layout from '@/components/Layout';
 import styles from '@/styles/blog.module.scss';
@@ -12,7 +12,7 @@ export default function BlogsPage() {
   const pathname = usePathname()
   const searchParams = useSearchParams()!
 
-  const posts = blogEntries.map((post) => {
+  const posts = allPosts.map((post) => {
       const item = {
         title: post.title || '',
         date: new Date(post.date),
