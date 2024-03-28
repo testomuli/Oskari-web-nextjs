@@ -1,4 +1,4 @@
-import { allPosts } from '@/.contentlayer/generated'
+import allPosts from '@/_content/blog'
 import CardList from '@/components/Cards/CardList'
 import FeaturesList from '@/components/Features/FeaturesList'
 import Layout from '@/components/Layout'
@@ -12,7 +12,7 @@ export default function HomePage() {
       title: post.title || '',
       date: new Date(post.date),
       description: post.excerpt || '',
-      href: post.url || '',
+      href: post.slug || '',
     }))
     .sort((a, b) => b.date.getTime() - a.date.getTime())
     .slice(0, 4)
