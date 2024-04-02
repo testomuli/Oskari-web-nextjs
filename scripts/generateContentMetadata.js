@@ -6,6 +6,8 @@ const path = require('path');
 const slugify = require('slugify');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const grayMatter = require('gray-matter');
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const { marked } = require('marked');
 
 function listFilesRecursively(directory, baseDirectory) {
     const files = fs.readdirSync(directory);
@@ -60,6 +62,27 @@ function saveToFile(filePath, data) {
     });
 }
 
+function generateFaq(fileList) {
+    fileList.forEach(file => {
+        const fileContent = fs.readFileSync(file.path, 'utf-8');
+        const { content } = grayMatter(fileContent);
+        const htmlContent = marked(content); // Parsitaan markdown HTML:ksi
+
+        const questionsAndAnswers = [];
+
+        // find all h1 - level headings and content that follows them
+        const h1Regex = /<h1>(.*?)<\/h1>(.*?)?(?=<h1>|$)/gs;
+        let match;
+        while ((match = h1Regex.exec(htmlContent)) !== null) {
+            const question = match[1].trim(); //
+            const answer = match[2] ? match[2] : '';
+            questionsAndAnswers.push({ question, answer });
+        }
+
+        file.questionsAndAnswers = questionsAndAnswers;
+    });
+}
+
 const baseDirectoryBlogs = path.normalize(path.join(__dirname, '../_content/blog/'));
 const fileListBlogs = listFilesRecursively(baseDirectoryBlogs, baseDirectoryBlogs);
 saveToFile(baseDirectoryBlogs, fileListBlogs);
@@ -67,3 +90,8 @@ saveToFile(baseDirectoryBlogs, fileListBlogs);
 const baseDirectoryCoordinators = path.normalize(path.join(__dirname, '../_content/coordinators/'));
 const fileListCoordinators = listFilesRecursively(baseDirectoryCoordinators, baseDirectoryCoordinators);
 saveToFile(baseDirectoryCoordinators, fileListCoordinators);
+
+const baseDirectoryFaq = path.normalize(path.join(__dirname, '../_content/faq/'));
+const fileListFaq = listFilesRecursively(baseDirectoryFaq, baseDirectoryFaq);
+generateFaq(fileListFaq);
+saveToFile(baseDirectoryFaq, fileListFaq);

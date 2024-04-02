@@ -37,81 +37,9 @@ export const Docs = defineDocumentType(() => ({
   },
 }))
 
-export const FaqDevelopers = defineDocumentType(() => ({
-  name: 'FaqDevelopers',
-  filePathPattern: `faq/faq-developers.md`,
-  computedFields: {
-    questionsAndAnswers: {
-      type: 'json',
-      resolve: (item) => {
-        const questions: string[] = []
-        const answers: string[] = []
-        item.body.html.replace(
-          /<h1>(.*?)<\/h1>/g,
-          (_match: unknown, question: string) => {
-            questions.push(question)
-            return ''
-          }
-        )
-        item.body.html.replace(
-          /<\/h1>(.*?)<h1>|<\/h1>(.*?)$/gs,
-          (_match: unknown, answer1: string, answer2: string) => {
-            answers.push((answer1 || answer2).trim())
-            return ''
-          }
-        )
-
-        const questionsAndAnswers = questions.map((question, index) => {
-          return {
-            question,
-            answer: answers[index],
-          }
-        })
-        return questionsAndAnswers
-      },
-    },
-  },
-}))
-
-export const FaqUsers = defineDocumentType(() => ({
-  name: 'FaqUsers',
-  filePathPattern: `faq/faq-users.md`,
-  computedFields: {
-    questionsAndAnswers: {
-      type: 'json',
-      resolve: (item) => {
-        const questions: string[] = []
-        const answers: string[] = []
-        item.body.html.replace(
-          /<h1>(.*?)<\/h1>/g,
-          (_match: unknown, question: string) => {
-            questions.push(question)
-            return ''
-          }
-        )
-        item.body.html.replace(
-          /<\/h1>(.*?)<h1>|<\/h1>(.*?)$/gs,
-          (_match: unknown, answer1: string, answer2: string) => {
-            answers.push((answer1 || answer2).trim())
-            return ''
-          }
-        )
-
-        const questionsAndAnswers = questions.map((question, index) => {
-          return {
-            question,
-            answer: answers[index],
-          }
-        })
-        return questionsAndAnswers
-      },
-    },
-  },
-}))
-
 export default makeSource({
   contentDirPath: '_content',
-  documentTypes: [Docs, FaqDevelopers, FaqUsers],
+  documentTypes: [Docs],
   contentDirExclude: ['*blog/**', '*coordinators/**'],
   markdown: {
     remarkPlugins: [remarkGfm],
