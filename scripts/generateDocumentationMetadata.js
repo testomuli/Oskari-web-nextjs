@@ -2,12 +2,26 @@
 const fs = require('fs');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const path = require('path');
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const grayMatter = require('gray-matter');
 
 function getSubdirectories(rootDir) {
     return fs.readdirSync(rootDir, { withFileTypes: true })
         .filter(dirent => dirent.isDirectory())
         .map(dirent => dirent.name);
 }
+
+function addFrontmatter(filePath) {
+    const fileContent = fs.readFileSync(filePath, 'utf8');
+    const fullOrdinal = path.basename(filePath).split(' ')[0];
+    const internalOrdinal =
+        fullOrdinal?.indexOf('.') > - 1 ?
+        fullOrdinal.substring(fullOrdinal.indexOf('.') + 1, fullOrdinal.length) : '0';
+    const frontmatter = `---\nordinal: ${internalOrdinal}\n---\n`;
+    fs.writeFileSync(filePath, frontmatter + fileContent);
+    return grayMatter(frontmatter);
+}
+
 
 function listContentsRecursively(directory, results = []) {
     const filesAndDirectories = fs.readdirSync(directory, { withFileTypes: true });
@@ -21,7 +35,10 @@ function listContentsRecursively(directory, results = []) {
                 children: children
             });
         } else {
-            results.push({ fileName: item.name });
+            if (path.extname(itemPath).toLowerCase() === '.md') {
+                const { data } = addFrontmatter(itemPath);
+                results.push({ fileName: item.name, ...data });
+            }
         }
     });
 
