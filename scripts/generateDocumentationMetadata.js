@@ -16,28 +16,30 @@ function addFrontmatter(filePath) {
     const fullOrdinal = path.basename(filePath).split(' ')[0];
     const internalOrdinal =
         fullOrdinal?.indexOf('.') > - 1 ?
-        fullOrdinal.substring(fullOrdinal.indexOf('.') + 1, fullOrdinal.length) : '0';
+        fullOrdinal.substring(fullOrdinal.indexOf('.') + 1, fullOrdinal.length) : 0;
     const frontmatter = `---\nordinal: ${internalOrdinal}\n---\n`;
     fs.writeFileSync(filePath, frontmatter + fileContent);
     return grayMatter(frontmatter);
 }
 
 
-function listContentsRecursively(directory, results = []) {
+function listContentsRecursively(directory, results = [], parentOrdinal) {
     const filesAndDirectories = fs.readdirSync(directory, { withFileTypes: true });
 
     filesAndDirectories.forEach(item => {
         const itemPath = path.join(directory, item.name);
         if (item.isDirectory()) {
-            const children = listContentsRecursively(itemPath, []);
+            const directoryOrdinal = path.basename(itemPath).split(' ')[0];
+            const children = listContentsRecursively(itemPath, [], directoryOrdinal);
             results.push({
                 slug: item.name,
+                ordinal: directoryOrdinal,
                 children: children
             });
         } else {
             if (path.extname(itemPath).toLowerCase() === '.md') {
                 const { data } = addFrontmatter(itemPath);
-                results.push({ fileName: item.name, ...data });
+                results.push({ fileName: item.name, ...data, parentOrdinal });
             }
         }
     });
