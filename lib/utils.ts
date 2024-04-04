@@ -136,6 +136,15 @@ export function generateVersionDocs(
 //   return docsByVersion
 // }
 
+export async function getVersionIndex(version: string) {
+  const rootFolder = `_content/docs/${version}`;
+  if (!fs.existsSync(rootFolder) || !fs.statSync(rootFolder).isDirectory()) {
+    return null;
+  }
+  const allDocs = (await import('_content/docs/2.13.0/index.js')).default;
+  return allDocs;
+}
+
 export function generateAllDocs(): VersionDocType[] | undefined {
   const rootFolder = '_content/docs'
   if (!fs.existsSync(rootFolder) || !fs.statSync(rootFolder).isDirectory()) {
