@@ -11,35 +11,52 @@ function getSubdirectories(rootDir) {
         .map(dirent => dirent.name);
 }
 
-function addFrontmatter(filePath) {
+function addFrontmatter(filePath, ordinal) {
     const fileContent = fs.readFileSync(filePath, 'utf8');
-    const fullOrdinal = path.basename(filePath).split(' ')[0];
-    const internalOrdinal =
-        fullOrdinal?.indexOf('.') > - 1 ?
-        fullOrdinal.substring(fullOrdinal.indexOf('.') + 1, fullOrdinal.length) : 0;
-    const frontmatter = `---\nordinal: ${internalOrdinal}\n---\n`;
+    const frontmatter = `---\nordinal: ${ordinal}\n---\n\n`;
     fs.writeFileSync(filePath, frontmatter + fileContent);
     return grayMatter(frontmatter);
 }
 
+function sortByParagraphNumber(a, b) {
+    // directories first
+    if (a.isDirectory() && !b.isDirectory()) {
+        return -1;
+    }
+    if (!a.isDirectory() && b.isDirectory()) {
+        return 1;
+    }
 
-function listContentsRecursively(directory, results = [], parentOrdinal) {
+    const aParts = a.name.split('.').map(part => parseInt(part));
+    const bParts = b.name.split('.').map(part => parseInt(part));
+
+    for (let i = 0; i < Math.min(aParts.length, bParts.length); i++) {
+        if (aParts[i] !== bParts[i]) {
+            return aParts[i] - bParts[i];
+        }
+    }
+
+    return aParts.length - bParts.length;
+}
+
+function listContentsRecursively(directory, results = []) {
     const filesAndDirectories = fs.readdirSync(directory, { withFileTypes: true });
-
+    filesAndDirectories.sort(sortByParagraphNumber);
+    let ordinal = 0;
     filesAndDirectories.forEach(item => {
         const itemPath = path.join(directory, item.name);
         if (item.isDirectory()) {
-            const directoryOrdinal = path.basename(itemPath).split(' ')[0];
-            const children = listContentsRecursively(itemPath, [], directoryOrdinal);
+            const sectionNumber = path.basename(itemPath).split(' ')[0];
+            const children = listContentsRecursively(itemPath);
             results.push({
                 slug: item.name,
-                ordinal: directoryOrdinal,
+                ordinal: sectionNumber,
                 children: children
             });
         } else {
             if (path.extname(itemPath).toLowerCase() === '.md') {
-                const { data } = addFrontmatter(itemPath);
-                results.push({ fileName: item.name, ...data, parentOrdinal });
+                const { data } = addFrontmatter(itemPath, ++ordinal);
+                results.push({ fileName: item.name, ...data });
             }
         }
     });
