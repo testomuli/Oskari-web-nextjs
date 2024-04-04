@@ -1,4 +1,4 @@
-import { allDocs } from '@/.contentlayer/generated'
+import availableVersions from '@/_content/docs';
 import VersionSidebar from '@/components/VersionSidebar'
 import { compareSemanticVersions } from '@/utils/misc'
 import { Metadata } from 'next'
@@ -10,8 +10,7 @@ export const metadata: Metadata = {
 export default function DocsPage() {
   const versions = [
     ...new Set(
-      allDocs
-        .map((doc) => doc.version)
+      availableVersions
         .sort((a, b) => compareSemanticVersions(a, b))
         .reverse()
     ),
