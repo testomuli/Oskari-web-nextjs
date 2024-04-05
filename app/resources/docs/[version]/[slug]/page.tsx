@@ -4,37 +4,16 @@ import VersionSidebar from '@/components/VersionSidebar'
 import { compareSemanticVersions } from '@/utils/misc'
 import Link from 'next/link'
 import styles from '@/styles/accordion.module.scss'
-import { generateAllDocs, getVersionIndex } from '@/lib/utils'
-
-export async function generateStaticParams() {
-  return [];
-  /*
-  const allDocs = generateAllDocs()
-  return (
-    allDocs?.map((post) => ({
-      slug: post.slug,
-      version: post.version,
-    })) || []
-  )
-  */
-}
+import {  getVersionIndex, readMarkdownFile } from '@/lib/utils'
+import availableVersions from '@/_content/docs';
+import { MDXRemote } from 'next-mdx-remote/rsc'
+import Error from '@/components/Error'
 
 export const generateMetadata = async ({
   params,
 }: {
   params: { slug: string; version: string }
 }) => {
-  /*
-  const allDocs = generateAllDocs()
-  const post =
-    allDocs?.find((post) => post.url === `${params.version}/${params.slug}`) ||
-    null
-  if (post) {
-    return { title: post.title }
-  }
-  return { title: 'Documentation' }
-  */
-
   const indexJSON = await getVersionIndex(params.version);
   const section = indexJSON?.find((item) => item.slug === params.slug);
 
@@ -44,16 +23,74 @@ export const generateMetadata = async ({
 
 }
 
+const renderAccordionContent = (
+  items: Array<{ slug: string; content: string }>, parentSlug: string
+) => {
+  return (
+    <ul className={styles.accordionMenu}>
+      {items?.map((item) => (
+        <li key={item.slug}>
+          <Link
+            href={item.slug === parentSlug ? item.slug : parentSlug + '#' + item.slug}
+          >
+            {item.content}
+          </Link>
+        </li>
+      ))}
+    </ul>
+  )
+}
+
 export default async function SingleDocPage({
   params,
 }: {
   params: { slug: string; version: string }
 }) {
 
+  const indexJSON = await getVersionIndex(params.version);
+  const activeSection = indexJSON?.find((item) => item.slug === params.slug);
+  const path = activeSection?.children[0].path;
 
-  return (<div>
-    <h1>{ params.version } / { params.slug }</h1>
-  </div>);
+  if (!activeSection || !path) {
+    return <Error text='No documents found' code='404' />;
+  }
+
+  const markdown = await readMarkdownFile(path);
+
+  const versions = [
+    ...new Set(
+      availableVersions
+        .sort((a, b) => compareSemanticVersions(a, b))
+        .reverse() || []
+    ),
+  ];
+
+  const groupedAnchorLinks = indexJSON?.map((item) => item) || [];
+  return <>
+    <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
+      <VersionSidebar selectedVersion={params.version} versions={versions} />
+      {markdown && (
+          <AccordionGroup>
+            {groupedAnchorLinks.map((item) => (
+              <Accordion
+                key={item.slug}
+                title={ item?.title || `Chapter ${item.slug}`}
+                content={renderAccordionContent(item.children, item.slug)}
+              />
+            ))}
+          </AccordionGroup>
+        )}
+    </div>
+    <div>
+      {markdown ? (
+        <div className='md-content max-w-[70ch] mt-7'>
+          <MDXRemote source={markdown} options={{ parseFrontmatter: true }} />
+        </div>
+      ) : (
+        <h2>Document not found</h2>
+      )}
+    </div>
+  </>;
 }
   /*
 
@@ -62,14 +99,6 @@ export default async function SingleDocPage({
     allDocs?.find((post) => post.url === `${params.version}/${params.slug}`) ||
     null
 
-  const versions = [
-    ...new Set(
-      allDocs
-        ?.map((doc) => doc.version)
-        .sort((a, b) => compareSemanticVersions(a, b))
-        .reverse() || []
-    ),
-  ]
   const anchorLinks = post?.anchorLinks || []
 
   const groupedAnchorLinks: Record<

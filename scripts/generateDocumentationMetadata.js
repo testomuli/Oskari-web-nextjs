@@ -59,7 +59,15 @@ function listContentsRecursively(directory, results = []) {
         } else {
             if (path.extname(itemPath).toLowerCase() === '.md') {
                 const { data } = addFrontmatter(itemPath, ++ordinal);
-                results.push({ fileName: item.name, ...data });
+                const fileNameWithoutExtension = path.parse(item.name).name;
+                const slug = slugify(fileNameWithoutExtension);
+                results.push({
+                    path: itemPath,
+                    fileName: item.name,
+                    ...data,
+                    slug,
+                    content: fileNameWithoutExtension
+                });
             }
         }
     });
