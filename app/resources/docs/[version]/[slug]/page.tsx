@@ -4,9 +4,11 @@ import VersionSidebar from '@/components/VersionSidebar'
 import { compareSemanticVersions } from '@/utils/misc'
 import Link from 'next/link'
 import styles from '@/styles/accordion.module.scss'
-import { generateAllDocs } from '@/lib/utils'
+import { generateAllDocs, getVersionIndex } from '@/lib/utils'
 
 export async function generateStaticParams() {
+  return [];
+  /*
   const allDocs = generateAllDocs()
   return (
     allDocs?.map((post) => ({
@@ -14,13 +16,15 @@ export async function generateStaticParams() {
       version: post.version,
     })) || []
   )
+  */
 }
 
-export const generateMetadata = ({
+export const generateMetadata = async ({
   params,
 }: {
   params: { slug: string; version: string }
 }) => {
+  /*
   const allDocs = generateAllDocs()
   const post =
     allDocs?.find((post) => post.url === `${params.version}/${params.slug}`) ||
@@ -29,6 +33,17 @@ export const generateMetadata = ({
     return { title: post.title }
   }
   return { title: 'Documentation' }
+  */
+/*
+  const indexJSON = await getVersionIndex(params.version);
+  const section = indexJSON?.find((item) => item.slug === params.slug);
+
+  if (section) {
+    return { title: section.slug }
+  }
+  */
+  return { title: 'Documentation' }
+
 }
 
 export default async function SingleDocPage({
@@ -36,6 +51,14 @@ export default async function SingleDocPage({
 }: {
   params: { slug: string; version: string }
 }) {
+
+
+  return (<div>
+    <h1>{ params.version } / { params.slug }</h1>
+  </div>);
+}
+  /*
+
   const allDocs = generateAllDocs()
   const post =
     allDocs?.find((post) => post.url === `${params.version}/${params.slug}`) ||
@@ -64,7 +87,7 @@ export default async function SingleDocPage({
         slug: link.slug,
       })
     }
-
+*/
     // Case "Other" in version docs -> when we are just stuffing this with all our orphan headings this really ain't makin' any sense and besides all these links lead to nowhere anyway.
     // Pass for now.
     /*
@@ -76,6 +99,7 @@ export default async function SingleDocPage({
       })
     }
     */
+   /*
   })
 
   const renderAccordionContent = (
@@ -131,4 +155,6 @@ export default async function SingleDocPage({
       </div>
     </>
   )
+
 }
+*/
