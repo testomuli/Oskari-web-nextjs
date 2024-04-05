@@ -29,7 +29,7 @@ export default async function VersionPage({
 
   const indexJSON = await getVersionIndex(params.version);
   const titles = indexJSON?.map((item) => {
-    return { title: item.slug, url: params.version + '/' + item.slug, slug: item.slug };
+    return { title: item.title, url: params.version + '/' + item.slug, slug: item.slug };
   }) || [];
 
   return (

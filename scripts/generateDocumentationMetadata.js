@@ -4,6 +4,8 @@ const fs = require('fs');
 const path = require('path');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const grayMatter = require('gray-matter');
+// eslint-disable-next-line @typescript-eslint/no-var-requires
+const slugify = require('slugify');
 
 function getSubdirectories(rootDir) {
     return fs.readdirSync(rootDir, { withFileTypes: true })
@@ -49,7 +51,8 @@ function listContentsRecursively(directory, results = []) {
             const sectionNumber = path.basename(itemPath).split(' ')[0];
             const children = listContentsRecursively(itemPath);
             results.push({
-                slug: item.name,
+                slug: slugify(item.name),
+                title: item.name,
                 ordinal: sectionNumber,
                 children: children
             });
