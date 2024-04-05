@@ -34,15 +34,13 @@ export const generateMetadata = async ({
   }
   return { title: 'Documentation' }
   */
-/*
+
   const indexJSON = await getVersionIndex(params.version);
   const section = indexJSON?.find((item) => item.slug === params.slug);
 
   if (section) {
-    return { title: section.slug }
+    return { title: section.title }
   }
-  */
-  return { title: 'Documentation' }
 
 }
 
