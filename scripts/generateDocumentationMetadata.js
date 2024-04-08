@@ -13,11 +13,9 @@ function getSubdirectories(rootDir) {
         .map(dirent => dirent.name);
 }
 
-function addFrontmatter(filePath, ordinal) {
+function getFrontmatter(filePath) {
     const fileContent = fs.readFileSync(filePath, 'utf8');
-    const frontmatter = `---\nordinal: ${ordinal}\n---\n\n`;
-    fs.writeFileSync(filePath, frontmatter + fileContent);
-    return grayMatter(frontmatter);
+    return grayMatter(fileContent);
 }
 
 function sortByParagraphNumber(a, b) {
@@ -41,15 +39,18 @@ function sortByParagraphNumber(a, b) {
     return aParts.length - bParts.length;
 }
 
+function sortByOrdinal(itemA, itemB) {
+    return itemA?.ordinal - itemB.ordinal;
+}
+
 function listContentsRecursively(directory, results = []) {
     const filesAndDirectories = fs.readdirSync(directory, { withFileTypes: true });
     filesAndDirectories.sort(sortByParagraphNumber);
-    let ordinal = 0;
     filesAndDirectories.forEach(item => {
         const itemPath = path.join(directory, item.name);
         if (item.isDirectory()) {
             const sectionNumber = path.basename(itemPath).split(' ')[0];
-            const children = listContentsRecursively(itemPath);
+            const children = listContentsRecursively(itemPath)?.sort(sortByOrdinal);
             results.push({
                 slug: slugify(item.name),
                 title: item.name,
@@ -58,7 +59,7 @@ function listContentsRecursively(directory, results = []) {
             });
         } else {
             if (path.extname(itemPath).toLowerCase() === '.md') {
-                const { data } = addFrontmatter(itemPath, ++ordinal);
+                const { data } = getFrontmatter(itemPath);
                 const fileNameWithoutExtension = path.parse(item.name).name;
                 const slug = slugify(fileNameWithoutExtension);
                 results.push({
