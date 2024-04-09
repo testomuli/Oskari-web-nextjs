@@ -186,6 +186,7 @@ export async function getMdFile(filepath: string) {
 }
 
 export const readMarkdownFile = async function(filePath: string) {
+  // TODO: fix metadata for other doctypes to contain relative paths and use process.cwd() + relativePath here as well.
   const markdown = fs.readFileSync(filePath, 'utf8');
   return markdown;
 };
@@ -193,7 +194,9 @@ export const readMarkdownFile = async function(filePath: string) {
 export const readAndConcatMarkdownFiles = async function(parentItem: MarkdownFileMetadata) {
   let markdownAll = '';
   parentItem.children.forEach(element => {
-    const markdown = fs.readFileSync(element.path, 'utf8');
+    const cwdPath = path.resolve(process.cwd());
+    const fullPath = path.normalize(path.join(cwdPath, element.path));
+    const markdown = fs.readFileSync(fullPath, 'utf8');
     const { content } = matter(markdown);
     markdownAll += content;
   });
