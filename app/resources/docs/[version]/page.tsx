@@ -5,6 +5,7 @@ import Link from 'next/link'
 import { compareSemanticVersions } from '@/utils/misc'
 
 import availableVersions from '@/_content/docs';
+import { MarkdownFileMetadata, VersionedResourceLink } from '@/types/types'
 export const generateMetadata = ({
   params,
 }: {
@@ -28,7 +29,7 @@ export default async function VersionPage({
   ]
 
   const indexJSON = await getVersionIndex(params.version);
-  const titles = indexJSON?.map((item) => {
+  const titles = indexJSON?.map((item: MarkdownFileMetadata) => {
     return { title: item.title, url: params.version + '/' + item.slug, slug: item.slug };
   }) || [];
 
@@ -45,7 +46,7 @@ export default async function VersionPage({
           marginTop: 27,
         }}
       >
-        {titles?.map((item) => (
+        {titles?.map((item: VersionedResourceLink) => (
           <Link href={`/resources/docs/${item.url}`} key={item.slug}>
             <DocumentCard title={item.title || ''} />
           </Link>

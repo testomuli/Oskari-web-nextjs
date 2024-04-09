@@ -51,3 +51,8 @@ export type MarkdownFileMetadata = {
   html: string
 }
 
+export type VersionedResourceLink = {
+  title: string,
+  url: string,
+  slug: string
+}
