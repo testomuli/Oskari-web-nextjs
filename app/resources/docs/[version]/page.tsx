@@ -1,18 +1,10 @@
 import DocumentCard from '@/components/Cards/DocumentCard'
 import VersionSidebar from '@/components/VersionSidebar'
-import { generateAllDocs } from '@/lib/utils'
+import { getVersionIndex } from '@/lib/utils'
 import Link from 'next/link'
 import { compareSemanticVersions } from '@/utils/misc'
 
-export async function generateStaticParams() {
-  const allDocs = generateAllDocs()
-  return (
-    allDocs?.map((post) => ({
-      version: post.version,
-    })) || []
-  )
-}
-
+import availableVersions from '@/_content/docs';
 export const generateMetadata = ({
   params,
 }: {
@@ -21,29 +13,24 @@ export const generateMetadata = ({
   return { title: params.version || 'Documentation' }
 }
 
-export default function VersionPage({
+export default async function VersionPage({
   params,
 }: {
   params: { version: string }
 }) {
-  const allDocs = generateAllDocs()
-  const titles =
-    allDocs
-      ?.filter((post) => post.version === params.version)
-      ?.map((post) => ({
-        url: post.url,
-        slug: post.slug,
-        title: post.title,
-      })) || []
 
   const versions = [
     ...new Set(
-      allDocs
-        ?.map((doc) => doc.version)
+      availableVersions
         .sort((a, b) => compareSemanticVersions(a, b))
         .reverse() || []
     ),
   ]
+
+  const indexJSON = await getVersionIndex(params.version);
+  const titles = indexJSON?.map((item) => {
+    return { title: item.title, url: params.version + '/' + item.slug, slug: item.slug };
+  }) || [];
 
   return (
     <>
