@@ -28,8 +28,8 @@ const renderAccordionContent = (
 ) => {
   return (
     <ul className={styles.accordionMenu}>
-      {items?.map((item) => (
-        <li key={parentSlug + item.level + item.slug}>
+      {items?.map((item, index) => (
+        <li key={item.slug + '_' + index}>
           <Link
             href={item.slug === parentSlug ? item.slug : parentSlug + '#' + item.slug}
           >
