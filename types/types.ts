@@ -39,3 +39,15 @@ export type VersionDocType = {
   html: string
   anchorLinks: DocAnchorLinksType[]
 }
+
+export type MarkdownFileMetadata = {
+  path: string,
+  fileName: string,
+  ordinal: number,
+  slug: string,
+  title: string,
+  anchorLinks: Array<DocAnchorLinksType>,
+  children: Array<MarkdownFileMetadata>,
+  html: string
+}
+

@@ -53,6 +53,7 @@ function listContentsRecursively(directory, results = []) {
             const children = listContentsRecursively(itemPath)?.sort(sortByOrdinal);
             results.push({
                 slug: slugify(item.name),
+                path: itemPath,
                 title: item.name,
                 ordinal: sectionNumber,
                 children: children
@@ -66,8 +67,7 @@ function listContentsRecursively(directory, results = []) {
                     path: itemPath,
                     fileName: item.name,
                     ...data,
-                    slug,
-                    content: fileNameWithoutExtension
+                    slug
                 });
             }
         }

@@ -3,7 +3,7 @@ import path from 'path'
 import matter from 'gray-matter'
 import { mdToHtml, MERMAID_SNIPPET } from './customMarked'
 import { insertIdsToHeaders } from './markdownToHtml'
-import { DocAnchorLinksType, VersionDocType } from '@/types/types'
+import { DocAnchorLinksType, MarkdownFileMetadata, VersionDocType } from '@/types/types'
 
 export function slugify(input: string): string {
   return input
@@ -33,7 +33,7 @@ export function compileMarkdownFilesInDirectory(directoryPath: string): {
   anchorLinks: VersionDocType['anchorLinks']
 } {
   const files: string[] = fs.readdirSync(directoryPath)
-  let compiledHTML = ''
+  let markdown = ''
 
   for (const file of files) {
     if (file.endsWith('.md')) {
@@ -41,12 +41,10 @@ export function compileMarkdownFilesInDirectory(directoryPath: string): {
       const fileContent = fs.readFileSync(filePath, 'utf8')
 
       const { content } = matter(fileContent)
-      const html = compileMarkdownToHTML(content)
-
-      compiledHTML += html
+      markdown += content
     }
   }
-  const { html, anchorLinks } = insertIdsToHeaders(compiledHTML)
+  const { html, anchorLinks } = insertIdsToHeaders(markdown);
   return {
     html,
     anchorLinks,
@@ -141,7 +139,7 @@ export async function getVersionIndex(version: string) {
   if (!fs.existsSync(rootFolder) || !fs.statSync(rootFolder).isDirectory()) {
     return null;
   }
-  const allDocs = (await import('_content/docs/2.13.0/index.js')).default;
+  const allDocs = (await import(`_content/docs/${version}/index.js`)).default;
   return allDocs;
 }
 
@@ -187,7 +185,15 @@ export async function getMdFile(filepath: string) {
   }
 }
 
-export const readMarkdownFile = async function(filePath: string) {
-  const markdown = fs.readFileSync(filePath, 'utf8');
-  return markdown;
+export const readAndConcatMarkdownFiles = async function(parentItem: MarkdownFileMetadata) {
+
+  let markdownAll = '';
+  parentItem.children.forEach(element => {
+    const markdown = fs.readFileSync(element.path, 'utf8');
+    const { content } = matter(markdown);
+    markdownAll += content;
+  });
+
+  const compiled = compileMarkdownToHTML(markdownAll);
+  return compiled;
 };
