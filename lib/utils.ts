@@ -185,8 +185,12 @@ export async function getMdFile(filepath: string) {
   }
 }
 
-export const readAndConcatMarkdownFiles = async function(parentItem: MarkdownFileMetadata) {
+export const readMarkdownFile = async function(filePath: string) {
+  const markdown = fs.readFileSync(filePath, 'utf8');
+  return markdown;
+};
 
+export const readAndConcatMarkdownFiles = async function(parentItem: MarkdownFileMetadata) {
   let markdownAll = '';
   parentItem.children.forEach(element => {
     const markdown = fs.readFileSync(element.path, 'utf8');
