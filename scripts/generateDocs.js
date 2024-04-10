@@ -23,7 +23,7 @@ fs.cpSync(pathToDocumentationRepository, pathToVersionRoot, {
   preserveTimestamps: true,
   recursive: true,
   // Filter out git metadata so we don't get accidental git submodules
-  filter: (src) => !path.basename(src).startsWith('.git')
+  filter: (src) => !path.basename(src).startsWith('.git') && !path.basename(src).startsWith('node_modules')
 });
 console.log('Initialized docs for version ' + version);
 

@@ -28,7 +28,8 @@ export type DiscoverFeatureDataType = {
 export type DocAnchorLinksType = {
   level: string
   content: string
-  slug: string
+  slug: string,
+  sectionNumber: string
 }
 
 export type VersionDocType = {
@@ -43,7 +44,7 @@ export type VersionDocType = {
 export type MarkdownFileMetadata = {
   path: string,
   fileName: string,
-  ordinal: number,
+  ordinal: string,
   slug: string,
   title: string,
   anchorLinks: Array<DocAnchorLinksType>,

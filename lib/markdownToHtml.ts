@@ -1,3 +1,4 @@
+import { DocAnchorLinksType } from '@/types/types';
 import slugify from 'slugify';
 // import remarkGfm from 'remark-gfm'
 // import rehypeStringify from 'rehype-stringify'
@@ -17,35 +18,24 @@ import slugify from 'slugify';
 //   return insertIdsToHeaders(String(file))
 // }
 
-export const insertIdsToHeaders = (htmlString: string) => {
+export const insertIdsToHeaders = (htmlString: string, startingSectionNumber: string) => {
   const headerRegex = /<h([1-3])>(.*?)<\/h\1>/g
-  const anchorLinks: Array<{ level: string; content: string; slug: string }> =
+  const anchorLinks: Array<DocAnchorLinksType> =
     []
+  const sectionCounter = [parseInt(startingSectionNumber) - 1, 0, 0, 0, 0, 0];
+
   const newHtmlString = htmlString.replace(
     headerRegex,
     function (match: string, level: string, content: string) {
+      sectionCounter[parseInt(level) - 1]++;
       const slug = slugify(content)
-      anchorLinks.push({ level, content, slug })
-      return `<h${level} id="${slug}">${content}</h${level}>`
+      const sectionNumber = sectionCounter.slice(0, parseInt(level)).join('.');
+      anchorLinks.push({ level, content, slug, sectionNumber });
+      return `<h${level} id="${slug}">${sectionNumber} ${content}</h${level}>`
     }
   )
   return {
     html: newHtmlString,
     anchorLinks
   }
-}
-
-export const getAnchorLinks = (htmlString: string) => {
-  const headerRegex = /<h([1-6])>(.*?)<\/h\1>/g
-  const anchorLinks: Array<{ level: string; content: string; slug: string }> =
-    []
-  htmlString.replace(
-    headerRegex,
-    function (match: string, level: string, content: string) {
-      const slug = slugify(content)
-      anchorLinks.push({ level, content, slug })
-      return match
-    }
-  )
-  return anchorLinks
 }

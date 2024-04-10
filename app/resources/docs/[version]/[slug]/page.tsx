@@ -33,7 +33,7 @@ const renderAccordionContent = (
           <Link
             href={item.slug === parentSlug ? item.slug : parentSlug + '#' + item.slug}
           >
-            {item.content}
+            {item.sectionNumber} {item.content}
           </Link>
         </li>
       ))}
