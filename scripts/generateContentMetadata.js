@@ -9,30 +9,32 @@ const grayMatter = require('gray-matter');
 // eslint-disable-next-line @typescript-eslint/no-var-requires
 const { marked } = require('marked');
 
-function listFilesRecursively(directory, baseDirectory) {
-    const files = fs.readdirSync(directory);
+function listFilesRecursively(baseRelativePath, fileRelativePath) {
+    const fullPath = path.normalize(path.join(process.cwd(), fileRelativePath));
+    const files = fs.readdirSync(fullPath);
     let fileList = [];
 
     files.forEach(file => {
-        const filePath = path.join(directory, file);
-        const relativePath = path.relative(baseDirectory, filePath);
+        const filePath = path.join(fullPath, file);
+        const newRelativePath = path.join(fileRelativePath, file);
         const stats = fs.statSync(filePath);
+        const pathForSlug = fileRelativePath.slice(baseRelativePath.length);
         if (stats.isFile()) {
             const ext = path.extname(filePath);
             if (ext === '.md' || ext === '.mdx') {
                 const fileContent = fs.readFileSync(filePath, 'utf-8');
                 const { data } = grayMatter(fileContent);
-                const slug = slugify(relativePath);
+                const slug = slugify(pathForSlug + file);
                 const fileData = {
                     ...data,
-                    path: filePath,
+                    path: newRelativePath,
                     fileName: file,
                     slug
                 };
                 fileList.push(fileData);
             }
         } else if (stats.isDirectory()) {
-            fileList = fileList.concat(listFilesRecursively(filePath, baseDirectory));
+            fileList = fileList.concat(listFilesRecursively(baseRelativePath, newRelativePath));
         }
     });
 
@@ -50,7 +52,7 @@ function sortByDateDescending(files) {
 function saveToFile(filePath, data) {
     const sorted = sortByDateDescending(data);
     const fileName = 'index.js';
-    const fullPath = filePath + fileName;
+    const fullPath = path.normalize(path.join(process.cwd(), filePath, fileName));
     const jsContent = `const allPosts = ${JSON.stringify(sorted, null, 2)};\n\export default allPosts;`;
 
     fs.writeFile(fullPath, jsContent, (err) => {
@@ -64,7 +66,8 @@ function saveToFile(filePath, data) {
 
 function generateFaq(fileList) {
     fileList.forEach(file => {
-        const fileContent = fs.readFileSync(file.path, 'utf-8');
+        const fullPath = path.normalize(path.join(process.cwd(), file.path));
+        const fileContent = fs.readFileSync(fullPath, 'utf-8');
         const { content } = grayMatter(fileContent);
         const htmlContent = marked(content); // Parsitaan markdown HTML:ksi
 
@@ -83,15 +86,15 @@ function generateFaq(fileList) {
     });
 }
 
-const baseDirectoryBlogs = path.normalize(path.join(__dirname, '../_content/blog/'));
-const fileListBlogs = listFilesRecursively(baseDirectoryBlogs, baseDirectoryBlogs);
-saveToFile(baseDirectoryBlogs, fileListBlogs);
+const blogsBaseRelativePath = '/_content/blog/';
+const fileListBlogs = listFilesRecursively(blogsBaseRelativePath, blogsBaseRelativePath);
+saveToFile(blogsBaseRelativePath, fileListBlogs);
 
-const baseDirectoryCoordinators = path.normalize(path.join(__dirname, '../_content/coordinators/'));
-const fileListCoordinators = listFilesRecursively(baseDirectoryCoordinators, baseDirectoryCoordinators);
-saveToFile(baseDirectoryCoordinators, fileListCoordinators);
+const coordinatorsBaseRelativePath = '/_content/coordinators/';
+const fileListCoordinators = listFilesRecursively(coordinatorsBaseRelativePath, coordinatorsBaseRelativePath);
+saveToFile(coordinatorsBaseRelativePath, fileListCoordinators);
 
-const baseDirectoryFaq = path.normalize(path.join(__dirname, '../_content/faq/'));
-const fileListFaq = listFilesRecursively(baseDirectoryFaq, baseDirectoryFaq);
+const faqBaseRelativePath = '/_content/faq/';
+const fileListFaq = listFilesRecursively(faqBaseRelativePath, faqBaseRelativePath);
 generateFaq(fileListFaq);
-saveToFile(baseDirectoryFaq, fileListFaq);
+saveToFile(faqBaseRelativePath, fileListFaq);
