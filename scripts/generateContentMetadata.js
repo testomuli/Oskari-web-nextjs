@@ -66,7 +66,8 @@ function saveToFile(filePath, data) {
 
 function generateFaq(fileList) {
     fileList.forEach(file => {
-        const fileContent = fs.readFileSync(file.path, 'utf-8');
+        const fullPath = path.normalize(path.join(process.cwd(), file.path));
+        const fileContent = fs.readFileSync(fullPath, 'utf-8');
         const { content } = grayMatter(fileContent);
         const htmlContent = marked(content); // Parsitaan markdown HTML:ksi
 
@@ -88,15 +89,12 @@ function generateFaq(fileList) {
 const blogsBaseRelativePath = '/_content/blog/';
 const fileListBlogs = listFilesRecursively(blogsBaseRelativePath, blogsBaseRelativePath);
 saveToFile(blogsBaseRelativePath, fileListBlogs);
-/*
-const coordinatorsBaseRelativePath = '../_content/coordinators/';
-const baseDirectoryCoordinators = path.normalize(path.join(__dirname, coordinatorsBaseRelativePath));
-const fileListCoordinators = listFilesRecursively(baseDirectoryCoordinators, baseDirectoryCoordinators);
-saveToFile(baseDirectoryCoordinators, fileListCoordinators);
 
-const faqBaseRelativePath = '../_content/faq/';
-const baseDirectoryFaq = path.normalize(path.join(__dirname, faqBaseRelativePath));
-const fileListFaq = listFilesRecursively(baseDirectoryFaq, baseDirectoryFaq);
+const coordinatorsBaseRelativePath = '/_content/coordinators/';
+const fileListCoordinators = listFilesRecursively(coordinatorsBaseRelativePath, coordinatorsBaseRelativePath);
+saveToFile(coordinatorsBaseRelativePath, fileListCoordinators);
+
+const faqBaseRelativePath = '/_content/faq/';
+const fileListFaq = listFilesRecursively(faqBaseRelativePath, faqBaseRelativePath);
 generateFaq(fileListFaq);
-saveToFile(baseDirectoryFaq, fileListFaq);
-*/
+saveToFile(faqBaseRelativePath, fileListFaq);
