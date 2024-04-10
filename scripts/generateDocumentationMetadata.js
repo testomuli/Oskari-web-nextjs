@@ -82,11 +82,11 @@ function processVersions(fullPath, relativeDir) {
     const subdirectories = getSubdirectories(fullPath);
 
     for (const version of subdirectories) {
-        const versionPath = path.join(fullPath, version);
-        relativeDir = path.join(relativeDir, version);
-        const versionContent = listContentsRecursively(versionPath, relativeDir);
-        fs.writeFileSync(path.join(versionPath, 'index.js'), `const allDocs = ${JSON.stringify(versionContent, null, 2)};\n\nexport default allDocs;`);
-        console.log('Wrote file ' + path.join(versionPath, 'index.js'));
+        const versionFullPath = path.join(fullPath, version);
+        const versionRelativePath = path.join(relativeDir, version);
+        const versionContent = listContentsRecursively(versionFullPath, versionRelativePath);
+        fs.writeFileSync(path.join(versionFullPath, 'index.js'), `const allDocs = ${JSON.stringify(versionContent, null, 2)};\n\nexport default allDocs;`);
+        console.log('Wrote file ' + path.join(versionFullPath, 'index.js'));
     }
 }
 
