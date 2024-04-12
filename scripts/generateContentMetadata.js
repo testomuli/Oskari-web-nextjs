@@ -1,13 +1,10 @@
-// eslint-disable-next-line @typescript-eslint/no-var-requires
+/*eslint @typescript-eslint/no-var-requires: 0*/
 const fs = require('fs');
-// eslint-disable-next-line @typescript-eslint/no-var-requires
 const path = require('path');
-// eslint-disable-next-line @typescript-eslint/no-var-requires
 const slugify = require('slugify');
-// eslint-disable-next-line @typescript-eslint/no-var-requires
 const grayMatter = require('gray-matter');
-// eslint-disable-next-line @typescript-eslint/no-var-requires
 const { marked } = require('marked');
+const syncResources = require('./syncResourcesFolder');
 
 function listFilesRecursively(baseRelativePath, fileRelativePath) {
     const fullPath = path.normalize(path.join(process.cwd(), fileRelativePath));
@@ -87,8 +84,10 @@ function generateFaq(fileList) {
 }
 
 const blogsBaseRelativePath = '/_content/blog/';
+const blogsResourcesDestinationRelativePath = '/public/assets/blog';
 const fileListBlogs = listFilesRecursively(blogsBaseRelativePath, blogsBaseRelativePath);
 saveToFile(blogsBaseRelativePath, fileListBlogs);
+syncResources(blogsBaseRelativePath, blogsResourcesDestinationRelativePath);
 
 const coordinatorsBaseRelativePath = '/_content/coordinators/';
 const fileListCoordinators = listFilesRecursively(coordinatorsBaseRelativePath, coordinatorsBaseRelativePath);

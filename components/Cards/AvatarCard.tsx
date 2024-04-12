@@ -7,17 +7,19 @@ const AvatarCard = async ({
   title,
   avatar,
   filePath,
-  content
+  content,
+  resourcesPath
 }: {
   name: string
   title?: string
   avatar: string
   filePath?: string
   content?: string
+  resourcesPath?: string
 }) => {
   let markdown = null;
   if (filePath) {
-    markdown = await readMarkdownFile(filePath);
+    markdown = await readMarkdownFile(filePath, resourcesPath);
   }
   return (
     <div className='flex flex-col items-center justify-start text-left w-[300px] aspect-square'>

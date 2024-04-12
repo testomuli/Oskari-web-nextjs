@@ -2,7 +2,7 @@ import fs from 'fs'
 import path from 'path'
 import matter from 'gray-matter'
 import { MERMAID_SNIPPET, mdToHtml } from './customMarked'
-import { insertIdsToHeaders } from './markdownToHtml'
+import { insertIdsToHeaders, updateMarkdownImagePaths } from './markdownToHtml'
 import { MarkdownFileMetadata, VersionDocType } from '@/types/types'
 
 export function slugify(input: string): string {
@@ -37,9 +37,11 @@ export async function getVersionIndex(version: string) {
   return allDocs;
 }
 
-export const readMarkdownFile = async function(filePath: string) {
+
+export const readMarkdownFile = async function(filePath: string, imagesPath: string = '') {
   const fullPath = path.normalize(path.join(process.cwd(), filePath));
-  const markdown = fs.readFileSync(fullPath, 'utf8');
+  let markdown = fs.readFileSync(fullPath, 'utf8');
+  markdown = updateMarkdownImagePaths(markdown, imagesPath);
   return markdown;
 };
 

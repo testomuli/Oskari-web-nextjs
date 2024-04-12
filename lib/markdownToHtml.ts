@@ -20,8 +20,7 @@ import slugify from 'slugify';
 
 export const insertIdsToHeaders = (htmlString: string, startingSectionNumber: string) => {
   const headerRegex = /<h([1-3])>(.*?)<\/h\1>/g
-  const anchorLinks: Array<DocAnchorLinksType> =
-    []
+  const anchorLinks: Array<DocAnchorLinksType> = []
   const sectionCounter = [parseInt(startingSectionNumber) - 1, 0, 0, 0, 0, 0];
 
   const newHtmlString = htmlString.replace(
@@ -38,4 +37,19 @@ export const insertIdsToHeaders = (htmlString: string, startingSectionNumber: st
     html: newHtmlString,
     anchorLinks
   }
+}
+
+export const updateMarkdownImagePaths = (markdownString: string, staticPath: string = '') => {
+  const regex = /!\[(.*?)\]\((.*?)\)/g;
+
+  function replaceFunc(match: string, altText: string, imagePath: string) {
+    if (imagePath.startsWith('/')) {
+      imagePath = imagePath.substring(1);
+    }
+    const updatedImagePath = staticPath + imagePath;
+    return `![${altText}](${updatedImagePath})`;
+  }
+
+  const result = markdownString.replace(regex, replaceFunc);
+  return result;
 }
