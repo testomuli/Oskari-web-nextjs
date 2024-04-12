@@ -35,9 +35,9 @@ Oskari is awesome and it is hoped that it will be better utilised in Statistics 
 
 In the case of large datasets, developing data standards to be interoperable with geospatial information technologies is a big challenge. Fortunately, that is also happening, so we are optimistic about the future!
 
-![statistics oskari](/assets/images/blog/statisticsfi_oskari.png)
+![statistics oskari](/resources/statisticsfi_oskari.png)
 
-![statistics oskari 2](/assets/images/blog/statisticsfi_oskari2.png)
+![statistics oskari 2](/resources/statisticsfi_oskari2.png)
 
 More information:
 Rina Tammisto

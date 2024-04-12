@@ -34,17 +34,17 @@ The styling abilities are a bit limited. But you can adjust the style also after
 
 We used QGIS and QuickOSM tool to fetch coffeeshops from the city centre of Turku. At the moment Oskari allows datasets to be imported in zip-format and it supports ESRI .shp, .GPX, Mapinfo .mif and Google .KML-formats.
 
-![Datasets](/assets/images/blog/owndatasets.png)
+![Datasets](/resources/owndatasets.png)
 
-![Edit own data](/assets/images/blog/edit_owndata.png)
+![Edit own data](/resources/edit_owndata.png)
 
 ## 3. Publish the map
 
 - Click on **Map Publishing** and give the map a name and the URL where you want to post it
 
-![Publishing](/assets/images/blog/publishing.png)
+![Publishing](/resources/publishing.png)
 
-![Create map](/assets/images/blog/embedded_maps_create.png)
+![Create map](/resources/embedded_maps_create.png)
 
 - Adjust the needed elements and tools to the map
 - Click publish and copy paste the iframe code to your website.

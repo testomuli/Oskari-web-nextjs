@@ -2,7 +2,7 @@
 title: Finnish Food Authority
 excerpt: Several mapping tools produced by the Food Authority use Oskari as a map component.One of these services is Kalastusrajoitus.fi. The service provides information on which areas are outside general fishing rights.
 date: 2023-12-20 13:00:00 +0200
-image: /assets/images/blog/Ruokavirasto.png
+image: /assets/blog/resources/Ruokavirasto.png
 tags:
   - use case
 ---
