@@ -1,15 +1,12 @@
-// eslint-disable-next-line @typescript-eslint/no-var-requires
+/*eslint @typescript-eslint/no-var-requires: 0*/
 const fs = require('fs');
-// eslint-disable-next-line @typescript-eslint/no-var-requires
 const path = require('path');
-// eslint-disable-next-line @typescript-eslint/no-var-requires
 const slugify = require('slugify');
-// eslint-disable-next-line @typescript-eslint/no-var-requires
 const grayMatter = require('gray-matter');
-// eslint-disable-next-line @typescript-eslint/no-var-requires
 const { marked } = require('marked');
+const syncResources = require('./syncResourcesFolder');
 
-function listFilesRecursively(baseRelativePath, fileRelativePath) {
+function listFilesRecursively(baseRelativePath, fileRelativePath, resourcesRuntimePath) {
     const fullPath = path.normalize(path.join(process.cwd(), fileRelativePath));
     const files = fs.readdirSync(fullPath);
     let fileList = [];
@@ -23,7 +20,12 @@ function listFilesRecursively(baseRelativePath, fileRelativePath) {
             const ext = path.extname(filePath);
             if (ext === '.md' || ext === '.mdx') {
                 const fileContent = fs.readFileSync(filePath, 'utf-8');
-                const { data } = grayMatter(fileContent);
+                let { data, content } = grayMatter(fileContent);
+
+                if (resourcesRuntimePath) {
+                    data = replaceImagePaths(data, content, resourcesRuntimePath);
+                }
+
                 const slug = slugify(pathForSlug + file);
                 const fileData = {
                     ...data,
@@ -39,6 +41,23 @@ function listFilesRecursively(baseRelativePath, fileRelativePath) {
     });
 
     return fileList;
+}
+
+function replaceImagePaths(data, content, resourcesRuntimePath) {
+    const imagesFromPost = [];
+    const imagesRegex = /!\[.*?\]\((.*?)\)/g;
+    const resourcesRegex = /^.*?\/resources\//;
+    content.replace(imagesRegex, (match, src) => {
+        const runtimePath = src.replace(resourcesRegex, resourcesRuntimePath);
+        imagesFromPost.push(runtimePath)
+        return ''
+    })
+    data.imagesFromPost = imagesFromPost;
+
+    if (data?.image) {
+        data.image = data.image.replace(resourcesRegex, resourcesRuntimePath);
+    }
+    return data;
 }
 
 function sortByDateDescending(files) {
@@ -87,8 +106,10 @@ function generateFaq(fileList) {
 }
 
 const blogsBaseRelativePath = '/_content/blog/';
-const fileListBlogs = listFilesRecursively(blogsBaseRelativePath, blogsBaseRelativePath);
+const blogResourcesRuntimePath = '/assets/blog/resources/';
+const fileListBlogs = listFilesRecursively(blogsBaseRelativePath, blogsBaseRelativePath, blogResourcesRuntimePath);
 saveToFile(blogsBaseRelativePath, fileListBlogs);
+syncResources(blogsBaseRelativePath, blogResourcesRuntimePath);
 
 const coordinatorsBaseRelativePath = '/_content/coordinators/';
 const fileListCoordinators = listFilesRecursively(coordinatorsBaseRelativePath, coordinatorsBaseRelativePath);

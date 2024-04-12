@@ -3,7 +3,7 @@ layout: ''
 title: Southwest Finland Map Service
 excerpt: The Southwest Finland Map Service, is run by several organisations in the region, City of Turku being one of them.
 date: 2023-12-01 13:00:00 +0200
-image: /assets/images/blog/Lounaistieto.jpg
+image: /resources/Lounaistieto.jpg
 tags:
   - Use case
 ---

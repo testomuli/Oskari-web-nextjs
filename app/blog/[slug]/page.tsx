@@ -31,7 +31,10 @@ export default async function SingleBlogPage({
         return <Error text='No blog posts found' code='404' />
     }
 
-    const markdown = await readMarkdownFile(post.path);
+    // should we have some dynamic content at some point, it would reside here.
+    // TODO: might wanna rethink the path/structure, if we wanna have excels or pdfs or whatnot in resources...?
+    const blogsResourcesPath = '/assets/blog/';
+    const markdown = await readMarkdownFile(post.path, blogsResourcesPath);
     return (
         <Layout heroSmall heroTitle='Blog'>
         <div className='container--content'>

@@ -3,7 +3,7 @@ layout: ''
 title: The production status map
 excerpt: The production status map provides municipal and organisational customers in particular with up-to-date information on the progress of aerial photography, laser scanning and the updating of terrain data, for example.
 date: 2023-12-01 13:00:00 +0200
-image: /assets/images/blog/Tuotannon tilannekartat.jpg
+image: /resources/Tuotannon tilannekartat.jpg
 tags:
   - Use case
 ---

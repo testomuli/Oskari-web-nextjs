@@ -38,4 +38,6 @@ next-env.d.ts
 .contentlayer
 
 # other generated stuff
+/_content/*/index.js
 /_content/docs
+/public/assets/blog

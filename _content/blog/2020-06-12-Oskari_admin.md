@@ -20,7 +20,7 @@ Prerequisities for administrators: you have to have some knowledge on OGC standa
 
 ## Supported map layer types
 
-![Admin layer](/assets/images/blog/layer_admin.png)
+![Admin layer](/resources/layer_admin.png)
 
 Oskari supports different standard interfaces like Web Map Service, Web Map Tile Service, Web Feature Service.
 And you can also add layers from Bing or services providing Mapbox vector tiles or Cesium 3D-tiles.
@@ -33,7 +33,7 @@ Oskari is originally created for geoportal purposes, so all the datasets should 
 
 When you are logged in you can add data providers, themes and data thourgh map layers window by clicking the + button.
 
-![Admin button maplayers](/assets/images/blog/admin_button_maplayers.png)
+![Admin button maplayers](/resources/admin_button_maplayers.png)
 
 ## 2. Adding a basic information from a WMS/WFS layer
 
@@ -42,7 +42,7 @@ Test data used in the video:
 - [WMS from SEDAC](https://sedac.ciesin.columbia.edu/geoserver/wms)
 - [WFS from Väylävirasto](https://julkinen.vayla.fi/inspirepalvelu/avoin/wfs?request=getcapabilities)
 
-![Admin layer 2](/assets/images/blog/layer_admin2.png)
+![Admin layer 2](/resources/layer_admin2.png)
 
 1. Add an URL link for your WMS/WFS and passwords if needed
 2. Select the correct version for the WMS/WFS
@@ -64,7 +64,7 @@ For WFS data you can have more options:
 - Style definitions with JSON: own styling for WFS-datasets
 - Feature highlighting and tooltip with JSON: own styling
 
-![WFS visualization](/assets/images/blog/visualization_WFS.png)
+![WFS visualization](/resources/visualization_WFS.png)
 
 ## 4. Additional information
 
@@ -75,7 +75,7 @@ In the next sheet, you can assign some additional information. For WMS and WFS t
 - For WMS layers you can add an other legend URL, if you don't want to use the dataproviders own legend
 - Real time layer for datasets that have data that is updated on the map frequently (like moving busses or weather data)
 
-![Additional information](/assets/images/blog/additional_information.png)
+![Additional information](/resources/additional_information.png)
 
 ## 5. User rights
 
@@ -86,7 +86,7 @@ You can assign role-based access rights for your map layer for adminstrators, gu
 - **Publish:** you can also add restrictions for using the layer in question in published maps
 - **Download:** this possibility is actually used only for WFS data, it allows downloading the attribute data in CSV or Excel format.
 
-![User rights](/assets/images/blog/user_rights.png)
+![User rights](/resources/user_rights.png)
 
 ## 6. Finally: Add the layer to your map
 
@@ -97,7 +97,7 @@ And check if everything is ok. You can always edit the layer information from Ma
 In the video we tested also how to add 3D data from Cesium to the map.
 You need to sign in to [Cesium](https://cesium.com/) and find e.g. OpenStreetMap Buildings asset id and you need a token.
 
-![Cesium](/assets/images/blog/cesium.png)
+![Cesium](/resources/cesium.png)
 
 1. Add a new layer and choose Cesium
 2. Add the Asset ID
