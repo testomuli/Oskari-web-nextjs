@@ -30,7 +30,6 @@ function copyResources(source, destination) {
         const stats = fs.statSync(sourceFilePath);
         if (stats.isFile()) {
             copyFileSync(sourceFilePath, destinationFilePath);
-            console.log(`Copied file: ${sourceFilePath} to ${destinationFilePath}`);
         } else if (stats.isDirectory()) {
             if (!existsSync(destinationFilePath)) {
                 mkdirSync(destinationFilePath);

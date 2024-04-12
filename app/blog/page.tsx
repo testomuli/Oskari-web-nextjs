@@ -13,10 +13,13 @@ export default function BlogsPage() {
   const searchParams = useSearchParams()!
 
   const posts = allPosts.map((post) => {
+      const image = post?.image ?
+        post.image : (post?.imagesFromPost && post.imagesFromPost.length) > 0 ?
+          post?.imagesFromPost[0] : null;
       const item = {
         title: post.title || '',
         date: new Date(post.date),
-        image: post.image || '',
+        image: image,
         description: post.excerpt,
         href: 'blog/' + post.slug,
         tags: post.tags,

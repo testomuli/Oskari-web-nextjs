@@ -33,7 +33,7 @@ export default async function SingleBlogPage({
 
     // should we have some dynamic content at some point, it would reside here.
     // TODO: might wanna rethink the path/structure, if we wanna have excels or pdfs or whatnot in resources...?
-    const blogsResourcesPath = '/assets/blog/resources/';
+    const blogsResourcesPath = '/assets/blog/';
     const markdown = await readMarkdownFile(post.path, blogsResourcesPath);
     return (
         <Layout heroSmall heroTitle='Blog'>
