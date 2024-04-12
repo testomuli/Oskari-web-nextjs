@@ -2,7 +2,7 @@
 title: Information service Liiteri
 excerpt: Liiteri is an information service focusing on the living environment and is governed by Finnish Environment Institute. Geographical information and statistics about the built environment and land use planning have been gathered in Liiteri.
 date: 2023-12-20 13:00:00 +0200
-image: /assets/blog/resources/SYKE_Liiteri.png
+image: /resources/SYKE_Liiteri.png
 tags:
   - use case
 ---

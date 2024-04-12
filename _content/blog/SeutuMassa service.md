@@ -3,7 +3,7 @@ layout: ''
 title: SeutuMassa service
 excerpt: SeutuMassa is a tool for managing land masses.SeutuMassa is run by Helsinki Region Environmental Services HSY.
 date: 2023-12-01 13:00:00 +0200
-image: /assets/blog/resources/HSY_SeutuMAssa.jpg
+image: /resources/HSY_SeutuMAssa.jpg
 tags:
   - Use case
 ---

@@ -3,7 +3,7 @@ layout: ''
 title: Paikkatietoikkuna
 excerpt: Paikkatietoikkuna is the national geoportal presenting spatial data and related services from different data producers. Paikkatietoikkuna is an important part of Finland's implementation of Inspire.
 date: 2023-12-01 13:00:00 +0200
-image: /assets/blog/resources/Paikkatietoikkuna.jpg
+image: /resources/Paikkatietoikkuna.jpg
 tags:
   - Use case
 ---

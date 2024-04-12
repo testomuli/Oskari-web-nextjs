@@ -3,7 +3,7 @@ layout: ''
 title: Karttapaikka
 excerpt: The service provides access to the Land Survey of Finland's cadastral maps, aerial photographs and background maps.
 date: 2023-12-01 13:00:00 +0200
-image: /assets/blog/resources/Karttapaikka.jpg
+image: /resources/Karttapaikka.jpg
 tags:
   - Use case
 ---

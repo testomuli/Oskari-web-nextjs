@@ -2,7 +2,7 @@
 title: Arctic SDI geoportal
 excerpt: The Arctic SDI Geoportal joint effort aims at creating a spatial data infrastructure for the Arctic region. It’s a cooperation network of National mapping agencies in Norway, Denmark, Sweden, Finland, Iceland, Canada and USA.
 date: 2023-12-01 13:00:00 +0200
-image: /assets/blog/resources/ArcticSDI.jpg
+image: /resources/ArcticSDI.jpg
 tags:
   - use case
 ---
