@@ -46,16 +46,22 @@ function listFilesRecursively(baseRelativePath, fileRelativePath, resourcesRunti
 function replaceImagePaths(data, content, resourcesRuntimePath) {
     const imagesFromPost = [];
     const imagesRegex = /!\[.*?\]\((.*?)\)/g;
-    const resourcesRegex = /^.*?\/resources\//;
     content.replace(imagesRegex, (match, src) => {
-        const runtimePath = src.replace(resourcesRegex, resourcesRuntimePath);
+        if (src.startsWith('/')) {
+            src = src.substring(1);
+        }
+
+        const runtimePath = resourcesRuntimePath + src;
         imagesFromPost.push(runtimePath)
         return ''
     })
     data.imagesFromPost = imagesFromPost;
 
     if (data?.image) {
-        data.image = data.image.replace(resourcesRegex, resourcesRuntimePath);
+        if (data.image.startsWith('/')) {
+            data.image = data.image.substring(1);
+        }
+        data.image = resourcesRuntimePath + data.image;
     }
     return data;
 }
@@ -106,10 +112,11 @@ function generateFaq(fileList) {
 }
 
 const blogsBaseRelativePath = '/_content/blog/';
-const blogResourcesRuntimePath = '/assets/blog/resources/';
+const blogResourcesCopyPath = '/public/assets/blog/';
+const blogResourcesRuntimePath = '/assets/blog/';
 const fileListBlogs = listFilesRecursively(blogsBaseRelativePath, blogsBaseRelativePath, blogResourcesRuntimePath);
 saveToFile(blogsBaseRelativePath, fileListBlogs);
-syncResources(blogsBaseRelativePath, blogResourcesRuntimePath);
+syncResources(blogsBaseRelativePath, blogResourcesCopyPath);
 
 const coordinatorsBaseRelativePath = '/_content/coordinators/';
 const fileListCoordinators = listFilesRecursively(coordinatorsBaseRelativePath, coordinatorsBaseRelativePath);
