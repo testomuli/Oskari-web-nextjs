@@ -41,3 +41,4 @@ next-env.d.ts
 /_content/*/index.js
 /_content/docs
 /public/assets/blog
+/public/assets/docs

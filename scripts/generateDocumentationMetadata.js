@@ -1,11 +1,9 @@
-// eslint-disable-next-line @typescript-eslint/no-var-requires
+/*eslint @typescript-eslint/no-var-requires: 0*/
 const fs = require('fs');
-// eslint-disable-next-line @typescript-eslint/no-var-requires
 const path = require('path');
-// eslint-disable-next-line @typescript-eslint/no-var-requires
 const grayMatter = require('gray-matter');
-// eslint-disable-next-line @typescript-eslint/no-var-requires
 const slugify = require('slugify');
+const syncResources = require('./syncResourcesFolder');
 
 function getSubdirectories(rootDir) {
     return fs.readdirSync(rootDir, { withFileTypes: true })
@@ -49,7 +47,7 @@ function listContentsRecursively(fullPath, docsRelativePath, results = []) {
     filesAndDirectories.forEach(item => {
         const itemPath = path.join(fullPath, item.name);
         const itemRelativePath = path.join(docsRelativePath, item.name);
-        if (item.isDirectory()) {
+        if (item.isDirectory() && item.name !== 'resources') {
             const sectionNumber = path.basename(itemPath).split(' ')[0];
             const children = listContentsRecursively(itemPath, itemRelativePath)?.sort(sortByOrdinal);
             results.push({
@@ -90,6 +88,14 @@ function processVersions(fullPath, relativeDir) {
     }
 }
 
+function syncResourcesByVersion(resourcesCopyPath, resourcesRuntimePath) {
+    const subdirectories = getSubdirectories(fullPath);
+
+    for (const version of subdirectories) {
+        syncResources(resourcesCopyPath + version, resourcesRuntimePath + version);
+    }
+}
+
 function generateDocumentationMetadata(fullPath) {
     const subdirectories = getSubdirectories(fullPath);
     const sortedVersions = subdirectories.sort((a, b) => parseFloat(a) - parseFloat(b));
@@ -97,8 +103,12 @@ function generateDocumentationMetadata(fullPath) {
     fs.writeFileSync(path.join(fullPath, 'index.js'), indexContent);
 }
 
-const docsRelativeDir = './_content/docs';
+const docsRelativeDir = './_content/docs/';
+
 const fullPath = path.normalize(path.join(process.cwd(), docsRelativeDir));
 console.log('Generating documentation metadata for folder ', docsRelativeDir);
 generateDocumentationMetadata(fullPath);
 processVersions(fullPath, docsRelativeDir);
+
+const resourcesCopyPath = '/public/assets/docs/';
+syncResourcesByVersion(docsRelativeDir, resourcesCopyPath);

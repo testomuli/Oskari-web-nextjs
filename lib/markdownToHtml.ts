@@ -39,15 +39,13 @@ export const insertIdsToHeaders = (htmlString: string, startingSectionNumber: st
   }
 }
 
-export const updateMarkdownImagePaths = (markdownString: string, imagesPath: string = '') => {
+export const updateMarkdownImagePaths = (markdownString: string, imagesRuntimePath: string = '') => {
   const regex = /!\[(.*?)\]\((.*?)\)/g;
 
   function replaceFunc(match: string, altText: string, imagePath: string) {
-    if (imagePath.startsWith('/')) {
-      imagePath = imagePath.substring(1);
-    }
-    const updatedImagePath = imagesPath + imagePath;
-    return `![${altText}](${updatedImagePath})`;
+    const pathStartRegex = /^.*?\/resources\//;
+    const replacedImagePath = imagePath.replace(pathStartRegex, imagesRuntimePath);
+    return `![${altText}](${replacedImagePath})`;
   }
 
   const result = markdownString.replace(regex, replaceFunc);
