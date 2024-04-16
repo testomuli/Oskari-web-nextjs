@@ -51,12 +51,13 @@ export default async function SingleDocPage({
   const activeSection = indexJSON?.find((item: MarkdownFileMetadata) => item.slug === params.slug);
   const path = activeSection?.children[0].path;
 
+  const imagesRuntimePath = '/assets/docs/' + params.version + '/resources/';
   if (!activeSection || !path) {
     return <Error text='No documents found' code='404' />;
   }
 
   await indexJSON.forEach(async (element: MarkdownFileMetadata) => {
-    const { html, anchorLinks } = await readAndConcatMarkdownFiles(element);
+    const { html, anchorLinks } = await readAndConcatMarkdownFiles(element, imagesRuntimePath);
     element.anchorLinks = anchorLinks;
     element.html = html;
   });

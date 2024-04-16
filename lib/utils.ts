@@ -45,7 +45,7 @@ export const readMarkdownFile = async function(filePath: string, imagesPath: str
   return markdown;
 };
 
-export const readAndConcatMarkdownFiles = async function(parentItem: MarkdownFileMetadata) {
+export const readAndConcatMarkdownFiles = async function(parentItem: MarkdownFileMetadata, imagesPath: string = '') {
   let markdownAll = '';
   parentItem.children.forEach(element => {
     const cwdPath = path.resolve(process.cwd());
@@ -54,6 +54,8 @@ export const readAndConcatMarkdownFiles = async function(parentItem: MarkdownFil
     const { content } = matter(markdown);
     markdownAll += content;
   });
+
+  markdownAll = updateMarkdownImagePaths(markdownAll, imagesPath);
 
   const compiled = compileMarkdownToHTML(markdownAll, parentItem.ordinal);
   // inject script to make mermaid js work its magic
