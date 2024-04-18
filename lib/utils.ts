@@ -37,7 +37,6 @@ export async function getVersionIndex(version: string) {
   return allDocs;
 }
 
-
 export const readMarkdownFile = async function(filePath: string, imagesPath: string = '') {
   const fullPath = path.normalize(path.join(process.cwd(), filePath));
   let markdown = fs.readFileSync(fullPath, 'utf8');
@@ -73,3 +72,11 @@ export const readAndConcatMarkdownFiles = async function(parentItem: MarkdownFil
 
   return compiled;
 };
+
+export const getApiChangeLog = async function(version: string = 'latest') {
+
+  const filePath = `_content/api/versions/${version}/CHANGELOG.html`;
+  const fullPath = path.normalize(path.join(process.cwd(), filePath));
+  const html = fs.readFileSync(fullPath, 'utf8');
+  return html;
+}

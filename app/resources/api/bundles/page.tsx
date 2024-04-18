@@ -2,6 +2,8 @@
 import VersionSidebar from '@/components/VersionSidebar';
 import { compareSemanticVersions } from '@/utils/misc';
 import availableVersions from '_content/api/versions'
+import ApiDocChangeLog from '../components/ApiDocChangeLog';
+import Layout from '../../docs/layout';
 export default function BundlesMainPage() {
   const versions = [
     ...new Set(
@@ -9,19 +11,12 @@ export default function BundlesMainPage() {
         .sort((a, b) => compareSemanticVersions(a, b))
         .reverse()
     ),
-  ]
-  return <>
-    <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
-      <VersionSidebar selectedVersion='' versions={versions} baseHref='/resources/api/bundles/' />
+  ];
+
+  return <Layout heroTitle='Oskari API documentation'>
+    <VersionSidebar selectedVersion='latest' versions={versions} baseHref='/resources/api/bundles/' />
+    <div style={{overflow: 'hidden', wordWrap:'break-word'}}>
+      <ApiDocChangeLog/>
     </div>
-    <div
-      style={{
-        display: 'grid',
-        gridTemplateColumns: 'repeat(auto-fill, minmax(250px, 1fr))',
-        gap: '2rem',
-        marginTop: 27,
-      }}>
-        temp
-      </div>
-  </>;
+  </Layout>;
 }
