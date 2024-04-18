@@ -12,11 +12,13 @@ export default async function VersionSidebar({
   subTitle,
   subTitleLinks = [],
   versions,
+  baseHref ='/resources/docs'
 }: {
   selectedVersion: string
   subTitle?: string
   subTitleLinks?: subtitleLinks[]
-  versions?: string[]
+  versions?: string[],
+  baseHref?: string
 }) {
   const versionsWithoutSelected =
     versions?.filter((version) => selectedVersion !== version) || []
@@ -25,7 +27,7 @@ export default async function VersionSidebar({
     <ul className={styles.accordionMenu}>
       {items?.map((item) => (
         <li key={item}>
-          <Link href={`/resources/docs/${item}`}>{item}</Link>
+          <Link href={`${baseHref}${item}`}>{item}</Link>
         </li>
       ))}
     </ul>
