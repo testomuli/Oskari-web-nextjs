@@ -1,0 +1,137 @@
+<h1 id="coordinatetool">coordinatetool</h1>
+<h2 id="description">Description</h2>
+<p>This bundle provides a plugin (Oskari.mapframework.bundle.coordinatetool.plugin.CoordinateToolPlugin) for mapmodule that can:</p>
+<ul>
+<li>shows coordinates on mouse location</li>
+<li>shows coordinates on mouse map click</li>
+<li>center map to given coordinates</li>
+<li>add marker with given coordinates</li>
+<li>as optional functionality coordinate transformation form one coordinate system to another can be added to the coordinatetool (configuration is needed)</li>
+</ul>
+<h2 id="screenshot">Screenshot</h2>
+<p><img src="/apires/latest/mapping/coordinatetool/coordinatetool.png" alt="screenshot">
+<img src="/apires/latest/mapping/coordinatetool/coordinateToolNew.png" alt="screenshot"></p>
+<h2 id="bundle-configuration">Bundle configuration</h2>
+<p>No configuration is required, but there is few possible configurations:</p>
+<ul>
+<li><p>Setting <code>projectionShowFormat</code> to configure how different projections are showed in textfields. This setting supports all projections or projection specific configuration. In both of these <code>metric</code> property define decimal plates (if format is <code>degrees</code> then this seconds is rounded to wanted decimals), <code>format</code> property define showed format (<code>degrees</code> or <code>metric</code>). If not setted then metric format and 0 decimals are default. if projectionShowFormat not defined then using map units and this decimals.</p>
+<ul>
+<li>Option to change all projections formats<pre><code>{
+    &quot;format&quot;: &quot;degrees&quot;,
+    &quot;decimals&quot;: 4
+}
+</code></pre>
+</li>
+<li>Option to different projections<pre><code>{
+    &quot;EPSG:4258&quot;: {
+        &quot;format&quot;: &quot;degrees&quot;,
+        &quot;decimals&quot;: 4
+      },
+    &quot;EPSG:3067&quot;: {
+        &quot;format&quot;: &quot;metric&quot;,
+        &quot;decimals&quot;: 0
+    }
+}
+</code></pre>
+</li>
+<li>Or you can also define defaults and override some projections. Projection defination overrides defaults.<pre><code>{
+    &quot;format&quot;: &quot;degrees&quot;,
+    &quot;decimals&quot;: 4,
+    &quot;EPSG:3067&quot;: {
+        &quot;format&quot;: &quot;metric&quot;,
+        &quot;decimals&quot;: 0
+    }
+}
+</code></pre>
+</li>
+</ul>
+</li>
+<li><p>Option to configure coordinatetool to show reverse geocode for the current position
+( bundle config in the view in portti_view_bundle_seq table)</p>
+<pre><code>{
+    &quot;isReverseGeocode&quot;: true,
+    &quot;reverseGeocodingIds&quot;: &quot;WHAT3WORDS_CHANNEL&quot;
+}
+</code></pre>
+</li>
+<li><p>Option to configure XY reference system changing functions  (CRS code and view uuid,..)</p>
+<pre><code>{
+    &quot;supportedProjections&quot;: {
+        &quot;EPSG:3035&quot;: &quot;482333d1-f0d0-4410-aa65-60db4e45b853&quot;,
+        &quot;EPSG:3857&quot;: &quot;1d65e6cc-4ac7-4dab-8a94-76b3dd632307&quot;
+    }
+}
+</code></pre>
+</li>
+<li><p>Option to configure coordinate transformation tool:</p>
+<pre><code>{
+    &quot;supportedProjections&quot;: [
+      &quot;EPSG:3067&quot;, &quot;NLSFI:etrs_gk&quot;, &quot;NLSFI:ykj&quot;,
+      &quot;EPSG:4258&quot;, &quot;LATLON:kkj&quot;, &quot;EPSG:3046&quot;,
+      &quot;EPSG:3048&quot;, &quot;EPSG:3873&quot;, &quot;EPSG:3874&quot;,
+      &quot;EPSG:3875&quot;, &quot;EPSG:3876&quot;, &quot;EPSG:3877&quot;,
+      &quot;EPSG:3878&quot;, &quot;EPSG:3879&quot;, &quot;EPSG:3880&quot;,
+      &quot;EPSG:3881&quot;, &quot;EPSG:3882&quot;, &quot;EPSG:3883&quot;,
+      &quot;EPSG:3884&quot;, &quot;EPSG:3885&quot;
+    ]
+}
+</code></pre>
+</li>
+<li><p>Option to configure XY-icon not visible (for example coordinatetools is used in published map and it&#39;s opened/closed by RPC request):</p>
+<pre><code>{
+  &quot;noUI&quot;: true
+}
+</code></pre>
+</li>
+<li><p>Option to configure to show emergency call message:</p>
+<pre><code>{
+  &quot;showEmergencyCallMessage&quot; : true
+}
+</code></pre>
+</li>
+</ul>
+<h2 id="requests-the-bundle-sends-out">Requests the bundle sends out</h2>
+<table class="table">
+  <tr>
+    <th> Request </th><th> Where/why it's used</th>
+  </tr>
+  <tr>
+    <td>`MapMoveRequest`</td><td> Move map to selected coordinates.</td>
+  </tr>
+</table>
+
+
+<h2 id="events-the-bundle-listens-to">Events the bundle listens to</h2>
+<table class="table">
+  <tr>
+    <th>Event</th><th>How does the bundle react</th>
+  </tr>
+  <tr>
+    <td>`MouseHoverEvent`</td><td>Updates the coordinates gotten from event to the UI.</td>
+  </tr>
+  <tr>
+    <td>`AfterMapMoveEvent`</td><td>Updates the updated coordinates for map center.</td>
+  </tr>
+  <tr>
+    <td>`MapClickedEvent`</td><td>Updates the coordinates gotten from event to the UI.</td>
+  </tr>
+  <tr>
+    <td>`Publisher.ColourSchemeChangedEvent`</td><td>Updates the UI colour schema from event.</td>
+  </tr>
+  <tr>
+    <td>`Publisher2.ColourSchemeChangedEvent`</td><td>Updates the UI colour schema from event.</td>
+  </tr>
+
+</table>
+
+<h2 id="dependencies">Dependencies</h2>
+<table class="table">
+  <tr>
+    <th>Dependency</th><th>Linked from</th><th>Purpose</th>
+  </tr>
+  <tr>
+    <td>[jQuery](http://api.jquery.com/)</td>
+    <td>Assumes to be linked in the page</td>
+    <td>Used to create the component UI from begin to end</td>
+  </tr>
+</table>

@@ -1,0 +1,16 @@
+<h1 id="rotatemap-request">rotate.map request</h1>
+<p>Sets the map at a certain angle based on degrees.</p>
+<h2 id="parameters">Parameters</h2>
+<p>Give the request a number which represents the degrees to rotate. (number)</p>
+<h2 id="example">Example</h2>
+<h3 id="set-the-map-at-a-180-degree-angle">Set the map at a 180 degree angle.</h3>
+<pre><code class="language-javascript">  var requestBuilder = Oskari.requestBuilder(&#39;rotate.map&#39;);
+  var request = requestBuilder(180);
+  Oskari.getSandbox().request(&#39;maprotator&#39;, request);
+</code></pre>
+<h3 id="reset-map-rotation">Reset map rotation</h3>
+<pre><code class="language-javascript">  var requestBuilder = Oskari.requestBuilder(&#39;rotate.map&#39;);
+  var request = requestBuilder();
+  Oskari.getSandbox().request(&#39;maprotator&#39;, request);
+</code></pre>
+<p><em>Included in bundle: <a href="bundles#latest/mapping/maprotator">mapping/maprotator</a></em></p>

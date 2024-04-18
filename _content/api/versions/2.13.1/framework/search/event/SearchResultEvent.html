@@ -1,0 +1,112 @@
+<h1 id="searchresultevent-rpc">SearchResultEvent <span class="label label-primary rpc">RPC</span></h1>
+<p>Notifies that a search has been performed and the result is accessible through the event.</p>
+<h2 id="description">Description</h2>
+<p>Used to notify that the <code>SearchRequest</code> has received a reply from server side search.</p>
+<h2 id="parameters">Parameters</h2>
+<p>(* means the parameter is required)</p>
+<table class="table">
+<tr>
+  <th> Name</th><th> Type</th><th> Description</th><th> Default value</th>
+</tr>
+<tr>
+  <td> \* success</td><td> Boolean </td><td> true if result was got successfully</td><td> </td>
+</tr>
+<tr>
+  <td> \* requestParameters</td><td> Object </td><td> request parameters</td><td> </td>
+</tr>
+<tr>
+  <td> \* result</td><td> Object </td><td> search result</td><td> </td>
+</tr>
+<tr>
+  <td> options </td><td> Object </td><td> options sent in search request </td><td> </td>
+</tr>
+</table>
+
+<h2 id="event-methods">Event methods</h2>
+<h3 id="getname">getName()</h3>
+<p>Returns event name</p>
+<h3 id="getsuccess">getSuccess()</h3>
+<p>Returns true if result was got successfully</p>
+<h3 id="getresult">getResult()</h3>
+<p>Returns search result as JSON</p>
+<h3 id="getrequestparameters">getRequestParameters()</h3>
+<p>Returns request parameters as JSON</p>
+<h3 id="getoptions">getOptions()</h3>
+<p>Returns optional flags sent in SearchRequest for this search</p>
+<h3 id="getparams">getParams()</h3>
+<p>Returns event parameters as an object:</p>
+<pre class="event-code-block">
+<code>
+{
+    success: getSuccess(),
+    result: getResult(),
+    requestParameters: getRequestParameters(),
+    options: getOptions()
+};
+</code>
+</pre>
+
+<h2 id="rpc">RPC</h2>
+<p>Event occurs after a search request.</p>
+<pre class="event-code-block">
+<code>
+{
+  "success": true,
+  "result": {
+    "methods": [
+      {},
+      {},
+      {}
+    ],
+    "totalCount": 4,
+    "locations": [
+      {
+        "id": 0,
+        "rank": 10,
+        "lon": "389828.281",
+        "village": "Vantaa",
+        "name": "Vantaa",
+        "zoomScale": 56650,
+        "type": "Kunta, kaupunki",
+        "lat": "6686279.347"
+      },
+      {
+        "id": 1,
+        "rank": 30,
+        "lon": "383183.648",
+        "village": "Hausjärvi",
+        "name": "Vantaa",
+        "zoomScale": 11300,
+        "type": "Kylä, kaupunginosa tai kulmakunta",
+        "lat": "6733424.84"
+      },
+      {
+        "id": 2,
+        "rank": 50,
+        "lon": "387139.034",
+        "village": "Helsinki",
+        "name": "Vantaa",
+        "zoomScale": 5650,
+        "type": "Virtavesi",
+        "lat": "6683063.213"
+      },
+      {
+        "id": 3,
+        "rank": 50,
+        "lon": "383746.169",
+        "village": "Nurmijärvi",
+        "name": "Vantaa",
+        "zoomScale": 2800,
+        "type": "Talo",
+        "lat": "6708499.96"
+      }
+    ]
+  },
+  "requestParameters": "Vantaa",
+  "options": {}
+}
+</code>
+</pre>
+
+
+<p><em>Included in bundle: <a href="bundles#2.13.1/framework/search">framework/search</a></em></p>

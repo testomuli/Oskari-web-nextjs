@@ -1,0 +1,100 @@
+<h1 id="grid--gridmodel">Grid &amp; GridModel</h1>
+<h2 id="description">Description</h2>
+<p>A Grid can render a given GridModel as a table. Its features include column aliases, calling external handlers for nested tables, field-specific value renderers,
+sorting and selections.</p>
+<p>A GridModel is a simple data container that keeps track of key fields and provides convenience methods for addition of structured data.</p>
+<h2 id="screenshot">Screenshot</h2>
+<p><img src="/apires/latest/ui/divmanazer/grid.png" alt="screenshot"></p>
+<h2 id="usage">Usage</h2>
+<pre><code class="language-javascript">var gridModel = Oskari.clazz.create(&#39;Oskari.userinterface.component.GridModel&#39;);
+var grid = Oskari.clazz.create(&#39;Oskari.userinterface.component.Grid&#39;);
+var idRenderer = function(id, data) {
+  // set what happens when the &#39;id&#39; field is clicked
+  var idLink = jQuery(&#39;&lt;span class=&quot;idlink&quot;&gt;&#39; + id &#39;&lt;/span&gt;&#39;);
+  idLink.bind(&#39;click&#39;, function() {
+    showDetails(data);
+    return false;
+  });
+  return idLink;
+};
+
+for (var i = 0; i &lt; dataArray.length; ++i) {
+  gridModel.addData(dataArray[i]);
+}
+gridModel.setIdField(&#39;id&#39;);
+grid.setDataModel(gridModel);
+grid.setVisibleFields([ &#39;id&#39;, &#39;afield&#39;, &#39;anotherfield&#39; ]);
+grid.setColumnValueRenderer(&#39;id&#39;, idRenderer);
+grid.setColumnUIName(&#39;afield&#39;, localisations.afield);
+grid.setColumnUIName(&#39;anotherfield&#39;, localisations.anotherfield);
+
+// If you want use paging you can also define grid for this way
+// Set grouping header, only grouping headers allows use paging
+me.grid.setGroupingHeader([
+    {
+        // first grouping cell is same for all others cells, for example same title
+        // define grouping cell style class
+        cls: &#39;grouping-header-1&#39;,
+        // define grouping header text
+        text: &#39;Header 1&#39;
+    },
+    {
+        // this we use at all others than first cell has own grouping header
+        // define grouping cell style class
+        cls:&#39;grouping-header-2&#39;,
+        // define grouping header text
+        text: &#39;Header 2&#39;,
+        // define how many cells is maximum count. If cols are more than this then shows paging arrows
+        maxCols: 2,
+        /* define paging handler. Handler return text element and data obtains information on paging. data object is following:
+        {
+          visible: {
+            start: 2,
+            end: 3
+          },
+          count: 6,
+          page: 1,
+          maxPages: 3
+        }
+        Object tells:
+        - visible: tells at showing now cells 2 - 3
+        - count: tells at there is 6 cells
+        - page: tells at you are now page 1
+        - maxPages: tells at there is 3 pages
+        */
+        pagingHandler: function(element, data){
+            element.html(&#39;Data &#39; + &#39;&lt;span&gt;(&#39;+data.visible.start + &#39;-&#39; + data.visible.end +&#39;/&#39; + data.count+&#39;)&lt;/span&gt;&#39;);
+        }
+    }
+]);
+
+
+grid.renderTo(someElement);
+
+// select row and scroll table to selected
+var scrollableObject = {
+  element: jQuery(&#39;.scrallobleElement&#39;),
+  fixTopPosition: 16 // if need fix calculated top position then use this number. Number means at how many pixels are decreased in calculated element row top location.
+  }:
+grid.select(wantedRowValue, false, scrollableObject);
+
+// select multiple rows and scroll table to selected
+grid.select([wantedRowValue1, wantedRowValue2], false, scrollableElement);
+
+// moves selected rows as first rows of the table
+grid.moveSelectedRowsTop(true);
+
+// Resumes current ordering of the rows (if not table is not sorted, rows remain as is)
+grid.moveSelectedRowsTop(false);
+</code></pre>
+<h2 id="dependencies">Dependencies</h2>
+<table class="table">
+  <tr>
+    <th>Dependency</th><th>Linked from</th><th>Purpose</th>
+  </tr>
+  <tr>
+    <td> [jQuery](http://api.jquery.com/) </td>
+    <td> Version 1.7.1 assumed to be linked on the page</td>
+    <td> Used to create the component UI from begin to end</td>
+  </tr>
+</table>

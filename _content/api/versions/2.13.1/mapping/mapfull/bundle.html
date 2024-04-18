@@ -1,0 +1,172 @@
+<h1 id="mapfull">mapfull</h1>
+<h2 id="description">Description</h2>
+<p>Initializes Oskari core with Oskari.mapframework.service.MapLayerService, starts up Oskari.mapframework.ui.module.common.MapModule and renders the map to a HTML element with id &quot;mapdiv&quot;.</p>
+<p>The bundle doesn&#39;t create the &quot;mapdiv&quot; element but assumes it exists on the page. Adds maplayers to the map and moves it to a location and zoom level as specified in state.</p>
+<h2 id="screenshot">Screenshot</h2>
+<p><img src="/apires/2.13.1/mapping/mapfull/mapfull.png" alt="screenshot"></p>
+<p>Mapfull using mapmodule-plugin bundle to show map view with some plugins (scalebar, zoombar, wmslayer, panbuttons etc).
+SrsName projection can be configured if defined in projectionDefs.
+ProjectionDefs will replace the default projections &quot;EPSG:3067&quot; and &quot;EPSG:4326&quot;. SrsName &quot;EPSG:3067&quot; is used by default.</p>
+<h2 id="bundle-configuration">Bundle configuration</h2>
+<pre><code class="language-javascript">{
+    &quot;mapOptions&quot; : {
+        &quot;resolutions&quot; : [8192, 4096, 2048, 1024, 512, 256, 128, 64, 32, 16, 8, 4, 2, 1, 0.5, 0.25],
+        &quot;maxExtent&quot; : {
+            &quot;left&quot; : -548576.0,
+            &quot;bottom&quot; : 6291456.0,
+            &quot;right&quot; : 1548576.0,
+            &quot;top&quot; :  8388608
+        },
+        &quot;units&quot; : &quot;m&quot;,
+        &quot;srsName&quot; : &quot;EPSG:3067&quot;
+    },
+    &quot;projectionDefs&quot; : {
+        &quot;EPSG:3067&quot; : &quot;+proj=utm +zone=35 +ellps=GRS80 +units=m +no_defs&quot;,
+        &quot;EPSG:4326&quot; : &quot;+title=WGS 84 +proj=longlat +ellps=WGS84 +datum=WGS84 +no_defs&quot;
+    },
+  &quot;plugins&quot;:[
+    {
+      &quot;id&quot;:&quot;Oskari.mapframework.bundle.mapmodule.plugin.LayersPlugin&quot;
+    },
+    {
+      &quot;id&quot;:&quot;Oskari.mapframework.mapmodule.WmsLayerPlugin&quot;
+    },
+    {
+      &quot;id&quot;:&quot;Oskari.mapframework.mapmodule.ControlsPlugin&quot;
+    }
+  ],
+  &quot;layers&quot;:[
+    {
+      &lt;1 or more layer definitions, should have at least ones referenced in state.selectedLayers&gt;
+    }
+  ],
+  &quot;globalMapAjaxUrl&quot;:&quot;&lt;url for ajax operations&gt;&quot;,
+  &quot;user&quot;:{
+     &lt;logged in users details for Oskari.User &gt;
+  },
+  &quot;imageLocation&quot;:&quot;&lt;base url mapmodulen for images(optional, defaults to  &quot;/Oskari/resources&quot;)&gt;&quot;,
+  &quot;mapElement&quot;: &quot;&lt;DOM element id for OpenLayers map, defaults to &#39;mapdiv&#39;&gt;&quot;,
+  &quot;mapContainer&quot;: &quot;&lt;DOM element id for Oskari map container, defaults to &#39;contentMap&#39;&gt;&quot;,
+  &quot;size&quot;: {
+    &quot;width&quot; : &lt;map window width&gt;,
+    &quot;height&quot; : &lt;map window height&gt;
+  }
+}
+</code></pre>
+<ul>
+<li>plugins is an array of map module plugins that will be registered and started on map when the bundle is started. If you specify no plugins, you wont see anything on the map. See different plugins documentation to see which ones you should have here.</li>
+<li>layers is an array of map layer JSON definitions that will be populated to Oskari.mapframework.service.MapLayerService. It can have 0 or more layer definitions but it SHOULD have at least the ones referenced in state.selectedLayers. Otherwise selectedLayers aren&#39;t going to be added to map on startup.</li>
+<li>globalMapAjaxUrl is set to Oskari.Sandbox and can be asked everywhere with sandbox.getAjaxUrl()</li>
+<li>mapOptions is passed to mapmodule-plugin constructor</li>
+<li>user is optional and should have information about the logged in user. It can be asked everywhere with Oskari.user(). The format of the data should in a form accepted by Oskari.User constructor.</li>
+<li>size is optional but if given will set the map elements size. If size isn&#39;t specified the map elements height will be set to window height and the bundle will listen to window resizing to adjust the map size.</li>
+</ul>
+<h2 id="bundle-state">Bundle state</h2>
+<pre><code class="language-javascript">{
+  &quot;selectedLayers&quot;: [
+    {
+      &quot;id&quot;: &quot;&lt;id of a preselected layer&gt;&quot;,
+      &quot;hidden&quot; : &quot;&lt;boolean (optional)&gt;&quot;,
+      &quot;style&quot; : &quot;&lt;style name (optional)&gt;&quot;,
+      &quot;opacity&quot; : &quot;&lt;layer opacity (optional)&gt;&quot;
+    }
+  ],
+  &quot;zoom&quot;: &quot;&lt;zoomlevel 0-12&gt;&quot;,
+  &quot;east&quot;: &quot;&lt;latitude&gt;&quot;,
+  &quot;north&quot;: &quot;&lt;longitude&gt;&quot;,
+  &quot;camera&quot;: {
+    &quot;orientation&quot;: {
+      &quot;heading&quot;: 0,
+      &quot;roll&quot;: 0,
+      &quot;pitch&quot;: -65
+    },
+    &quot;location&quot;: {
+      &quot;altitude&quot;: 1500000,
+      &quot;x&quot;: 2762500,
+      &quot;y&quot;: 7835000
+    }
+  }
+}
+</code></pre>
+<ul>
+<li>selectedLayers is an array specifying which layers should be added to map on startup. It can have only id property, but other listed properties are supported as well.</li>
+<li>camera setting is available only in mapmodules with 3D support</li>
+</ul>
+<h2 id="requests-the-bundle-handles">Requests the bundle handles</h2>
+<table class="table">
+  <tr>
+    <th>Request</th><th>How does the bundle react</th>
+  </tr>
+  <tr>
+    <td>MapResizeEnabledRequest</td><td>Enables/disables resizing of the map window when browser window is resized.</td>
+  </tr>
+  <tr>
+    <td>MapWindowFullScreenRequest</td><td>Toggles between the normal map view and the full screen view.</td>
+  </tr>
+</table>
+
+<h2 id="requests-the-bundle-sends-out">Requests the bundle sends out</h2>
+<table class="table">
+  <tr>
+    <th>Request</th><th>Why/when</th>
+  </tr>
+  <tr>
+    <td>AddMapLayerRequest</td><td>Adds layers specified in state to the map</td>
+  </tr>
+  <tr>
+    <td>RemoveMapLayerRequest</td><td>If state is set after the bundle is started, removes any layers on map before adding the ones specified in the new state </td>
+  </tr>
+  <tr>
+    <td>ChangeMapLayerOpacityRequest</td><td>Changes the opacity for a selected layer if specified in state</td>
+  </tr>
+  <tr>
+    <td>ChangeMapLayerStyleRequest</td><td>Changes the style for a selected layer if specified in state</td>
+  </tr>
+  <tr>
+    <td>MapModulePlugin.MapLayerVisibilityRequest</td><td>Hides a selected layer after adding it if specified in state</td>
+  </tr>
+  <tr>
+    <td>MapMoveRequest</td><td>Uses sandbox.syncMapState which sends out this request to move the map to location specified in state</td>
+  </tr>
+</table>
+
+<h2 id="events-the-bundle-listens-to">Events the bundle listens to</h2>
+<p>This bundle doesn&#39;t listen to any events, but initializes Oskari.mapframework.ui.module.common.MapModule which listens to many events.</p>
+<h2 id="events-the-bundle-sends-out">Events the bundle sends out</h2>
+<p>This bundle doesn&#39;t send out any events, but initializes Oskari.mapframework.core.Core, Oskari.mapframework.service.MapLayerService, Oskari.mapframework.ui.module.common.MapModule which send out many events.</p>
+<h2 id="dependencies">Dependencies</h2>
+<table class="table">
+  <tr>
+    <th>Dependency</th><th>Linked from</th><th>Purpose</th>
+  </tr>
+  <tr>
+    <td> [jQuery](http://api.jquery.com/) </td>
+    <td> Version 1.7.1 assumed to be linked (on page locally in portal) </td>
+    <td> Used to handle map element sizing </td>
+  </tr>
+  <tr>
+    <td> [OpenLayers](http://openlayers.org/) </td>
+    <td> Expects OpenLayers already linked </td>
+    <td> Not used directly but a MapModule dependency </td>
+  </tr>
+  <tr>
+    <td> [Proj4js](http://trac.osgeo.org/openlayers/wiki/Documentation/Dev/proj4js) </td>
+    <td> Expects Proj4js already linked </td>
+    <td> Sets proj4js defs for map module </td>
+  </tr>
+  <tr>
+    <td> [Oskari mapwmts](/documentation/bundles/framework/mapwmts) </td>
+    <td> Expects to be present in application setup </td>
+    <td> Adds support for WMTS maplayers in maplayer service and map module. </td>
+  </tr>
+  <tr>
+    <td> [Oskari mapmodule](/documentation/bundles/framework/mapmodule) </td>
+    <td> Expects to be present in application setup </td>
+    <td> To initialize and show the map on UI </td>
+  </tr>
+  <tr>
+    <td> [Oskari mapmodule plugins](/documentation/bundles/framework/mapmodule) </td>
+    <td> Expects to be present in application setup </td>
+    <td> Any bundle providing a map plugin referenced in config needs to be loaded before starting this bundle </td>
+  </tr>
+</table>

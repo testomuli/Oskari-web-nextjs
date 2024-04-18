@@ -1,0 +1,25 @@
+<h1 id="removefeaturesfrommaprequest-rpc">RemoveFeaturesFromMapRequest <span class="label label-primary rpc">RPC</span></h1>
+<p>Remove vector features from map</p>
+<h2 id="use-cases">Use cases</h2>
+<ul>
+<li>remove features from specific layer</li>
+<li>remove all features from map</li>
+</ul>
+<h2 id="description">Description</h2>
+<p>Removes all or specific vector features from the specified layer or all features from all layers. </p>
+<h2 id="examples">Examples</h2>
+<p>Remove all vectors from all layers</p>
+<pre><code class="language-javascript">var rn = &#39;MapModulePlugin.RemoveFeaturesFromMapRequest&#39;;
+this.sandbox.postRequestByName(rn, []);
+</code></pre>
+<p>Remove everything from a specific layer. The &#39;layer&#39; parameter can be either layer_id (String) or layer-object (Openlayers).</p>
+<pre><code class="language-javascript">this.sandbox.postRequestByName(rn, [null, null, myLayer);
+</code></pre>
+<p>Remove all feature&#39;s whose &#39;test_property&#39; === 1 from myLayer</p>
+<pre><code class="language-javascript">this.sandbox.postRequestByName(rn, [&#39;test_property&#39;, 1, myLayer);
+</code></pre>
+<h2 id="related-api">Related api</h2>
+<ul>
+<li>addFeaturesToMapRequest</li>
+</ul>
+<p><em>Included in bundle: <a href="bundles#latest/mapping/mapmodule">mapping/mapmodule</a></em></p>

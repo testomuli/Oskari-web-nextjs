@@ -1,0 +1,26 @@
+<h1 id="usagetracker">usagetracker</h1>
+<p>Pings the server when any of the configured events occur.</p>
+<h2 id="description">Description</h2>
+<p>A configurable event-based usage tracker. When Events fire, the currect state is sent with an ajax GET to the configured logUrl.</p>
+<h2 id="bundle-configuration">Bundle configuration</h2>
+<pre><code class="language-javascript">&quot;conf&quot;: {
+  &quot;logUrl&quot; : &quot;http://localhost:8080/logger&quot;,
+  &quot;events&quot; : [&quot;AfterMapMoveEvent&quot;,
+            &quot;AfterMapLayerAddEvent&quot;,
+            &quot;AfterMapLayerRemoveEvent&quot;,
+            &quot;MapLayerVisibilityChangedEvent&quot;]
+}
+</code></pre>
+<h2 id="events-the-bundle-listens-to">Events the bundle listens to</h2>
+<p>This bundle listen to all configured events. No events by default.</p>
+<h2 id="dependencies">Dependencies</h2>
+<table class="table">
+  <tr>
+    <th> Dependency </th><th> Linked from </th><th> Purpose </th>
+  </tr>
+  <tr>
+    <td> [jQuery](http://api.jquery.com/) </td>
+    <td> Linked in portal theme </td>
+    <td> Used to create the component UI from begin to end</td>
+  </tr>
+</table>

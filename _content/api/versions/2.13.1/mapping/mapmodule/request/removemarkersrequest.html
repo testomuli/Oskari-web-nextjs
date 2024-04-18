@@ -1,0 +1,38 @@
+<h1 id="removemarkersrequest-rpc">RemoveMarkersRequest <span class="label label-primary rpc">RPC</span></h1>
+<p>Remove markers from the map.</p>
+<h2 id="description">Description</h2>
+<p>Markers can be removed from the map by sending a RemoveMarkersRequest. The request can include an ID for removing a single marker or when no ID is provided all markers are cleared. </p>
+<h2 id="parameters">Parameters</h2>
+<p>(* means the parameter is required)</p>
+<table class="table">
+<tr>
+  <th> Name</th><th> Type</th><th> Description</th><th> Default value</th>
+</tr>
+<tr>
+  <td> id </td><td> [Parameter type, f.e. "String"]</td><td> id for marker to remove, removes all if undefined </td><td> undefined </td>
+</tr>
+</table>
+
+<h2 id="examples">Examples</h2>
+<p>Remove single marker:</p>
+<pre><code class="language-javascript">var sb = Oskari.getSandbox();
+var reqBuilder = sb.getRequestBuilder(&#39;MapModulePlugin.RemoveMarkersRequest&#39;);
+if (reqBuilder) {
+    var request = reqBuilder(&#39;my marker id&#39;);
+    sb.request(&#39;MainMapModule&#39;, request);
+}
+</code></pre>
+<p>Clearing all markers:</p>
+<pre><code class="language-javascript">var sb = Oskari.getSandbox();
+var reqBuilder = sb.getRequestBuilder(&#39;MapModulePlugin.RemoveMarkersRequest&#39;);
+if (reqBuilder) {
+    sb.request(&#39;MainMapModule&#39;, reqBuilder());
+}
+</code></pre>
+<h2 id="related-api">Related api</h2>
+<ul>
+<li>addMarkerRequest</li>
+<li>afterAddMarkerEvent</li>
+<li>afterRemoveMarkersEvent</li>
+</ul>
+<p><em>Included in bundle: <a href="bundles#2.13.1/mapping/mapmodule">mapping/mapmodule</a></em></p>

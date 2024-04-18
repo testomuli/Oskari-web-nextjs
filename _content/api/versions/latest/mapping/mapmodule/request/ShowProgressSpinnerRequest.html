@@ -1,0 +1,26 @@
+<h1 id="showprogressspinnerrequest-rpc">ShowProgressSpinnerRequest <span class="label label-primary rpc">RPC</span></h1>
+<p>Allows progress spinner to be shown or hidden on a map.</p>
+<h2 id="use-cases">Use cases</h2>
+<ul>
+<li>Show or hide a progress spinner on a map</li>
+</ul>
+<h2 id="description">Description</h2>
+<p>Requests a progress spinner to be shown or hidden on a map.</p>
+<h2 id="parameters">Parameters</h2>
+<p>(* means the parameter is required)</p>
+<table class="table">
+<tr>
+  <th> Name</th><th> Type</th><th> Description</th><th> Default value</th>
+</tr>
+<tr>
+  <td> \* show </td><td> Boolean </td><td> whether to show or hide the spinner</td><td> </td>
+</tr>
+</table>
+
+<h2 id="examples">Examples</h2>
+<p>Start to draw for &#39;measure&#39; functionality and keep the drawing on the map:</p>
+<pre><code class="language-javascript">var sb = Oskari.getSandbox();
+var isVisible = true;
+sb.postRequestByName(&#39;ShowProgressSpinnerRequest&#39;,[isVisible]);
+</code></pre>
+<p><em>Included in bundle: <a href="bundles#latest/mapping/mapmodule">mapping/mapmodule</a></em></p>

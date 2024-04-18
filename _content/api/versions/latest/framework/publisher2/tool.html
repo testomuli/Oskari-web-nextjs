@@ -1,0 +1,28 @@
+<h1 id="tool">Tool</h1>
+<h2 id="description">Description</h2>
+<p>Tools are used to modify published map view&#39;s app setup configuration.
+The Tool component describes how to implement new tools to the publisher.</p>
+<h2 id="how-to-use">How to use</h2>
+<p>Each Tool has to implement protocol <code>Oskari.mapframework.publisher.Tool</code> to be included in the publisher.
+To implement the protocol Tool has to implement following functions.</p>
+<h3 id="init"><code>init</code></h3>
+<p>Receives object describing the app configuration as a parameter.
+Init should read the pdata to see if the tool should be enabled or not.
+Then set the initial state for the tool using setEnabled function.</p>
+<h3 id="setenabled"><code>setEnabled</code></h3>
+<p>Defines what happens when user selects/unselects the tool.</p>
+<h3 id="getvalues"><code>getValues</code></h3>
+<p>Returns the part of app setup configuration the tool alters.
+Example:</p>
+<pre><code>var enabled = this.state.enabled;
+return {
+    configuration: {
+        statsgrid: {
+            conf: {
+                allowClassification: enabled,
+                legendLocation: &#39;bottom right&#39;
+            }
+        }
+    }
+}
+</code></pre>

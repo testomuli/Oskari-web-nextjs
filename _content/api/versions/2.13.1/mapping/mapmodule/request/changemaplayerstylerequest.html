@@ -1,0 +1,30 @@
+<h1 id="changemaplayerstylerequest-rpc">ChangeMapLayerStyleRequest <span class="label label-primary rpc">RPC</span></h1>
+<p>Allow user to change map layer style between preconfigured options on the map (styles available for a WMS-layer etc).</p>
+<h2 id="use-cases">Use cases</h2>
+<ul>
+<li>change map layer style</li>
+</ul>
+<h2 id="description">Description</h2>
+<p>Requests a map layer style to be changed on a map.</p>
+<h2 id="parameters">Parameters</h2>
+<p>(* means the parameter is required)</p>
+<table class="table">
+<tr>
+  <th> Name</th><th> Type</th><th> Description</th><th> Default value</th>
+</tr>
+<tr>
+  <td> \* layerId </td><td> Number </td><td> id for maplayer to be modified (Oskari.mapframework.service.MapLayerService) </td><td> </td>
+</tr>
+<tr>
+  <td> \* style </td><td> String </td><td> wanted style name (need be a configured a map service also) </td><td> </td>
+</tr>
+</table>
+
+<h2 id="examples">Examples</h2>
+<p>Change map layer style to <code>new_awesome_style</code>.</p>
+<pre><code class="language-javascript">const sb = Oskari.getSandbox();
+const layerId = 1;
+const newStyleName = &#39;new_awesome_style&#39;;
+sb.postRequestByName(&#39;ChangeMapLayerStyleRequest&#39;, [layerId, newStyleName]);
+</code></pre>
+<p><em>Included in bundle: <a href="bundles#2.13.1/mapping/mapmodule">mapping/mapmodule</a></em></p>

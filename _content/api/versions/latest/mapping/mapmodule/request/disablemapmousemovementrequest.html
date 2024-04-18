@@ -1,0 +1,36 @@
+<h1 id="disablemapmousemovementrequest">DisableMapMouseMovementRequest</h1>
+<p>Disable map mouse movement.</p>
+<h2 id="use-cases">Use cases</h2>
+<ul>
+<li>disable mouse pan and zoom movement</li>
+<li>disable mouse pan movement</li>
+<li>disable mouse zoom movement</li>
+</ul>
+<h2 id="description">Description</h2>
+<p>Requests disable map movements by muose.</p>
+<h2 id="parameters">Parameters</h2>
+<p>(* means the parameter is required)</p>
+<table class="table">
+<tr>
+  <th> Name</th><th> Type</th><th> Description</th><th> Default value</th>
+</tr>
+<tr>
+  <td> options </td><td> Array </td><td> pan or zoom</td><td> </td>
+</tr>
+
+</table>
+
+<h2 id="examples">Examples</h2>
+<p>Disable pan and zoom mouse movement</p>
+<pre><code class="language-javascript">var sb = Oskari.getSandbox();
+sb.postRequestByName(&#39;DisableMapMouseMovementRequest&#39;);
+</code></pre>
+<p>Disable pan mouse movement</p>
+<pre><code class="language-javascript">var sb = Oskari.getSandbox();
+sb.postRequestByName(&#39;DisableMapMouseMovementRequest&#39;, [[&#39;pan&#39;]]);
+</code></pre>
+<p>Disable zoom mouse movement</p>
+<pre><code class="language-javascript">var sb = Oskari.getSandbox();
+sb.postRequestByName(&#39;DisableMapMouseMovementRequest&#39;, [[&#39;zoom&#39;]]);
+</code></pre>
+<p><em>Included in bundle: <a href="bundles#latest/mapping/mapmodule">mapping/mapmodule</a></em></p>

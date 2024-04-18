@@ -1,0 +1,68 @@
+<h1 id="search">search</h1>
+<p>Provides a generic and extensible search user-interface</p>
+<h2 id="description">Description</h2>
+<p>Provides (address etc) search functionality with a flyout UI.</p>
+<h2 id="screenshot">Screenshot</h2>
+<p><img src="/apires/latest/ui/search/search_flyout.png" alt="screenshot"></p>
+<h2 id="bundle-configuration">Bundle configuration</h2>
+<p>No configuration is required, but it can be used to set ajax URL. If not set, <code>sandbox.getAjaxUrl()</code> with <code>action_route=GetSearchResult</code> is used instead.</p>
+<p>The default search UI can be disable through config.</p>
+<pre><code class="language-javascript">{
+  &quot;url&quot; : &quot;http://www.google.com&quot;,
+  &quot;disableDefault&quot;: &quot;&lt;boolean&gt;&quot;
+}
+</code></pre>
+<h2 id="requests-the-bundle-sends-out">Requests the bundle sends out</h2>
+<table class="table">
+  <tr>
+    <th>Request</th><th>How does the bundle react</th>
+  </tr>
+  <tr>
+    <td>MapMoveRequest</td><td>When a search result is clicked, the map is centered on the location.</td>
+  </tr>
+  <tr>
+    <td> InfoBox.ShowInfoBoxRequest </td><td> When a search result is clicked, information about the results is shown on an Infobox</td>
+  </tr>
+  <tr>
+    <td> InfoBox.HideInfoBoxRequest </td><td> Hides search result infobox.</td>
+  </tr>
+  <tr>
+    <td> MapModulePlugin.RemoveMarkerRequest </td><td> When the search keyword is removed, any markers on the map are removed.</td>
+  </tr>
+</table>
+
+<h2 id="dependencies">Dependencies</h2>
+<table class="table">
+  <tr>
+    <th> Dependency </th><th> Linked from </th><th> Purpose</th>
+  </tr>
+  <tr>
+    <td> [jQuery](http://api.jquery.com/) </td>
+    <td> Linked in portal theme </td>
+    <td> Used to create the component UI from begin to end</td>
+  </tr>
+  <tr>
+    <td> [OpenLayers](http://openlayers.org/) </td>
+    <td> Expects mapmodule to be present and OpenLayers already linked </td>
+    <td> To control map and show an Openlayers popup on it</td>
+  </tr>
+  <tr>
+    <td> [Oskari divmanazer](/documentation/bundles/framework/divmanazer) </td>
+    <td> DivManazerBundle </td>
+    <td> Provides flyout/tile functionality</td>
+  </tr>
+  <tr>
+    <td> [Backend API](/documentation/backend/search) </td>
+    <td> N/A </td>
+    <td> Search is handled in backend</td>
+  </tr>
+</table>
+
+<h2 id="requests-that-the-bundle-handles">Requests that the bundle handles</h2>
+<table class="table"><tr><th> Request </th><th> Use </th></tr>
+<tr><td><a href="requests#latest/ui/search/request/Search.AddTabRequest.md">Search.AddTabRequest</a></td><td>Requests a tab to be added</td></tr><tr><td><a href="requests#latest/ui/search/request/Search.RemoveSearchResultActionRequest.md">Search.RemoveSearchResultActionRequest</a></td><td>Requests a search result action to be removed</td></tr></table>
+
+
+<h2 id="events-that-the-bundle-sends">Events that the bundle sends</h2>
+<table class="table"><tr><th> Event </th><th> Use </th></tr>
+<tr><td><a href="events#latest/ui/search/event/Search.TabChangedEvent.md">Search.TabChangedEvent</a></td><td>Notify metadatacatalogue that the tab has changed</td></tr></table>

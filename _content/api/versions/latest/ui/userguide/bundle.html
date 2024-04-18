@@ -1,0 +1,65 @@
+<h1 id="userguide">userguide</h1>
+<h2 id="description">Description</h2>
+<p>Creates the Userguide flyout with title and content. </p>
+<h2 id="bundle-configuration">Bundle configuration</h2>
+<p>Bundle needs title(s) and data as configuration. There are two options to make the configuration:</p>
+<ol>
+<li>If you have only one document to show and you don&#39;t need any tabs, you can make the configuration to the locale.</li>
+</ol>
+<pre><code class="language-javascript">{
+  &quot;help&quot;: {
+      tags: &quot;tag1, tag2&quot;,
+      contentPart: &quot;body&quot;
+  }
+};
+</code></pre>
+<p>The bundle will create basic flyout with content defined by tags.</p>
+<ol start="2">
+<li>If you wish to have tabs, they should be found in configuration as follows:</li>
+</ol>
+<pre><code class="language-javascript">{
+  &quot;tabs&quot;: [
+      {title: &quot;title1&quot;, tags: &quot;tag1&quot;},
+      {title: &quot;title2&quot;, tags: &quot;tag2&quot;},
+      {title: &quot;title3&quot;, tags: &quot;tag3&quot;},
+      {title: &quot;title4&quot;, tags: &quot;tag4&quot;}
+  ]
+};
+</code></pre>
+<p>The bundle creates as many tabs as there are them in configuration. If there is no configuration, the bundle gets tags from locale.</p>
+<p>Method getHelpArticle fetches an article from the server using getAjaxUrl method. </p>
+<pre><code class="language-javascript">jQuery.ajax({
+        url: me.sandbox.getAjaxUrl() + &#39;action_route=GetArticlesByTag&#39;,
+        data: {
+            tags: taglist
+        },
+        type: &#39;GET&#39;,
+        dataType: &#39;json&#39;
+});
+</code></pre>
+<p>Example of Request URL:</p>
+<p><code>http://www.paikkatietoikkuna.fi/web/fi/kartta?p_p_id=Portti2Map_WAR_portti2mapportlet&amp;p_p_lifecycle=2&amp;action_route=GetArticlesByTag&amp;tags=tag1%2Ctag2</code></p>
+<h2 id="requests-the-bundle-sends-out">Requests the bundle sends out</h2>
+<table class="table">
+  <tr>
+    <th>Request</th><th>Why/when</th>
+  </tr>
+  <tr>
+    <td>userinterface.RemoveExtensionRequest</td><td>When the bundle is stopped, defaultExtension is removed</td>
+  </tr>
+</table>
+
+<h2 id="events-the-bundle-listens-to">Events the bundle listens to</h2>
+<table class="table">
+  <tr>
+    <th>Event</th><th>How does the bundle react</th>
+  </tr>
+  <tr>
+    <td>userinterface.ExtensionUpdatedEvent</td><td>Handles the updated event</td>
+  </tr>
+</table>
+
+
+<h2 id="requests-that-the-bundle-handles">Requests that the bundle handles</h2>
+<table class="table"><tr><th> Request </th><th> Use </th></tr>
+<tr><td><a href="requests#latest/ui/userguide/request/userguide.ShowUserGuideRequest.md">userguide.ShowUserGuideRequest</a></td><td>Shows additional data in user guide</td></tr></table>

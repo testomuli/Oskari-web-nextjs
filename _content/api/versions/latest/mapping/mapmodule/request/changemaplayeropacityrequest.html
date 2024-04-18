@@ -1,0 +1,29 @@
+<h1 id="changemaplayeropacityrequest-rpc">ChangeMapLayerOpacityRequest <span class="label label-primary rpc">RPC</span></h1>
+<p>Allows user to change map layer opacity on a map.</p>
+<h2 id="use-cases">Use cases</h2>
+<ul>
+<li>change map layer opacity</li>
+</ul>
+<h2 id="description">Description</h2>
+<p>Requests a map layer opacity to be changed on a map. </p>
+<h2 id="parameters">Parameters</h2>
+<p>(* means the parameter is required)</p>
+<table class="table">
+<tr>
+  <th> Name</th><th> Type</th><th> Description</th><th> Default value</th>
+</tr>
+<tr>
+  <td> \* mapLayerId </td><td> String </td><td> id for maplayer to be modified (Oskari.mapframework.service.MapLayerService) </td><td> </td>
+</tr>
+<tr>
+  <td> \* opacity </td><td> Number </td><td> desired opacity of the map layer (0-100) </td><td> </td>
+</tr>
+</table>
+
+<h2 id="examples">Examples</h2>
+<p>Change map layer opacity to 50 %.</p>
+<pre><code class="language-javascript">var sb = Oskari.getSandbox();
+var new_opacity = 50;
+sb.postRequestByName(&#39;ChangeMapLayerOpacityRequest&#39;, [layer.id, new_opacity]);
+</code></pre>
+<p><em>Included in bundle: <a href="bundles#latest/mapping/mapmodule">mapping/mapmodule</a></em></p>

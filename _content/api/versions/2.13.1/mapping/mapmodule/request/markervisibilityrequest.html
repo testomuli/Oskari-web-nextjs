@@ -1,0 +1,44 @@
+<h1 id="mapmodulepluginmarkervisibilityrequest-rpc">MapModulePlugin.MarkerVisibilityRequest <span class="label label-primary rpc">RPC</span></h1>
+<p>Show or hide marker from map.</p>
+<h2 id="use-cases">Use cases</h2>
+<ul>
+<li>hide wanted marker from map</li>
+<li>hide all markers from map</li>
+<li>show wanted marker from map</li>
+<li>show all markers from map</li>
+</ul>
+<h2 id="description">Description</h2>
+<p>Markers can be hided/showed to the map by sending an MarkerVisibilityRequest. The request must contain the marker visibility and
+optional parameter is wanted marker id. If marker id is not defined then show/hide all markers from map.</p>
+<h2 id="parameters">Parameters</h2>
+<p>(* means the parameter is required)</p>
+<table class="table">
+<tr>
+  <th> Name</th><th> Type</th><th> Description</th><th> Default value</th>
+</tr>
+<tr>
+  <td>/* visibility </td><td> Boolean </td><td> is marker visible (true/false)</td><td> </td>
+</tr>
+<tr>
+  <td> id </td><td> String </td><td> id for marker.</td><td></td>
+</tr>
+</table>
+
+<h2 id="examples">Examples</h2>
+<p>Hide wanted marker from map:</p>
+<pre><code class="language-javascript">Oskari.getSandbox().postRequestByName(&#39;MapModulePlugin.MarkerVisibilityRequest&#39;, [false, &#39;TEST_MARKER_ID&#39;]);
+</code></pre>
+<p>Hide all markers from map:</p>
+<pre><code class="language-javascript">Oskari.getSandbox().postRequestByName(&#39;MapModulePlugin.MarkerVisibilityRequest&#39;, [false]);
+</code></pre>
+<p>Show wanted marker from map:</p>
+<pre><code class="language-javascript">Oskari.getSandbox().postRequestByName(&#39;MapModulePlugin.MarkerVisibilityRequest&#39;, [true, &#39;TEST_MARKER_ID&#39;]);
+</code></pre>
+<p>Show all markers from map:</p>
+<pre><code class="language-javascript">Oskari.getSandbox().postRequestByName(&#39;MapModulePlugin.MarkerVisibilityRequest&#39;, [true]);
+</code></pre>
+<h2 id="related-api">Related api</h2>
+<ul>
+<li>addMarkerRequest</li>
+</ul>
+<p><em>Included in bundle: <a href="bundles#2.13.1/mapping/mapmodule">mapping/mapmodule</a></em></p>

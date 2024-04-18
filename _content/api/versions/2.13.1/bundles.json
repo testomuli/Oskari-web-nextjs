@@ -1,0 +1,317 @@
+[
+  {
+    "name": "admin",
+    "bundles": [
+      {
+        "name": "admin",
+        "desc": "Generic admin ui which other admin bundles can hook to.",
+        "path": "admin/admin"
+      },
+      {
+        "name": "admin-announcements",
+        "desc": "Admin bundle for making announcements.",
+        "path": "admin/admin-announcements"
+      },
+      {
+        "name": "admin-hierarchical-layerlist",
+        "desc": "This admin bundle extends hierarchical-layerlist for admin tools.",
+        "path": "admin/admin-hierarchical-layerlist"
+      },
+      {
+        "name": "admin-layeranalytics",
+        "desc": "Admin UI for map layer problem tracker",
+        "path": "admin/admin-layeranalytics"
+      },
+      {
+        "name": "admin-layereditor",
+        "desc": "Admin tools for managing maplayer configurations",
+        "path": "admin/admin-layereditor"
+      },
+      {
+        "name": "admin-layerselector",
+        "desc": "Admin tools for managing maplayer configurations",
+        "path": "admin/admin-layerselector"
+      },
+      {
+        "name": "admin-publish-transfer",
+        "desc": "Admin tool for transferring published map configurations from one user to another. Can also be used to edit published map configuration JSON manually. Can only be used for tranfers within one Oskari instance (one server).",
+        "path": "admin/admin-publish-transfer"
+      },
+      {
+        "name": "admin-users",
+        "desc": "User administration UI",
+        "path": "admin/admin-users"
+      },
+      {
+        "name": "appsetup",
+        "desc": "Importing and exporting AppSetups using JSON definition.",
+        "path": "admin/appsetup"
+      }
+    ]
+  },
+  {
+    "name": "framework",
+    "bundles": [
+      {
+        "name": "announcements",
+        "desc": "Bundle for displaying announcements made with admin-announcements.",
+        "path": "framework/announcements"
+      },
+      {
+        "name": "core",
+        "desc": "Provided by the framework",
+        "path": "framework/core"
+      },
+      {
+        "name": "layeranalytics",
+        "desc": "Map layer problem tracker",
+        "path": "framework/layeranalytics"
+      },
+      {
+        "name": "layerlist",
+        "desc": "A layer listing functionality for the geoportal.",
+        "path": "framework/layerlist"
+      },
+      {
+        "name": "mydata",
+        "desc": "Provides generic container for listing user data and offers other functionalities a way to present user-specific information.",
+        "path": "framework/mydata"
+      },
+      {
+        "name": "publisher2",
+        "desc": "Allows creation of embedded maps",
+        "path": "framework/publisher2"
+      },
+      {
+        "name": "rpc",
+        "desc": "Provides RPC functionality, i.e. a published map can be controlled from the parent document.",
+        "path": "framework/rpc"
+      },
+      {
+        "name": "search",
+        "desc": "Provides basic search functionality without any UI",
+        "path": "framework/search"
+      },
+      {
+        "name": "selected-featuredata",
+        "desc": "Allows infobox opening in new flyout",
+        "path": "framework/selected-featuredata"
+      },
+      {
+        "name": "statehandler",
+        "desc": "History functionality and state saving.",
+        "path": "framework/statehandler"
+      },
+      {
+        "name": "usagetracker",
+        "desc": "Pings the server when any of the configured events occur.",
+        "path": "framework/usagetracker"
+      }
+    ]
+  },
+  {
+    "name": "mapping",
+    "bundles": [
+      {
+        "name": "analyse",
+        "desc": "Bundle manages analyse parameter and data setups, requests analyse execute actions and stores analyse results to DB through backend action route.",
+        "path": "mapping/analyse"
+      },
+      {
+        "name": "backendstatus",
+        "desc": "Polls a backend system for map layers monitoring statuses and informs interested parties via an event.",
+        "path": "mapping/backendstatus"
+      },
+      {
+        "name": "coordinatedisplay",
+        "desc": "This bundle provides a plugin (Oskari.mapframework.bundle.coordinatedisplay.plugin.CoordinatesPlugin) for mapmodule that shows coordinates on mouse location.",
+        "path": "mapping/coordinatedisplay"
+      },
+      {
+        "name": "coordinatetool",
+        "desc": "This bundle provides a plugin (Oskari.mapframework.bundle.coordinatetool.plugin.CoordinateToolPlugin) for mapmodule that can:",
+        "path": "mapping/coordinatetool"
+      },
+      {
+        "name": "drawtools",
+        "desc": "Allows user to draw feature geometries on map.",
+        "path": "mapping/drawtools"
+      },
+      {
+        "name": "featuredata",
+        "desc": "The Bundle provides a grid view for vector layers' object data.",
+        "path": "mapping/featuredata"
+      },
+      {
+        "name": "feedbackService",
+        "desc": "Provides a Oskari request/event API for listing and posting feedback to Open311-based service. Requires server-side functionality from oskari-server and configuration for the view/app on the server. Configuration fields are provided in the publisher tool.",
+        "path": "mapping/feedbackService"
+      },
+      {
+        "name": "findbycoordinates",
+        "desc": "Creates a service and a user interface for searching nearest address on a map and adds a button to the toolbar for reverse geocode search. Requires server side functionality.",
+        "path": "mapping/findbycoordinates"
+      },
+      {
+        "name": "geometrycutter",
+        "desc": "The bundle provides tools for geometry editing. Currently supported functionality includes spliting Polygon or LineString with user drawn LineString and clipping any geometry with user drawn Polygon.",
+        "path": "mapping/geometrycutter"
+      },
+      {
+        "name": "heatmap",
+        "desc": "Adds heatmap functionality to layers configured to support it (WMS-layers only at the moment). Configuration is done by adding the following information to a layers JSON:",
+        "path": "mapping/heatmap"
+      },
+      {
+        "name": "mapanalysis",
+        "desc": "Adds support for analysis layers. The analysisLayerPlugin needs to be registered for the map in order to visualize analysis layers",
+        "path": "mapping/mapanalysis"
+      },
+      {
+        "name": "mapfull",
+        "desc": "Initializes Oskari core with Oskari.mapframework.service.MapLayerService, starts up Oskari.mapframework.ui.module.common.MapModule and renders the map to a HTML element with id \"mapdiv\".",
+        "path": "mapping/mapfull"
+      },
+      {
+        "name": "maplegend",
+        "desc": "Displays legend images of selected map layers in a Flyout if the layers have legend image urls set.",
+        "path": "mapping/maplegend"
+      },
+      {
+        "name": "mapmodule",
+        "desc": "Provides abstraction for map implementation (Openlayers 2/3) and provides a plugin mechanism to add additional functionality to map.",
+        "path": "mapping/mapmodule"
+      },
+      {
+        "name": "mapmodule3d",
+        "desc": "Ol Cesium implementation of the mapmodule bundle.",
+        "path": "mapping/mapmodule3d"
+      },
+      {
+        "name": "maprotator",
+        "desc": "Provides functionality to rotate the map when the bundle is started. To rotate the map press SHIFT + ALT + Drag with mouse.",
+        "path": "mapping/maprotator"
+      },
+      {
+        "name": "mapwmts",
+        "desc": "Support for WMTS-layers.",
+        "path": "mapping/mapwmts"
+      },
+      {
+        "name": "metadata",
+        "desc": "Deprecated. Provides UI to make selection on map.",
+        "path": "mapping/metadata"
+      },
+      {
+        "name": "metadatacatalogue",
+        "desc": "Bundle provides metadata catalogue search functionality for the map.",
+        "path": "mapping/metadatacatalogue"
+      },
+      {
+        "name": "metadataflyout",
+        "desc": "Generic functionality to display metadata from a CSW-service",
+        "path": "mapping/metadataflyout"
+      },
+      {
+        "name": "myplaces",
+        "desc": "My places functionality.",
+        "path": "mapping/myplaces"
+      },
+      {
+        "name": "myplacesimport",
+        "desc": "This bundle allows the user to import and save their own datas.",
+        "path": "mapping/myplacesimport"
+      },
+      {
+        "name": "postprocessor",
+        "desc": "Moves the map viewport to location defined in config and requests a highlight for featureId (also from config).",
+        "path": "mapping/postprocessor"
+      },
+      {
+        "name": "printout",
+        "desc": "Manages settings panel when user has entered to the print mode.",
+        "path": "mapping/printout"
+      },
+      {
+        "name": "publishedmyplaces2",
+        "desc": "My places functionality for a published map.\nEditing is not included, only creation and the default layer needs to be created by other means. Initial implementation and further development follows.",
+        "path": "mapping/publishedmyplaces2"
+      },
+      {
+        "name": "routingService",
+        "desc": "Provides a service which listen ``GetRouteRequest`` request. When request has made the service send ajax call to Oskari backend and waiting to response. When response come then service sends ``RouteResultEvent``.",
+        "path": "mapping/routingService"
+      },
+      {
+        "name": "routingui",
+        "desc": "This bundle provides UI for routing. In this bundle user can select start and end points of route and then search route of between these points. Finally results are showed on the popup.",
+        "path": "mapping/routingui"
+      },
+      {
+        "name": "timeseries",
+        "desc": "![Timeseries](timeseries.png)",
+        "path": "mapping/timeseries"
+      },
+      {
+        "name": "userstyle",
+        "desc": "Provides functionality to add runtime styles for layer.",
+        "path": "mapping/userstyle"
+      },
+      {
+        "name": "wfsvector",
+        "desc": "WfsVectorLayerPlugin is an alternative implementation of mapwfs2 that uses MVT vector tiles or geojson as data transfer mechanism. \nRequires module `control-mvt` to be in use in the backend. Currently supports functionalities:",
+        "path": "mapping/wfsvector"
+      }
+    ]
+  },
+  {
+    "name": "statistics",
+    "bundles": [
+      {
+        "name": "statsgrid",
+        "desc": "Statistics data display. This will replace the statsgrid bundle specification when the implementation has the comparable functionalities as the current one. The bundle depends on mapstats-bundle that provides support for statslayer layertype.",
+        "path": "statistics/statsgrid"
+      }
+    ]
+  },
+  {
+    "name": "ui",
+    "bundles": [
+      {
+        "name": "divmanazer",
+        "desc": "Manages menutiles, flyouts and other UI related funtionalities for other bundles to use. Also provides UI components. The tiles are rendered to a HTML element with id \"menubar\". The bundle doesn't create it but assumes it exists on the page.",
+        "path": "ui/divmanazer"
+      },
+      {
+        "name": "guidedtour",
+        "desc": "Shows a series of dialogs on startup to instruct user on map functionalities. The content of the dialogs is supplied from the bundles that the guided tour describes. Any bundle can register itself to the guided tour.",
+        "path": "ui/guidedtour"
+      },
+      {
+        "name": "infobox",
+        "desc": "Provides functionality for other bundles to show an infobox on the map. For example information about a search result. Defines a plugin for mapmodule that handles the infobox as an Openlayers popup with customized UI. Also extends jQuery by an outerHtml method. Templates are created with jQuery but Openlayers popup needs the actual HTML, this is where we need outerHtml.",
+        "path": "ui/infobox"
+      },
+      {
+        "name": "search",
+        "desc": "Provides a generic and extensible search user-interface",
+        "path": "ui/search"
+      },
+      {
+        "name": "toolbar",
+        "desc": "Generic and extensible toolbar implementation",
+        "path": "ui/toolbar"
+      },
+      {
+        "name": "ui-components",
+        "desc": "Imports user interface components from divmanazer (eg. Popup, Grid) to be used without initializing the divmanazer bundle. Used mostly in published map where the aforementioned bundle is not imported.",
+        "path": "ui/ui-components"
+      },
+      {
+        "name": "userguide",
+        "desc": "Creates the Userguide flyout with title and content. ",
+        "path": "ui/userguide"
+      }
+    ]
+  }
+]

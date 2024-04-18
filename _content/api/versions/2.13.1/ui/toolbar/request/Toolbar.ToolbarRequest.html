@@ -1,0 +1,75 @@
+<h1 id="toolbartoolbarrequest">Toolbar.ToolbarRequest</h1>
+<p>Requests for toolbar to create/show/hide/remove a toolbar.</p>
+<h2 id="use-cases">Use cases</h2>
+<ul>
+<li>Add toolbar</li>
+<li>Show toolbar</li>
+<li>Hide toolbar</li>
+<li>Remove toolbar</li>
+<li>Change toolbar name</li>
+</ul>
+<h2 id="description">Description</h2>
+<p>Requests for toolbar to add button with given config</p>
+<h2 id="parameters">Parameters</h2>
+<p>(* means the parameter is required)</p>
+<table class="table">
+<tr>
+  <th> Name</th><th> Type</th><th> Description</th><th> Default value</th>
+</tr>
+<tr>
+  <td> \* id </td><td> String</td><td> Toolbar identifier </td><td> </td>
+</tr>
+<tr>
+  <td> \* op </td><td> String</td><td> Toolbar operation: add, show, hide, remove or changeName </td><td> </td>
+</tr>
+<tr>
+  <td> \* data </td><td> Object </td><td> Operation arguments as properties </td><td> </td>
+</tr>
+</table>
+
+
+<p>Parameters for data-object (add operation):</p>
+<table class="table">
+<tr>
+  <th> Name</th><th> Type</th><th> Description</th><th> Default value</th>
+</tr>
+<tr>
+  <td> disableHover </td><td> Boolean </td><td> disable hover </td><td> false </td>
+</tr>
+<tr>
+  <td> colours </td><td> Object </td><td> Toolbar colours. Now only supported hover colour. For example: {hover:'#ff0000', background: '#ffffff'} </td><td> {hover: '#3c3c3c', background: '#333438'} </td>
+</tr>
+<tr>
+  <td> title </td><td> String </td><td> Toolbar title </td><td> true </td>
+</tr>
+<tr>
+  <td> toolbarContainer </td><td> Jquery element </td><td> toolbar container </td><td> </td>
+</tr>
+<tr>
+  <td> closeBoxCallback </td><td> Function </td><td> close box callback </td><td> </td>
+</tr>
+
+</table>
+
+
+
+
+<h2 id="examples">Examples</h2>
+<p>Add toolbar (no hover):</p>
+<pre><code class="language-javascript">var sb = Oskari.getSandbox();
+var builder = sb.getRequestBuilder(&#39;Toolbar.ToolbarRequest&#39;);
+var request = builder(
+        &#39;ExampleGroup&#39;,
+        &#39;add&#39;,
+        {
+            show: true,
+            toolbarContainer: jQuery(&#39;#toolbarContainer&#39;),
+            colours: {
+                hover: &#39;#ff0000&#39;
+            },
+            disableHover: true
+        }
+);
+sb.request(me.getName(), request);
+</code></pre>
+<p><em>Included in bundle: <a href="bundles#2.13.1/ui/toolbar">ui/toolbar</a></em></p>

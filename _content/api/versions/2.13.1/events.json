@@ -1,0 +1,466 @@
+[
+  {
+    "name": "AfterAddMarkerEvent ",
+    "desc": "Notifies that marker has been added to the map.",
+    "path": "mapping/mapmodule/event/AfterAddMarkerEvent.md",
+    "rpc": true,
+    "bundle": "mapmodule",
+    "ns": "mapping"
+  },
+  {
+    "name": "AfterMapMoveEvent ",
+    "desc": "Notifies that map has been moved or zoomed.",
+    "path": "mapping/mapmodule/event/AfterMapMoveEvent.md",
+    "rpc": true,
+    "bundle": "mapmodule",
+    "ns": "mapping"
+  },
+  {
+    "name": "AfterRemoveMarkersEvent",
+    "desc": "Event is sent after map markers are removed",
+    "path": "mapping/mapmodule/event/AfterRemoveMarkersEvent.md",
+    "rpc": false,
+    "bundle": "mapmodule",
+    "ns": "mapping"
+  },
+  {
+    "name": "BackendStatus.BackendStatusChangedEvent",
+    "desc": "Event is sent when the backend status of a map layer has changed.",
+    "path": "mapping/backendstatus/event/BackendStatus.BackendStatusChangedEvent.md",
+    "rpc": false,
+    "bundle": "backendstatus",
+    "ns": "mapping"
+  },
+  {
+    "name": "DataForMapLocationEvent ",
+    "desc": "Notifies application that a click on the map resulted in more data for that location (GFI style content).",
+    "path": "mapping/mapmodule/event/DataForMapLocationEvent.md",
+    "rpc": true,
+    "bundle": "mapmodule",
+    "ns": "mapping"
+  },
+  {
+    "name": "DrawingEvent ",
+    "desc": "Notifies that sketch has been changed or drawing is finished.",
+    "path": "mapping/drawtools/event/DrawingEvent.md",
+    "rpc": true,
+    "bundle": "drawtools",
+    "ns": "mapping"
+  },
+  {
+    "name": "EscPressedEvent",
+    "desc": "Event is sent when ESC key in keyboard is pressed so bundles can react to it.",
+    "path": "mapping/mapmodule/event/EscPressedEvent.md",
+    "rpc": false,
+    "bundle": "mapmodule",
+    "ns": "mapping"
+  },
+  {
+    "name": "FeatureEvent ",
+    "desc": "Used to notify about add, remove, update and click events for features.",
+    "path": "mapping/mapmodule/event/featureevent.md",
+    "rpc": true,
+    "bundle": "mapmodule",
+    "ns": "mapping"
+  },
+  {
+    "name": "FeedbackResultEvent ",
+    "desc": "Notifies that feedback request response has been got from the service. Includes the response data.",
+    "path": "mapping/feedbackService/event/feedbackresultevent.md",
+    "rpc": true,
+    "bundle": "feedbackService",
+    "ns": "mapping"
+  },
+  {
+    "name": "GeometryCuttingEvent",
+    "desc": "Sent when any of the following happens:",
+    "path": "mapping/geometrycutter/event/GeometryCuttingEvent.md",
+    "rpc": false,
+    "bundle": "geometrycutter",
+    "ns": "mapping"
+  },
+  {
+    "name": "GetInfoResultEvent",
+    "desc": "Update map click information coming from ajax request",
+    "path": "mapping/mapmodule/event/GetInfoResultEvent.md",
+    "rpc": false,
+    "bundle": "mapmodule",
+    "ns": "mapping"
+  },
+  {
+    "name": "InfoBox.InfoBoxEvent ",
+    "desc": "Used to notify that infobox has been closed.",
+    "path": "ui/infobox/event/InfoBox.InfoBoxEvent.md",
+    "rpc": true,
+    "bundle": "infobox",
+    "ns": "ui"
+  },
+  {
+    "name": "InfoboxActionEvent ",
+    "desc": "Used to notify which link/button is clicked in the infobox.",
+    "path": "ui/infobox/event/infoboxactionevent.md",
+    "rpc": true,
+    "bundle": "infobox",
+    "ns": "ui"
+  },
+  {
+    "name": "LayerToolsEditModeEvent",
+    "desc": "Event sent when user edits layout order",
+    "path": "mapping/mapmodule/event/LayerToolsEditModeEvent.md",
+    "rpc": false,
+    "bundle": "mapmodule",
+    "ns": "mapping"
+  },
+  {
+    "name": "LayerToolsEditModeEvent",
+    "desc": "Event is sent when user decides to edit layout order",
+    "path": "framework/publisher2/event/LayerToolsEditModeEvent.md",
+    "rpc": false,
+    "bundle": "publisher2",
+    "ns": "framework"
+  },
+  {
+    "name": "map.layer.activation",
+    "desc": "Triggered when a layer has activated/deactivated.",
+    "path": "mapping/mapmodule/event/map.layer.activation.md",
+    "rpc": false,
+    "bundle": "mapmodule",
+    "ns": "mapping"
+  },
+  {
+    "name": "map.rotated",
+    "desc": "Event which informs how many degrees the map has rotated.",
+    "path": "mapping/maprotator/event/map.rotated.md",
+    "rpc": false,
+    "bundle": "maprotator",
+    "ns": "mapping"
+  },
+  {
+    "name": "MapClickedEvent ",
+    "desc": "Notifies user that map has been clicked.",
+    "path": "mapping/mapmodule/event/MapClickedEvent.md",
+    "rpc": true,
+    "bundle": "mapmodule",
+    "ns": "mapping"
+  },
+  {
+    "name": "MapLayerVisibilityChangedEvent",
+    "desc": "This is used to notify that layers visibility has changed. Either the map has\nmoved out of the layers scale range or the layers geometry is no longer in the maps viewport.\nListeners should also check getMapLayer().getVisible() method that indicates if the map has been hidden by the user.",
+    "path": "mapping/mapmodule/event/MapLayerVisibilityChangedEvent.md",
+    "rpc": false,
+    "bundle": "mapmodule",
+    "ns": "mapping"
+  },
+  {
+    "name": "MapSizeChangedEvent",
+    "desc": "Event is sent when the map div size is changed",
+    "path": "mapping/mapmodule/event/MapSizeChangedEvent.md",
+    "rpc": false,
+    "bundle": "mapmodule",
+    "ns": "mapping"
+  },
+  {
+    "name": "MapTourEvent ",
+    "desc": "Notifies status of MapTourRequest",
+    "path": "mapping/mapmodule/event/MapTourEvent.md",
+    "rpc": true,
+    "bundle": "mapmodule",
+    "ns": "mapping"
+  },
+  {
+    "name": "MarkerClickEvent ",
+    "desc": "Notifies that map marker has been clicked.",
+    "path": "mapping/mapmodule/event/MarkerClickEvent.md",
+    "rpc": true,
+    "bundle": "mapmodule",
+    "ns": "mapping"
+  },
+  {
+    "name": "MetaData.FinishedDrawingEvent",
+    "desc": "Used to notify components that the drawing has been finished.",
+    "path": "mapping/metadatacatalogue/event/MetaData.FinishedDrawingEvent.md",
+    "rpc": false,
+    "bundle": "metadatacatalogue",
+    "ns": "mapping"
+  },
+  {
+    "name": "MetadataSearchResultEvent ",
+    "desc": "Notifies that a metadata search has been performed and the result is accessible through the event.",
+    "path": "mapping/metadatacatalogue/event/MetadataSearchResultEvent.md",
+    "rpc": true,
+    "bundle": "metadatacatalogue",
+    "ns": "mapping"
+  },
+  {
+    "name": "MouseHoverEvent",
+    "desc": "Notifies user about the pointer moves.",
+    "path": "mapping/mapmodule/event/MouseHoverEvent.md",
+    "rpc": false,
+    "bundle": "mapmodule",
+    "ns": "mapping"
+  },
+  {
+    "name": "MyPlaces.MyPlacesChangedEvent",
+    "desc": "Tell components to reload myplaces data.",
+    "path": "mapping/myplaces/event/MyPlaces.MyPlacesChangedEvent.md",
+    "rpc": false,
+    "bundle": "myplaces",
+    "ns": "mapping"
+  },
+  {
+    "name": "Printout.PrintableContentEvent",
+    "desc": "Set data for print",
+    "path": "mapping/printout/event/Printout.PrintableContentEvent.md",
+    "rpc": false,
+    "bundle": "printout",
+    "ns": "mapping"
+  },
+  {
+    "name": "Printout.PrintCanceledEvent",
+    "desc": "Used to notify components that the basic printout is canceled",
+    "path": "mapping/printout/event/Printout.PrintCanceledEvent.md",
+    "rpc": false,
+    "bundle": "printout",
+    "ns": "mapping"
+  },
+  {
+    "name": "Printout.PrintWithoutUIEvent",
+    "desc": "Print pdf/png with predefined params without UI",
+    "path": "mapping/printout/event/Printout.PrintWithoutUIEvent.md",
+    "rpc": false,
+    "bundle": "printout",
+    "ns": "mapping"
+  },
+  {
+    "name": "ProgressEvent",
+    "desc": "An event that tells if something is progressing or is it done (layers loading / layers done loading)",
+    "path": "mapping/mapmodule/event/ProgressEvent.md",
+    "rpc": false,
+    "bundle": "mapmodule",
+    "ns": "mapping"
+  },
+  {
+    "name": "Publisher.MapPublishedEvent",
+    "desc": "Used to notify components that a new published map is available.",
+    "path": "framework/publisher2/event/Publisher.MapPublishedEvent.md",
+    "rpc": false,
+    "bundle": "publisher2",
+    "ns": "framework"
+  },
+  {
+    "name": "Publisher2.ColourSchemeChangedEvent",
+    "desc": "Used to notify getinfo plugin that the colour scheme has changed.",
+    "path": "framework/publisher2/event/Publisher2.ColourSchemeChangedEvent.md",
+    "rpc": false,
+    "bundle": "publisher2",
+    "ns": "framework"
+  },
+  {
+    "name": "Publisher2.FontChangedEvent",
+    "desc": "Used to notify tool plugins that the font has changed.",
+    "path": "framework/publisher2/event/Publisher2.FontChangedEvent.md",
+    "rpc": false,
+    "bundle": "publisher2",
+    "ns": "framework"
+  },
+  {
+    "name": "Publisher2.ToolEnabledChangedEvent",
+    "desc": "Used to notify the layout panel that tools have been added / removed from the map",
+    "path": "framework/publisher2/event/Publisher2.ToolEnabledChangedEvent.md",
+    "rpc": false,
+    "bundle": "publisher2",
+    "ns": "framework"
+  },
+  {
+    "name": "Publisher2.ToolStyleChangedEvent",
+    "desc": "Used to notify tool plugins that the tool style has changed.",
+    "path": "framework/publisher2/event/Publisher2.ToolStyleChangedEvent.md",
+    "rpc": false,
+    "bundle": "publisher2",
+    "ns": "framework"
+  },
+  {
+    "name": "RoleChangedEvent",
+    "desc": "Event is sent when the role has been added or removed",
+    "path": "admin/admin-users/event/RoleChangedEvent.md",
+    "rpc": false,
+    "bundle": "admin-users",
+    "ns": "admin"
+  },
+  {
+    "name": "RouteResultEvent ",
+    "desc": "Notifies that route has been got successfully from the service. Includes information about the route.",
+    "path": "mapping/routingService/event/routeresultevent.md",
+    "rpc": true,
+    "bundle": "routingService",
+    "ns": "mapping"
+  },
+  {
+    "name": "Search.TabChangedEvent",
+    "desc": "Notify metadatacatalogue that the tab has changed",
+    "path": "ui/search/event/Search.TabChangedEvent.md",
+    "rpc": false,
+    "bundle": "search",
+    "ns": "ui"
+  },
+  {
+    "name": "SearchResultEvent ",
+    "desc": "Notifies that a search has been performed and the result is accessible through the event.",
+    "path": "framework/search/event/SearchResultEvent.md",
+    "rpc": true,
+    "bundle": "search",
+    "ns": "framework"
+  },
+  {
+    "name": "StateChangedEvent ",
+    "desc": "Sent after massive application state change occurs.",
+    "path": "framework/core/event/StateSavedEvent.md",
+    "rpc": true,
+    "bundle": "core",
+    "ns": "framework"
+  },
+  {
+    "name": "StateSavedEvent",
+    "desc": "Used to notify that application state has been saved and any listing should refresh",
+    "path": "framework/statehandler/event/StateSavedEvent.md",
+    "rpc": false,
+    "bundle": "statehandler",
+    "ns": "framework"
+  },
+  {
+    "name": "StatsGrid.ActiveIndicatorChangedEvent",
+    "desc": "Notifies when an indicator has been selected (in grid etc).\nComponents handling indicators should update a \"highlighted\" indicator where needed.",
+    "path": "statistics/statsgrid/event/StatsGrid.ActiveIndicatorChangedEvent.md",
+    "rpc": false,
+    "bundle": "statsgrid",
+    "ns": "statistics"
+  },
+  {
+    "name": "StatsGrid.ClassificationChangedEvent",
+    "desc": "Notifies when an classification has been changed (in edit classification).",
+    "path": "statistics/statsgrid/event/StatsGrid.ClassificationChangedEvent.md",
+    "rpc": false,
+    "bundle": "statsgrid",
+    "ns": "statistics"
+  },
+  {
+    "name": "StatsGrid.DatasourceEvent",
+    "desc": "Notifies that a datasource has more indicators available (or indicators have been removed).",
+    "path": "statistics/statsgrid/event/StatsGrid.DatasourceEvent.md",
+    "rpc": false,
+    "bundle": "statsgrid",
+    "ns": "statistics"
+  },
+  {
+    "name": "StatsGrid.IndicatorEvent",
+    "desc": "Used to notify that an indicator has been added to or removed from selected indicators.",
+    "path": "statistics/statsgrid/event/StatsGrid.IndicatorEvent.md",
+    "rpc": false,
+    "bundle": "statsgrid",
+    "ns": "statistics"
+  },
+  {
+    "name": "StatsGrid.RegionSelectedEvent",
+    "desc": "Used to notify that a region has been selected in statsgrid.\nComponents handling regions can update \"highlighted\" regions or the latest selection.",
+    "path": "statistics/statsgrid/event/StatsGrid.RegionSelectedEvent.md",
+    "rpc": false,
+    "bundle": "statsgrid",
+    "ns": "statistics"
+  },
+  {
+    "name": "StatsGrid.RegionsetChangedEvent",
+    "desc": "Notifies regionset change",
+    "path": "statistics/statsgrid/event/StatsGrid.RegionsetChangedEvent.md",
+    "rpc": false,
+    "bundle": "statsgrid",
+    "ns": "statistics"
+  },
+  {
+    "name": "TimeChangedEvent ",
+    "desc": "Notifies of changed time",
+    "path": "mapping/mapmodule/event/TimeChangedEvent.md",
+    "rpc": true,
+    "bundle": "mapmodule",
+    "ns": "mapping"
+  },
+  {
+    "name": "Toolbar.ToolbarLoadedEvent",
+    "desc": "Used to notify components that the toolbar has been loaded and is available for tool button addition requests.",
+    "path": "ui/toolbar/event/Toolbar.ToolbarLoadedEvent.md",
+    "rpc": false,
+    "bundle": "toolbar",
+    "ns": "ui"
+  },
+  {
+    "name": "Toolbar.ToolSelectedEvent",
+    "desc": "Used to notify components that a tool has been selected and components should cancel their tool related operations if any.",
+    "path": "ui/toolbar/event/Toolbar.ToolSelectedEvent.md",
+    "rpc": false,
+    "bundle": "toolbar",
+    "ns": "ui"
+  },
+  {
+    "name": "UIChangeEvent",
+    "desc": "Notifies major UI changes where some functionalities should clean up/shutdown their own UI.",
+    "path": "ui/divmanazer/event/UIChangeEvent.md",
+    "rpc": false,
+    "bundle": "divmanazer",
+    "ns": "ui"
+  },
+  {
+    "name": "userinterface.ExtensionUpdatedEvent",
+    "desc": "Sent after Extension view state has changed",
+    "path": "ui/divmanazer/event/userinterface.ExtensionUpdatedEvent.md",
+    "rpc": false,
+    "bundle": "divmanazer",
+    "ns": "ui"
+  },
+  {
+    "name": "UserLocationEvent ",
+    "desc": "Notifies user location.",
+    "path": "mapping/mapmodule/event/userlocationevent.md",
+    "rpc": true,
+    "bundle": "mapmodule",
+    "ns": "mapping"
+  },
+  {
+    "name": "WFSFeatureEvent",
+    "desc": "Notifies about received WFS feature properties data",
+    "path": "mapping/wfsvector/event/WFSFeatureEvent.md",
+    "rpc": false,
+    "bundle": "wfsvector",
+    "ns": "mapping"
+  },
+  {
+    "name": "WFSFeaturesSelectedEvent",
+    "desc": "Used to indicate that a WFS Feature has been selected and components should highlight it in UI",
+    "path": "mapping/wfsvector/event/WFSFeaturesSelectedEvent.md",
+    "rpc": false,
+    "bundle": "wfsvector",
+    "ns": "mapping"
+  },
+  {
+    "name": "WFSPropertiesEvent",
+    "desc": "Notifies about WFS feature properties field names\n ",
+    "path": "mapping/wfsvector/event/WFSPropertiesEvent.md",
+    "rpc": false,
+    "bundle": "wfsvector",
+    "ns": "mapping"
+  },
+  {
+    "name": "WFSSetFilter",
+    "desc": "Notifies that a GeoJSON geometry filter has been set",
+    "path": "mapping/featuredata/event/WFSSetFilter.md",
+    "rpc": false,
+    "bundle": "featuredata",
+    "ns": "mapping"
+  },
+  {
+    "name": "WFSSetPropertyFilter",
+    "desc": "Notifies that a WFS feature properties filter has been set",
+    "path": "mapping/featuredata/event/WFSSetPropertyFilter.md",
+    "rpc": false,
+    "bundle": "featuredata",
+    "ns": "mapping"
+  }
+]

@@ -1,0 +1,10 @@
+<h1 id="uichangeevent">UIChangeEvent</h1>
+<p>Notifies major UI changes where some functionalities should clean up/shutdown their own UI.</p>
+<h2 id="description">Description</h2>
+<p>An example would be that publisher is opened and expects to have the whole UI for itself and sends an UIChangeEvent. Other bundles like statsgrid should react to the event by cleaning up the UI that it has reserved.</p>
+<h1 id="event-methods">Event methods</h1>
+<h2 id="getname">getName</h2>
+<p>Get event name.</p>
+<h2 id="getfunctionality">getFunctionality</h2>
+<p>Returns functionality id which triggered the change</p>
+<p><em>Included in bundle: <a href="bundles#latest/ui/divmanazer">ui/divmanazer</a></em></p>

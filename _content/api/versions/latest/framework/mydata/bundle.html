@@ -1,0 +1,125 @@
+<h1 id="mydata">mydata</h1>
+<p>Provides generic container for listing user data and offers other functionalities a way to present user-specific information.</p>
+<h2 id="description">Description</h2>
+<p>The bundle lists user&#39;s account information and saved data in the application.
+By default mydata lists account info, saved map views and embedded maps.
+Other bundles can add tabs to list data related to their domain (eg. my places, user indicators) here.</p>
+<p><img src="/apires/latest/framework/mydata/mydata.png" alt="Display user data"></p>
+<p><em>Here shown with tabs added by <code>myplaces</code> and <code>myplacesimport</code> bundles</em></p>
+<h2 id="todo">TODO</h2>
+<ul>
+<li>Move embedded maps tab implementation from mydata to publisher functionality</li>
+</ul>
+<h2 id="usage-from-other-bundles">Usage from other bundles</h2>
+<p>If <code>mydata</code> bundle is present in the app (and started before running this code) other bundles can access the service it provides through the Oskari sandbox. The provided service has a function <code>addTab()</code> that takes the following parameters:</p>
+<ul>
+<li>identifier for the tab/functionality (some unique id as string like the bundle id that is adding the tab)</li>
+<li>title for the tab that is shown to end-user</li>
+<li>React-component that will be used to render the tab contents</li>
+<li>UIHandler instance for the React-component <a href="https://oskari.org/jsdoc/latest/oskari-ui-util/controllerMixin.html">https://oskari.org/jsdoc/latest/oskari-ui-util/controllerMixin.html</a></li>
+</ul>
+<pre><code class="language-javascript">const myDataService = sandbox.getService(&#39;Oskari.mapframework.bundle.mydata.service.MyDataService&#39;);
+if (myDataService) {
+    myDataService.addTab(&#39;[identifier string for tab]&#39;, &#39;Title for tab&#39;, MyTabImpl, MyTabImplUIHandler);
+}
+</code></pre>
+<p>The UIHandler is expected to have <code>addStateListener()</code>, <code>getState()</code> (inherited from <code>StateHandler</code>) and <code>getController()</code> (from <code>controllerMixin</code>) functions. The objects returned by <code>getState()</code> and <code>getController()</code> functions are passed to the React-component as props <code>state</code> and <code>controller</code>. When a statechange is triggered on the <code>MyTabImplHandler</code> the UI will be re-rendered (by the state listener registered by <code>mydata</code>).</p>
+<p>Example <code>MyTabImplUIHandler</code>:</p>
+<pre><code class="language-javascript">class UIHandler extends StateHandler {
+     changeState () {
+         this.updateState({ updated: &#39;state&#39; });
+     }
+};
+export const MyTabImplUIHandler = controllerMixin(UIHandler, [&#39;changeState&#39;]);
+</code></pre>
+<p>Example <code>MyTabImpl</code>:</p>
+<pre><code class="language-javascript">export const MyTabImpl = ({ state, controller }) =&gt; {
+  return (&lt;p&gt;
+    My state: {{JSON.stringify(state)}}
+    &lt;button onClick={() =&gt; controller.changeState()}&gt;Do stuff&lt;/button&gt;
+  &lt;/p&gt;)
+}
+</code></pre>
+<h2 id="bundle-configuration">Bundle configuration</h2>
+<p>Configuration is optional:</p>
+<pre><code class="language-javascript">conf: {
+  showUser: true,
+  showViews: true
+}
+</code></pre>
+<ul>
+<li>If <code>showUser</code> is <code>true</code> (defaults to true on server) the user account tab will be shown.</li>
+<li>If <code>showViews</code> is <code>true</code> (defaults to true on server) the saved views tab will be shown.</li>
+</ul>
+<p>These can be configured on the Oskari-server <code>oskari-ext.properties</code> configuration file:</p>
+<pre><code>mydata.tabs.showUser=true
+mydata.tabs.showViews=true
+</code></pre>
+<p>Also uses <code>Oskari.urls.getLocation(&#39;profile&#39;)</code> to provide a link where the user can update their profile information.
+The easiest way for the link to be configured is defining it on the Oskari-server <code>oskari-ext.properties</code> configuration file:</p>
+<pre><code class="language-properties">auth.profile.url=/profile
+</code></pre>
+<p>Or for language-specific links with:</p>
+<pre><code class="language-properties">auth.profile.url.en=https://sso.org/profile
+auth.profile.url.fi=https://sso.org/profiili
+</code></pre>
+<p>The bundle will show a link on the account tab to the configured URL when configured.</p>
+<h2 id="requests-the-bundle-sends-out">Requests the bundle sends out</h2>
+<table class="table">
+<tr>
+  <th> Request </th>
+  <th> Where/why it's used</th>
+</tr>
+<tr>
+  <td> `Publisher.PublishMapEditorRequest` </td>
+  <td> When an embedded maps 'Edit' link is clicked to activate the publisher bundle </td>
+</tr>
+<tr>
+  <td> `userinterface.UpdateExtensionRequest` </td>
+  <td> When an embedded maps 'Edit' link is clicked to close the personaldata flyout </td>
+</tr>
+
+<tr>
+  <td> `Toolbar.AddToolButtonRequest` </td>
+  <td> If 'StateHandler.SaveStateRequest' can be used/is part of the application.
+  Adds a toolbar button for saving views when the bundle is started.
+  Button is disabled for guest users.</td>
+</tr>
+<tr>
+  <td> `StateHandler.SaveStateRequest` </td>
+  <td> When the save view button is clicked </td>
+</tr>
+<tr>
+  <td> `StateHandler.SetStateRequest` </td>
+  <td> When the name of a saved view or 'Show' link of an embedded map is clicked </td>
+</tr>
+
+</table>
+
+<h2 id="events-the-bundle-listens-to">Events the bundle listens to</h2>
+<table class="table">
+  <tr>
+    <th> Event </th><th> How does the bundle react</th>
+  </tr>
+  <tr>
+    <td> `Publisher.MapPublishedEvent` </td><td> Refreshes the embedded maps listing </td>
+  </tr>
+  <tr>
+    <td> `StateSavedEvent` </td><td> Refreshes the saved views listing </td>
+  </tr>
+  
+</table>
+
+<h2 id="dependencies">Dependencies</h2>
+<table class="table">
+  <tr>
+    <th>Dependency</th>
+    <th>Linked from</th>
+    <th>Purpose</th>
+  </tr>
+  <tr>
+    <td> [Oskari divmanazer](/api/bundles#/latest/ui/divmanazer)</td>
+    <td> Expects to be present in application setup </td>
+    <td> Bundle has a Flyout and Tile so a divmanazer is needed </td>
+  </tr>
+</table>

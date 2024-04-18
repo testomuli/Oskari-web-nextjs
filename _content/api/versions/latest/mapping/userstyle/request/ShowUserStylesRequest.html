@@ -1,0 +1,25 @@
+<h1 id="showuserstylesrequest">ShowUserStylesRequest</h1>
+<p>Requests a user own styles to be shown for specific layer.</p>
+<h2 id="description">Description</h2>
+<p>Opens flyout which shows user&#39;s styles for requested layer. If layer doesn&#39;t have any user defined style, then form is opened to add new style.</p>
+<h2 id="parameters">Parameters</h2>
+<p>(* means the parameter is required)</p>
+<table class="table">
+<tr>
+  <th> Name</th><th> Type</th><th> Description</th><th> Default value</th>
+</tr>
+<tr>
+  <td> \* layerId</td><td> String</td><td> Identifier for requested layer.</td><td> </td>
+</tr>
+<tr>
+  <td> showStyle</td><td> Boolean</td><td> Indicates that visualization form should be opened to create or edit style.</td><td> false</td>
+</tr>
+<tr>
+  <td> styleName</td><td> String</td><td> Identifier for requested style. If not given then new style is created.</td><td></td>
+</tr>
+</table>
+
+<h2 id="example">Example</h2>
+<pre><code class="language-javascript">Oskari.getSandbox().postRequestByName(&#39;ShowUserStylesRequest&#39;, [1]);
+</code></pre>
+<p><em>Included in bundle: <a href="bundles#latest/mapping/userstyle">mapping/userstyle</a></em></p>

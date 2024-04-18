@@ -1,0 +1,35 @@
+<h1 id="statsgridindicatorevent">StatsGrid.IndicatorEvent</h1>
+<p>Used to notify that an indicator has been added to or removed from selected indicators.</p>
+<h2 id="parameters">Parameters</h2>
+<p>(* means the parameter is required)</p>
+<table class="table">
+<tr>
+  <th> Name</th><th> Type</th><th> Description</th><th> Default value</th>
+</tr>
+<tr>
+  <td> \* datasource</td><td> Number </td><td> datasource id where the indicator can be found </td><td> </td>
+</tr>
+<tr>
+  <td> \* indicator</td><td> Number </td><td> id for the indicator </td><td> </td>
+</tr>
+<tr>
+  <td> selections</td><td> Object </td><td> Object containing key-value pairs with the indicator parameters like { year : 2016 }</td><td> {} </td>
+</tr>
+<tr>
+  <td> removed</td><td> Boolean </td><td> true if indicator was removed</td><td> false</td>
+</tr>
+</table>
+
+
+<h2 id="event-methods">Event methods</h2>
+<h3 id="getname">getName()</h3>
+<p>Returns event name</p>
+<h3 id="getdatasource">getDatasource()</h3>
+<p>Returns datasource id</p>
+<h3 id="getindicator">getIndicator()</h3>
+<p>Returns indicator id</p>
+<h3 id="getselections">getSelections()</h3>
+<p>Selections that user made for the indicator like { year : 2016 }</p>
+<h3 id="isremoved">isRemoved()</h3>
+<p>True if the indicator was removed, false if it was added.</p>
+<p><em>Included in bundle: <a href="bundles#latest/statistics/statsgrid">statistics/statsgrid</a></em></p>

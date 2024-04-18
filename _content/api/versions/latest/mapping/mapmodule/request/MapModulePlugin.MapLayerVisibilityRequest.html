@@ -1,0 +1,45 @@
+<h1 id="mapmodulepluginmaplayervisibilityrequest-rpc">MapModulePlugin.MapLayerVisibilityRequest <span class="label label-primary rpc">RPC</span></h1>
+<p>Allows user to change map layer visibility.</p>
+<h2 id="use-cases">Use cases</h2>
+<ul>
+<li>Hide or show map/vector layer on a map</li>
+</ul>
+<h2 id="description">Description</h2>
+<p>Requests a layer to be shown or hidden on a map. Triggers mapLayerVisibilityChangedEvent.</p>
+<h2 id="parameters">Parameters</h2>
+<p>(* means the parameter is required)</p>
+<table class="table">
+<tr>
+  <th> Name</th><th> Type</th><th> Description</th><th> Default value</th>
+</tr>
+<tr>
+  <td> \* MapLayerId </td><td> String </td><td> id of map/vector layer used in Oskari.mapframework.service.MapLayerService </td><td> </td>
+</tr>
+<tr>
+  <td> \* visible </td><td> Boolean </td><td> should map/vector layer be visible or not </td><td> </td>
+</tr>
+</table>
+
+<h2 id="examples">Examples</h2>
+<p>Hide map layer on a map</p>
+<pre><code class="language-javascript">var sb = Oskari.getSandbox();
+visibilityRequestBuilder = sandbox.getRequestBuilder(&#39;MapModulePlugin.MapLayerVisibilityRequest&#39;);
+if (visibilityRequestBuilder) {
+    var request = visibilityRequestBuilder(this._layer.getId(), false);
+    sandbox.request(this, request);
+}
+</code></pre>
+<p>Hide vector layer on a map</p>
+<pre><code class="language-javascript">var vectorLayerId = &#39;VECTOR&#39;;
+var sb = Oskari.getSandbox();
+visibilityRequestBuilder = sandbox.getRequestBuilder(&#39;MapModulePlugin.MapLayerVisibilityRequest&#39;);
+if (visibilityRequestBuilder) {
+    var request = visibilityRequestBuilder(vectorLayerId, false);
+    sandbox.request(this, request);
+}
+</code></pre>
+<h2 id="related-api">Related api</h2>
+<ul>
+<li>afterMapLayerVisibilityChangedEvent</li>
+</ul>
+<p><em>Included in bundle: <a href="bundles#latest/mapping/mapmodule">mapping/mapmodule</a></em></p>

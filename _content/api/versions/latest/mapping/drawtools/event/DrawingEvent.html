@@ -1,0 +1,190 @@
+<h1 id="drawingevent-rpc">DrawingEvent <span class="label label-primary rpc">RPC</span></h1>
+<p>Notifies that sketch has been changed or drawing is finished.</p>
+<h2 id="description">Description</h2>
+<p>Used to notify that sketch is changed or drawing finished. Event is sent every time that sketch changes (cursor is moved while drawing) and when drawing is finished. </p>
+<h2 id="parameters">Parameters</h2>
+<p>(* means the parameter is required)</p>
+<table class="table">
+<tr>
+  <th> Name</th><th> Type</th><th> Description</th><th> Default value</th>
+</tr>
+<tr>
+  <td> \* id </td><td> String</td><td> drawing id as given in StartDrawingRequest</td><td> </td>
+</tr>
+<tr>
+  <td> \* geojson </td><td> Object</td><td> Drawn features in GeoJson format </td><td> </td>
+</tr>
+<tr>
+  <td> \* data </td><td> Object</td><td> additional info</td><td> </td>
+</tr>
+<tr>
+  <td> \* isFinished </td><td> Boolean</td><td> True if drawing is finished</td><td> </td>
+</tr>
+</table>
+
+<h2 id="rpc">RPC</h2>
+<p>Unfinished event is sent every time that sketch changes. </p>
+<pre class="event-code-block">
+<code>
+{
+  "name": "DrawingEvent",
+  "id": "my functionality id",
+  "geojson": {...},
+  "data": {
+    "area": 594933884.35, // The sum of all areas in square meters
+    "buffer": 0, // requested buffer
+    "bufferedGeoJson": {...}, // contains buffered features if buffer is requested
+    "length": 264071.08700662444, // The sum of all line lengths in meters
+    "showMeasureOnMap": true,
+    "shape": "Polygon" // requested shape
+  },
+  "isFinished": false
+}
+</code>
+</pre>
+
+<p>Finished event occurs when sketch is finished. For example after <code>StopDrawingRequest</code>, double-click or end drag on modify.</p>
+<pre class="event-code-block">
+<code>
+{
+  "name": "DrawingEvent",
+  "id": "my functionality id",
+  "geojson": { ... },
+  "data": { ... },
+  "isFinished": true
+}
+</code>
+</pre>
+
+<h2 id="event-methods">Event methods</h2>
+<h3 id="getname">getName()</h3>
+<p>Returns name of the event</p>
+<h3 id="getid">getId()</h3>
+<p>Returns id of the drawing</p>
+<h3 id="getgeojson">getGeoJson)</h3>
+<p>Returns geojson of the drawing</p>
+<h3 id="getdata">getData()</h3>
+<p>Returns data of the drawing</p>
+<h3 id="getisfinished">getIsFinished()</h3>
+<p>Returns true if drawing is finished</p>
+<h3 id="getparams">getParams()</h3>
+<p>Returns all the params of the event.</p>
+<pre class="event-code-block">
+<code>
+{
+    name: this.getName(),
+    id: this.getId(),
+    geojson: this.getGeoJson(),
+    data: this.getData(),
+    isFinished: this.getIsFinished()
+};
+</code>
+</pre>
+
+<h2 id="examples">Examples</h2>
+<p>Event handler for own finished drawings:</p>
+<pre><code class="language-javascript">    handleDrawingEvent (event) {
+        if (event.getId() === MY_ID &amp;&amp; event.getIsFinished()) {
+            const geojson = event.getGeoJson();
+            const data = event.getData();
+            // do something with data and features
+        }
+    }
+</code></pre>
+<p><code>DrawTools.StartDrawingRequest</code> with id <code>measure</code> and shape <code>Polygon</code>. Event for valid finished drawing:</p>
+<pre class="event-code-block">
+<code>
+{
+  "name": "DrawingEvent",
+  "id": "measure",
+  "isFinished": true,
+  "data": {
+      "area": 10527600800.565893,
+      "buffer": 0,
+      "shape": "Polygon",
+      "showMeasureOnMap": false,
+      "bufferedGeoJson": {
+        "type": "FeatureCollection",
+        "crs": "EPSG:3067",
+        "features": []
+      }
+    },
+  "geojson": {
+    "type": "FeatureCollection",
+    "crs": "EPSG:3067",
+    "features": [
+      {
+        "type": "Feature",
+        "id": "drawFeature0",
+        "geometry": {
+          "type": "Polygon",
+          "coordinates": [
+            [330356.9714432531,6903137.5567356525],
+            [328820.9714432531,6823265.5567356525],
+            [422004.9714432531,6818145.5567356525],
+            [439924.9714432531,6875489.5567356525],
+            [383352.9611277134,6932447.561893423],
+            [335224.9611277134,6934495.561893423],
+            [310136.9611277134,6924767.561893423],
+            [330356.9714432531,6903137.5567356525]
+          ]
+        },
+        "properties": {
+          "area": 10527600800.565893,
+          "valid": true
+        }
+      }
+    ]
+  }
+}
+</code>
+</pre>
+
+<p><code>DrawTools.StartDrawingRequest</code> with id <code>measure</code> and shape <code>Polygon</code>. Event for invalid finished drawing:</p>
+<pre class="event-code-block">
+<code>
+{
+  "name": "DrawingEvent",
+  "id": "measure",
+  "isFinished": true,
+  "data": {
+      "area": 594933884.3552058,
+      "buffer": 0,
+      "shape": "Polygon",
+      "showMeasureOnMap": false,
+      "bufferedGeoJson": {
+        "type": "FeatureCollection",
+        "crs": "EPSG:3067",
+        "features": []
+      }
+    },
+  "geojson": {
+    "type": "FeatureCollection",
+    "crs": "EPSG:3067",
+    "features": [
+      {
+        "type": "Feature",
+        "id": "drawFeature0",
+        "geometry": {
+          "type": "Polygon",
+          "coordinates": [
+              [350208,7011328],
+              [385024,6982144],
+              [330240,6947328],
+              [386560,6924800],
+              [350208,7011328]
+          ]
+        },
+        "properties": {
+          "area": "Polygon self-intersection is not allowed. Edit current polygon or draw a new polygon.",
+          "valid": false
+        }
+      }
+    ]
+  }
+}
+</code>
+</pre>
+
+
+<p><em>Included in bundle: <a href="bundles#latest/mapping/drawtools">mapping/drawtools</a></em></p>

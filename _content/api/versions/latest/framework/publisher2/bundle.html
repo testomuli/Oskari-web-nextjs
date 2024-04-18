@@ -1,0 +1,254 @@
+<h1 id="map-publisher-2">Map Publisher 2</h1>
+<p>Allows creation of embedded maps</p>
+<h2 id="description">Description</h2>
+<p>This Bundle provides functionality to define an embeddable map and save it to server so it can be published on another page. 
+The user defines the domain the map will be published on, name and language for the map. The user can set the size of the published map, 
+a selection of tools that will be overlayed on the map and affect the maplayers that are initially visible when the map is shown. 
+The main map is modified to show a preview of the published map when the publisher is opened and it resumes to normal view once the publisher flyout is closed. </p>
+<p>Users can select styling for the published map in &#39;Layout&#39; panel. The colour scheme for GFI popups can be selected from 
+six predefined colours and an own colour scheme with RGB codes can be created, font can be chosen from two predefined 
+font sets (serif and sans-serif) and the style of the tools (pan buttons, zoombar, search plugin and layer selection plugin) 
+can be selected from three predefined style sets: &#39;rounded&#39;, &#39;sharp&#39; and &#39;3d&#39; all of which can be selected as either 
+dark or light versions.</p>
+<p>Compared to the original publisher this refactored version aims to be more extendable where other bundles can provide 
+publisher settings.</p>
+<h2 id="todo">TODO</h2>
+<ul>
+<li>complete refactoring to support functionality of the original publisher </li>
+<li>document the extension hook for tools</li>
+</ul>
+<h2 id="screenshot">Screenshot</h2>
+<h3 id="start-publishing">Start publishing</h3>
+<p><img src="/apires/latest/framework/publisher2/publisher_start.png" alt="start"></p>
+<h3 id="map-publishing">Map publishing</h3>
+<p><img src="/apires/latest/framework/publisher2/publisher_map.png" alt="map"></p>
+<h2 id="bundle-configuration">Bundle configuration</h2>
+<p>Some configuration is needed for URLs:</p>
+<ul>
+<li>loginUrl and registerUrl are shown as links for guest users to appropriate site pages (can be localized with an object notation or used with single url)</li>
+<li>urlPrefix is used when displaying a preview for GFI popup. It is always appended with &#39;/web/&#39; and users language.</li>
+<li>tileElement can be used to to give a reference to an element that should start the publisher functionality. The normal Oskari Tile is not added to the menu as a result, but clicking the element will start the publisher. An &#39;activePublish&#39; class is added to the element when publisher is open and removed on close to allow styling. Value needs to be a DOM-selector (string).</li>
+</ul>
+<pre><code class="language-javascript">&quot;conf&quot;: {
+  &quot;loginUrl&quot;: {
+    &quot;en&quot;: &quot;/en/login&quot;,
+    &quot;fi&quot;: &quot;/fi/login&quot;,
+    &quot;sv&quot;: &quot;/sv/login&quot;
+  },
+  &quot;registerUrl&quot;: &quot;/register&quot;,
+  &quot;toolsConfig&quot; : {
+    &quot;&lt;tool&gt;&quot; : {
+      ...
+    }
+  },
+  &quot;tileElement&quot;: &quot;#publisherButton&quot;
+}
+</code></pre>
+<p>Toolsconfig can be used to configure bundle configurations for tools that are user selectable. Most configs can be included in the publish-template, but this makes publisher more versatile and allows different views in the same Oskari instance to have different preselected tool configurations. When initializing publisher tools the configuration is passed to the tool based on tool name. First one to utilize this feature is coordinatetool where you can specify projections transform support to be included in embedded maps. </p>
+<p>Example for coordinatetool:</p>
+<pre><code class="language-javascript">{
+  &quot;toolsConfig&quot; :  {
+      &quot;coordinatetool&quot; : {
+          &quot;supportedProjections&quot;: [&quot;EPSG:3067&quot;, &quot;NLSFI:etrs_gk&quot;, &quot;NLSFI:ykj&quot;, &quot;EPSG:4258&quot;, &quot;LATLON:kkj&quot;, &quot;EPSG:3046&quot;, &quot;EPSG:3048&quot;, &quot;EPSG:3873&quot;, &quot;EPSG:3874&quot;, &quot;EPSG:3875&quot;, &quot;EPSG:3876&quot;, &quot;EPSG:3877&quot;, &quot;EPSG:3878&quot;, &quot;EPSG:3879&quot;, &quot;EPSG:3880&quot;, &quot;EPSG:3881&quot;, &quot;EPSG:3882&quot;, &quot;EPSG:3883&quot;, &quot;EPSG:3884&quot;, &quot;EPSG:3885&quot;]
+          &quot;roundToDecimals&quot;: 6,
+          &quot;isReverseGeocode&quot; : true,
+          &quot;reverseGeocodingIds&quot; : &quot;WHAT3WORDS_CHANNEL&quot;
+      }
+  }
+}
+</code></pre>
+<h2 id="bundle-panels">Bundle Panels</h2>
+<p>All panels needs implement following functions:</p>
+<ul>
+<li>getValues(): This is used to gather selected values from current panel. For example in <code>Tools panel</code> this function gather all tools selected values and return a config.</li>
+</ul>
+<h3 id="general-information-panel">General information panel</h3>
+<p>The first panel of the publisher.</p>
+<p>Panel contains following fields:</p>
+<ul>
+<li>Website url (text input): The website url where the map will be embedded</li>
+<li>The name of the map (text input): The name of published map.</li>
+<li>Language (selection): The map language</li>
+</ul>
+<h2 id="map-size-panel">Map size panel</h2>
+<p>The second panel has some predefined size options for the map. Tools can react to size changes. Size is communicated by changing the preview map-window size which triggers  MapSizeChangedEvent.</p>
+<h3 id="tool-panels">Tool panels</h3>
+<p>The publisher locates tool selections by finding loaded Oskari-classes implementing <code>Oskari.mapframework.publisher.Tool</code>.
+Each tool has a group which is used to setup different tool panels based on group.</p>
+<p>The <code>Oskari.mapframework.publisher.Tool</code> protocol needs implement following functions:</p>
+<ul>
+<li>getTool(): This is used to describe the tool object:</li>
+</ul>
+<ul>
+<li>id is the Oskari class name</li>
+<li>name is used as part of the localization key (see below)</li>
+<li>config is the tool configuration</li>
+</ul>
+<ul>
+<li>getValues(): This is used to gather selected values.</li>
+</ul>
+<pre><code class="language-javascript">getTool: function() {
+    return {
+        id: &#39;Oskari.mapframework.bundle.mapmodule.plugin.MyTool&#39;,
+        name: &#39;MyTool&#39;,
+        config: {}
+    };
+}
+</code></pre>
+<ul>
+<li>setEnabled(enabled): This is used to enable or disable tool (checkbox functionality). This function change tool state.enabled variable to true/false to handing tool state. For example tool getValues() function checks it and if tools state is enebled then return tool JSON, otherwise return null.</li>
+<li>getExtraOptions(): This is used to add extra options to tool. This function returns jQuery element to add after to tool checkbox. If null then nothing added.</li>
+<li>getName(): This is used to show tool name in checkbox label. </li>
+<li>isDisplayedInMode(mode): This is used for checking if tool is showed in mode (mobile/full).</li>
+<li>isDisplayed(): This is used to check at is the tool displayed. For example, depending on the state of map or depending of selected layers (ShowStatsTableTool).</li>
+<li>getGroup(): This is used to get tool group (what panel tool appears)</li>
+<li>getIndex(): This is used to get tool index in group. A smaller number is upper and higher number is lower.</li>
+<li>getAllowedLocations(): This is used to get tool allowed locations.</li>
+<li>getValues(): This is used to get tool values to saving published map.</li>
+<li>validate(): This is used to validate tool when saving published map.</li>
+<li>isStarted(): This is used to check at if tool plugin has started. If plugin has started then we can call plugin stop function when disabling tool. When plugin starts, change tool __started variable to true, when stopped change it to false.</li>
+</ul>
+<p>The panels title is fetched from localization <code>Publisher2</code> with key <code>BasicView.[group].label</code>. The tool label is fetched 
+with key <code>BasicView.[group].[tool name]</code> where tool name is returned by <code>getTool().name</code>.</p>
+<pre><code>&quot;BasicView&quot; : {
+    ...
+    &quot;maptools&quot; : {
+        &quot;label&quot; : &quot;Tools&quot;,
+        &quot;MyTool&quot; : &quot;The UI text for the tool&quot; 
+        ...
+   }
+   ...
+}
+</code></pre>
+<p>The publisher provides some default tools:</p>
+<ul>
+<li>scalebar</li>
+<li>indexmap</li>
+<li>pan buttons</li>
+<li>zoombar</li>
+<li>search</li>
+<li>my location</li>
+<li>controls (moving map by dragging/keyboard)</li>
+</ul>
+<h2 id="requests-the-bundle-sends-out">Requests the bundle sends out</h2>
+<table class="table">
+<tr>
+  <th> Request </th><th> Where/why it's used</th>
+</tr>
+<tr>
+  <td> userinterface.AddExtensionRequest </td><td> Register as part of the UI in start()-method</td>
+</tr>
+<tr>
+  <td> userinterface.RemoveExtensionRequest </td><td> Unregister from the UI in stop()-method</td>
+</tr>
+<tr>
+  <td> AddMapLayerRequest </td><td> If any layer is marked for promotion, the user can add it from the publisher. When the publisher is closed, adds any layers that were removed because user didn't have publish rights.</td>
+</tr>
+<tr>
+  <td> RemoveMapLayerRequest </td><td> If promoted layer is added via publisher, it can be removed as well. Also removes layers from selection that the user can't publish</td>
+</tr>
+<tr>
+  <td> userinterface.UpdateExtensionRequest </td><td> Requests close on the flyout when publisher is closed and close to any other flyout when the publisher is opened.</td>
+</tr>
+</table>
+
+<h2 id="events-the-bundle-listens-to">Events the bundle listens to</h2>
+<table class="table">
+  <tr>
+    <th> Event </th><th> How does the bundle react</th>
+  </tr>
+  <tr>
+    <td> AfterMapLayerAddEvent </td><td> Updates the flyout to reflect current maplayer selections</td>
+  </tr>
+  <tr>
+    <td> AfterMapLayerRemoveEvent </td><td> Updates the flyout to reflect current maplayer selections</td>
+  </tr>
+  <tr>
+    <td> MapLayerEvent </td><td> Updates the flyout to reflect current maplayer selections</td>
+  </tr>
+  <tr>
+    <td> AfterMapMoveEvent </td><td> Updates coordinate information in publisher if applicable</td>
+  </tr>
+  <tr>
+    <td> userinterface.ExtensionUpdatedEvent </td><td> Determines if the layer was closed or opened and enables/disables preview view accordingly</td>
+  </tr>
+  <tr>
+    <td> Publisher.MapPublishedEvent </td><td> Publisher views send this event so personaldata can refresh its listing. Publisher instance also listens the event to show user HTML code for embedding the map to a page.</td>
+  </tr>
+</table>
+
+
+<h2 id="dependencies">Dependencies</h2>
+<table class="table">
+  <tr>
+    <th> Dependency </th><th> Linked from </th><th> Purpose </th>
+  </tr>
+  <tr>
+    <td> [jQuery](http://api.jquery.com/) </td>
+    <td> Linked in portal theme </td>
+    <td> Used to create the component UI from begin to end</td>
+  </tr>
+  <tr>
+    <td> [Lo-Dash](http://lodash.com/) </td>
+    <td> Linked in oskariui </td>
+    <td> Used to deep clone state objects</td>
+  </tr>
+  <tr>
+    <td> [Oskari divmanazer](/documentation/bundles/framework/divmanazer) </td>
+    <td> Expects to be present in application setup </td>
+    <td> Needed for flyout/tile functionality and accordion/form components</td>
+  </tr>
+  <tr>
+    <td> [Oskari divmanazer component - UIHelper](/documentation/bundles/framework/divmanazer/uihelper) </td>
+    <td> Expects to be present in application setup </td>
+    <td> Needed for help functionality for UI elements</td>
+  </tr>
+  <tr>
+    <td> [Backend API](/documentation/backend/mappublisher) </td>
+    <td> N/A </td>
+    <td> Publisher backend functionality</td>
+  </tr>
+</table>
+
+
+<h2 id="requests-that-the-bundle-handles">Requests that the bundle handles</h2>
+<table class="table"><tr><th> Request </th><th> Use </th></tr>
+<tr><td><a href="requests#latest/framework/publisher2/request/Publisher.PublishMapEditorRequest.md">Publisher.PublishMapEditorRequest</a></td><td>Oskari.mapframework.request.Request superclass documents how to send one.</td></tr></table>
+
+
+<h2 id="events-that-the-bundle-sends">Events that the bundle sends</h2>
+<table class="table"><tr><th> Event </th><th> Use </th></tr>
+<tr><td><a href="events#latest/framework/publisher2/event/LayerToolsEditModeEvent.md">LayerToolsEditModeEvent</a></td><td>Event is sent when user decides to edit layout order</td></tr><tr><td><a href="events#latest/framework/publisher2/event/Publisher.MapPublishedEvent.md">Publisher.MapPublishedEvent</a></td><td>Used to notify components that a new published map is available.</td></tr><tr><td><a href="events#latest/framework/publisher2/event/Publisher2.ColourSchemeChangedEvent.md">Publisher2.ColourSchemeChangedEvent</a></td><td>Used to notify getinfo plugin that the colour scheme has changed.</td></tr><tr><td><a href="events#latest/framework/publisher2/event/Publisher2.FontChangedEvent.md">Publisher2.FontChangedEvent</a></td><td>Used to notify tool plugins that the font has changed.</td></tr><tr><td><a href="events#latest/framework/publisher2/event/Publisher2.ToolEnabledChangedEvent.md">Publisher2.ToolEnabledChangedEvent</a></td><td>Used to notify the layout panel that tools have been added / removed from the map</td></tr><tr><td><a href="events#latest/framework/publisher2/event/Publisher2.ToolStyleChangedEvent.md">Publisher2.ToolStyleChangedEvent</a></td><td>Used to notify tool plugins that the tool style has changed.</td></tr></table>
+
+
+<hr style="height:50px;">
+
+
+<h1 id="tool">Tool</h1>
+<h2 id="description-1">Description</h2>
+<p>Tools are used to modify published map view&#39;s app setup configuration.
+The Tool component describes how to implement new tools to the publisher.</p>
+<h2 id="how-to-use">How to use</h2>
+<p>Each Tool has to implement protocol <code>Oskari.mapframework.publisher.Tool</code> to be included in the publisher.
+To implement the protocol Tool has to implement following functions.</p>
+<h3 id="init"><code>init</code></h3>
+<p>Receives object describing the app configuration as a parameter.
+Init should read the pdata to see if the tool should be enabled or not.
+Then set the initial state for the tool using setEnabled function.</p>
+<h3 id="setenabled"><code>setEnabled</code></h3>
+<p>Defines what happens when user selects/unselects the tool.</p>
+<h3 id="getvalues"><code>getValues</code></h3>
+<p>Returns the part of app setup configuration the tool alters.
+Example:</p>
+<pre><code>var enabled = this.state.enabled;
+return {
+    configuration: {
+        statsgrid: {
+            conf: {
+                allowClassification: enabled,
+                legendLocation: &#39;bottom right&#39;
+            }
+        }
+    }
+}
+</code></pre>
