@@ -31,6 +31,10 @@ export const NAVIGATION_ITEMS: Array<NavigationItemType> = [
         name: 'Documentation',
         path: '/resources/docs',
       },
+      {
+        name: 'API',
+        path: '/resources/api',
+      },
     ],
   },
   {
