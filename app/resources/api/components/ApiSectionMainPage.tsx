@@ -5,7 +5,7 @@ import availableVersions from '_content/api/versions'
 import ApiDocChangeLog from '../components/ApiDocChangeLog';
 import Layout from '../../docs/layout';
 import { ReactNode } from 'react';
-export default function ApiSectionMainPage({ title, sideBarContent, baseHref }: { title: string, sideBarContent: ReactNode, baseHref: string}) {
+export default function ApiSectionMainPage({ title, sideBarContent, baseHref, version }: { title: string, sideBarContent: ReactNode, baseHref: string, version: string}) {
   const versions = [
     ...new Set(
       availableVersions
@@ -14,9 +14,10 @@ export default function ApiSectionMainPage({ title, sideBarContent, baseHref }: 
     ),
   ];
 
+  console.log('Main page, version: ', version);
   return <Layout heroTitle={title}>
     <div>
-        <VersionSidebar selectedVersion='latest' versions={versions} baseHref={baseHref} />
+        <VersionSidebar selectedVersion={version} versions={versions} baseHref={baseHref} />
         {sideBarContent}
     </div>
     <div style={{overflow: 'hidden', wordWrap:'break-word'}}>

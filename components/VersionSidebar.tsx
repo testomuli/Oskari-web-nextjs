@@ -12,13 +12,13 @@ export default async function VersionSidebar({
   subTitle,
   subTitleLinks = [],
   versions,
-  baseHref ='/resources/docs'
+  baseHref
 }: {
   selectedVersion: string
   subTitle?: string
   subTitleLinks?: subtitleLinks[]
   versions?: string[],
-  baseHref?: string
+  baseHref: string
 }) {
   const versionsWithoutSelected =
     versions?.filter((version) => selectedVersion !== version) || []

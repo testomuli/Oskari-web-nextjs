@@ -29,6 +29,7 @@ export default async function BundlesMainPage({version = 'latest'}: { version: s
   </>;
 
   return <ApiSectionMainPage
+    version={version}
     sideBarContent={sideBarContent}
     title='Oskari API documentation'
     baseHref='/resources/api/bundles/'/>;
