@@ -2,10 +2,21 @@
 import VersionSidebar from '@/components/VersionSidebar';
 import { compareSemanticVersions } from '@/utils/misc';
 import availableVersions from '_content/api/versions'
-import ApiDocChangeLog from '../components/ApiDocChangeLog';
 import Layout from '../../docs/layout';
 import { ReactNode } from 'react';
-export default function ApiSectionMainPage({ title, sideBarContent, baseHref, version }: { title: string, sideBarContent: ReactNode, baseHref: string, version: string}) {
+export default function ApiSectionMainPage({
+    title,
+    sideBarContent,
+    mainContent,
+    baseHref,
+    version
+}: {
+    title: string,
+    sideBarContent: ReactNode,
+    mainContent: ReactNode,
+    baseHref: string,
+    version: string
+}) {
   const versions = [
     ...new Set(
       availableVersions
@@ -20,7 +31,7 @@ export default function ApiSectionMainPage({ title, sideBarContent, baseHref, ve
         {sideBarContent}
     </div>
     <div style={{overflow: 'hidden', wordWrap:'break-word'}}>
-      <ApiDocChangeLog version={version}/>
+        {mainContent}
     </div>
   </Layout>;
 }
