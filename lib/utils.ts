@@ -74,8 +74,14 @@ export const readAndConcatMarkdownFiles = async function(parentItem: MarkdownFil
 };
 
 export const getApiChangeLog = async function(version: string = 'latest') {
-
   const filePath = `_content/api/versions/${version}/CHANGELOG.html`;
+  const fullPath = path.normalize(path.join(process.cwd(), filePath));
+  const html = fs.readFileSync(fullPath, 'utf8');
+  return html;
+}
+
+export const getBundleContent = async function(bundlePath: string) {
+  const filePath = `${bundlePath}/bundle.html`;
   const fullPath = path.normalize(path.join(process.cwd(), filePath));
   const html = fs.readFileSync(fullPath, 'utf8');
   return html;
