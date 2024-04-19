@@ -1,0 +1,34 @@
+<h1 id="statsgridclassificationchangedevent">StatsGrid.ClassificationChangedEvent</h1>
+<p>Notifies when an classification has been changed (in edit classification).</p>
+<h2 id="parameters">Parameters</h2>
+<p>(* means the parameter is required)</p>
+<table class="table">
+<tr>
+  <th> Name</th><th> Type</th><th> Description</th><th> Default value</th>
+</tr>
+<tr>
+  <td> current</td><td> Object </td><td> object describing the current classification </td><td>  </td>
+</tr>
+<tr>
+  <td> previous</td><td> Object </td><td> object describing the previous classification </td><td> </td>
+</tr>
+</table>
+
+<p>Both current and previous have the same type object as value:</p>
+<pre><code class="language-javascript">{
+    method: &lt;method as string&gt;,
+    count: &lt;classification count as number&gt;,
+    mode: &lt;mode as string&gt;,
+    type: &lt;type as string&gt;,
+    colorIndex: &lt;color index as number&gt;,
+    reverseColors: &lt;reverse colors as boolean&gt;
+}
+</code></pre>
+<h2 id="event-methods">Event methods</h2>
+<h3 id="getname">getName()</h3>
+<p>Returns event name</p>
+<h3 id="getcurrent">getCurrent()</h3>
+<p>Returns current classification object.</p>
+<h3 id="getprevious">getPrevious()</h3>
+<p>Returns previous classification object.</p>
+<p><em>Included in bundle: <a href="bundles#2.13.1/statistics/statsgrid">statistics/statsgrid</a></em></p>

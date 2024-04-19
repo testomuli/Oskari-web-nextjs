@@ -1,0 +1,70 @@
+<h1 id="afteraddmarkerevent-rpc">AfterAddMarkerEvent <span class="label label-primary rpc">RPC</span></h1>
+<p>Notifies that marker has been added to the map.</p>
+<h2 id="description">Description</h2>
+<p>Event is sent after marker has been added to the map. It is used to notify marker id to user.</p>
+<h2 id="parameters">Parameters</h2>
+<p>(* means the parameter is required)</p>
+<table class="table">
+<tr>
+  <th> Name</th><th> Type</th><th> Description</th><th> Default value</th>
+</tr>
+<tr>
+  <td> \* data </td><td> Object </td><td> marker parameters </td><td> </td>
+</tr>
+<tr>
+  <td> \* id </td><td> String </td><td> id of the marker that was added to the map</td><td> </td>
+</tr>
+</table>
+
+<h2 id="rpc">RPC</h2>
+<p>Event occurs when marker is added to the map.</p>
+<pre class="event-code-block">
+<code>
+{
+  "id": "RPC_MARKER"
+}
+</code>
+</pre>
+
+<h2 id="event-methods">Event methods</h2>
+<h3 id="getname">getName()</h3>
+<p>Returns name of the event.</p>
+<h3 id="getdata">getData()</h3>
+<p>Returns marker data, for example:</p>
+<pre class="event-code-block">
+<code>
+{
+    x: 411650.70779123,
+    y: 6751897.3481153,
+    color: "ff0000",
+    msg : '',
+    shape: 3,
+    size: 3
+};
+</code>
+</pre>
+
+<h3 id="getid">getID()</h3>
+<p>Returns id of the marker.</p>
+<h3 id="getparams">getParams()</h3>
+<p>Returns id of  the marker as an object as follows:</p>
+<pre class="event-code-block">
+<code>
+{
+  "id": "RPC_MARKER"
+}
+</code>
+</pre>
+
+<h2 id="examples">Examples</h2>
+<p>MarkersPlugin sends AfterAddMarkerEvent when marker is added.</p>
+<pre class="event-code-block">
+<code>
+var addEvent = me.getSandbox().getEventBuilder(
+    'AfterAddMarkerEvent')(data, data.id);
+me.getSandbox().notifyAll(addEvent);
+</code>
+</pre>
+
+
+<p><em>Included in bundle: <a href="bundles#2.13.1/mapping/mapmodule">mapping/mapmodule</a></em></p>

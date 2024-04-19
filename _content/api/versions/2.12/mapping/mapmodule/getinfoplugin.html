@@ -1,0 +1,68 @@
+<h1 id="get-info-plugin">Get Info Plugin</h1>
+<h2 id="description">Description</h2>
+<p>This plugin provides view of the from GetFeatureInfo and similar results what are processed in backend</p>
+<h2 id="screenshot">Screenshot</h2>
+<p><img src="/apires/2.13.1/mapping/mapmodule/images/gfi_query.png" alt="screenshot"></p>
+<h2 id="bundle-configuration">Bundle configuration</h2>
+<p>Handling infoBox and ignoredLayerTypes in the plugin are made configurable. infoBox variable makes it possible to request infoBox with additional information later on. ignoredLayerTypes is an array of layer types that are ignored in the requests. This functionality is made because of new mapwfs2 which controls WFS&#39;s GFI data.</p>
+<p>The colour scheme and font of the plugin are configurable, with variables <code>colourScheme</code> (Object) and <code>font</code> (String), respectively. A CSS class of <code>oskari-publisher-font-&lt;font&gt;</code> is expected to be defined with font-family definition. The structure of <code>colourScheme</code> should be of following format:</p>
+<pre><code class="language-javascript">{
+  &quot;val&quot;: &quot;&lt;id of the colour scheme, eg. &#39;blue&#39;&gt;&quot;,
+  &quot;bgColour&quot;: &quot;&lt;the colour of the gfi popup header background, eg. &#39;#0091FF&#39;&gt;&quot;,
+  &quot;titleColour&quot;: &quot;&lt;the colour of the gfi popup header text, eg. &#39;#FFFFFF&#39;&gt;&quot;,
+  &quot;headerColour&quot;: &quot;&lt;the colour of myplaces popup title text, eg. &#39;#0091FF&#39;&gt;&quot;,
+  &quot;iconCls&quot;: &quot;&lt;either &#39;icon-close&#39; or &#39;icon-close-white&#39;&gt;&quot;
+}
+</code></pre>
+<h2 id="requests-the-plugin-handles">Requests the plugin handles</h2>
+<p>This plugin doesn&#39;t handle any requests.</p>
+<h2 id="requests-the-plugin-sends-out">Requests the plugin sends out</h2>
+<p>This plugin doesn&#39;t sends out any requests</p>
+<h2 id="events-the-bundle-listens-to">Events the bundle listens to</h2>
+<table class="table">
+  <tr>
+    <th> Event </th><th> How does the bundle react</th>
+  </tr>
+  <tr>
+    <td> EscPressedEvent </td><td> Closing GetInfo "popup" from screen.</td>
+  </tr>
+  <tr>
+    <td> MapClickedEvent </td><td> Send ajax request to backend system.</td>
+  </tr>
+  <tr>
+    <td> AfterMapMoveEvent </td><td> Cancel ajax request.</td>
+  </tr>
+</table>
+
+<h2 id="events-the-plugin-sends-out">Events the plugin sends out</h2>
+<table class="table">
+  <tr>
+    <th>Event</th><th>Why/when</th>
+  </tr>
+  <tr>
+    <td>GetInfoResultEvent</td><td> Result of ajax request formatted send as an event so that infobox handling can be done elsewhere </td>
+  </tr>
+</table>
+
+<h2 id="dependencies">Dependencies</h2>
+<table class="table">
+  <tr>
+    <th> Dependency </th><th> Linked from </th><th> Purpose</th>
+  </tr>
+  <tr>
+    <td> [jQuery](http://api.jquery.com/) </td>
+    <td> Version 1.7.1 assumed to be linked (on page locally in portal) </td>
+    <td> Used to create the UI</td>
+  </tr>
+  <tr>
+    <td> [Oskari infobox](/documentation/bundles/framework/infobox) </td>
+    <td> Oskari's InfoBoxBundle </td>
+    <td> That handles the infobox as an Openlayers popup with customized UI
+  </td>
+  </tr>
+  <tr>
+    <td> [Backend API](/documentation/backend/mapmodule/getinfoplugin) </td>
+    <td> N/A </td>
+    <td> Get info is handle in backend</td>
+  </tr>
+</table>

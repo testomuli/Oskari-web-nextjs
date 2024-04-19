@@ -1,0 +1,48 @@
+<h1 id="stopdrawingrequest-rpc">StopDrawingRequest <span class="label label-primary rpc">RPC</span></h1>
+<p>Used to complete or clear the drawing.</p>
+<h2 id="use-cases">Use cases</h2>
+<ul>
+<li>complete drawing</li>
+<li>clear drawing</li>
+</ul>
+<h2 id="description">Description</h2>
+<p>If the user is allowed to draw on the map this request can be used to complete the drawing and/or clear the drawing from the map.</p>
+<h2 id="parameters">Parameters</h2>
+<table class="table">
+<tr>
+  <th> Name</th><th> Type</th><th> Description</th><th> Default value</th>
+</tr>
+<tr>
+  <td> id</td><td> String</td><td> Identifier for request. Required for complete drawing. </td><td> </td>
+</tr>
+<tr>
+  <td> clearCurrent</td><td> Boolean</td><td> true - drawings will be removed from the map. If id is given, then id related drawings are removed, otherwise all. <br> false - will keep drawings on the map.</td><td> false</td>
+</tr>
+<tr>
+  <td> supressEvent</td><td> Boolean</td><td> true - does not send out an DrawingEvent.<br> false - sends out DrawingEvent.</td><td> false</td>
+</tr>
+</table>
+
+<h2 id="examples">Examples</h2>
+<p>Complete a draw for &#39;measure&#39; functionality and keep the drawing on the map:</p>
+<pre><code class="language-javascript">Oskari.getSandbox().postRequestByName(&#39;DrawTools.StopDrawingRequest&#39;, [&#39;measure&#39;]);
+</code></pre>
+<p>This expects that drawing has been started for id &#39;measure&#39; and will result in an &#39;DrawingEvent&#39; where id is &#39;measure&#39; with the measure data available in event.getData().</p>
+<p>Complete a draw for &#39;myplaces&#39; functionality and clear &#39;myplaces&#39; drawings from the map:</p>
+<pre><code class="language-javascript">Oskari.getSandbox().postRequestByName(&#39;DrawTools.StopDrawingRequest&#39;, [&#39;myplaces&#39;, true]);
+</code></pre>
+<p>Again, this expects that drawing has been started for id &#39;myplaces&#39; and will result in an &#39;DrawingEvent&#39; where id is &#39;myplaces&#39; with the drawn shape as geojson available in event.getGeoJson().</p>
+<p>Clear &#39;myplaces&#39; drawings and don&#39;t send out an event:</p>
+<pre><code class="language-javascript">Oskari.getSandbox().postRequestByName(&#39;DrawTools.StopDrawingRequest&#39;, [&#39;measure&#39;, true, true]);
+</code></pre>
+<p>This is normally used when functionality is stopped to clean own drawings.</p>
+<p>Remove all drawings:</p>
+<pre><code class="language-javascript">Oskari.getSandbox().postRequestByName(&#39;DrawTools.StopDrawingRequest&#39;);
+</code></pre>
+<p>This can be used to be sure that there isn&#39;t any previous or other functionalitys&#39; drawings before a new drawing is started.</p>
+<h2 id="related-api">Related api</h2>
+<ul>
+<li>StartDrawingRequest</li>
+<li>DrawingEvent</li>
+</ul>
+<p><em>Included in bundle: <a href="bundles#2.13.1/mapping/drawtools">mapping/drawtools</a></em></p>

@@ -1,0 +1,20 @@
+<h1 id="oskaristatisticsstatsgridcolorservice">Oskari.statistics.statsgrid.ColorService</h1>
+<p>Used to get colorset for classified data. Available options for colorsets are found in an limits-property of the service:</p>
+<pre><code class="language-javascript">limits : {
+    type : [&#39;div&#39;, &#39;seq&#39;, &#39;qual&#39;],
+    defaultType : &#39;div&#39;,
+    name : [...list of colorset names...],
+    defaultName : &#39;BrBG&#39;,
+    count : {
+        min : 2,
+        max : 9
+    }
+}
+</code></pre>
+<h2 id="functions">Functions</h2>
+<h3 id="getcolorsetcount-type-name">getColorset(count, type, name)</h3>
+<p>Tries to return an array of colors where length equals count parameter. If such set is not available, returns null if array with requested count is not available. If type or name is given, tries to find closest match, but fallsback to returning the best matching colorset if specific is not found.
+@param  {Number} count number of colors requested
+@param  {String} type  optional type, supports &#39;div&#39;, &#39;seq&#39; or &#39;qual&#39;, defaults to &#39;div&#39;
+@param  {String} name  optional name, defaults to &#39;BrBG&#39;
+@return {String[]}     array of hex-strings as colors like [&quot;d8b365&quot;,&quot;5ab4ac&quot;]</p>

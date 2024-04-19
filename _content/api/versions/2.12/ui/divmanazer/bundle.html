@@ -1,0 +1,697 @@
+<h1 id="divmanazer">divmanazer</h1>
+<h2 id="description">Description</h2>
+<p>Manages menutiles, flyouts and other UI related funtionalities for other bundles to use. Also provides UI components. The tiles are rendered to a HTML element with id &quot;menubar&quot;. The bundle doesn&#39;t create it but assumes it exists on the page.</p>
+<p>Bundle also includes extensions for bundle instance, flyout, tile, layout and view. Other Oskari classes can extend these to avoid writing tons of boilerplate code:</p>
+<pre><code class="language-javascript">Oskari.clazz.define(
+&#39;Oskari.myframework.bundle.mybundle.MyBundleInstance&#39;,
+function () {
+    // constructor function
+}, {
+    // the methods of the bundle
+}, {
+    &quot;extend&quot;: [&quot;Oskari.userinterface.extension.DefaultExtension&quot;]
+});
+</code></pre>
+<p>A full example can be found <a href="https://github.com/nls-oskari/oskari/blob/master/bundles/framework/bundle/myplacesimport/instance.js">here</a>.</p>
+<h2 id="todo">TODO</h2>
+<ul>
+<li>Make the element id where the tiles are rendered configurable</li>
+</ul>
+<h2 id="screenshot">Screenshot</h2>
+<p><img src="/apires/2.13.1/ui/divmanazer/divmanazer.png" alt="screenshot"></p>
+<h2 id="dependencies">Dependencies</h2>
+<table class="table">
+  <tr>
+    <th>Dependency</th><th>Linked from</th><th>Purpose</th>
+  </tr>
+  <tr>
+    <td> [jQuery](http://api.jquery.com/) </td>
+    <td> Version 1.7.1 assumed to be linked on the page</td>
+    <td> Used to create the component UI from begin to end</td>
+  </tr>
+</table>
+
+
+<h2 id="requests-that-the-bundle-handles">Requests that the bundle handles</h2>
+<table class="table"><tr><th> Request </th><th> Use </th></tr>
+<tr><td><a href="requests#2.13.1/ui/divmanazer/request/userinterface.AddExtensionRequest.md">userinterface.AddExtensionRequest</a></td><td>Extends the basic UI view</td></tr><tr><td><a href="requests#2.13.1/ui/divmanazer/request/userinterface.ModalDialogRequest.md">userinterface.ModalDialogRequest</a></td><td>Request for UI modal dialog</td></tr><tr><td><a href="requests#2.13.1/ui/divmanazer/request/userinterface.RemoveExtensionRequest.md">userinterface.RemoveExtensionRequest</a></td><td>Unregisters the extensions when the bundle gets stopped</td></tr><tr><td><a href="requests#2.13.1/ui/divmanazer/request/userinterface.UpdateExtensionRequest.md">userinterface.UpdateExtensionRequest</a></td><td>Updates the extended UI view</td></tr></table>
+
+
+<h2 id="events-that-the-bundle-sends">Events that the bundle sends</h2>
+<table class="table"><tr><th> Event </th><th> Use </th></tr>
+<tr><td><a href="events#2.13.1/ui/divmanazer/event/UIChangeEvent.md">UIChangeEvent</a></td><td>Notifies major UI changes where some functionalities should clean up/shutdown their own UI.</td></tr><tr><td><a href="events#2.13.1/ui/divmanazer/event/userinterface.ExtensionUpdatedEvent.md">userinterface.ExtensionUpdatedEvent</a></td><td>Sent after Extension view state has changed</td></tr></table>
+
+
+<hr style="height:50px;">
+
+
+<h1 id="accordion--accordionpanel">Accordion &amp; AccordionPanel</h1>
+<h2 id="description-1">Description</h2>
+<p>An Accordion is a passive vertical container for zero or more AccordionPanels. It simply acts as a placeholder for the AccordionPanels and does not
+interfere with their states apart from being able to toggle the visibility of all the panels.</p>
+<p>An AccordionPanel consists of a header and a content area. It can be visible or (entirely) hidden and open or closed. When the panel is visible,
+the header is always displayed. When open, the content is rendered underneath it. An icon next to the header shows the current state and acts as
+an open/close button.</p>
+<h2 id="screenshot-1">Screenshot</h2>
+<p><em>Example use from <code>publisher</code> bundle</em></p>
+<p><img src="/apires/2.13.1/ui/divmanazer/accordion.png" alt="screenshot"></p>
+<h2 id="how-to-use">How to use</h2>
+<h3 id="simple-accordion">Simple accordion</h3>
+<pre><code class="language-javascript">var accordion = Oskari.clazz.create(&#39;Oskari.userinterface.component.Accordion&#39;);
+var panelData = [
+  {title: &#39;A panel&#39;, content: &#39;Example panel&#39;, isVisible: true, isOpen: true},
+  {title: &#39;Another panel&#39;, content: &#39;Example panel&#39;, isVisible: true, isOpen: false}
+];
+var panel;
+var i = 0;
+
+for (; i &lt; panelData.length; i++) {
+  panel = Oskari.clazz.create(&#39;Oskari.userinterface.component.AccordionPanel&#39;);
+  panel.setTitle(panelData[i].title);
+  panel.setContent(panelData[i].content);
+  panel.setVisible(panelData[i].isVisible);
+  panelData[i].isOpen ? panel.open() : panel.close();
+  accordion.addPanel(panel);
+}
+accordion.insertTo(someContainer);
+</code></pre>
+<h2 id="dependencies-1">Dependencies</h2>
+<table class="table">
+  <tr>
+    <th>Dependency</th><th>Linked from</th><th>Purpose</th>
+  </tr>
+  <tr>
+    <td> [jQuery](http://api.jquery.com/) </td>
+    <td> Version 1.7.1 assumed to be linked on the page</td>
+    <td> Used to create the component UI from begin to end</td>
+  </tr>
+</table>
+
+
+<hr style="height:50px;">
+
+
+<h1 id="badge">Badge</h1>
+<h2 id="description-2">Description</h2>
+<p>A stylized element for showing values.</p>
+<h2 id="usage">Usage</h2>
+<pre><code class="language-javascript">    var badge = Oskari.clazz.create(&#39;Oskari.userinterface.component.Badge&#39;);
+    badge.insertTo( someElement );
+    badge.setContent( someValue, &quot;oskari&quot; );
+</code></pre>
+<p>The second parameter in badge.setContent() is the style param.
+i.e.</p>
+<h2 id="screenshot-2">Screenshot</h2>
+<p><img src="/apires/2.13.1/ui/divmanazer/badge.png" alt="screenshot"></p>
+<hr style="height:50px;">
+
+
+<h1 id="button">Button</h1>
+<h2 id="description-3">Description</h2>
+<p>The button component is defined in divmanazer bundle and provides a generic button ui element.</p>
+<h2 id="screenshot-3">Screenshot</h2>
+<p><img src="/apires/2.13.1/ui/divmanazer/button.png" alt="screenshot"></p>
+<h2 id="how-to-use-1">How to use</h2>
+<p>Creates a button with label &quot;Alert&quot; and binds a handler to it that shows an alert when clicked. <code>addClass(&#39;primary&#39;)</code> makes it visually a &quot;primary&quot; button (colored blue).</p>
+<pre><code class="language-javascript">var alertBtn = Oskari.clazz.create(&#39;Oskari.userinterface.component.Button&#39;);
+alertBtn.addClass(&#39;primary&#39;);
+alertBtn.setTitle(&#39;Alert&#39;);
+alertBtn.setHandler(function() {
+  alert(&#39;Alert&#39;);
+});
+</code></pre>
+<p>Inserts the button to given element.</p>
+<pre><code class="language-javascript">var myUI = jQuery(&#39;div.mybundle.buttons&#39;);
+alertBtn.insertTo(myUI);
+</code></pre>
+<p>Removes the button.</p>
+<pre><code class="language-javascript">alertBtn.destroy();
+</code></pre>
+<h2 id="dependencies-2">Dependencies</h2>
+<table class="table">
+  <tr>
+    <th>Dependency</th><th>Linked from</th><th>Purpose</th>
+  </tr>
+  <tr>
+    <td> [jQuery](http://api.jquery.com/) </td>
+    <td> Version 1.7.1 assumed to be linked on the page</td>
+    <td> Used to create the component UI from begin to end</td>
+  </tr>
+</table>
+
+
+<hr style="height:50px;">
+
+
+<h1 id="chart">Chart</h1>
+<h2 id="description-4">Description</h2>
+<p>Create bar or line charts with d3.</p>
+<h2 id="how-to-use-2">How to use</h2>
+<p>Creates instance of chart class, pass it data in very specific form (array with objects, ie: [{ name: &quot;&quot;, value: Number }]).
+Chart returns a div that can be appended where you desire.</p>
+<pre><code class="language-javascript">var barchart = Oskari.clazz.create(&#39;Oskari.userinterface.component.Chart&#39;, Oskari.getSandbox());
+var data = [{name:&quot;2&quot;, value:1},{name:&quot;1&quot;, value:3},{name:&quot;11&quot;, value:31},{name:&quot;12&quot;, value:32},{name:&quot;13&quot;, value:300},{name:&quot;14&quot;, value:355},{name:&quot;15&quot;, value:366},{name:&quot;16&quot;, value:377}];
+var options = {
+    colors: [&#39;#ff0000&#39;, &#39;#00ff00&#39;] // also support to use one color --&gt; colors: &#39;#ff0000&#39;
+};
+barchart.createBarChart(data, options);
+jQuery(&#39;&lt;div&gt;&lt;/div&gt;&#39;).append(barchart);
+</code></pre>
+<p>Update chart with new data:</p>
+<pre><code class="language-javascript">barchart.redraw(data, options);
+</code></pre>
+<p>Different charts:</p>
+<pre><code class="language-javascript">// bar chart
+barchart.createBarChart(data, options);
+// line chart
+barchart.createLineChart(data, options);
+</code></pre>
+<hr style="height:50px;">
+
+
+<h1 id="colorselect">ColorSelect</h1>
+<h2 id="description-5">Description</h2>
+<p>The color select component is defined in divmanazer bundle and provides a generic color select ui element.</p>
+<h2 id="screenshot-4">Screenshot</h2>
+<p><img src="/apires/2.13.1/ui/divmanazer/colorselect.png" alt="screenshot"></p>
+<h2 id="how-to-use-3">How to use</h2>
+<p>Creates a color selection. Three first are single colors and then use many colors.</p>
+<pre><code class="language-javascript">var colorSelect = Oskari.clazz.create(&#39;Oskari.userinterface.component.ColorSelect&#39;);
+
+colorSelect.setColorValues([
+    &#39;ff0000&#39;,
+    &#39;00ff00&#39;,
+    &#39;0000ff&#39;,
+    [&#39;ff0000&#39;, &#39;00ff00&#39;, &#39;0000ff&#39;],
+    [&#39;1b9e77&#39;,&#39;d95f02&#39;,&#39;7570b3&#39;,&#39;e7298a&#39;,&#39;66a61e&#39;,&#39;e6ab02&#39;],
+    [&#39;ffffb2&#39;,&#39;fed976&#39;,&#39;feb24c&#39;,&#39;fd8d3c&#39;,&#39;f03b20&#39;,&#39;bd0026&#39;]
+]);
+</code></pre>
+<p>Sets handler for color selection. Handler gives the selected color index.</p>
+<pre><code class="language-javascript">colorSelect.setHandler(function(selected){
+    console.log(&#39;Selected index: &#39; + selected);
+});
+</code></pre>
+<p>Change color select visualization.</p>
+<pre><code class="language-javascript">colorSelect.setUIColors({
+    hover: &#39;FF0000&#39;, // menu hover background color
+    selected: &#39;00FF00&#39;, // selected background color
+    menu: &#39;0000FF&#39; // menu background color
+});
+</code></pre>
+<p>Select wanted color index.</p>
+<pre><code class="language-javascript">colorSelect.setValue(0);
+</code></pre>
+<p>Inserts the button to given element.</p>
+<pre><code class="language-javascript">var myUI = jQuery(&#39;div.mybundle.colorselect&#39;);
+colorSelect.insertTo(myUI);
+</code></pre>
+<p>Removes the color select.</p>
+<pre><code class="language-javascript">colorSelect.destroy();
+</code></pre>
+<h2 id="dependencies-3">Dependencies</h2>
+<table class="table">
+  <tr>
+    <th>Dependency</th><th>Linked from</th><th>Purpose</th>
+  </tr>
+  <tr>
+    <td> [jQuery](http://api.jquery.com/) </td>
+    <td> Version 1.7.1 assumed to be linked on the page</td>
+    <td> Used to create the component UI from begin to end</td>
+  </tr>
+</table>
+
+
+<hr style="height:50px;">
+
+
+<h1 id="extraflyout">ExtraFlyout</h1>
+<h2 id="description-6">Description</h2>
+<p>The ExtraFlyout component is defined in divmanazer bundle and provides a generic extra flyout ui element.</p>
+<h2 id="screenshot-5">Screenshot</h2>
+<p><img src="/apires/2.13.1/ui/divmanazer/extraflyout.png" alt="screenshot"></p>
+<h2 id="how-to-use-4">How to use</h2>
+<p>Creates a extra flyout with title &quot;Alert&quot;, custom CSS style class and size.</p>
+<pre><code class="language-javascript">var extraflyout = Oskari.clazz.create(&#39;Oskari.userinterface.extension.ExtraFlyout&#39;, &#39;Alert&#39;, {
+                width: &#39;200px&#39;,
+                height: &#39;300px&#39;,
+                cls: &#39;extra-flyout-css-class&#39;
+            });
+extraflyout.on(&#39;show&#39;, function() {
+    alert(&#39;extra flyout opened&#39;);
+});
+extraflyout.on(&#39;hide&#39;, function() {
+    alert(&#39;extra flyout closed&#39;);
+});
+</code></pre>
+<p>Hide extra flyout.</p>
+<pre><code class="language-javascript">extraflyout.hide();
+</code></pre>
+<p>Show extra flyout.</p>
+<pre><code class="language-javascript">extraflyout.show();
+</code></pre>
+<p>Make extra flyout draggable.</p>
+<pre><code class="language-javascript">extraFlyout.makeDraggable({
+  scroll: false, // Need container auto-scrolls while dragging? Default false.
+  handle: &#39;.oskari-flyouttoolbar&#39; // Make dragging for when mousedown triggered with this elemen. Default &#39;.oskari-flyouttoolbar&#39;.
+});
+</code></pre>
+<h2 id="dependencies-4">Dependencies</h2>
+<table class="table">
+  <tr>
+    <th>Dependency</th><th>Linked from</th><th>Purpose</th>
+  </tr>
+  <tr>
+    <td> [jQuery](http://api.jquery.com/) </td>
+    <td> Version 1.7.1 assumed to be linked on the page</td>
+    <td> Used to create the component UI from begin to end</td>
+  </tr>
+</table>
+
+<hr style="height:50px;">
+
+
+<h1 id="form--forminput">Form &amp; FormInput</h1>
+<h2 id="description-7">Description</h2>
+<p>A Form is a passive container for zero or more FormInputs. It can trigger validation of all contained FormInputs and display and clear any errors
+reported by the FI&#39;s.</p>
+<p>A FormInput is a smart wrapper for an input, capable of, for example, validating values with regexp, reporting errors and triggering functions on
+events like keypresses and focus changes.</p>
+<h2 id="screenshot-6">Screenshot</h2>
+<p><img src="/apires/2.13.1/ui/divmanazer/form.png" alt="screenshot"></p>
+<h2 id="usage-1">Usage</h2>
+<h3 id="simple-one-field-form">Simple one-field form</h3>
+<pre><code class="language-javascript">var form = Oskari.clazz.create(&#39;Oskari.userinterface.component.Form&#39;);
+var anInput = Oskari.clazz.create(&#39;Oskari.userinterface.component.FormInput&#39;, &#39;input&#39;);
+
+anInput.setPlaceholder(&#39;Placeholder text&#39;);
+anInput.setRequired(true, &#39;Required field&#39;);
+anInput.setContentCheck(true, &#39;Input contains illegal characters&#39;);
+anInput.bindEnterKey(someInputHandler);
+form.addField(anInput);
+someElement.append(form.getForm());
+</code></pre>
+<h2 id="dependencies-5">Dependencies</h2>
+<table class="table">
+  <tr>
+    <th>Dependency</th><th>Linked from</th><th>Purpose</th>
+  </tr>
+  <tr>
+    <td> [jQuery](http://api.jquery.com/) </td>
+    <td> Version 1.7.1 assumed to be linked on the page</td>
+    <td> Used to create the component UI from begin to end</td>
+  </tr>
+</table>
+
+
+<hr style="height:50px;">
+
+
+<h1 id="grid--gridmodel">Grid &amp; GridModel</h1>
+<h2 id="description-8">Description</h2>
+<p>A Grid can render a given GridModel as a table. Its features include column aliases, calling external handlers for nested tables, field-specific value renderers,
+sorting and selections.</p>
+<p>A GridModel is a simple data container that keeps track of key fields and provides convenience methods for addition of structured data.</p>
+<h2 id="screenshot-7">Screenshot</h2>
+<p><img src="/apires/2.13.1/ui/divmanazer/grid.png" alt="screenshot"></p>
+<h2 id="usage-2">Usage</h2>
+<pre><code class="language-javascript">var gridModel = Oskari.clazz.create(&#39;Oskari.userinterface.component.GridModel&#39;);
+var grid = Oskari.clazz.create(&#39;Oskari.userinterface.component.Grid&#39;);
+var idRenderer = function(id, data) {
+  // set what happens when the &#39;id&#39; field is clicked
+  var idLink = jQuery(&#39;&lt;span class=&quot;idlink&quot;&gt;&#39; + id &#39;&lt;/span&gt;&#39;);
+  idLink.bind(&#39;click&#39;, function() {
+    showDetails(data);
+    return false;
+  });
+  return idLink;
+};
+
+for (var i = 0; i &lt; dataArray.length; ++i) {
+  gridModel.addData(dataArray[i]);
+}
+gridModel.setIdField(&#39;id&#39;);
+grid.setDataModel(gridModel);
+grid.setVisibleFields([ &#39;id&#39;, &#39;afield&#39;, &#39;anotherfield&#39; ]);
+grid.setColumnValueRenderer(&#39;id&#39;, idRenderer);
+grid.setColumnUIName(&#39;afield&#39;, localisations.afield);
+grid.setColumnUIName(&#39;anotherfield&#39;, localisations.anotherfield);
+
+// If you want use paging you can also define grid for this way
+// Set grouping header, only grouping headers allows use paging
+me.grid.setGroupingHeader([
+    {
+        // first grouping cell is same for all others cells, for example same title
+        // define grouping cell style class
+        cls: &#39;grouping-header-1&#39;,
+        // define grouping header text
+        text: &#39;Header 1&#39;
+    },
+    {
+        // this we use at all others than first cell has own grouping header
+        // define grouping cell style class
+        cls:&#39;grouping-header-2&#39;,
+        // define grouping header text
+        text: &#39;Header 2&#39;,
+        // define how many cells is maximum count. If cols are more than this then shows paging arrows
+        maxCols: 2,
+        /* define paging handler. Handler return text element and data obtains information on paging. data object is following:
+        {
+          visible: {
+            start: 2,
+            end: 3
+          },
+          count: 6,
+          page: 1,
+          maxPages: 3
+        }
+        Object tells:
+        - visible: tells at showing now cells 2 - 3
+        - count: tells at there is 6 cells
+        - page: tells at you are now page 1
+        - maxPages: tells at there is 3 pages
+        */
+        pagingHandler: function(element, data){
+            element.html(&#39;Data &#39; + &#39;&lt;span&gt;(&#39;+data.visible.start + &#39;-&#39; + data.visible.end +&#39;/&#39; + data.count+&#39;)&lt;/span&gt;&#39;);
+        }
+    }
+]);
+
+
+grid.renderTo(someElement);
+
+// select row and scroll table to selected
+var scrollableObject = {
+  element: jQuery(&#39;.scrallobleElement&#39;),
+  fixTopPosition: 16 // if need fix calculated top position then use this number. Number means at how many pixels are decreased in calculated element row top location.
+  }:
+grid.select(wantedRowValue, false, scrollableObject);
+
+// select multiple rows and scroll table to selected
+grid.select([wantedRowValue1, wantedRowValue2], false, scrollableElement);
+
+// moves selected rows as first rows of the table
+grid.moveSelectedRowsTop(true);
+
+// Resumes current ordering of the rows (if not table is not sorted, rows remain as is)
+grid.moveSelectedRowsTop(false);
+</code></pre>
+<h2 id="dependencies-6">Dependencies</h2>
+<table class="table">
+  <tr>
+    <th>Dependency</th><th>Linked from</th><th>Purpose</th>
+  </tr>
+  <tr>
+    <td> [jQuery](http://api.jquery.com/) </td>
+    <td> Version 1.7.1 assumed to be linked on the page</td>
+    <td> Used to create the component UI from begin to end</td>
+  </tr>
+</table>
+
+
+<hr style="height:50px;">
+
+
+<h1 id="overlay">Overlay</h1>
+<h2 id="description-9">Description</h2>
+<p>The overlay component is defined in divmanazer bundle and provides masking functionality that prevents clicking on something behind the mask.</p>
+<h2 id="todo-1">TODO</h2>
+<ul>
+<li>Loadmask message</li>
+</ul>
+<h2 id="how-to-use-5">How to use</h2>
+<p>Masks the body element and resizes the mask if overlayd elements size changes. <code>followResizing()</code> with true parameter uses the browser windows resize event to modify size (doesn&#39;t monitor the given elements size change, only window size change).</p>
+<pre><code class="language-javascript">var overlay = Oskari.clazz.create(&#39;Oskari.userinterface.component.Overlay&#39;);
+overlay.overlay(&#39;body&#39;);
+overlay.followResizing(true);
+</code></pre>
+<p>Close the overlay after some operation by keeping reference to the overlay component and call <code>close()</code>.</p>
+<pre><code class="language-javascript">overlay.close();
+</code></pre>
+<p>Masks an element with id &quot;myComponent&quot;.</p>
+<pre><code class="language-javascript">var overlay = Oskari.clazz.create(&#39;Oskari.userinterface.component.Overlay&#39;);
+overlay.overlay(&#39;#myComponent&#39;);
+</code></pre>
+<p>Masks an element with id &quot;myComponent&quot;. The overlay will detect if the target element size changes and resize itself (<code>followResizing()</code>). With <code>bindClickToClose()</code> the overlay can be closed by clicking on it.</p>
+<pre><code class="language-javascript">var overlay = Oskari.clazz.create(&#39;Oskari.userinterface.component.Overlay&#39;);
+overlay.overlay(&#39;#myComponent&#39;);
+overlay.followResizing();
+overlay.bindClickToClose();
+</code></pre>
+<h2 id="dependencies-7">Dependencies</h2>
+<table class="table">
+  <tr>
+    <th>Dependency</th><th>Linked from</th><th>Purpose</th>
+  </tr>
+  <tr>
+    <td> [jQuery](http://api.jquery.com/) </td>
+    <td> Version 1.7.1 assumed to be linked on the page</td>
+    <td> Used to create the component UI from begin to end</td>
+  </tr>
+</table>
+
+
+<hr style="height:50px;">
+
+
+<h1 id="popup">Popup</h1>
+<h2 id="description-10">Description</h2>
+<p>The popup component is defined in divmanazer bundle and provides basic popup functionality. It can be used to show messages that will be shown for given time before removing and messages that user needs to react to by clicking a button. It can also be used in a modal mode (uses the Overlay component internally) and it can be used to show for example a form for user input. The popup can be associated with a given element so it will point at the element or as generic location on the middle of the screen.</p>
+<h2 id="todo-2">TODO</h2>
+<ul>
+<li>Intelligent placement when associated to element so dialog doesn&#39;t go off-screen</li>
+</ul>
+<h2 id="screenshot-8">Screenshot</h2>
+<p><img src="/apires/2.13.1/ui/divmanazer/popup.png" alt="screenshot"></p>
+<h2 id="how-to-use-6">How to use</h2>
+<p>Shows popup at the middle of the screen and closes automatically after 3 seconds. The fadeout method can be given the time as parameter but defaults to 3000 milliseconds.</p>
+<pre><code class="language-javascript">var dialog = Oskari.clazz.create(&#39;Oskari.userinterface.component.Popup&#39;);
+dialog.show(&quot;Note&quot;, &quot;Something happened&quot;);
+dialog.fadeout();
+</code></pre>
+<p>Shows popup at the middle of the screen and closes when the user clicks the ok button on the popup. addClass is used to make the button visually &quot;primary&quot; (colored blue). <code>createCloseButton()</code> is a convenience method that just creates and returns a Oskari.userinterface.component.Button which is binded to close the dialog on click.</p>
+<pre><code class="language-javascript">var dialog = Oskari.clazz.create(&#39;Oskari.userinterface.component.Popup&#39;);
+var btn = dialog.createCloseButton(&quot;OK&quot;);
+btn.addClass(&#39;primary&#39;);
+dialog.show(&quot;Note&quot;, &quot;Click OK to close&quot;, [btn]);
+</code></pre>
+<p>Shows popup at the middle of the screen and closes when the user clicks the ok button on the popup. Here we create a custom <code>Oskari.userinterface.component.Button</code> and asign a handler function for it which closes the dialog and shows an alert. We also make the dialog modal by calling its <code>makeModal()</code> method.</p>
+<pre><code class="language-javascript">var dialog = Oskari.clazz.create(&#39;Oskari.userinterface.component.Popup&#39;);
+var btn = dialog.createCloseButton(&quot;OK&quot;);
+var alertBtn = Oskari.clazz.create(&#39;Oskari.userinterface.component.Button&#39;);
+
+btn.addClass(&#39;primary&#39;);
+alertBtn.setTitle(&#39;Alert&#39;);
+alertBtn.setHandler(function() {
+  dialog.close();
+  alert(&#39;Alert&#39;);
+});
+dialog.show(&quot;Note&quot;, &quot;Click OK to close and alert for an alert&quot;, [alertBtn, btn]);
+dialog.makeModal();
+</code></pre>
+<p>Shows popup above (we give it alignment &quot;top&quot;) a DOM element with id &quot;myComponent&quot; and closes automatically after 3 seconds.</p>
+<pre><code class="language-javascript">var dialog = Oskari.clazz.create(&#39;Oskari.userinterface.component.Popup&#39;);
+dialog.show(&quot;Note&quot;, &quot;Something happened at this component&quot;);
+dialog.moveTo(jQuery(&#39;#myComponent&#39;), &#39;top&#39;);
+dialog.fadeout();
+</code></pre>
+<h2 id="dependencies-8">Dependencies</h2>
+<table class="table">
+  <tr>
+    <th>Dependency</th><th>Linked from</th><th>Purpose</th>
+  </tr>
+  <tr>
+    <td> [jQuery](http://api.jquery.com/) </td>
+    <td> Version 1.7.1 assumed to be linked on the page</td>
+    <td> Used to create the component UI from begin to end</td>
+  </tr>
+  <tr>
+    <td> [Oskari overlay component](/documentation/bundles/framework/divmanazer/overlay) </td>
+    <td> Expects to be present in application setup </td>
+    <td> Used on `makeModal()` call to overlay the window. </td>
+  </tr>
+  <tr>
+    <td> [Oskari button component](/documentation/bundles/framework/divmanazer/button) </td>
+    <td> Expects to be present in application setup </td>
+    <td> Used on `createCloseButton()` call to create a button. </td>
+  </tr>
+</table>
+
+
+<hr style="height:50px;">
+
+
+<h1 id="tabpanel-tabcontainer--tabdropdowncontainer">TabPanel, TabContainer &amp; TabDropdownContainer</h1>
+<h2 id="description-11">Description</h2>
+<p>A TabPanel is a wrapper for a title, a header and content (html) and can call a handler when the tab is selected or unselected.</p>
+<p>A TabContainer renders TabPanels as selectable tabs whereas a TabDropdownContainer represents the TabPanel collection as a dropdown list. A callback for panel changes can be registered for both.</p>
+<h2 id="screenshot-9">Screenshot</h2>
+<p><img src="/apires/2.13.1/ui/divmanazer/tabcontainer.png" alt="screenshot">
+<img src="/apires/2.13.1/ui/divmanazer/tabdropdowncontainer.png" alt="screenshot"></p>
+<h2 id="usage-3">Usage</h2>
+<h3 id="simple-tabcontainer">Simple TabContainer</h3>
+<pre><code class="language-javascript">var aPanel = Oskari.clazz.create(&#39;Oskari.userinterface.component.TabPanel&#39;);
+var anotherPanel = Oskari.clazz.create(&#39;Oskari.userinterface.component.TabPanel&#39;);
+var container = null;
+
+aPanel.setTitle(&#39;A TabPanel&#39;);
+aPanel.setContent(someHtml);
+anotherPanel.setTitle(&#39;Another TabPanel&#39;);
+anotherPanel.setContent(someMoreHtml);
+if (useDropDown) {
+  container = Oskari.clazz.create(&#39;Oskari.userinterface.component.TabDropdownContainer&#39;, &#39;A TabDropdownContainer&#39;);
+} else {
+  container = Oskari.clazz.create(&#39;Oskari.userinterface.component.TabContainer&#39;, &#39;A TabContainer&#39;);
+}
+container.addPanel(aPanel);
+container.addPanel(anotherPanel);
+container.insertTo(someElement);
+</code></pre>
+<h2 id="dependencies-9">Dependencies</h2>
+<table class="table">
+  <tr>
+    <th>Dependency</th><th>Linked from</th><th>Purpose</th>
+  </tr>
+  <tr>
+    <td> [jQuery](http://api.jquery.com/) </td>
+    <td> Version 1.7.1 assumed to be linked on the page</td>
+    <td> Used to create the component UI from begin to end</td>
+  </tr>
+</table>
+
+
+<hr style="height:50px;">
+
+
+<h1 id="ui-helper">UI Helper</h1>
+<h2 id="description-12">Description</h2>
+<p>Processes given element and binds any element with &quot;helptags&quot; attribute with a popup showing the help article</p>
+<h2 id="usage-4">Usage</h2>
+<p>There is two way of adding help links. You can let the UIHelper to process your content and based on HTML classes (icon-info) it will add the helper functionality using popups.</p>
+<pre><code class="language-javascript">var helper = Oskari.clazz.create(&#39;Oskari.userinterface.component.UIHelper&#39;, this.instance.sandbox);
+//processHelpLinks(title, content, errorTitle, errorMsg)
+helper.processHelpLinks(this.loc.help, content, this.loc.error.title, this.loc.error.nohelp);
+</code></pre>
+<p>Another way is to fetch help articles from the backend and show those articles when needed.</p>
+<pre><code class="language-javascript">var me = this;
+var helper = Oskari.clazz.create(&#39;Oskari.userinterface.component.UIHelper&#39;, me.instance.sandbox);
+helper.getHelpArticle(&#39;termsofuse, mappublication, &#39; + Oskari.getLang(), function(success, response) {
+    if(success) {
+        me.termsOfUse = response;
+        // terms loaded, try again
+        me._showTermsOfUse();
+    }
+});
+</code></pre>
+<h2 id="dependencies-10">Dependencies</h2>
+<table class="table">
+  <tr>
+    <th>Dependency</th><th>Linked from</th><th>Purpose</th>
+  </tr>
+  <tr>
+    <td> [jQuery](http://api.jquery.com/) </td>
+    <td> Version 1.7.1 assumed to be linked on the page</td>
+    <td> Used to create the component UI from begin to end</td>
+  </tr>
+</table>
+
+
+<hr style="height:50px;">
+
+
+<h1 id="visualizationform">VisualizationForm</h1>
+<h2 id="description-13">Description</h2>
+<p>Creates ui and functionality to define geometry visualizations for eg. my places bundle.</p>
+<h2 id="screenshot-10">Screenshot</h2>
+<p><img src="/apires/2.13.1/ui/divmanazer/visualization-form_1.png" alt="Form"></p>
+<h2 id="usage-5">Usage</h2>
+<p>Class creation (parameters are discussed below):</p>
+<pre><code class="language-javascript">var options = {...};
+var visualizationForm = Oskari.clazz.create(
+    &quot;Oskari.userinterface.component.VisualizationForm&quot;,
+    options
+);
+</code></pre>
+<p>After initializing the class, the form can be placed on the DOM:</p>
+<pre><code class="language-javascript">var form = visualizationForm.getForm();
+someDomElement.append(form);
+</code></pre>
+<p>The values of the form can then be requested (returns an object which has keys for each of the form components given in initialization options, or all three by default):</p>
+<pre><code class="language-javascript">var values = visualizationForm.getValues();
+console.log(values);
+</code></pre>
+<p>Outputs for instance:</p>
+<pre><code class="language-javascript">{
+  area: {
+    fillColor: &quot;ffde00&quot;
+    fillStyle: -1
+    lineColor: &quot;000000&quot;
+    lineCorner: &quot;mitre&quot;
+    lineStyle: &quot;&quot;
+    lineWidth: 1
+  },
+  line: {
+    cap: &quot;butt&quot;
+    color: &quot;3233ff&quot;
+    corner: &quot;mitre&quot;
+    style: &quot;&quot;
+    width: 1
+  },
+  point: {
+    color: &quot;000000&quot;
+    shape: 1
+    size: 3
+  }
+}
+</code></pre>
+<p><code>area.fillColor</code> and <code>area.lineColor</code> can have value <code>null</code> to mean &quot;no fill&quot; / &quot;no stroke&quot; respectively</p>
+<p>The component also accepts values with similar structure as above:</p>
+<pre><code class="language-javascript">var values = {...};
+visualizationForm.setValues(values);
+</code></pre>
+<h2 id="configuration-options">Configuration options</h2>
+<p>Takes one (optional) parameter, <code>options</code>. In case it is omitted, the component uses some sensible defaults.</p>
+<p><code>options</code> should have two keys, <code>forms</code>, whose value should be an array of strings, for instance:</p>
+<pre><code class="language-javascript">// includes all three by default. Can be configured to include any combination of the three.
+[&#39;point&#39;, &#39;line&#39;, &#39;area&#39;]
+</code></pre>
+<p>The other <code>options</code> key should be <code>formValues</code> which defines default values to each form. Example:</p>
+<pre><code class="language-javascript">// These are the default values of the component:
+formValues: {
+    point: {
+        shape: 1,
+        color: &quot;000000&quot;,
+        size: 3
+    },
+    line: {
+        style: 0,
+        cap: 0,
+        corner: 0,
+        width: 1,
+        color: &quot;3233ff&quot;
+    },
+    area: {
+        line: {
+            width: 1,
+            corner: 0,
+            style: 0,
+            color: &quot;000000&quot;
+        },
+        fill: {
+            style: -1,
+            color: &quot;ffde00&quot;
+        }
+    }
+}
+</code></pre>
+<h2 id="dependencies-11">Dependencies</h2>
+<table class="table">
+  <tr>
+    <th>Dependency</th><th>Linked from</th><th>Purpose</th>
+  </tr>
+  <tr>
+    <td> [jQuery](http://api.jquery.com/) </td>
+    <td> Version 1.7.1 assumed to be linked on the page</td>
+    <td> Used to create the component UI from begin to end</td>
+  </tr>
+</table>

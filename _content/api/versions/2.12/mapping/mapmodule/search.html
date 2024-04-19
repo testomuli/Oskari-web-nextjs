@@ -1,0 +1,61 @@
+<h1 id="search-plugin">Search Plugin</h1>
+<h2 id="description">Description</h2>
+<p>Creates a search field for places in published maps.</p>
+<h2 id="bundle-configuration">Bundle configuration</h2>
+<p>No configuration is required. Following is optional:</p>
+<p>The styling and font of the plugin are configurable, with variables <code>toolStyle</code> (Object) and <code>font</code> (String), respectively. A CSS class of <code>oskari-publisher-font-&lt;font&gt;</code> is expected to be defined with font-family definition. Following styles are supported for the <code>toolStyle.val</code>: <code>rounded-light</code>, <code>rounded-dark</code>, <code>sharp-dark</code>, <code>sharp-light</code>, <code>3d-dark</code> and <code>3d-light</code>. Images for search field background are expected to be found in plugin&#39;s image resources directory for left, middle and right sides of the field: <code>search-tool-&lt;toolStyle&gt;_01.png</code>, <code>search-tool-&lt;toolStyle&gt;_02.png</code> and <code>search-tool-&lt;toolStyle&gt;_03.png</code>, respectively. Also, the widths of the images are expected to be defined in config object:</p>
+<pre><code class="language-javascript">{
+  val: &#39;rounded-dark&#39;, // The id of the style.
+  widthLeft: &#39;17px&#39;,   // Width of the left side image.
+  widthRight: &#39;32px&#39;   // Width of the right side image.
+}
+</code></pre>
+<h2 id="bundle-state">Bundle state</h2>
+<p>No statehandling has been implemented.</p>
+<h2 id="requests-the-bundle-handles">Requests the bundle handles</h2>
+<p>This bundle doesn&#39;t handle any requests.</p>
+<h2 id="requests-the-bundle-sends-out">Requests the bundle sends out</h2>
+<table class="table">
+  <tr>
+    <th>Request</th><th>Why/when</th>
+  </tr>
+  <tr>
+    <td>DisableMapKeyboardMovementRequest</td>
+    <td>Disables the map movement when entering text to the search field.</td>
+  </tr>
+  <tr>
+    <td>EnableMapKeyboardMovementRequest</td>
+    <td>Enables the map movement when the search field blurs again.</td>
+  </tr>
+  <tr>
+    <td>MapMoveRequest</td>
+    <td>Moves the map to a location in the results table received from the search service.</td>
+  </tr>
+</table>
+
+<h2 id="events-the-bundle-listens-to">Events the bundle listens to</h2>
+<p>This bundle doesn&#39;t listen to any events.</p>
+<h2 id="events-the-bundle-sends-out">Events the bundle sends out</h2>
+<p>This bundle doesn&#39;t send out any events.</p>
+<h2 id="dependencies">Dependencies</h2>
+<table class="table">
+  <tr>
+    <th>Dependency</th><th>Linked from</th><th>Purpose</th>
+  </tr>
+  <tr>
+    <td> [jQuery](http://api.jquery.com/) </td>
+    <td> Version 1.7.1 assumed to be linked (on page locally in portal) </td>
+    <td> Used to create the UI and to sort the layers</td>
+  </tr>
+  <tr>
+    <td>[OpenLayers](http://openlayers.org/)</td>
+    <td>not linked, assumes its linked by map</td>
+    <td>Uses OpenLayers' popup</td>
+  </tr>
+  <tr>
+    <td>Oskari.mapframework.bundle.search.service.SearchService</td>
+    <td>Expects to be present in application setup</td>
+    <td>Sends the search request trough the service</td>
+  </tr>
+</table>
+

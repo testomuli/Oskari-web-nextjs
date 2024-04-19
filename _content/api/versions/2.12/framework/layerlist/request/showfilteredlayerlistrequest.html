@@ -1,0 +1,77 @@
+<h1 id="showfilteredlayerlistrequest">ShowFilteredLayerListRequest</h1>
+<p>Filter layers shown on layerlist.</p>
+<h2 id="use-cases">Use cases</h2>
+<ul>
+<li>filter layerlist</li>
+</ul>
+<h2 id="description">Description</h2>
+<p>Layers shown to the user can be filtered by sending ShowFilteredLayerListRequest.</p>
+<h2 id="parameters">Parameters</h2>
+<p>(* means the parameter is required)</p>
+<table class="table">
+<tr>
+  <th> Name</th><th> Type</th><th> Description</th><th> Default value</th>
+</tr>
+<tr>
+  <td>* selectedFilter</td><td>String</td><td>Used layerlist filter identifier</td><td> </td>
+</tr>
+<tr>
+  <td>openLayerList</td><td>Boolean</td><td>Open layerlist flyout</td><td>false</td>
+</tr>
+<tr>
+  <td>showSelectedLayers</td><td>Boolean</td><td>Show selected layers instead of full listing</td><td>false</td>
+</tr>
+</table>
+
+<h2 id="examples">Examples</h2>
+<h3 id="filter-layerlist-by-default-filters">Filter layerlist by default filters</h3>
+<p>Default filter are:</p>
+<ul>
+<li>newest, this shows 20 newest layers on layerlist</li>
+<li>featuredata, this shows only featuredata layers on layerlist</li>
+</ul>
+<p>Bundles registered filters:</p>
+<ul>
+<li>publishable, this shows only publishable layers on layerlist. Added by publisher2 bundle if the user is logged in.</li>
+</ul>
+<p>You can use default filters only when filter buttons are showed on layerlist.</p>
+<p>Filter layerlist to show only newest layers using the code below:</p>
+<pre><code class="language-javascript">Oskari.getSandbox().postRequestByName(&#39;ShowFilteredLayerListRequest&#39;, [&#39;newest&#39;]);
+</code></pre>
+<p>Filter layerlist to show only vector layers using the code below:</p>
+<pre><code class="language-javascript">Oskari.getSandbox().postRequestByName(&#39;ShowFilteredLayerListRequest&#39;, [&#39;featuredata&#39;]);
+</code></pre>
+<p>Filter layerlist to show only publishable layers using the code below:</p>
+<pre><code class="language-javascript">Oskari.getSandbox().postRequestByName(&#39;ShowFilteredLayerListRequest&#39;, [&#39;publishable&#39;]);
+</code></pre>
+<p>To also open the layer listing flyout (layerlist bundle) then send request with second parameter.</p>
+<pre><code class="language-javascript">Oskari.getSandbox().postRequestByName(&#39;ShowFilteredLayerListRequest&#39;, [&#39;newest&#39;, true]);
+</code></pre>
+<p>To open the layer listing flyout AND show the selected layers listing (instead of full listing) then send request with third parameter true.</p>
+<pre><code class="language-javascript">Oskari.getSandbox().postRequestByName(&#39;ShowFilteredLayerListRequest&#39;, [&#39;newest&#39;, true, true]);
+</code></pre>
+<p>ShowFilteredLayerListRequest</p>
+<h3 id="create-own-filters">Create own filters</h3>
+<p>Create own filter (this we wanted to show only layers with name start &#39;a&#39; or &#39;A&#39;) and use new filter the code below:</p>
+<pre><code class="language-javascript">// Register new filter
+var mapLayerService = Oskari.getSandbox().getService(&#39;Oskari.mapframework.service.MapLayerService&#39;);
+mapLayerService.registerLayerFilter(&#39;find_layers_name_start_a&#39;, function(layer){
+    var name = layer.getName().toLowerCase(),
+            nameFirstChar = name.substring(0,1);
+        return (nameFirstChar === &#39;a&#39;);
+});
+// Use new filter by request
+Oskari.getSandbox().postRequestByName(&#39;ShowFilteredLayerListRequest&#39;, [&#39;find_layers_name_start_a&#39;]);
+</code></pre>
+<h3 id="open-layerlist-when-sending-request">Open layerlist when sending request</h3>
+<p>Open layerlist (layerselector2 Flyout) when sending request (same code as upper but added second parameter true) using the code below:</p>
+<pre><code class="language-javascript">var mapLayerService = Oskari.getSandbox().getService(&#39;Oskari.mapframework.service.MapLayerService&#39;);
+mapLayerService.registerLayerFilter(&#39;find_layers_name_start_a&#39;, function(layer){
+    var name = layer.getName().toLowerCase(),
+            nameFirstChar = name.substring(0,1);
+        return (nameFirstChar === &#39;a&#39;);
+});
+// Use new filter by request
+Oskari.getSandbox().postRequestByName(&#39;ShowFilteredLayerListRequest&#39;, [&#39;find_layers_name_start_a&#39;, true]);
+</code></pre>
+<p><em>Included in bundle: <a href="bundles#2.13.1/framework/layerlist">framework/layerlist</a></em></p>

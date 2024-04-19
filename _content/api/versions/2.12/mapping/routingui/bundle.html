@@ -1,0 +1,81 @@
+<h1 id="routingui">routingUI</h1>
+<h2 id="description">Description</h2>
+<p>This bundle provides UI for routing. In this bundle user can select start and end points of route and then search route of between these points. Finally results are showed on the popup.</p>
+<h2 id="screenshot">Screenshot</h2>
+<p><img src="/apires/2.13.1/mapping/routingui/routingui.png" alt="screenshot"></p>
+<h2 id="bundle-configuration">Bundle configuration</h2>
+<p>No configuration is required, but there is few possible configurations:</p>
+<ul>
+<li>Setting <code>decimals</code> for wanted decimals rounding for input box lon/lat values. For examples:
+```javascript
+// Set all projections rounding rule
+{
+&quot;decimals&quot;: 6
+}</li>
+</ul>
+<p>// Set projection specified rounding rules
+{
+  &quot;decimals&quot; {
+      &quot;EPSG:4326&quot;: 5,
+      &quot;EPSG:3067&quot;: 0
+  }
+}</p>
+<p>// Use default rounding rules, use empty decimals configuration. Then rounding decimal are map projection unit specified
+{
+}</p>
+<pre><code>
+## Requests the bundle sends out
+
+&lt;table class=&quot;table&quot;&gt;
+  &lt;tr&gt;
+    &lt;th&gt; Request &lt;/th&gt;&lt;th&gt; Where/why it&#39;s used&lt;/th&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td&gt;`GetRouteRequest`&lt;/td&gt;&lt;td&gt; Get route plan.&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td&gt;`MapModulePlugin.AddFeaturesToMapRequest`&lt;/td&gt;&lt;td&gt; Add route plan geometry to map.&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td&gt;`MapModulePlugin.RemoveFeaturesFromMapRequest`&lt;/td&gt;&lt;td&gt; Remove route plan geometry from map.&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td&gt;`MapModulePlugin.AddMarkerRequest`&lt;/td&gt;&lt;td&gt; Add route start and end point to map.&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td&gt;`MapModulePlugin.RemoveMarkersRequest`&lt;/td&gt;&lt;td&gt; Remove route start and end points from map.&lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/table&gt;
+
+## Events the bundle listens to
+
+&lt;table class=&quot;table&quot;&gt;
+  &lt;tr&gt;
+    &lt;th&gt;Event&lt;/th&gt;&lt;th&gt;How does the bundle react&lt;/th&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td&gt;`MapClickedEvent`&lt;/td&gt;&lt;td&gt;Updates the coordinates gotten from event to the UI.&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td&gt;`RouteResultEvent`&lt;/td&gt;&lt;td&gt;Updates the route plans to the UI.&lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/table&gt;
+
+## Dependencies
+
+&lt;table class=&quot;table&quot;&gt;
+  &lt;tr&gt;
+    &lt;th&gt;Dependency&lt;/th&gt;&lt;th&gt;Linked from&lt;/th&gt;&lt;th&gt;Purpose&lt;/th&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td&gt;[jQuery](http://api.jquery.com/)&lt;/td&gt;
+    &lt;td&gt;Assumes to be linked in the page&lt;/td&gt;
+    &lt;td&gt;Used to create the component UI from begin to end&lt;/td&gt;
+  &lt;/tr&gt;
+  &lt;tr&gt;
+    &lt;td&gt;[Moment.js](http://momentjs.com/)&lt;/td&gt;
+    &lt;td&gt;Bundle&lt;/td&gt;
+    &lt;td&gt;Used to format date/time&lt;/td&gt;
+  &lt;/tr&gt;
+&lt;/table&gt;
+</code></pre>

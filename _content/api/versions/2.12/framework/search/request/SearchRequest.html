@@ -1,0 +1,42 @@
+<h1 id="searchrequest-rpc">SearchRequest <span class="label label-primary rpc">RPC</span></h1>
+<p>Make a search query</p>
+<h2 id="use-cases">Use cases</h2>
+<ul>
+<li>Make a generic search to get location results</li>
+</ul>
+<h2 id="description">Description</h2>
+<p>Requests search results (addresses, locations) by given params. After the search is completed a <code>SearchResultEvent</code> is triggered where following data is available:</p>
+<ul>
+<li>event.getSuccess(), returns boolean. If <code>true</code>, search is done and there is no errors</li>
+<li>event.getResult(), returns search result object. Look at searchresultevent.md for more details</li>
+<li>event.getRequestParameters(), returns the <code>query</code> that was used for searching</li>
+<li>event.getOptions(), returns options used when requesting search if any</li>
+</ul>
+<h2 id="parameters">Parameters</h2>
+<p>(* means the parameter is required)</p>
+<table class="table">
+<tr>
+  <th> Name</th><th> Type</th><th> Description</th><th> Default value</th>
+</tr>
+<tr>
+  <td> \* query</td><td> String </td><td> address or location to be searched</td><td> </td>
+</tr>
+<tr>
+  <td> options</td><td> Object </td><td> Arbitratry options to send to server side implementation. These might get handled or not depending on the backend implementation/search channel. A common handling is for key `limit` so client can request less or more results than the instance default. However the instance admin can set a hard limit for results.</td><td>{}</td>
+</tr>
+</table>
+
+<h2 id="examples">Examples</h2>
+<p>Get search result in an RPC application:</p>
+<pre><code class="language-javascript">  var query = &quot;Finland&quot;;
+  channel.postRequest(&#39;SearchRequest&#39;, [ query ]);
+</code></pre>
+<p>Same search but limit results to 10:</p>
+<pre><code class="language-javascript">  var query = &quot;Finland&quot;;
+  channel.postRequest(&#39;SearchRequest&#39;, [ query, { &#39;limit&#39;: 10 } ]);
+</code></pre>
+<h2 id="related-api">Related api</h2>
+<ul>
+<li>SearchResultEvent</li>
+</ul>
+<p><em>Included in bundle: <a href="bundles#2.13.1/framework/search">framework/search</a></em></p>
