@@ -14,14 +14,13 @@ export default function ApiSectionMainPage({ title, sideBarContent, baseHref, ve
     ),
   ];
 
-  console.log('Main page, version: ', version);
   return <Layout heroTitle={title}>
     <div>
         <VersionSidebar selectedVersion={version} versions={versions} baseHref={baseHref} />
         {sideBarContent}
     </div>
     <div style={{overflow: 'hidden', wordWrap:'break-word'}}>
-      <ApiDocChangeLog/>
+      <ApiDocChangeLog version={version}/>
     </div>
   </Layout>;
 }
