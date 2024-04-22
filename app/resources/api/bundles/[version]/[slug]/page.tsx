@@ -2,7 +2,7 @@
 import slugify from 'slugify';
 import ApiSectionContentPage from '../../../components/ApiSectionContentPage';
 import BundlesSidebarContent from '../../../components/BundlesSidebarContent';
-import BundleContentPage from '../../../components/BundleContentPage';
+import HtmlContentPage from '../../../components/HtmlContentPage';
 import Error from '@/components/Error';
 export default async function BundlesMainPage({
   params
@@ -24,7 +24,7 @@ export default async function BundlesMainPage({
   return <ApiSectionContentPage
     version={params.version}
     sideBarContent={<BundlesSidebarContent elements={bundles} baseHref={bundleBaseRef}/>}
-    mainContent={<BundleContentPage path={bundlesBasePath + '/' + foundBundle.path} />}
+    mainContent={<HtmlContentPage path={bundlesBasePath + '/' + foundBundle.path + '/bundle.html'}  />}
     title='Oskari API documentation'
     baseHref='/resources/api/bundles/'/>;
 }

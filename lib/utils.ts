@@ -80,9 +80,8 @@ export const getApiChangeLog = async function(version: string = 'latest') {
   return html;
 }
 
-export const getBundleContent = async function(bundlePath: string) {
-  const filePath = `${bundlePath}/bundle.html`;
-  const fullPath = path.normalize(path.join(process.cwd(), filePath));
+export const getHtmlContent = async function(htmlFilePath: string) {
+  const fullPath = path.normalize(path.join(process.cwd(), htmlFilePath));
   const html = fs.readFileSync(fullPath, 'utf8');
   return html;
 }

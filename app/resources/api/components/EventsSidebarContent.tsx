@@ -1,5 +1,5 @@
 import slugify from 'slugify';
-import { Event } from '@/types/api';
+import { OskariEvent } from '@/types/api';
 
 export default function EventsSidebarContent(
   {
@@ -8,7 +8,7 @@ export default function EventsSidebarContent(
   }:
   {
 
-    elements: Array<Event>,
+    elements: Array<OskariEvent>,
     baseHref: string
   }) {
 
@@ -17,14 +17,18 @@ export default function EventsSidebarContent(
     return namespaces.map((namespace: string) => {
         return <div key={namespace}>
             <h4>{namespace}</h4>
+            <ul>
             {
               elements.filter((element) => element.ns === namespace).map((element) => {
-                return <div key={element.name}>
-                  <h5><a href={baseHref}>{element.name}</a></h5>
+                const slug = slugify(element.name)
+                return <li key={element.name}>
+                  <h5><a href={baseHref + slug}>{element.name}</a></h5>
                   <span>{element.desc}</span>
-                </div>
+                </li>
               })
             }
+
+            </ul>
         </div>;
     })
 }
