@@ -5,7 +5,7 @@ import BundlesSidebarContent from '../components/BundlesSidebarContent';
 export default async function BundlesMainPage({version = 'latest'}: { version: string}) {
 
   const bundles = (await import('_content/api/versions/'+version+'/bundles.json')).default;
-  const bundleBaseRef = '/resources/api/bundles/'+version+'/#';
+  const bundleBaseRef = '/resources/api/bundles/'+version+'/';
 
   return <ApiSectionMainPage
     version={version}
