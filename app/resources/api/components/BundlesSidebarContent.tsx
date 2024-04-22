@@ -1,4 +1,5 @@
-import slugify from "slugify";
+import { Bundle } from '@/types/api';
+import slugify from 'slugify';
 
 export default function BundlesSidebarContent(
   {
@@ -6,7 +7,7 @@ export default function BundlesSidebarContent(
     baseHref
   }:
   {
-    elements: Array<{name: string, path: string, bundles: Array<{path: string, name: string}>}>,
+    elements: Array<Bundle>,
     baseHref: string
   }) {
     return <>

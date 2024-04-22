@@ -4,7 +4,7 @@ import { compareSemanticVersions } from '@/utils/misc';
 import availableVersions from '_content/api/versions'
 import Layout from '../../docs/layout';
 import { ReactNode } from 'react';
-export default function ApiSectionMainPage({
+export default function ApiSectionContentPage({
     title,
     sideBarContent,
     mainContent,
