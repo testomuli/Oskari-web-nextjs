@@ -17,7 +17,7 @@ export default function DocsPage() {
   ]
   return (
     <>
-      <VersionSidebar selectedVersion='' versions={versions} />
+      <VersionSidebar selectedVersion='' versions={versions}  baseHref='/resources/docs/'/>
       <article>
         <h1>Docs Content</h1>
         <p>

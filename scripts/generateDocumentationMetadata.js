@@ -112,3 +112,7 @@ processVersions(fullPath, docsRelativeDir);
 
 const resourcesCopyPath = '/public/assets/docs/';
 syncResourcesByVersion(docsRelativeDir, resourcesCopyPath);
+
+/** API docs metadata generation */
+const apidocsFullpath = './_content/api/versions/';
+generateDocumentationMetadata(apidocsFullpath);
