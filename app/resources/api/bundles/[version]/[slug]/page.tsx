@@ -19,7 +19,7 @@ export default async function BundlesMainPage({
 
   const foundBundle = allBundles.find(element => slugify(element.name) === params.slug);
   if (!foundBundle) {
-    return <Error text='No blog posts found' code='404' />
+    return <Error text='No bundle doc found' code='404' />
   }
   return <ApiSectionContentPage
     version={params.version}
