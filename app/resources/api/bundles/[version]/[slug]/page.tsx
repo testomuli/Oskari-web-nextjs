@@ -1,6 +1,6 @@
 
 import slugify from 'slugify';
-import ApiSectionContentPage from '../../../components/ApiSectionMainPage';
+import ApiSectionContentPage from '../../../components/ApiSectionContentPage';
 import BundlesSidebarContent from '../../../components/BundlesSidebarContent';
 import BundleContentPage from '../../../components/BundleContentPage';
 import Error from '@/components/Error';

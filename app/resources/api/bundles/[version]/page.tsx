@@ -1,6 +1,6 @@
 
 import ApiDocChangeLog from '../../components/ApiDocChangeLog';
-import ApiSectionContentPage from '../../components/ApiSectionMainPage';
+import ApiSectionContentPage from '../../components/ApiSectionContentPage';
 import BundlesSidebarContent from '../../components/BundlesSidebarContent';
 export default async function BundlesVersionMainPage({
   params
