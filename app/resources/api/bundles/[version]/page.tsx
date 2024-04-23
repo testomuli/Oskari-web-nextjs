@@ -2,7 +2,7 @@
 import ApiDocChangeLog from '../../components/ApiDocChangeLog';
 import ApiSectionContentPage from '../../components/ApiSectionContentPage';
 import BundlesSidebarContent from '../../components/BundlesSidebarContent';
-export default async function BundlesVersionMainPage({
+export default async function BundlesVersionPage({
   params
 }: {
   params: { version: string }

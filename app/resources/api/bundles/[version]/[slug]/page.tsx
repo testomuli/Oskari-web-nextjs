@@ -4,7 +4,7 @@ import ApiSectionContentPage from '../../../components/ApiSectionContentPage';
 import BundlesSidebarContent from '../../../components/BundlesSidebarContent';
 import HtmlContentPage from '../../../components/HtmlContentPage';
 import Error from '@/components/Error';
-export default async function BundlesMainPage({
+export default async function BundlesContentPage({
   params
 }: {
   params: { version: string, slug: string }
@@ -28,5 +28,3 @@ export default async function BundlesMainPage({
     title='Oskari API documentation'
     baseHref='/resources/api/bundles/'/>;
 }
-
-//

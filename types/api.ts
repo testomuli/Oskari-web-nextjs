@@ -7,7 +7,8 @@ export type Bundle = {
   name: string,
   bundles: Array<BundleItem>
 }
-export type OskariEvent = {
+
+export type OskariEventOrRequest = {
   name: string,
   desc: string,
   path: string,
