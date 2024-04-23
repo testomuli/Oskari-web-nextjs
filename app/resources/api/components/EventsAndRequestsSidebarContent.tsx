@@ -1,18 +1,18 @@
 import slugify from 'slugify';
-import { OskariEvent } from '@/types/api';
+import { OskariEventOrRequest } from '@/types/api';
 
-export default function EventsSidebarContent(
+export default function EventsAndRequestsSidebarContent(
   {
     elements,
     baseHref
   }:
   {
 
-    elements: Array<OskariEvent>,
+    elements: Array<OskariEventOrRequest>,
     baseHref: string
   }) {
 
-    const namespaces: Array<string> = [...new Set(elements.map(event => event.ns))];
+    const namespaces: Array<string> = [...new Set(elements.map(element => element.ns))];
 
     return namespaces.map((namespace: string) => {
         return <div key={namespace}>
