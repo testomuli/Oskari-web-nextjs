@@ -2,7 +2,7 @@ import ApiDocChangeLog from '../../components/ApiDocChangeLog';
 import ApiSectionContentPage from '../../components/ApiSectionContentPage';
 import EventsAndRequestsSidebarContent from '../../components/EventsAndRequestsSidebarContent';
 
-export default async function EventsVersionPage({
+export default async function RequestsVersionPage({
   params,
 }: {
   params: { version: string }

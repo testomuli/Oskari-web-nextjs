@@ -5,7 +5,7 @@ import HtmlContentPage from '../../../components/HtmlContentPage';
 import Error from '@/components/Error';
 import { OskariEventOrRequest } from '@/types/api';
 import EventsAndRequestsSidebarContent from '../../../components/EventsAndRequestsSidebarContent';
-export default async function EventsMainPage({
+export default async function EventsContentPage({
   params
 }: {
   params: { version: string, slug: string }
