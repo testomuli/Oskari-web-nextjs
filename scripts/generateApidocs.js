@@ -25,8 +25,7 @@ function copyContent(source, destination) {
   });
 }
 
-function readMdDesc(filePath) {
-  const fileContent = fs.readFileSync(filePath, 'utf8');
+function getMdDesc(fileContent) {
   // reads text after the first heading in md file and stops at either line change or EOF
   const match = fileContent.match(/#\s+(.*)\r?\n\r?\n([^]*?)(?=\r?\n\r?\n|$)/);
   if (match && match.length > 1) {
@@ -36,10 +35,49 @@ function readMdDesc(filePath) {
   return '';
 }
 
+function hasTag(fileContent, tag) {
+  // Find the first heading and see if it contains the tag
+  const match = fileContent.match(/#\s+(.*)/);
+  if (match && match[1].includes(tag)) {
+      return true;
+  } else {
+      return false;
+  }
+}
+
 function getSubdirectories(rootDir) {
   return fs.readdirSync(rootDir, { withFileTypes: true })
       .filter(dirent => dirent.isDirectory())
       .map(dirent => dirent.name);
+}
+
+
+function generateRequestsOrEvents(fullPath, moduleName, bundleName, type) {
+  // type = request | event
+  const itemTypePath = path.join(fullPath, moduleName, bundleName, type);
+  if (!fs.existsSync(itemTypePath)) {
+    return;
+  }
+
+  const files = fs.readdirSync(itemTypePath);
+  const results = [];
+  files.forEach(file => {
+
+    const mdPath = path.join(itemTypePath, file);
+    const fileContent = fs.readFileSync(mdPath, 'utf8');
+    const fileNameWithoutExtension = path.parse(file).name;
+    const item = {
+      name: fileNameWithoutExtension,
+      desc: getMdDesc(fileContent),
+      path: path.normalize(path.join(moduleName, bundleName, type, file)),
+      rpc: hasTag(fileContent, '[rpc]'),
+      bundle: bundleName,
+      ns: moduleName
+    };
+    results.push(item);
+  })
+
+  return results;
 }
 
 function generateBundlesList(fullPath, moduleName) {
@@ -47,11 +85,14 @@ function generateBundlesList(fullPath, moduleName) {
   const bundles = [];
   const modulePath = path.join(fullPath, moduleName);
   const bundleNames = getSubdirectories(modulePath);
-  bundleNames.forEach((bundle) => {
+
+  bundleNames.forEach((bundleName) => {
     bundles.push({
-      name: bundle,
-      desc: readMdDesc(path.join(modulePath, bundle, 'bundle.md')),
-      path: moduleName + '/' + bundle
+      name: bundleName,
+      desc: getMdDesc(path.join(modulePath, bundleName, 'bundle.md')),
+      path: moduleName + '/' + bundleName,
+      requests: generateRequestsOrEvents(fullPath, moduleName, bundleName, 'request'),
+      events: generateRequestsOrEvents(fullPath, moduleName, bundleName, 'event')
     })
   })
 
@@ -59,7 +100,7 @@ function generateBundlesList(fullPath, moduleName) {
 
 }
 
-function generateBundlesJson(fullPath) {
+function generateApiJson(fullPath) {
 
   const modules = getSubdirectories(fullPath);
   const bundlesJSON = [];
@@ -67,7 +108,6 @@ function generateBundlesJson(fullPath) {
     name: module,
     bundles: generateBundlesList(fullPath, module)
   }));
-  console.log(modules);
   return bundlesJSON;
 }
 
@@ -82,5 +122,26 @@ const sourcePath = path.join(process.cwd(), sourceDirectoryRelative);
 const destinationPath = path.join(process.cwd(), destinationDirectoryRelative);
 copyContent(sourcePath, destinationPath);
 
-const bundlesJson = generateBundlesJson(destinationPath);
-fs.writeFileSync(path.join(destinationPath, 'bundles.json'), JSON.stringify(bundlesJson, null, 2));
+// write the full api object with requests and events. Not sure we need this for anything...?
+const apiJSON = generateApiJson(destinationPath);
+fs.writeFileSync(path.join(destinationPath, 'api.json'), JSON.stringify(apiJSON, null, 2));
+
+let requests = [];
+let events = [];
+apiJSON.forEach(module => {
+  module.bundles.forEach(bundle => {
+    if (bundle?.requests) {
+      requests = requests.concat(bundle.requests)
+    }
+
+    if (bundle?.events) {
+      events = events.concat(bundle.events);
+    }
+    delete bundle.events;
+    delete bundle.requests;
+  });
+})
+
+fs.writeFileSync(path.join(destinationPath, 'bundles.json'), JSON.stringify(apiJSON, null, 2))
+fs.writeFileSync(path.join(destinationPath, 'events.json'), JSON.stringify(events, null, 2))
+fs.writeFileSync(path.join(destinationPath, 'requests.json'), JSON.stringify(requests, null, 2))
