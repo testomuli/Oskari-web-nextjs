@@ -42,3 +42,4 @@ next-env.d.ts
 /_content/docs
 /public/assets/blog
 /public/assets/docs
+/_content/api
