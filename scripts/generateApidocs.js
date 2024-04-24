@@ -9,7 +9,7 @@ function copyContent(source, destination) {
   }
 
   if (!fs.existsSync(destination)) {
-    fs.mkdirSync(destination);
+    fs.mkdirSync(destination, { recursive: true });
   }
 
   const files = fs.readdirSync(source);
@@ -87,9 +87,10 @@ function generateBundlesList(fullPath, moduleName) {
   const bundleNames = getSubdirectories(modulePath);
 
   bundleNames.forEach((bundleName) => {
+    const fileContent = fs.readFileSync(path.join(modulePath, bundleName, 'bundle.md'), 'utf-8');
     bundles.push({
       name: bundleName,
-      desc: getMdDesc(path.join(modulePath, bundleName, 'bundle.md')),
+      desc: getMdDesc(fileContent),
       path: moduleName + '/' + bundleName,
       requests: generateRequestsOrEvents(fullPath, moduleName, bundleName, 'request'),
       events: generateRequestsOrEvents(fullPath, moduleName, bundleName, 'event')
