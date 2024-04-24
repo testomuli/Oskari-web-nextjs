@@ -116,7 +116,7 @@ function generateApiJson(fullPath) {
 // npm run apidocs 2.13.0
 const version = process.argv.slice(2)[0] || 'latest';
 
-const sourceDirectoryRelative = '../../oskari/oskari-frontend/api';
+const sourceDirectoryRelative = '../oskari-frontend/api';
 const destinationDirectoryRelative = '/_content/api/versions/'+version+'/';
 
 const sourcePath = path.join(process.cwd(), sourceDirectoryRelative);
