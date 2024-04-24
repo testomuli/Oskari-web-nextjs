@@ -63,18 +63,20 @@ function generateRequestsOrEvents(fullPath, moduleName, bundleName, type) {
   const results = [];
   files.forEach(file => {
 
-    const mdPath = path.join(itemTypePath, file);
-    const fileContent = fs.readFileSync(mdPath, 'utf8');
-    const fileNameWithoutExtension = path.parse(file).name;
-    const item = {
-      name: fileNameWithoutExtension,
-      desc: getMdDesc(fileContent),
-      path: path.normalize(path.join(moduleName, bundleName, type, file)),
-      rpc: hasTag(fileContent, '[rpc]'),
-      bundle: bundleName,
-      ns: moduleName
-    };
-    results.push(item);
+    if (file.indexOf('.md') > -1) {
+      const mdPath = path.join(itemTypePath, file);
+      const fileContent = fs.readFileSync(mdPath, 'utf8');
+      const fileNameWithoutExtension = path.parse(file).name;
+      const item = {
+        name: fileNameWithoutExtension,
+        desc: getMdDesc(fileContent),
+        path: path.normalize(path.join(moduleName, bundleName, type, file)),
+        rpc: hasTag(fileContent, '[rpc]'),
+        bundle: bundleName,
+        ns: moduleName
+      };
+      results.push(item);
+    }
   })
 
   return results;
@@ -93,7 +95,8 @@ function generateBundlesList(fullPath, moduleName) {
       desc: getMdDesc(fileContent),
       path: moduleName + '/' + bundleName,
       requests: generateRequestsOrEvents(fullPath, moduleName, bundleName, 'request'),
-      events: generateRequestsOrEvents(fullPath, moduleName, bundleName, 'event')
+      events: generateRequestsOrEvents(fullPath, moduleName, bundleName, 'event'),
+//      images: generateImagesMetadata(fullPath, moduleName, bundleName)
     })
   })
 
@@ -112,6 +115,46 @@ function generateApiJson(fullPath) {
   return bundlesJSON;
 }
 
+//copy images under public/assets etc
+function copyImagesRecursively(sourceDir, destinationDir) {
+  const sourceDirFullpath = path.join(process.cwd(), sourceDir);
+  const destinationDirFullpath = path.join(process.cwd(), destinationDir);
+
+  if (!fs.existsSync(sourceDirFullpath)) {
+    return;
+  }
+
+
+  fs.readdirSync(sourceDirFullpath).forEach(item => {
+    const sourceItemPath = path.join(sourceDir, item);
+    const destinationItemPath = path.join(destinationDir, item);
+
+    const sourceItemFullPath = path.join(process.cwd(), sourceDir, item);
+    const destinationItemFullPath = path.join(process.cwd(), destinationDir, item);
+
+    if (fs.statSync(sourceItemFullPath).isDirectory()) {
+      copyImagesRecursively(sourceItemPath, destinationItemPath);
+    } else {
+      if (item.match(/\.(jpg|jpeg|png|gif)$/i)) {
+        if (!fs.existsSync(destinationDirFullpath)) {
+            fs.mkdirSync(destinationDirFullpath, { recursive: true});
+        }
+
+        // copy image
+        fs.copyFileSync(sourceItemFullPath, destinationItemFullPath);
+        // console.log(`copied image: ${sourceItemFullPath} --> ${destinationDirFullpath}`);
+      }
+    }
+  });
+}
+
+function syncResourcesByVersion(sourcePath, destinationPath) {
+  const fullSourcePath = path.normalize(path.join(process.cwd(), sourcePath));
+  const subdirectories = getSubdirectories(fullSourcePath);
+  for (const version of subdirectories) {
+      copyImagesRecursively(sourcePath + version, destinationPath + version);
+  }
+}
 
 // npm run apidocs 2.13.0
 const version = process.argv.slice(2)[0] || 'latest';
@@ -141,8 +184,13 @@ apiJSON.forEach(module => {
     delete bundle.events;
     delete bundle.requests;
   });
-})
+});
 
-fs.writeFileSync(path.join(destinationPath, 'bundles.json'), JSON.stringify(apiJSON, null, 2))
-fs.writeFileSync(path.join(destinationPath, 'events.json'), JSON.stringify(events, null, 2))
-fs.writeFileSync(path.join(destinationPath, 'requests.json'), JSON.stringify(requests, null, 2))
+fs.writeFileSync(path.join(destinationPath, 'bundles.json'), JSON.stringify(apiJSON, null, 2));
+fs.writeFileSync(path.join(destinationPath, 'events.json'), JSON.stringify(events, null, 2));
+fs.writeFileSync(path.join(destinationPath, 'requests.json'), JSON.stringify(requests, null, 2));
+
+
+const resourcesRootSourceDir = '/_content/api/versions/';
+const resourcesCopyPath = '/public/assets/api/';
+syncResourcesByVersion(resourcesRootSourceDir, resourcesCopyPath);
