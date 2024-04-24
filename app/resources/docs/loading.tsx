@@ -4,7 +4,7 @@ export default function Loading() {
   return (
     <>
       <div>
-        <VersionSidebar selectedVersion='loading...' />
+        <VersionSidebar selectedVersion='loading...' baseHref='' />
       </div>
       <div style={{ display: 'flex', flexDirection: 'column', marginTop: 27 }}>
         <div className='skeleton skeleton-text skeleton-text__document-card'></div>
