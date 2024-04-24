@@ -73,15 +73,9 @@ export const readAndConcatMarkdownFiles = async function(parentItem: MarkdownFil
   return compiled;
 };
 
-export const getApiChangeLog = async function(version: string = 'latest') {
-  const filePath = `_content/api/versions/${version}/CHANGELOG.html`;
-  const fullPath = path.normalize(path.join(process.cwd(), filePath));
-  const html = fs.readFileSync(fullPath, 'utf8');
-  return html;
-}
-
-export const getHtmlContent = async function(htmlFilePath: string) {
-  const fullPath = path.normalize(path.join(process.cwd(), htmlFilePath));
-  const html = fs.readFileSync(fullPath, 'utf8');
+export const getMarkdownContentAsHtml = async function(mdFilePath: string) {
+  const fullPath = path.normalize(path.join(process.cwd(), mdFilePath));
+  const markdown = fs.readFileSync(fullPath, 'utf8');
+  const html = mdToHtml(markdown);
   return html;
 }

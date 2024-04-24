@@ -19,11 +19,10 @@ export default async function EventsContentPage({
   if (!foundEvent) {
     return <Error text='No event doc found' code='404' />
   }
-  const foundPath = foundEvent.path.replace('.md', '.html');
   return <ApiSectionContentPage
     version={params.version}
     sideBarContent={<EventsAndRequestsSidebarContent elements={events} baseHref={eventsBaseRef}/>}
-    mainContent={<HtmlContentPage path={basePath + '/' + foundPath} />}
+    mainContent={<HtmlContentPage path={basePath + '/' + foundEvent.path} />}
     title='Oskari API documentation'
     baseHref='/resources/api/events/'/>;
 }
