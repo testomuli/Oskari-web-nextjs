@@ -4,6 +4,8 @@ import ApiSectionContentPage from '../../../components/ApiSectionContentPage';
 import BundlesSidebarContent from '../../../components/BundlesSidebarContent';
 import HtmlContentPage from '../../../components/HtmlContentPage';
 import Error from '@/components/Error';
+import path from 'path';
+
 export default async function BundlesContentPage({
   params
 }: {
@@ -17,14 +19,16 @@ export default async function BundlesContentPage({
   let allBundles: Array<{name: string, path: string}> = [];
   Object.keys(bundles).forEach(key => allBundles = allBundles.concat(bundles[key].bundles));
 
-  const foundBundle = allBundles.find(element => slugify(element.name) === params.slug);
-  if (!foundBundle) {
+  const foundItem = allBundles.find(element => slugify(element.name) === params.slug);
+  if (!foundItem) {
     return <Error text='No bundle doc found' code='404' />
   }
+
+  const imagesPath = '/assets/api/'+params.version+'/'+path.normalize(foundItem.path);
   return <ApiSectionContentPage
     version={params.version}
     sideBarContent={<BundlesSidebarContent elements={bundles} baseHref={bundleBaseRef}/>}
-    mainContent={<HtmlContentPage path={bundlesBasePath + '/' + foundBundle.path + '/bundle.md'}  />}
+    mainContent={<HtmlContentPage mdPath={bundlesBasePath + '/' + foundItem.path + '/bundle.md'} imagesPath={imagesPath} />}
     title='Oskari API documentation'
     baseHref='/resources/api/bundles/'/>;
 }

@@ -43,9 +43,14 @@ export const updateMarkdownImagePaths = (markdownString: string, imagesRuntimePa
   const regex = /!\[(.*?)\]\((.*?)\)/g;
 
   function replaceFunc(match: string, altText: string, imagePath: string) {
-    const pathStartRegex = /^.*?\/resources\//;
-    const replacedImagePath = imagePath.replace(pathStartRegex, imagesRuntimePath);
-    return `![${altText}](${replacedImagePath})`;
+
+    if (match.indexOf('resources') > -1) {
+      const pathStartRegex = /^.*?\/resources\//;
+      const replacedImagePath = imagePath.replace(pathStartRegex, imagesRuntimePath);
+      return `![${altText}](${replacedImagePath})`;
+    }
+
+    return (`![${altText}](${imagesRuntimePath + '/' + imagePath})`);
   }
 
   const result = markdownString.replace(regex, replaceFunc);
