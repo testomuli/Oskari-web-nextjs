@@ -1,6 +1,7 @@
 /*eslint @typescript-eslint/no-var-requires: 0*/
 const fs = require('fs');
 const path = require('path');
+const { generateDocumentationMetadata } = require('./generateDocumentationMetadata');
 
 function copyContent(source, destination) {
   if (!fs.existsSync(source)) {
@@ -95,8 +96,7 @@ function generateBundlesList(fullPath, moduleName) {
       desc: getMdDesc(fileContent),
       path: moduleName + '/' + bundleName,
       requests: generateRequestsOrEvents(fullPath, moduleName, bundleName, 'request'),
-      events: generateRequestsOrEvents(fullPath, moduleName, bundleName, 'event'),
-//      images: generateImagesMetadata(fullPath, moduleName, bundleName)
+      events: generateRequestsOrEvents(fullPath, moduleName, bundleName, 'event')
     })
   })
 
@@ -123,7 +123,6 @@ function copyImagesRecursively(sourceDir, destinationDir) {
   if (!fs.existsSync(sourceDirFullpath)) {
     return;
   }
-
 
   fs.readdirSync(sourceDirFullpath).forEach(item => {
     const sourceItemPath = path.join(sourceDir, item);
@@ -156,17 +155,25 @@ function syncResourcesByVersion(sourcePath, destinationPath) {
   }
 }
 
+/** API docs metadata generation */
+/** write availableversions json */
+const apidocsFullpath = './_content/api/versions/';
+generateDocumentationMetadata(apidocsFullpath);
+
+
 // npm run apidocs 2.13.0
 const version = process.argv.slice(2)[0] || 'latest';
 
-const sourceDirectoryRelative = '../oskari-frontend/api';
-const destinationDirectoryRelative = '/_content/api/versions/'+version+'/';
 
+/** Copy the content from under oskari-frontend */
+const sourceDirectoryRelative = '../oskari-frontend/api';
+const destinationDirectoryRelative = apidocsFullpath+version+'/';
 const sourcePath = path.join(process.cwd(), sourceDirectoryRelative);
 const destinationPath = path.join(process.cwd(), destinationDirectoryRelative);
 copyContent(sourcePath, destinationPath);
 
-// write the full api object with requests and events. Not sure we need this for anything...?
+
+/** write the full api object with requests and events. Not sure we need this for anything...?*/
 const apiJSON = generateApiJson(destinationPath);
 fs.writeFileSync(path.join(destinationPath, 'api.json'), JSON.stringify(apiJSON, null, 2));
 
@@ -186,11 +193,12 @@ apiJSON.forEach(module => {
   });
 });
 
+/** write metadata for bundles, events and requests */
 fs.writeFileSync(path.join(destinationPath, 'bundles.json'), JSON.stringify(apiJSON, null, 2));
 fs.writeFileSync(path.join(destinationPath, 'events.json'), JSON.stringify(events, null, 2));
 fs.writeFileSync(path.join(destinationPath, 'requests.json'), JSON.stringify(requests, null, 2));
 
-
+/** copy apidoc images*/
 const resourcesRootSourceDir = '/_content/api/versions/';
 const resourcesCopyPath = '/public/assets/api/';
 syncResourcesByVersion(resourcesRootSourceDir, resourcesCopyPath);
