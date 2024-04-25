@@ -1,7 +1,6 @@
 /*eslint @typescript-eslint/no-var-requires: 0*/
 const fs = require('fs');
 const path = require('path');
-const { generateDocumentationMetadata } = require('./generateDocumentationMetadata');
 
 function copyContent(source, destination) {
   if (!fs.existsSync(source)) {
@@ -94,7 +93,7 @@ function generateBundlesList(fullPath, moduleName) {
     bundles.push({
       name: bundleName,
       desc: getMdDesc(fileContent),
-      path: moduleName + '/' + bundleName,
+      path: path.normalize(path.join(moduleName, bundleName)),
       requests: generateRequestsOrEvents(fullPath, moduleName, bundleName, 'request'),
       events: generateRequestsOrEvents(fullPath, moduleName, bundleName, 'event')
     })
@@ -151,27 +150,31 @@ function syncResourcesByVersion(sourcePath, destinationPath) {
   const fullSourcePath = path.normalize(path.join(process.cwd(), sourcePath));
   const subdirectories = getSubdirectories(fullSourcePath);
   for (const version of subdirectories) {
-      copyImagesRecursively(sourcePath + version, destinationPath + version);
+    copyImagesRecursively(sourcePath + version, destinationPath + version);
   }
 }
 
+function generateDocumentationMetadata(fullPath) {
+  const subdirectories = getSubdirectories(fullPath);
+  const sortedVersions = subdirectories.sort((a, b) => parseFloat(a) - parseFloat(b));
+  const indexContent = `const availableVersions = ${JSON.stringify(sortedVersions)};\n\nexport default availableVersions;`;
+  fs.writeFileSync(path.join(fullPath, 'index.js'), indexContent);
+}
+
 /** API docs metadata generation */
-/** write availableversions json */
-const apidocsFullpath = './_content/api/versions/';
-generateDocumentationMetadata(apidocsFullpath);
-
-
 // npm run apidocs 2.13.0
 const version = process.argv.slice(2)[0] || 'latest';
 
-
 /** Copy the content from under oskari-frontend */
+const apidocsFullpath = './_content/api/versions/';
 const sourceDirectoryRelative = '../oskari-frontend/api';
 const destinationDirectoryRelative = apidocsFullpath+version+'/';
 const sourcePath = path.join(process.cwd(), sourceDirectoryRelative);
 const destinationPath = path.join(process.cwd(), destinationDirectoryRelative);
 copyContent(sourcePath, destinationPath);
 
+/** write availableversions json */
+generateDocumentationMetadata(apidocsFullpath);
 
 /** write the full api object with requests and events. Not sure we need this for anything...?*/
 const apiJSON = generateApiJson(destinationPath);
