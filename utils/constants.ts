@@ -35,6 +35,10 @@ export const NAVIGATION_ITEMS: Array<NavigationItemType> = [
         name: 'API',
         path: '/resources/api',
       },
+      {
+        name: 'RPC Example',
+        path: '/examples/rpc-api/'
+      }
     ],
   },
   {
