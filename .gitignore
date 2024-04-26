@@ -39,7 +39,8 @@ next-env.d.ts
 
 # other generated stuff
 /_content/*/index.js
+/_content/api
 /_content/docs
+/public/assets/api
 /public/assets/blog
 /public/assets/docs
-/_content/api
