@@ -63,18 +63,20 @@ function generateRequestsOrEvents(fullPath, moduleName, bundleName, type) {
   const results = [];
   files.forEach(file => {
 
-    const mdPath = path.join(itemTypePath, file);
-    const fileContent = fs.readFileSync(mdPath, 'utf8');
-    const fileNameWithoutExtension = path.parse(file).name;
-    const item = {
-      name: fileNameWithoutExtension,
-      desc: getMdDesc(fileContent),
-      path: path.normalize(path.join(moduleName, bundleName, type, file)),
-      rpc: hasTag(fileContent, '[rpc]'),
-      bundle: bundleName,
-      ns: moduleName
-    };
-    results.push(item);
+    if (file.indexOf('.md') > -1) {
+      const mdPath = path.join(itemTypePath, file);
+      const fileContent = fs.readFileSync(mdPath, 'utf8');
+      const fileNameWithoutExtension = path.parse(file).name;
+      const item = {
+        name: fileNameWithoutExtension,
+        desc: getMdDesc(fileContent),
+        path: path.normalize(path.join(moduleName, bundleName, type, file)),
+        rpc: hasTag(fileContent, '[rpc]'),
+        bundle: bundleName,
+        ns: moduleName
+      };
+      results.push(item);
+    }
   })
 
   return results;
@@ -91,7 +93,7 @@ function generateBundlesList(fullPath, moduleName) {
     bundles.push({
       name: bundleName,
       desc: getMdDesc(fileContent),
-      path: moduleName + '/' + bundleName,
+      path: path.normalize(path.join(moduleName, bundleName)),
       requests: generateRequestsOrEvents(fullPath, moduleName, bundleName, 'request'),
       events: generateRequestsOrEvents(fullPath, moduleName, bundleName, 'event')
     })
@@ -112,18 +114,69 @@ function generateApiJson(fullPath) {
   return bundlesJSON;
 }
 
+//copy images under public/assets etc
+function copyImagesRecursively(sourceDir, destinationDir) {
+  const sourceDirFullpath = path.join(process.cwd(), sourceDir);
+  const destinationDirFullpath = path.join(process.cwd(), destinationDir);
 
+  if (!fs.existsSync(sourceDirFullpath)) {
+    return;
+  }
+
+  fs.readdirSync(sourceDirFullpath).forEach(item => {
+    const sourceItemPath = path.join(sourceDir, item);
+    const destinationItemPath = path.join(destinationDir, item);
+
+    const sourceItemFullPath = path.join(process.cwd(), sourceDir, item);
+    const destinationItemFullPath = path.join(process.cwd(), destinationDir, item);
+
+    if (fs.statSync(sourceItemFullPath).isDirectory()) {
+      copyImagesRecursively(sourceItemPath, destinationItemPath);
+    } else {
+      if (item.match(/\.(jpg|jpeg|png|gif)$/i)) {
+        if (!fs.existsSync(destinationDirFullpath)) {
+            fs.mkdirSync(destinationDirFullpath, { recursive: true});
+        }
+
+        // copy image
+        fs.copyFileSync(sourceItemFullPath, destinationItemFullPath);
+        // console.log(`copied image: ${sourceItemFullPath} --> ${destinationDirFullpath}`);
+      }
+    }
+  });
+}
+
+function syncResourcesByVersion(sourcePath, destinationPath) {
+  const fullSourcePath = path.normalize(path.join(process.cwd(), sourcePath));
+  const subdirectories = getSubdirectories(fullSourcePath);
+  for (const version of subdirectories) {
+    copyImagesRecursively(sourcePath + version, destinationPath + version);
+  }
+}
+
+function generateDocumentationMetadata(fullPath) {
+  const subdirectories = getSubdirectories(fullPath);
+  const sortedVersions = subdirectories.sort((a, b) => parseFloat(a) - parseFloat(b));
+  const indexContent = `const availableVersions = ${JSON.stringify(sortedVersions)};\n\nexport default availableVersions;`;
+  fs.writeFileSync(path.join(fullPath, 'index.js'), indexContent);
+}
+
+/** API docs metadata generation */
 // npm run apidocs 2.13.0
 const version = process.argv.slice(2)[0] || 'latest';
 
+/** Copy the content from under oskari-frontend */
+const apidocsFullpath = './_content/api/versions/';
 const sourceDirectoryRelative = '../oskari-frontend/api';
-const destinationDirectoryRelative = '/_content/api/versions/'+version+'/';
-
+const destinationDirectoryRelative = apidocsFullpath+version+'/';
 const sourcePath = path.join(process.cwd(), sourceDirectoryRelative);
 const destinationPath = path.join(process.cwd(), destinationDirectoryRelative);
 copyContent(sourcePath, destinationPath);
 
-// write the full api object with requests and events. Not sure we need this for anything...?
+/** write availableversions json */
+generateDocumentationMetadata(apidocsFullpath);
+
+/** write the full api object with requests and events. Not sure we need this for anything...?*/
 const apiJSON = generateApiJson(destinationPath);
 fs.writeFileSync(path.join(destinationPath, 'api.json'), JSON.stringify(apiJSON, null, 2));
 
@@ -141,8 +194,14 @@ apiJSON.forEach(module => {
     delete bundle.events;
     delete bundle.requests;
   });
-})
+});
 
-fs.writeFileSync(path.join(destinationPath, 'bundles.json'), JSON.stringify(apiJSON, null, 2))
-fs.writeFileSync(path.join(destinationPath, 'events.json'), JSON.stringify(events, null, 2))
-fs.writeFileSync(path.join(destinationPath, 'requests.json'), JSON.stringify(requests, null, 2))
+/** write metadata for bundles, events and requests */
+fs.writeFileSync(path.join(destinationPath, 'bundles.json'), JSON.stringify(apiJSON, null, 2));
+fs.writeFileSync(path.join(destinationPath, 'events.json'), JSON.stringify(events, null, 2));
+fs.writeFileSync(path.join(destinationPath, 'requests.json'), JSON.stringify(requests, null, 2));
+
+/** copy apidoc images*/
+const resourcesRootSourceDir = '/_content/api/versions/';
+const resourcesCopyPath = '/public/assets/api/';
+syncResourcesByVersion(resourcesRootSourceDir, resourcesCopyPath);

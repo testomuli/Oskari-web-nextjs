@@ -73,9 +73,8 @@ export const readAndConcatMarkdownFiles = async function(parentItem: MarkdownFil
   return compiled;
 };
 
-export const getMarkdownContentAsHtml = async function(mdFilePath: string) {
-  const fullPath = path.normalize(path.join(process.cwd(), mdFilePath));
-  const markdown = fs.readFileSync(fullPath, 'utf8');
+export const getMarkdownContentAsHtml = async function(mdFilePath: string, imagesFilePath: string) {
+  const markdown = await readMarkdownFile(mdFilePath, imagesFilePath);
   const html = mdToHtml(markdown);
   return html;
 }

@@ -78,7 +78,6 @@ function listContentsRecursively(fullPath, docsRelativePath, results = []) {
 // Write metadata for each version
 function processVersions(fullPath, relativeDir) {
     const subdirectories = getSubdirectories(fullPath);
-
     for (const version of subdirectories) {
         const versionFullPath = path.join(fullPath, version);
         const versionRelativePath = path.join(relativeDir, version);
@@ -112,7 +111,3 @@ processVersions(fullPath, docsRelativeDir);
 
 const resourcesCopyPath = '/public/assets/docs/';
 syncResourcesByVersion(docsRelativeDir, resourcesCopyPath);
-
-/** API docs metadata generation */
-const apidocsFullpath = './_content/api/versions/';
-generateDocumentationMetadata(apidocsFullpath);
