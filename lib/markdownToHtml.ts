@@ -56,3 +56,16 @@ export const updateMarkdownImagePaths = (markdownString: string, imagesRuntimePa
   const result = markdownString.replace(regex, replaceFunc);
   return result;
 }
+
+export const updateMarkdownHtmlStyleTags = (markdownString: string) => {
+  const regex = /"([^"]*)"/g;
+
+  function replaceFunc(match: string, content: string) {
+      const replacedContent = content.replace(/</g, '{{').replace(/>/g, '}}');
+      return `"${replacedContent}"`;
+  }
+
+  const result = markdownString.replace(regex, replaceFunc);
+
+  return result;
+}
