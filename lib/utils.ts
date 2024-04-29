@@ -2,7 +2,7 @@ import fs from 'fs'
 import path from 'path'
 import matter from 'gray-matter'
 import { MERMAID_SNIPPET, mdToHtml } from './customMarked'
-import { insertIdsToHeaders, updateMarkdownImagePaths } from './markdownToHtml'
+import { insertIdsToHeaders, updateMarkdownHtmlStyleTags, updateMarkdownImagePaths } from './markdownToHtml'
 import { MarkdownFileMetadata, VersionDocType } from '@/types/types'
 
 export function slugify(input: string): string {
@@ -41,6 +41,7 @@ export const readMarkdownFile = async function(filePath: string, imagesPath: str
   const fullPath = path.normalize(path.join(process.cwd(), filePath));
   let markdown = fs.readFileSync(fullPath, 'utf8');
   markdown = updateMarkdownImagePaths(markdown, imagesPath);
+  markdown = updateMarkdownHtmlStyleTags(markdown);
   return markdown;
 };
 
@@ -55,7 +56,7 @@ export const readAndConcatMarkdownFiles = async function(parentItem: MarkdownFil
   });
 
   markdownAll = updateMarkdownImagePaths(markdownAll, imagesPath);
-
+  markdownAll = updateMarkdownHtmlStyleTags(markdownAll);
   const compiled = compileMarkdownToHTML(markdownAll, parentItem.ordinal);
   // inject script to make mermaid js work its magic
   if (compiled.html.includes(MERMAID_SNIPPET)) {
