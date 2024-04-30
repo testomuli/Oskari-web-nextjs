@@ -1,34 +1,54 @@
 import slugify from 'slugify';
 import { OskariEventOrRequest } from '@/types/api';
+import AccordionGroup from '@/components/Accordion/AccordionGroup';
+import Accordion from '@/components/Accordion/Accordion';
+import Link from 'next/link';
+import styles from '@/styles/accordion.module.scss'
+
+const renderAccordionContent = (
+  elements: Array<OskariEventOrRequest>, baseHref: string
+) => {
+  return (
+    <ul className={styles.accordionMenu}>
+      {elements?.map((item, index) => {
+        const slug = slugify(item.name)
+        return <li key={slug + '_' + index}>
+          <Link
+            href={baseHref + slug}
+          >
+            {item.name}
+          </Link>
+        </li>
+      })}
+    </ul>
+  )
+}
 
 export default function EventsAndRequestsSidebarContent(
-  {
-    elements,
-    baseHref
-  }:
-  {
+{
+  elements,
+  baseHref,
+  title
+}:
+{
+  elements: Array<OskariEventOrRequest>,
+  baseHref: string,
+  title: string
+}) {
 
-    elements: Array<OskariEventOrRequest>,
-    baseHref: string
-  }) {
+  const namespaces: Array<string> = [...new Set(elements.map(element => element.ns))];
 
-    const namespaces: Array<string> = [...new Set(elements.map(element => element.ns))];
-
-    return namespaces.map((namespace: string) => {
-        return <div key={namespace}>
-            <h4>{namespace}</h4>
-            <ul>
-            {
-              elements.filter((element) => element.ns === namespace).map((element) => {
-                const slug = slugify(element.name)
-                return <li key={element.name}>
-                  <h5><a href={baseHref + slug}>{element.name}</a></h5>
-                  <span>{element.desc}</span>
-                </li>
-              })
-            }
-
-            </ul>
-        </div>;
-    })
+  return <div style={{marginTop: '2em'}}>
+    <h3 style={{ fontSize: '1.125rem'}}>{title}</h3>
+    <AccordionGroup>
+    { namespaces.map((namespace: string) => {
+        return <Accordion
+          key={namespace}
+          title={ namespace }
+          content={renderAccordionContent(elements?.filter((element) => element.ns === namespace), baseHref)}
+        />;
+      })
+    }
+    </AccordionGroup>;
+  </div>;
 }
