@@ -22,11 +22,19 @@ export const insertIdsToHeaders = (htmlString: string, startingSectionNumber: st
   const headerRegex = /<h([1-3])>(.*?)<\/h\1>/g
   const anchorLinks: Array<DocAnchorLinksType> = []
   const sectionCounter = [parseInt(startingSectionNumber) - 1, 0, 0, 0, 0, 0];
+  let previousLevel = parseInt(startingSectionNumber) - 1;
 
   const newHtmlString = htmlString.replace(
     headerRegex,
     function (match: string, level: string, content: string) {
-      sectionCounter[parseInt(level) - 1]++;
+      const intLevel = parseInt(level);
+      sectionCounter[intLevel - 1]++;
+      if (intLevel < previousLevel) {
+        for (let i = intLevel; i < sectionCounter.length; i++) {
+          sectionCounter[i] = 0;
+        }
+      }
+      previousLevel = intLevel;
       const slug = slugify(content)
       const sectionNumber = sectionCounter.slice(0, parseInt(level)).join('.');
       anchorLinks.push({ level, content, slug, sectionNumber });
