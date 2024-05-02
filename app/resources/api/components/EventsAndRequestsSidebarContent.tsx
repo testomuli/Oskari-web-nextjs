@@ -32,8 +32,8 @@ export default function EventsAndRequestsSidebarContent(
   return <div style={{marginTop: '2em'}}>
     <h3 style={{ fontSize: '1.125rem'}}>{title}</h3>
     <CheckboxGroup>
-      <Checkbox title='Description' checked={showDescription} onChange={showDescriptionCheckedChanged}/>
-      <Checkbox title='RPC only' checked={rpcOnly} onChange={checkedChanged}/>
+      <Checkbox title='Description' isChecked={showDescription} onChange={showDescriptionCheckedChanged}/>
+      <Checkbox title='RPC only' isChecked={rpcOnly} onChange={checkedChanged}/>
     </CheckboxGroup>
 
     <AccordionGroup>
