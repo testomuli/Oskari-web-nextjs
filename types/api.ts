@@ -18,5 +18,6 @@ export type OskariEventOrRequest = {
 }
 
 export type SidebarAccordionItem = {
-  name: string
+  name: string,
+  desc: string
 }

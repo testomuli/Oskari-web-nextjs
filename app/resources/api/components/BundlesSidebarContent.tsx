@@ -20,7 +20,7 @@ export default function BundlesSidebarContent(
           return <Accordion
             key={element.name}
             title={ element.name }
-            content={<SidebarAccordionContent elements={element.bundles} baseHref={baseHref} />}
+            content={<SidebarAccordionContent elements={element.bundles} baseHref={baseHref} showDescription={true} />}
           />;
         })}
       </AccordionGroup>;
