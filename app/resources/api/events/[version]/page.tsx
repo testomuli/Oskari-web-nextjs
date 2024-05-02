@@ -13,7 +13,7 @@ export default async function EventsVersionPage({
 
   return <ApiSectionContentPage
     version={params.version}
-    sideBarContent={<EventsAndRequestsSidebarContent elements={events} baseHref={eventsBaseRef}/>}
+    sideBarContent={<EventsAndRequestsSidebarContent title='Select event' elements={events} baseHref={eventsBaseRef}/>}
     mainContent={<ApiDocChangeLog version={params.version}/>}
     title='Oskari API documentation'
     baseHref='/resources/api/events/'/>;

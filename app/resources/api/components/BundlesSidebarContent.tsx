@@ -1,5 +1,7 @@
+import Accordion from '@/components/Accordion/Accordion';
+import AccordionGroup from '@/components/Accordion/AccordionGroup';
 import { Bundle } from '@/types/api';
-import slugify from 'slugify';
+import SidebarAccordionContent from './SideBarAccordionContent';
 
 export default function BundlesSidebarContent(
   {
@@ -10,27 +12,17 @@ export default function BundlesSidebarContent(
     elements: Array<Bundle>,
     baseHref: string
   }) {
-    return <>
-    {
-      elements.map((element: {name: string, bundles: Array<{path: string, name: string}>}) => {
-        return <div key={element.name}>
-          <h4>{element.name}</h4>
-          <ul>
-          {
-            element.bundles.map((subElement) => {
-              const slug = slugify(subElement.name)
-              return <li key={slug}>
-                <a href={baseHref + slug}>
-                  {subElement.name}
-                </a>
-              </li>
-            })
-          }
-          </ul>
-        </div>;
-      })
-    }
-    </>;
 
-
-}
+    return <div style={{marginTop: '2em'}}>
+      <h3 style={{ fontSize: '1.125rem'}}>Select bundle</h3>
+      <AccordionGroup>
+        {elements?.map((element: Bundle) => {
+          return <Accordion
+            key={element.name}
+            title={ element.name }
+            content={<SidebarAccordionContent elements={element.bundles} baseHref={baseHref} showDescription={true} />}
+          />;
+        })}
+      </AccordionGroup>;
+    </div>
+  }

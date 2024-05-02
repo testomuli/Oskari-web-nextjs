@@ -16,3 +16,8 @@ export type OskariEventOrRequest = {
   bundle: string,
   ns: string
 }
+
+export type SidebarAccordionItem = {
+  name: string,
+  desc: string
+}

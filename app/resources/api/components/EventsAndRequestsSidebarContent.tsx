@@ -1,34 +1,56 @@
-import slugify from 'slugify';
+'use client'
 import { OskariEventOrRequest } from '@/types/api';
-
+import AccordionGroup from '@/components/Accordion/AccordionGroup';
+import Accordion from '@/components/Accordion/Accordion';
+import SidebarAccordionContent from './SideBarAccordionContent';
+import Checkbox, { CheckboxGroup } from '@/components/Checkbox/Checkbox';
+import { useState } from 'react';
 export default function EventsAndRequestsSidebarContent(
-  {
-    elements,
-    baseHref
-  }:
-  {
+{
+  elements,
+  baseHref,
+  title
+}:
+{
+  elements: Array<OskariEventOrRequest>,
+  baseHref: string,
+  title: string
+}) {
 
-    elements: Array<OskariEventOrRequest>,
-    baseHref: string
-  }) {
+  const namespaces: Array<string> = [...new Set(elements.map(element => element.ns))];
+  const [rpcOnly, setRpcOnly] = useState(false);
+  const [showDescription, setShowDescription] = useState(true);
 
-    const namespaces: Array<string> = [...new Set(elements.map(element => element.ns))];
+  const checkedChanged = (checked: boolean) => {
+    setRpcOnly(checked);
+  };
 
-    return namespaces.map((namespace: string) => {
-        return <div key={namespace}>
-            <h4>{namespace}</h4>
-            <ul>
-            {
-              elements.filter((element) => element.ns === namespace).map((element) => {
-                const slug = slugify(element.name)
-                return <li key={element.name}>
-                  <h5><a href={baseHref + slug}>{element.name}</a></h5>
-                  <span>{element.desc}</span>
-                </li>
-              })
-            }
+  const showDescriptionCheckedChanged = (checked: boolean) => {
+    setShowDescription(checked);
+  }
 
-            </ul>
-        </div>;
-    })
+  return <div style={{marginTop: '2em'}}>
+    <h3 style={{ fontSize: '1.125rem'}}>{title}</h3>
+    <CheckboxGroup>
+      <Checkbox title='Description' checked={showDescription} onChange={showDescriptionCheckedChanged}/>
+      <Checkbox title='RPC only' checked={rpcOnly} onChange={checkedChanged}/>
+    </CheckboxGroup>
+
+    <AccordionGroup>
+    { namespaces.map((namespace: string) => {
+        let filtered = elements?.filter((element) => element.ns === namespace);
+
+        if (rpcOnly) {
+          filtered = filtered.filter((element) => !!element.rpc)
+        }
+
+        return <Accordion
+          key={namespace}
+          title={ namespace }
+          content={<SidebarAccordionContent elements={filtered} baseHref={baseHref} showDescription={showDescription}/>}
+        />;
+      })
+    }
+    </AccordionGroup>
+  </div>;
 }

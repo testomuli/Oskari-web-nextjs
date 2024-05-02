@@ -27,7 +27,7 @@ export default async function RequestsContentPage({
 
   return <ApiSectionContentPage
     version={params.version}
-    sideBarContent={<EventsAndRequestsSidebarContent elements={requests} baseHref={requestsBaseRef}/>}
+    sideBarContent={<EventsAndRequestsSidebarContent title='Select request' elements={requests} baseHref={requestsBaseRef}/>}
     mainContent={<HtmlContentPage mdPath={basePath + '/' + foundItem.path} imagesPath={imagesPath}/>}
     title='Oskari API documentation'
     baseHref='/resources/api/requests/'/>;
