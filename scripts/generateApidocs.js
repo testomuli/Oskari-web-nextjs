@@ -35,6 +35,17 @@ function getMdDesc(fileContent) {
   return '';
 }
 
+function parseNameFromHeading(fileContent) {
+  const regex = /^#\s+(.*?)$/m;
+  const match = regex.exec(fileContent);
+
+  if (match && match.length > 1) {
+      const headingContent = match[1].replace(/\[.*?\]/g, '').trim();
+      return headingContent;
+  } else {
+      return null;
+  }
+}
 function hasTag(fileContent, tag) {
   // Find the first heading and see if it contains the tag
   const match = fileContent.match(/#\s+(.*)/);
@@ -66,9 +77,8 @@ function generateRequestsOrEvents(fullPath, moduleName, bundleName, type) {
     if (file.indexOf('.md') > -1) {
       const mdPath = path.join(itemTypePath, file);
       const fileContent = fs.readFileSync(mdPath, 'utf8');
-      const fileNameWithoutExtension = path.parse(file).name;
       const item = {
-        name: fileNameWithoutExtension,
+        name: parseNameFromHeading(fileContent),
         desc: getMdDesc(fileContent),
         path: path.normalize(path.join(moduleName, bundleName, type, file)),
         rpc: hasTag(fileContent, '[rpc]'),
@@ -91,7 +101,7 @@ function generateBundlesList(fullPath, moduleName) {
   bundleNames.forEach((bundleName) => {
     const fileContent = fs.readFileSync(path.join(modulePath, bundleName, 'bundle.md'), 'utf-8');
     bundles.push({
-      name: bundleName,
+      name: parseNameFromHeading(fileContent),
       desc: getMdDesc(fileContent),
       path: path.normalize(path.join(moduleName, bundleName)),
       requests: generateRequestsOrEvents(fullPath, moduleName, bundleName, 'request'),
