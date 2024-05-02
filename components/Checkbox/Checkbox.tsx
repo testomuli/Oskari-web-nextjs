@@ -6,9 +6,9 @@ export function CheckboxGroup({children}: {children: Array<ReactNode>}) {
   return <div className={`${styles.checkbox_group}`}>{children}</div>
 }
 
-export default function Checkbox({checked, title, onChange}: {checked: boolean, title: string, onChange: (checked: boolean) => void}) {
-  return <div className={`${styles.checkbox}`} onClick={() => onChange(!checked)}>
+export default function Checkbox({isChecked, title, onChange}: {isChecked: boolean, title: string, onChange: (checked: boolean) => void}) {
+  return <div className={`${styles.checkbox}`} onClick={() => onChange(!isChecked)}>
     <div className={`${styles.checkbox__header}`}>{title}</div>
-    <input type='checkbox' checked={checked}/>
+    <input type='checkbox' defaultChecked={isChecked}/>
   </div>;
 }
