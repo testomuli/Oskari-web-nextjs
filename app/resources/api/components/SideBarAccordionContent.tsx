@@ -2,7 +2,7 @@ import slugify from 'slugify';
 import { SidebarAccordionItem } from '@/types/api';
 import Link from 'next/link';
 import styles from '@/styles/accordion.module.scss'
-
+import '@/styles/apidoc.scss';
 export default function SidebarAccordionContent(
   {
     elements,
@@ -21,11 +21,11 @@ export default function SidebarAccordionContent(
           return <li key={slug + '_' + index}>
             <Link
               href={baseHref + slug}
-              style={{ paddingBottom: '0.5rem', color: '#428bca', fontSize: '1rem'}}
+              className='apidocSidebarLink'
             >
               {item.name}
             </Link>
-            { showDescription && <div style={{ padding: '0 2rem', fontSize: '0.9rem', overflow: 'hidden', wordWrap: 'break-word' }}>{item.desc}</div>}
+            { showDescription && <div className={'apidocSidebarDesc'}>{item.desc}</div>}
           </li>
         })}
       </ul>
