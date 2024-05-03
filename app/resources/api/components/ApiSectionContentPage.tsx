@@ -30,7 +30,7 @@ export default function ApiSectionContentPage({
         <VersionSidebar selectedVersion={version} versions={versions} baseHref={baseHref} />
         {sideBarContent}
     </div>
-    <div style={{overflow: 'hidden', wordWrap:'break-word'}}>
+    <div>
         {mainContent}
     </div>
   </Layout>;

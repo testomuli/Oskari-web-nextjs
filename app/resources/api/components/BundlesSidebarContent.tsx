@@ -13,8 +13,8 @@ export default function BundlesSidebarContent(
     baseHref: string
   }) {
 
-    return <div style={{marginTop: '2em'}}>
-      <h3 style={{ fontSize: '1.125rem'}}>Select bundle</h3>
+    return <div  className='sidebarMainDiv'>
+      <h3 className='sidebarCheckboxesTitle'>Select bundle</h3>
       <AccordionGroup>
         {elements?.map((element: Bundle) => {
           return <Accordion
