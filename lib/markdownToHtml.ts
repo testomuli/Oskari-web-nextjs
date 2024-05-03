@@ -47,7 +47,7 @@ export const insertIdsToHeaders = (htmlString: string, startingSectionNumber: st
   }
 }
 
-export const updateMarkdownImagePaths = (markdownString: string, imagesRuntimePath: string = '') => {
+export const updateMarkdownImagePaths = (markdownString: string, imagesRuntimePath: string = ''): string => {
   const regex = /!\[(.*?)\]\((.*?)\)/g;
 
   function replaceFunc(match: string, altText: string, imagePath: string) {
@@ -65,7 +65,7 @@ export const updateMarkdownImagePaths = (markdownString: string, imagesRuntimePa
   return result;
 }
 
-export const updateMarkdownHtmlStyleTags = (markdownString: string) => {
+export const updateMarkdownHtmlStyleTags = (markdownString: string): string => {
   const regex = /"([^"]*)"/g;
 
   function replaceFunc(match: string, content: string) {
@@ -76,4 +76,34 @@ export const updateMarkdownHtmlStyleTags = (markdownString: string) => {
   const result = markdownString.replace(regex, replaceFunc);
 
   return result;
+}
+
+export const processHeaders = (markdownContent:string): string => {
+  const headerRegex = /^(#+)\s+(.*?)\s*$/gm;
+  const tagRegex = /\[(.*?)\]/g;
+
+  const processedContent = markdownContent.replace(headerRegex, (match, hashes, title) => {
+      const tags = title.match(tagRegex);
+      let cleanTitle = title.replace(tagRegex, '');
+
+      if (tags) {
+          const tagClasses = tags.map((tag: string) => tag.replace(/\[|\]/g, '').trim()).join(' ');
+          cleanTitle = `<h${hashes.length} class="${tagClasses}">${cleanTitle}</h${hashes.length}>`;
+      } else {
+          cleanTitle = `<h${hashes.length}>${cleanTitle}</h${hashes.length}>`;
+      }
+
+      return cleanTitle;
+  });
+
+  return processedContent;
+}
+
+export const processCodeBlocks = (markdownContent: string): string => {
+  const codeRegex = /`(.*?)`/g;
+  const contentWithCodeBlocks = markdownContent.replace(codeRegex, (match, codeContent) => {
+      return `<code>${codeContent}</code>`;
+  });
+
+  return contentWithCodeBlocks;
 }

@@ -2,7 +2,7 @@ import fs from 'fs'
 import path from 'path'
 import matter from 'gray-matter'
 import { MERMAID_SNIPPET, mdToHtml } from './customMarked'
-import { insertIdsToHeaders, updateMarkdownHtmlStyleTags, updateMarkdownImagePaths } from './markdownToHtml'
+import { insertIdsToHeaders, processCodeBlocks, processHeaders, updateMarkdownHtmlStyleTags, updateMarkdownImagePaths } from './markdownToHtml'
 import { MarkdownFileMetadata, VersionDocType } from '@/types/types'
 
 export function slugify(input: string): string {
@@ -40,8 +40,7 @@ export async function getVersionIndex(version: string) {
 export const readMarkdownFile = async function(filePath: string, imagesPath: string = '') {
   const fullPath = path.normalize(path.join(process.cwd(), filePath));
   let markdown = fs.readFileSync(fullPath, 'utf8');
-  markdown = updateMarkdownImagePaths(markdown, imagesPath);
-  markdown = updateMarkdownHtmlStyleTags(markdown);
+  markdown = processMarkdown(markdown, imagesPath);
   return markdown;
 };
 
@@ -55,8 +54,8 @@ export const readAndConcatMarkdownFiles = async function(parentItem: MarkdownFil
     markdownAll += content;
   });
 
-  markdownAll = updateMarkdownImagePaths(markdownAll, imagesPath);
-  markdownAll = updateMarkdownHtmlStyleTags(markdownAll);
+  markdownAll = processMarkdown(markdownAll, imagesPath);
+
   const compiled = compileMarkdownToHTML(markdownAll, parentItem.ordinal);
   // inject script to make mermaid js work its magic
   if (compiled.html.includes(MERMAID_SNIPPET)) {
@@ -73,6 +72,14 @@ export const readAndConcatMarkdownFiles = async function(parentItem: MarkdownFil
 
   return compiled;
 };
+
+const processMarkdown = (markdown: string, imagesPath: string) => {
+  markdown = updateMarkdownImagePaths(markdown, imagesPath);
+  markdown = updateMarkdownHtmlStyleTags(markdown);
+  markdown = processHeaders(markdown);
+  markdown = processCodeBlocks(markdown);
+  return markdown;
+}
 
 export const getMarkdownContentAsHtml = async function(mdFilePath: string, imagesFilePath: string) {
   const markdown = await readMarkdownFile(mdFilePath, imagesFilePath);
