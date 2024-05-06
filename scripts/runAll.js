@@ -1,10 +1,12 @@
 // eslint-disable-next-line @typescript-eslint/no-var-requires
-const { exec } = require('child_process');
-
-exec('node scripts/generateDocs.js ' + process.argv.slice(2)[0]);
-exec('node scripts/generateContentMetadata.js');
-exec('node scripts/generateDocumentationMetadata.js');
+const { execSync } = require('child_process');
 
 // always regenerate 'latest'
-exec('node scripts/generateApidocs.js latest');
-exec('node scripts/generateApidocs.js ' + process.argv.slice(2)[0]);
+execSync('node scripts/generateDocs.js latest');
+execSync('node scripts/generateDocs.js ' + process.argv.slice(2)[0]);
+execSync('node scripts/generateContentMetadata.js');
+execSync('node scripts/generateDocumentationMetadata.js');
+
+// always regenerate 'latest'
+execSync('node scripts/generateApidocs.js latest');
+execSync('node scripts/generateApidocs.js ' + process.argv.slice(2)[0]);
