@@ -5,6 +5,8 @@ import Accordion from '@/components/Accordion/Accordion';
 import SidebarAccordionContent from './SideBarAccordionContent';
 import Checkbox, { CheckboxGroup } from '@/components/Checkbox/Checkbox';
 import { useState } from 'react';
+import '@/styles/apidoc.scss';
+
 export default function EventsAndRequestsSidebarContent(
 {
   elements,
@@ -29,8 +31,8 @@ export default function EventsAndRequestsSidebarContent(
     setShowDescription(checked);
   }
 
-  return <div style={{marginTop: '2em'}}>
-    <h3 style={{ fontSize: '1.125rem'}}>{title}</h3>
+  return <div className='sidebarMainDiv'>
+    <h3 className='sidebarCheckboxesTitle'>{title}</h3>
     <CheckboxGroup>
       <Checkbox title='Description' isChecked={showDescription} onChange={showDescriptionCheckedChanged}/>
       <Checkbox title='RPC only' isChecked={rpcOnly} onChange={checkedChanged}/>
