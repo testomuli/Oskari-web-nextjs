@@ -80,22 +80,36 @@ export const updateMarkdownHtmlStyleTags = (markdownString: string): string => {
   return result;
 }
 
+const badgeTemplates: {[key: string]: string} = {
+  '[add]': '<span class="label label-primary add">A</span>',
+  '[mod]': '<span class="label label-primary mod">M</span>',
+  '[rem]': '<span class="label label-primary rem">R</span>',
+  '[breaking]': '<span class="label label-primary breaking">NOT BACKWARDS COMPATIBLE</span>',
+  '[rpc]': '<span class="label label-primary rpc">RPC</span>',
+};
+
 export const processHeaders = (markdownContent:string): string => {
   const headerRegex = /^(#+)\s+(.*?)\s*$/gm;
   const tagRegex = /\[(.*?)\]/g;
 
   const processedContent = markdownContent.replace(headerRegex, (match, hashes, title) => {
-      const tags = title.match(tagRegex);
-      let cleanTitle = title.replace(tagRegex, '');
+    const tags = title.match(tagRegex);
+    let cleanTitle = title.replace(tagRegex, '');
 
-      if (tags) {
-          const tagClasses = tags.map((tag: string) => tag.replace(/\[|\]/g, '').trim()).join(' ');
-          cleanTitle = `<h${hashes.length} class="${tagClasses}">${cleanTitle}</h${hashes.length}>`;
-      } else {
-          cleanTitle = `<h${hashes.length}>${cleanTitle}</h${hashes.length}>`;
-      }
+    if (tags) {
+      const badges: Array<string> = tags.map((tag: string) => {
+        if (!!badgeTemplates[tag.toLowerCase()]) {
+          return badgeTemplates[tag.toLowerCase()];
+        }
+        return null;
+      }).filter((badge: string) => !!badge);
 
-      return cleanTitle;
+      cleanTitle = `<h${hashes.length}>${cleanTitle}${badges.join(' ')}</h${hashes.length}>`;
+    } else {
+      cleanTitle = `<h${hashes.length}>${cleanTitle}</h${hashes.length}>`;
+    }
+
+    return cleanTitle;
   });
 
   return processedContent;
