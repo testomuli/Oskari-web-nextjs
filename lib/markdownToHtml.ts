@@ -80,10 +80,10 @@ export const updateMarkdownHtmlStyleTags = (markdownString: string): string => {
 }
 
 const badgeTemplates: {[key: string]: string} = {
-  '[add]': '<span class="label label-primary add" title="Added"><i class="fa-regular fa-square-plus"></i></span>',
-  '[mod]': '<span class="label label-primary mod" title="Modified"><i class="fa-regular fa-pen-to-square"></i></span>',
-  '[rem]': '<span class="label label-primary rem" title="Removed"><i class="fa-regular fa-trash-can"></i></span>',
-  '[breaking]': '<span class="label label-primary breaking" title="Breaking change. Not backwards compatible."><i class="fa-regular fa-bell-slash"></i></span>',
+  '[add]': '<span class="label label-primary add" title="Added"><i class="fa-solid fa-plus"></i></span>',
+  '[mod]': '<span class="label label-primary mod" title="Modified"><i class="fa-solid fa-pen"></i></span>',
+  '[rem]': '<span class="label label-primary rem" title="Removed"><i class="fa-solid fa-trash-can"></i></span>',
+  '[breaking]': '<span class="label label-primary breaking" title="Breaking change. Not backwards compatible."><i class="fa-solid fa-triangle-exclamation"></i></span>',
   '[rpc]': '<span class="label label-primary rpc" title="Available via RPC">RPC</span>',
 };
 
