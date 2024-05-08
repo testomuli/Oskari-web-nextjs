@@ -10,6 +10,10 @@ export const NAVIGATION_ITEMS: Array<NavigationItemType> = [
     path: '/discover',
     children: [
       {
+          name: 'Getting started',
+          path: '/discover/gettingstarted',
+      },
+      {
         name: 'Functionalities',
         path: '/discover/functionalities',
       },
