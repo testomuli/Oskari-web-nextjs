@@ -1,30 +1,54 @@
 div.apidocContentWrapper {
-  word-wrap: 'break-word';
+  overflow: hidden;
+  word-wrap: break-word;
 
-  /*change headings*/
-  .add {
-    color : green;
+  /*badges*/
+  span.label.label-primary {
+    margin-left: 4px;
+    margin-right: 4px;
   }
 
-  & .mod {
-    color : orange;
+  .label-primary {
+    background-color: #428bca;
+  }
+
+  .label {
+    display: inline;
+    padding: .2em .6em .3em;
+    font-size: 75%;
+    font-weight: 700;
+    line-height: 1;
+    color: #fff;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: baseline;
+    border-radius: .25em;
+  }
+
+  .add {
+    background-color : green;
+  }
+
+  .mod {
+    background-color : orange;
   }
 
   .rem {
-    color : red;
+    background-color : red;
   }
 
   .breaking {
     background-color : red;
   }
 
-  code {
+  code:not(.hljs) {
     padding: 2px 4px;
     font-size: 90%;
     color: #c7254e;
     background-color: #f9f2f4;
-    white-space: nowrap;
     border-radius: 4px;
+    overflow: hidden;
+    word-wrap: break-word;
   }
 }
 

@@ -1,5 +1,7 @@
 import { DocAnchorLinksType } from '@/types/types';
 import slugify from 'slugify';
+import hljs from 'highlight.js'
+
 // import remarkGfm from 'remark-gfm'
 // import rehypeStringify from 'rehype-stringify'
 // import rehypeHighlight from 'rehype-highlight'
@@ -78,31 +80,56 @@ export const updateMarkdownHtmlStyleTags = (markdownString: string): string => {
   return result;
 }
 
+const badgeTemplates: {[key: string]: string} = {
+  '[add]': '<span class="label label-primary add">A</span>',
+  '[mod]': '<span class="label label-primary mod">M</span>',
+  '[rem]': '<span class="label label-primary rem">R</span>',
+  '[breaking]': '<span class="label label-primary breaking">NOT BACKWARDS COMPATIBLE</span>',
+  '[rpc]': '<span class="label label-primary rpc">RPC</span>',
+};
+
 export const processHeaders = (markdownContent:string): string => {
   const headerRegex = /^(#+)\s+(.*?)\s*$/gm;
   const tagRegex = /\[(.*?)\]/g;
 
   const processedContent = markdownContent.replace(headerRegex, (match, hashes, title) => {
-      const tags = title.match(tagRegex);
-      let cleanTitle = title.replace(tagRegex, '');
+    const tags = title.match(tagRegex);
+    let cleanTitle = title.replace(tagRegex, '');
 
-      if (tags) {
-          const tagClasses = tags.map((tag: string) => tag.replace(/\[|\]/g, '').trim()).join(' ');
-          cleanTitle = `<h${hashes.length} class="${tagClasses}">${cleanTitle}</h${hashes.length}>`;
-      } else {
-          cleanTitle = `<h${hashes.length}>${cleanTitle}</h${hashes.length}>`;
-      }
+    if (tags) {
+      const badges: Array<string> = tags.map((tag: string) => {
+        if (!!badgeTemplates[tag.toLowerCase()]) {
+          return badgeTemplates[tag.toLowerCase()];
+        }
+        return null;
+      }).filter((badge: string) => !!badge);
 
-      return cleanTitle;
+      cleanTitle = `<h${hashes.length}>${cleanTitle}${badges.join(' ')}</h${hashes.length}>`;
+    } else {
+      cleanTitle = `<h${hashes.length}>${cleanTitle}</h${hashes.length}>`;
+    }
+
+    return cleanTitle;
   });
 
   return processedContent;
 }
 
+export const processJavascriptBlocks = (markdownContent: string) => {
+  const javascriptRegex = /```javascript\s*([^`]|\n)*```/g;
+  const replacedContent = markdownContent.replace(javascriptRegex, (match) => {
+    const startTagRegex = /```javascript/;
+    const endTagRegex = /```/;
+    const codeContent = match.replace(startTagRegex, '').replace(endTagRegex, '').trim();
+    return `<pre><code class="language-javascript hljs">${hljs.highlightAuto(codeContent).value}</code></pre>`;
+  });
+  return replacedContent;
+}
+
 export const processCodeBlocks = (markdownContent: string): string => {
   const codeRegex = /`(.*?)`/g;
   const contentWithCodeBlocks = markdownContent.replace(codeRegex, (match, codeContent) => {
-      return `<code>${codeContent}</code>`;
+    return `<code>${codeContent}</code>`;
   });
 
   return contentWithCodeBlocks;
