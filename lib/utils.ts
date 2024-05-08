@@ -2,9 +2,8 @@ import fs from 'fs'
 import path from 'path'
 import matter from 'gray-matter'
 import { MERMAID_SNIPPET, mdToHtml } from './customMarked'
-import { insertIdsToHeaders, processCodeBlocks, processHeaders, updateMarkdownHtmlStyleTags, updateMarkdownImagePaths } from './markdownToHtml'
+import { insertIdsToHeaders, processCodeBlocks, processHeaders, processJavascriptBlocks, updateMarkdownHtmlStyleTags, updateMarkdownImagePaths } from './markdownToHtml'
 import { MarkdownFileMetadata, VersionDocType } from '@/types/types'
-
 export function slugify(input: string): string {
   return input
     .toLowerCase()
@@ -77,6 +76,8 @@ const processMarkdown = (markdown: string, imagesPath: string) => {
   markdown = updateMarkdownImagePaths(markdown, imagesPath);
   markdown = updateMarkdownHtmlStyleTags(markdown);
   markdown = processHeaders(markdown);
+  // these two are dependent to be run in this order
+  markdown = processJavascriptBlocks(markdown);
   markdown = processCodeBlocks(markdown);
   return markdown;
 }

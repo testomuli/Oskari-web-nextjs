@@ -1,5 +1,7 @@
 import { DocAnchorLinksType } from '@/types/types';
 import slugify from 'slugify';
+import hljs from 'highlight.js'
+
 // import remarkGfm from 'remark-gfm'
 // import rehypeStringify from 'rehype-stringify'
 // import rehypeHighlight from 'rehype-highlight'
@@ -99,10 +101,21 @@ export const processHeaders = (markdownContent:string): string => {
   return processedContent;
 }
 
+export const processJavascriptBlocks = (markdownContent: string) => {
+  const javascriptRegex = /```javascript\s*([^`]|\n)*```/g;
+  const replacedContent = markdownContent.replace(javascriptRegex, (match) => {
+    const startTagRegex = /```javascript/;
+    const endTagRegex = /```/;
+    const codeContent = match.replace(startTagRegex, '').replace(endTagRegex, '').trim();
+    return `<pre><code class="language-javascript hljs">${hljs.highlightAuto(codeContent).value}</code></pre>`;
+  });
+  return replacedContent;
+}
+
 export const processCodeBlocks = (markdownContent: string): string => {
   const codeRegex = /`(.*?)`/g;
   const contentWithCodeBlocks = markdownContent.replace(codeRegex, (match, codeContent) => {
-      return `<code>${codeContent}</code>`;
+    return `<code>${codeContent}</code>`;
   });
 
   return contentWithCodeBlocks;
