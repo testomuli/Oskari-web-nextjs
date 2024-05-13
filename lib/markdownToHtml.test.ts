@@ -1,5 +1,5 @@
 
-import { insertIdsToHeaders, updateMarkdownHtmlStyleTags, updateMarkdownImagePaths } from "./markdownToHtml";
+import { badgeTemplates, insertIdsToHeaders, processHeaders, updateMarkdownHtmlStyleTags, updateMarkdownImagePaths } from "./markdownToHtml";
 import slugify from 'slugify';
 
 const createTestHtml = () => {
@@ -94,5 +94,57 @@ describe('markdownToHtml tests', () => {
       const tagged = '<fuu>';
       expect(updateMarkdownHtmlStyleTags(tagged)).toEqual(tagged);
     });
-  })
+  });
+
+  describe('processing headers', () => {
+    it ('should keep headings with no tags unchanged', () => {
+      const h1 = '# FUU';
+      const expectedh1 = '<h1>FUU</h1>';
+      const h2 = '## FUU2';
+      const expectedh2 = '<h2>FUU2</h2>';
+      const h3 = '### FUU3';
+      const expectedh3 = '<h3>FUU3</h3>';
+
+      expect(processHeaders(h1)).toBe(expectedh1);
+      expect(processHeaders(h2)).toBe(expectedh2);
+      expect(processHeaders(h3)).toBe(expectedh3);
+    });
+
+    it ('should be able to recognize given tags', () => {
+      const h1 = '# [rpc] FUU';
+      const expectedh1 = '<h1> FUU' + badgeTemplates['[rpc]'] + '</h1>';
+      const h2 = '## [add] FUU2';
+      const expectedh2 = '<h2> FUU2' + badgeTemplates['[add]'] + '</h2>';
+      const h3 = '### [rem] FUU3';
+      const expectedh3 = '<h3> FUU3' + badgeTemplates['[rem]'] + '</h3>';
+      const h4 = '#### [mod] FUU4';
+      const expectedh4 = '<h4> FUU4' + badgeTemplates['[mod]'] + '</h4>';
+      const h5 = '##### [breaking] FUU5';
+      const expectedh5 = '<h5> FUU5' + badgeTemplates['[breaking]'] + '</h5>';
+
+      expect(processHeaders(h1)).toBe(expectedh1);
+      expect(processHeaders(h2)).toBe(expectedh2);
+      expect(processHeaders(h3)).toBe(expectedh3);
+      expect(processHeaders(h4)).toBe(expectedh4);
+      expect(processHeaders(h5)).toBe(expectedh5);
+    });
+
+    it ('should handle multiple tags per heading', () => {
+      const h1 = '# [rem][add][mod][breaking][rpc] FUU';
+
+      const processed = processHeaders(h1);
+      expect(processed.indexOf('[add]')).toBe(-1);
+      expect(processed.indexOf('[mod]')).toBe(-1);
+      expect(processed.indexOf('[rem]')).toBe(-1);
+      expect(processed.indexOf('[rpc]')).toBe(-1);
+      expect(processed.indexOf('[breaking]')).toBe(-1);
+
+      expect(processed.indexOf(badgeTemplates['[add]'])).toBeGreaterThan(-1);
+      expect(processed.indexOf(badgeTemplates['[mod]'])).toBeGreaterThan(-1);
+      expect(processed.indexOf(badgeTemplates['[rem]'])).toBeGreaterThan(-1);
+      expect(processed.indexOf(badgeTemplates['[rpc]'])).toBeGreaterThan(-1);
+      expect(processed.indexOf(badgeTemplates['[breaking]'])).toBeGreaterThan(-1);
+    });
+
+  });
 });
