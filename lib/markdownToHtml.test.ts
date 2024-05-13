@@ -1,5 +1,5 @@
 
-import { insertIdsToHeaders, updateMarkdownImagePaths } from "./markdownToHtml";
+import { insertIdsToHeaders, updateMarkdownHtmlStyleTags, updateMarkdownImagePaths } from "./markdownToHtml";
 import slugify from 'slugify';
 
 const createTestHtml = () => {
@@ -82,4 +82,17 @@ describe('markdownToHtml tests', () => {
       expect(processed).toEqual(expected);
     });
   });
+
+  describe('replace html style tags', () => {
+    it ('should replace < and > with {{ and }} for content inside quotation marks', () => {
+      const tagged = '"<fuu>"';
+      const expected = '"{{fuu}}"';
+      expect(updateMarkdownHtmlStyleTags(tagged)).toEqual(expected);
+    });
+
+    it ('should leave < and > unharmed when NOT inside quotation marks', () => {
+      const tagged = '<fuu>';
+      expect(updateMarkdownHtmlStyleTags(tagged)).toEqual(tagged);
+    });
+  })
 });
