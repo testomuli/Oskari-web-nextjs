@@ -10,7 +10,8 @@
     "docs": "node scripts/runAll.js",
     "metadata": "node scripts/generateContentMetadata.js",
     "docsmetadata": "node scripts/generateDocumentationMetadata.js",
-    "apidocs": "node scripts/generateApidocs.js"
+    "apidocs": "node scripts/generateApidocs.js",
+    "test": "jest"
   },
   "browser": {
     "fs": false,
@@ -40,6 +41,7 @@
     "typescript": "5.1.6"
   },
   "devDependencies": {
+    "@types/jest": "29.5.12",
     "@types/react-slick": "^0.23.10",
     "@typescript-eslint/eslint-plugin": "^6.6.0",
     "@typescript-eslint/parser": "^6.6.0",
@@ -48,9 +50,11 @@
     "eslint-config-prettier": "^9.0.0",
     "eslint-import-resolver-typescript": "^3.6.0",
     "eslint-plugin-prettier": "^5.0.0",
+    "jest": "29.7.0",
     "postcss": "^8.4.31",
     "prettier": "^3.0.2",
     "sass": "^1.66.0",
-    "tailwindcss": "^3.3.3"
+    "tailwindcss": "^3.3.3",
+    "ts-jest": "29.1.2"
   }
 }
