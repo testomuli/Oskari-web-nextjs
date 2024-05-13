@@ -1,5 +1,5 @@
 
-import { insertIdsToHeaders } from "./markdownToHtml";
+import { insertIdsToHeaders, updateMarkdownImagePaths } from "./markdownToHtml";
 import slugify from 'slugify';
 
 const createTestHtml = () => {
@@ -61,5 +61,25 @@ describe('markdownToHtml tests', () => {
       expect(processed?.html?.indexOf('1.0.1')).toBe(-1);
       expect(processed?.html?.indexOf('1.1.1')).toBeGreaterThan(-1);
     })
+  });
+
+  describe('update markdown image paths', () => {
+    it('should replace md image path with given runtime path', () => {
+      const originalPath = 'stuff/things/etc/common/';
+      const originalMd = '![FUU]('+originalPath+'image.png)';
+      const runtimePath = '/assets/docs/images'
+      const expected = '![FUU](' + runtimePath + '/' + originalPath + 'image.png)';
+      const processed = updateMarkdownImagePaths(originalMd, runtimePath);
+      expect(processed).toEqual(expected);
+    });
+
+    it('should replace reserved keyword \'resources\' from original path (case documentation)', () => {
+      const originalPath = '/resources/images/backend/';
+      const originalMd = '![FUU]('+originalPath+'image.png)';
+      const runtimePath = '/assets/docs/2.13.0/resources/'
+      const expected = '![FUU](' + runtimePath + 'images/backend/image.png)';
+      const processed = updateMarkdownImagePaths(originalMd, runtimePath);
+      expect(processed).toEqual(expected);
+    });
   });
 });
