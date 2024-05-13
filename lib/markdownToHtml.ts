@@ -1,23 +1,6 @@
 import { DocAnchorLinksType } from '@/types/types';
 import slugify from 'slugify';
 import hljs from 'highlight.js'
-// import remarkGfm from 'remark-gfm'
-// import rehypeStringify from 'rehype-stringify'
-// import rehypeHighlight from 'rehype-highlight'
-// import remarkParse from 'remark-parse'
-// import remarkRehype from 'remark-rehype'
-// import { unified } from 'unified'
-
-// export default async function markdownToHtml(markdown: string) {
-//   const file = await unified()
-//     .use(remarkParse)
-//     .use(remarkGfm)
-//     .use(remarkRehype)
-//     .use(rehypeHighlight)
-//     .use(rehypeStringify)
-//     .process(markdown)
-//   return insertIdsToHeaders(String(file))
-// }
 
 export const insertIdsToHeaders = (htmlString: string, startingSectionNumber: string) => {
   const headerRegex = /<h([1-3])>(.*?)<\/h\1>/g
@@ -37,7 +20,7 @@ export const insertIdsToHeaders = (htmlString: string, startingSectionNumber: st
       }
       previousLevel = intLevel;
       const slug = slugify(content)
-      const sectionNumber = sectionCounter.slice(0, parseInt(level)).join('.');
+      const sectionNumber = sectionCounter.slice(0, parseInt(level)).map(sectionNumber => sectionNumber || 1).join('.');
       anchorLinks.push({ level, content, slug, sectionNumber });
       return `<h${level} id="${slug}">${sectionNumber} ${content}</h${level}>`
     }

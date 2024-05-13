@@ -52,5 +52,14 @@ describe('markdownToHtml tests', () => {
       const processedHTML = insertIdsToHeaders(originalHtml, '1');
       expect(processedHTML?.html).toEqual(expectedHtml);
     });
+
+    it('should NOT allow zeros in semantic numbering (case skipping heading levels)', () => {
+      const h1 = '<h1>FUU</h1>';
+      const h3 = '<h3>FUU</h3>';
+      const processed = insertIdsToHeaders('<div>' + h1 + h3 + '</div>', '1');
+//      console.log(processed);
+      expect(processed?.html?.indexOf('1.0.1')).toBe(-1);
+      expect(processed?.html?.indexOf('1.1.1')).toBeGreaterThan(-1);
+    })
   });
 });
