@@ -83,7 +83,7 @@ export default function DiscoverPage() {
         <Button
           variant='primary'
           title='Read more in documentation'
-          href='/resources/docs'
+          href='/documentation/docs'
           style={{ alignSelf: 'center', color: 'red' }}
           label="Why to choose Oskari? Go to Oskari's documentation"
         />

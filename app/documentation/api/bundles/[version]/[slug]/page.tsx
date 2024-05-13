@@ -14,7 +14,7 @@ export default async function BundlesContentPage({
 
   const bundlesBasePath = '_content/api/versions/' + params.version + '/';
   const bundles = (await import('_content/api/versions/' + params.version + '/bundles.json')).default;
-  const bundleBaseRef = '/resources/api/bundles/' + params.version + '/';
+  const bundleBaseRef = '/documentation/api/bundles/' + params.version + '/';
 
   let allBundles: Array<{name: string, path: string}> = [];
   Object.keys(bundles).forEach(key => allBundles = allBundles.concat(bundles[key].bundles));
@@ -30,5 +30,5 @@ export default async function BundlesContentPage({
     sideBarContent={<BundlesSidebarContent elements={bundles} baseHref={bundleBaseRef}/>}
     mainContent={<HtmlContentPage mdPath={bundlesBasePath + '/' + foundItem.path + '/bundle.md'} imagesPath={imagesPath} />}
     title='Oskari API documentation'
-    baseHref='/resources/api/bundles/'/>;
+    baseHref='/documentation/api/bundles/'/>;
 }

@@ -18,7 +18,7 @@ export default function ApiMainPage() {
               <Button
                 variant='primary'
                 title='Bundle documentation'
-                href={'/resources/api/bundles'}/>
+                href={'/documentation/api/bundles'}/>
             </div>
             <div style={{ marginTop: '2em'}}>
               <h3>Working with an existing Oskari application</h3>
@@ -29,14 +29,14 @@ export default function ApiMainPage() {
                     <Button
                       variant='primary'
                       title='Requests documentation'
-                      href={'/resources/api/requests'}/>
+                      href={'/documentation/api/requests'}/>
                   </div>
                   <div>
                     <p>Reacting to events</p>
                     <Button
                       variant='primary'
                       title='Events documentation'
-                      href={'/resources/api/events'}/>
+                      href={'/documentation/api/events'}/>
                   </div>
                 </div>
 

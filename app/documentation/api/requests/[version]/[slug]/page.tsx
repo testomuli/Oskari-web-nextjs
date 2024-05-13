@@ -6,20 +6,19 @@ import Error from '@/components/Error';
 import { OskariEventOrRequest } from '@/types/api';
 import EventsAndRequestsSidebarContent from '../../../components/EventsAndRequestsSidebarContent';
 import path from 'path';
-
-export default async function EventsContentPage({
+export default async function RequestsContentPage({
   params
 }: {
   params: { version: string, slug: string }
 }) {
 
   const basePath = '_content/api/versions/' + params.version + '/';
-  const events = (await import('_content/api/versions/' + params.version + '/events.json')).default;
-  const eventsBaseRef = '/resources/api/events/' + params.version + '/';
+  const requests = (await import('_content/api/versions/' + params.version + '/requests.json')).default;
+  const requestsBaseRef = '/documentation/api/requests/' + params.version + '/';
 
-  const foundItem = events.find((element: OskariEventOrRequest) => slugify(element.name) === params.slug);
+  const foundItem = requests.find((element: OskariEventOrRequest) => slugify(element.name) === params.slug);
   if (!foundItem) {
-    return <Error text='No event doc found' code='404' />
+    return <Error text='No request doc found' code='404' />
   }
 
   const normalized = path.normalize(foundItem.path);
@@ -28,8 +27,8 @@ export default async function EventsContentPage({
 
   return <ApiSectionContentPage
     version={params.version}
-    sideBarContent={<EventsAndRequestsSidebarContent title='Select event' elements={events} baseHref={eventsBaseRef}/>}
+    sideBarContent={<EventsAndRequestsSidebarContent title='Select request' elements={requests} baseHref={requestsBaseRef}/>}
     mainContent={<HtmlContentPage mdPath={basePath + '/' + foundItem.path} imagesPath={imagesPath}/>}
     title='Oskari API documentation'
-    baseHref='/resources/api/events/'/>;
+    baseHref='/documentation/api/requests/'/>;
 }

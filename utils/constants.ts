@@ -24,20 +24,16 @@ export const NAVIGATION_ITEMS: Array<NavigationItemType> = [
     ],
   },
   {
-    name: 'Resources',
-    path: '/resources',
+    name: 'Documentation',
+    path: '/documentation/docs',
     children: [
       {
         name: 'FAQ',
-        path: '/resources/faq',
-      },
-      {
-        name: 'Documentation',
-        path: '/resources/docs',
+        path: '/documentation/faq',
       },
       {
         name: 'API',
-        path: '/resources/api',
+        path: '/documentation/api',
       },
       {
         name: 'RPC Example',
