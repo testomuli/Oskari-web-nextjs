@@ -6,5 +6,5 @@ export default async function VersionPage({
   params: { version: string }
 }) {
   const indexJSON = await getVersionIndex(params.version);
-  redirect('/resources/docs/' + params.version + '/' + indexJSON[0].slug);
+  redirect('/documentation/docs/' + params.version + '/' + indexJSON[0].slug);
 }

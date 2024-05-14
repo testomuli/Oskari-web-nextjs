@@ -61,7 +61,7 @@ export default function DownloadPage() {
         <Button
           variant='dark'
           title='Read installation instructions'
-          href='/resources/docs'
+          href='/documentation/docs'
         />
       </HighlightBox>
     </Layout>

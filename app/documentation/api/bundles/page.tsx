@@ -1,4 +1,4 @@
 import { redirect } from 'next/navigation';
 export default function BundlesMainPage() {
-  redirect('/resources/api/bundles/latest/');
+  redirect('/documentation/api/bundles/latest/');
 }

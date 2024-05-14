@@ -72,7 +72,7 @@ export default async function SingleDocPage({
 
   return <>
     <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
-      <VersionSidebar selectedVersion={params.version} versions={versions} baseHref='/resources/docs/' />
+      <VersionSidebar selectedVersion={params.version} versions={versions} baseHref='/documentation/docs/' />
         <AccordionGroup>
           {indexJSON?.map((item: MarkdownFileMetadata) => (
             <Accordion
