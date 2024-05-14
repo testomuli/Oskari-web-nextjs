@@ -1,5 +1,5 @@
 
-import { badgeTemplates, insertIdsToHeaders, processHeaders, updateMarkdownHtmlStyleTags, updateMarkdownImagePaths } from "./markdownToHtml";
+import { badgeTemplates, insertIdsToHeaders, processHeaders, processJavascriptBlocks, updateMarkdownHtmlStyleTags, updateMarkdownImagePaths } from "./markdownToHtml";
 import slugify from 'slugify';
 
 const createTestHtml = () => {
@@ -145,6 +145,27 @@ describe('markdownToHtml tests', () => {
       expect(processed.indexOf(badgeTemplates['[rpc]'])).toBeGreaterThan(-1);
       expect(processed.indexOf(badgeTemplates['[breaking]'])).toBeGreaterThan(-1);
     });
-
   });
+
+  describe('processing javascript blocks', () => {
+    it ('should prepare javascript - blocks for highlight.js', () => {
+      const markdown = "```javascript var a = 0;```";
+      const processed = processJavascriptBlocks(markdown);
+      expect(processed.indexOf('´')).toBe(-1);
+      expect(processed.startsWith('<pre><code')).toBe(true);
+    });
+
+    it ('should be able to handle javascript blocks with multiple lines', () => {
+      const markdown = `
+        \`\`\`javascript
+          var a = 0;
+          let b = 3;
+          console.log(a + b);
+        \`\`\``;
+      const processed = processJavascriptBlocks(markdown).trim();
+      expect(processed.indexOf('´')).toBe(-1);
+      expect(processed.startsWith('<pre><code')).toBe(true);
+    });
+  });
+
 });
