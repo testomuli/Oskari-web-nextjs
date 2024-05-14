@@ -62,7 +62,7 @@ export const updateMarkdownHtmlStyleTags = (markdownString: string): string => {
   return result;
 }
 
-const badgeTemplates: {[key: string]: string} = {
+export const badgeTemplates: {[key: string]: string} = {
   '[add]': '<span class="label label-primary add" title="Added"><i class="fa-solid fa-plus"></i></span>',
   '[mod]': '<span class="label label-primary mod" title="Modified"><i class="fa-solid fa-pen"></i></span>',
   '[rem]': '<span class="label label-primary rem" title="Removed"><i class="fa-solid fa-trash-can"></i></span>',
@@ -85,7 +85,6 @@ export const processHeaders = (markdownContent:string): string => {
         }
         return null;
       }).filter((badge: string) => !!badge);
-
       cleanTitle = `<h${hashes.length}>${cleanTitle}${badges.join(' ')}</h${hashes.length}>`;
     } else {
       cleanTitle = `<h${hashes.length}>${cleanTitle}</h${hashes.length}>`;

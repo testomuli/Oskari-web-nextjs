@@ -1,5 +1,5 @@
 
-import { insertIdsToHeaders } from "./markdownToHtml";
+import { badgeTemplates, insertIdsToHeaders, processCodeBlocks, processHeaders, processJavascriptBlocks, updateMarkdownHtmlStyleTags, updateMarkdownImagePaths } from "./markdownToHtml";
 import slugify from 'slugify';
 
 const createTestHtml = () => {
@@ -61,5 +61,119 @@ describe('markdownToHtml tests', () => {
       expect(processed?.html?.indexOf('1.0.1')).toBe(-1);
       expect(processed?.html?.indexOf('1.1.1')).toBeGreaterThan(-1);
     })
+  });
+
+  describe('update markdown image paths', () => {
+    it('should replace md image path with given runtime path', () => {
+      const originalPath = 'stuff/things/etc/common/';
+      const originalMd = '![FUU]('+originalPath+'image.png)';
+      const runtimePath = '/assets/docs/images'
+      const expected = '![FUU](' + runtimePath + '/' + originalPath + 'image.png)';
+      const processed = updateMarkdownImagePaths(originalMd, runtimePath);
+      expect(processed).toEqual(expected);
+    });
+
+    it('should replace reserved keyword \'resources\' from original path (case documentation)', () => {
+      const originalPath = '/resources/images/backend/';
+      const originalMd = '![FUU]('+originalPath+'image.png)';
+      const runtimePath = '/assets/docs/2.13.0/resources/'
+      const expected = '![FUU](' + runtimePath + 'images/backend/image.png)';
+      const processed = updateMarkdownImagePaths(originalMd, runtimePath);
+      expect(processed).toEqual(expected);
+    });
+  });
+
+  describe('replace html style tags', () => {
+    it ('should replace < and > with {{ and }} for content inside quotation marks', () => {
+      const tagged = '"<fuu>"';
+      const expected = '"{{fuu}}"';
+      expect(updateMarkdownHtmlStyleTags(tagged)).toEqual(expected);
+    });
+
+    it ('should leave < and > unharmed when NOT inside quotation marks', () => {
+      const tagged = '<fuu>';
+      expect(updateMarkdownHtmlStyleTags(tagged)).toEqual(tagged);
+    });
+  });
+
+  describe('processing headers', () => {
+    it ('should keep headings with no tags unchanged', () => {
+      const h1 = '# FUU';
+      const expectedh1 = '<h1>FUU</h1>';
+      const h2 = '## FUU2';
+      const expectedh2 = '<h2>FUU2</h2>';
+      const h3 = '### FUU3';
+      const expectedh3 = '<h3>FUU3</h3>';
+
+      expect(processHeaders(h1)).toBe(expectedh1);
+      expect(processHeaders(h2)).toBe(expectedh2);
+      expect(processHeaders(h3)).toBe(expectedh3);
+    });
+
+    it ('should be able to recognize given tags', () => {
+      const h1 = '# [rpc] FUU';
+      const expectedh1 = '<h1> FUU' + badgeTemplates['[rpc]'] + '</h1>';
+      const h2 = '## [add] FUU2';
+      const expectedh2 = '<h2> FUU2' + badgeTemplates['[add]'] + '</h2>';
+      const h3 = '### [rem] FUU3';
+      const expectedh3 = '<h3> FUU3' + badgeTemplates['[rem]'] + '</h3>';
+      const h4 = '#### [mod] FUU4';
+      const expectedh4 = '<h4> FUU4' + badgeTemplates['[mod]'] + '</h4>';
+      const h5 = '##### [breaking] FUU5';
+      const expectedh5 = '<h5> FUU5' + badgeTemplates['[breaking]'] + '</h5>';
+
+      expect(processHeaders(h1)).toBe(expectedh1);
+      expect(processHeaders(h2)).toBe(expectedh2);
+      expect(processHeaders(h3)).toBe(expectedh3);
+      expect(processHeaders(h4)).toBe(expectedh4);
+      expect(processHeaders(h5)).toBe(expectedh5);
+    });
+
+    it ('should handle multiple tags per heading', () => {
+      const h1 = '# [rem][add][mod][breaking][rpc] FUU';
+
+      const processed = processHeaders(h1);
+      expect(processed.indexOf('[add]')).toBe(-1);
+      expect(processed.indexOf('[mod]')).toBe(-1);
+      expect(processed.indexOf('[rem]')).toBe(-1);
+      expect(processed.indexOf('[rpc]')).toBe(-1);
+      expect(processed.indexOf('[breaking]')).toBe(-1);
+
+      expect(processed.indexOf(badgeTemplates['[add]'])).toBeGreaterThan(-1);
+      expect(processed.indexOf(badgeTemplates['[mod]'])).toBeGreaterThan(-1);
+      expect(processed.indexOf(badgeTemplates['[rem]'])).toBeGreaterThan(-1);
+      expect(processed.indexOf(badgeTemplates['[rpc]'])).toBeGreaterThan(-1);
+      expect(processed.indexOf(badgeTemplates['[breaking]'])).toBeGreaterThan(-1);
+    });
+  });
+
+  describe('processing javascript blocks', () => {
+    it ('should prepare javascript - blocks for highlight.js', () => {
+      const markdown = "```javascript var a = 0;```";
+      const processed = processJavascriptBlocks(markdown);
+      expect(processed.indexOf('´')).toBe(-1);
+      expect(processed.startsWith('<pre><code')).toBe(true);
+    });
+
+    it ('should be able to handle javascript blocks with multiple lines', () => {
+      const markdown = `
+        \`\`\`javascript
+          var a = 0;
+          let b = 3;
+          console.log(a + b);
+        \`\`\``;
+      const processed = processJavascriptBlocks(markdown).trim();
+      expect(processed.indexOf('´')).toBe(-1);
+      expect(processed.startsWith('<pre><code')).toBe(true);
+    });
+  });
+
+  describe('processing codeblocks', () => {
+    it ('should prepare code - blocks', () => {
+      const markdown = "`var a = 0;`";
+      const processed = processCodeBlocks(markdown).trim();
+      expect(processed.indexOf('´')).toBe(-1);
+      expect(processed.startsWith('<code')).toBe(true);
+    });
   });
 });
