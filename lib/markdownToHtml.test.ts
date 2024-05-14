@@ -1,5 +1,5 @@
 
-import { badgeTemplates, insertIdsToHeaders, processHeaders, processJavascriptBlocks, updateMarkdownHtmlStyleTags, updateMarkdownImagePaths } from "./markdownToHtml";
+import { badgeTemplates, insertIdsToHeaders, processCodeBlocks, processHeaders, processJavascriptBlocks, updateMarkdownHtmlStyleTags, updateMarkdownImagePaths } from "./markdownToHtml";
 import slugify from 'slugify';
 
 const createTestHtml = () => {
@@ -168,4 +168,12 @@ describe('markdownToHtml tests', () => {
     });
   });
 
+  describe('processing codeblocks', () => {
+    it ('should prepare code - blocks', () => {
+      const markdown = "`var a = 0;`";
+      const processed = processCodeBlocks(markdown).trim();
+      expect(processed.indexOf('´')).toBe(-1);
+      expect(processed.startsWith('<code')).toBe(true);
+    });
+  });
 });
