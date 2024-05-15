@@ -26,4 +26,4 @@ Users are, e.g., Finnish municipalities, regional councils, governmental organis
 
 ## Find out more!
 
-<http://www.maanmittauslaitos.fi/asioi-verkossa/suomifi-kartat>
+[http://www.maanmittauslaitos.fi/asioi-verkossa/suomifi-kartat](http://www.maanmittauslaitos.fi/asioi-verkossa/suomifi-kartat)
