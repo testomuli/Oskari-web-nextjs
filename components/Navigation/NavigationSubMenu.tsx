@@ -6,18 +6,23 @@ import Button from '../Button'
 type NavigationSubMenuProps = {
   items: {
     name: string
-    path: string
+    path: string,
   }[]
-  title: string
+  title: string,
+  paramIsOpen: boolean,
+  toggleMenuCallback: (menuitem: string, itemIsOpen: boolean) => void
 }
 
 export default function NavigationSubMenu({
   items,
   title,
+  paramIsOpen = false,
+  toggleMenuCallback
 }: NavigationSubMenuProps) {
-  const [isOpen, setIsOpen] = useState(false)
+
+  const [isOpen, setIsOpen] = useState(paramIsOpen)
   const handleTitleClick = () => {
-    setIsOpen((prev) => !prev)
+    setIsOpen((prev) => !prev);
   }
 
   return (
@@ -30,13 +35,13 @@ export default function NavigationSubMenu({
       )}
       <Button
         variant='link'
-        handleClick={handleTitleClick}
+        handleClick={() => toggleMenuCallback(title, !paramIsOpen)}
         title={title}
         expandable
       />
       <div
-        className={`navigationsubmenu ${isOpen ? ' open' : ''}`}
-        data-sub-menu-open={isOpen ? true : false}
+        className={`navigationsubmenu ${paramIsOpen ? ' open' : ''}`}
+        data-sub-menu-open={paramIsOpen}
       >
         <div className='navigationsubmenu__container'>
           <ul className='navigationsubmenu__list'>

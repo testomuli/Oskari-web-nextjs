@@ -11,6 +11,7 @@ import React from 'react'
 
 export default function NavigationMenu() {
   const [isOpen, setIsOpen] = useState(false)
+  const [menuItemOpen, setMenuitemOpen] = useState('')
   const { width, height } = useWindowDimensions()
   const pathname = usePathname()
 
@@ -30,6 +31,9 @@ export default function NavigationMenu() {
     bodyEl.classList.remove('nav-open')
   }
 
+  const toggleSubmenuCallback = (menuitem: string, itemIsOpen: boolean) => {
+    setMenuitemOpen(itemIsOpen ? menuitem : '');
+  };
   return (
     <div className='navMenu'>
       <nav className='navMenu__container'>
@@ -54,6 +58,8 @@ export default function NavigationMenu() {
                   <NavigationSubMenu
                     title={item.name}
                     items={[item, ...item.children]}
+                    toggleMenuCallback={toggleSubmenuCallback}
+                    paramIsOpen={!!menuItemOpen && menuItemOpen === item.name}
                   />
                 ) : (
                   <Link
