@@ -54,6 +54,26 @@ div.apidocContentWrapper {
     overflow: hidden;
     word-wrap: break-word;
   }
+
+  table {
+    font-size: 0.8em;
+  }
+
+  tr {
+    vertical-align: top;
+  }
+
+  td {
+    padding: 5px;
+  }
+
+  tr:nth-child(even) {
+    background: #EFEFEF
+  }
+
+  th {
+    text-align: left;
+  }
 }
 
 .apidocSidebarLink {
