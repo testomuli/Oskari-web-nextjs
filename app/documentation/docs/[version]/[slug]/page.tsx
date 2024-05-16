@@ -4,7 +4,7 @@ import VersionSidebar from '@/components/VersionSidebar'
 import { compareSemanticVersions } from '@/utils/misc'
 import Link from 'next/link'
 import styles from '@/styles/accordion.module.scss'
-import {  getVersionIndex, readAndConcatMarkdownFiles } from '@/lib/utils'
+import {  cleanTags, getVersionIndex, readAndConcatMarkdownFiles } from '@/lib/utils'
 import availableVersions from '@/_content/docs';
 import Error from '@/components/Error'
 import { DocAnchorLinksType, MarkdownFileMetadata } from '@/types/types'
@@ -37,7 +37,7 @@ const renderAccordionContent = (
           <Link
             href={item.slug === parentSlug ? item.slug : parentSlug + '#' + item.slug}
           >
-            {item.sectionNumber} {item.content}
+            {item.sectionNumber} {cleanTags(item.content)}
           </Link>
         </li>
       ))}

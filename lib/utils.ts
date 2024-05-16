@@ -72,6 +72,11 @@ export const readAndConcatMarkdownFiles = async function(parentItem: MarkdownFil
   return compiled;
 };
 
+/** cleans up html tags from a given string (used for cleaning up a heading from badges in documentation toc)  */
+export const cleanTags = (htmlString: string) => {
+  return htmlString.replace(/<[^>]+>/g, '');
+}
+
 const processMarkdown = (markdown: string, imagesPath: string) => {
   markdown = updateMarkdownImagePaths(markdown, imagesPath);
   markdown = updateMarkdownHtmlStyleTags(markdown);
