@@ -6,55 +6,6 @@ div.apidocContentWrapper {
   overflow: hidden;
   word-wrap: break-word;
 
-  /*badges*/
-  span.label.label-primary {
-    margin-left: 4px;
-    margin-right: 4px;
-  }
-
-  .label-primary {
-    background-color: #428bca;
-  }
-
-  .label {
-    display: inline;
-    padding: .4em .6em .2em .6em;
-    font-size: 75%;
-    font-weight: 700;
-    line-height: 1;
-    color: #fff;
-    text-align: center;
-    white-space: nowrap;
-    vertical-align: baseline;
-    border-radius: .25em;
-  }
-
-  .add {
-    background-color : green;
-  }
-
-  .mod {
-    background-color : orange;
-  }
-
-  .rem {
-    background-color : red;
-  }
-
-  .breaking {
-    background-color : red;
-  }
-
-  code:not(.hljs) {
-    padding: 2px 4px;
-    font-size: 90%;
-    color: #c7254e;
-    background-color: #f9f2f4;
-    border-radius: 4px;
-    overflow: hidden;
-    word-wrap: break-word;
-  }
-
   table {
     font-size: 0.8em;
   }
@@ -96,3 +47,52 @@ div.apidocContentWrapper {
 .sidebarCheckboxesTitle {
   font-size: 1.125rem;
 }
+
+.add {
+  background-color : green;
+}
+
+.mod {
+  background-color : orange;
+}
+
+.rem {
+  background-color : red;
+}
+
+.breaking {
+  background-color : red;
+}
+
+  /*badges*/
+  span.label.label-primary {
+    margin-left: 4px;
+    margin-right: 4px;
+  }
+
+  .label-primary {
+    background-color: #428bca;
+  }
+
+  .label {
+    display: inline;
+    padding: .4em .6em .2em .6em;
+    font-size: 75%;
+    font-weight: 700;
+    line-height: 1;
+    color: #fff;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: baseline;
+    border-radius: .25em;
+  }
+
+  code:not(.hljs) {
+    padding: 2px 4px;
+    font-size: 90%;
+    color: #c7254e;
+    background-color: #f9f2f4;
+    border-radius: 4px;
+    overflow: hidden;
+    word-wrap: break-word;
+  }

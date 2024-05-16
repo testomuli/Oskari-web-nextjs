@@ -8,6 +8,10 @@ import {  getVersionIndex, readAndConcatMarkdownFiles } from '@/lib/utils'
 import availableVersions from '@/_content/docs';
 import Error from '@/components/Error'
 import { DocAnchorLinksType, MarkdownFileMetadata } from '@/types/types'
+import '@/styles/apidoc.scss'
+import '@fortawesome/fontawesome-free/js/fontawesome.min.js';
+import '@fortawesome/fontawesome-free/css/fontawesome.min.css';
+import '@fortawesome/fontawesome-free/css/solid.min.css';
 
 export const generateMetadata = async ({
   params,
