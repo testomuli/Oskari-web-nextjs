@@ -38,14 +38,14 @@ const pathToServerRepository = path.join(pathToExternalRepos, 'oskari-server/');
 const pathToNewFiles = path.join(pathToVersionRoot, '/6 Changelog');
 // Init folder and heading file
 fs.mkdirSync(pathToNewFiles, {recursive: true});
-fs.writeFileSync(path.join(pathToNewFiles, "6 Changelog.md"), "# 6 Changelog\n");
+fs.writeFileSync(path.join(pathToNewFiles, "Changelog.md"), "# Changelog\n");
 
 // Create a summary section highlighting the changes in new version from these files
 const filesToHandle = {
-  "6.1 Frontend release notes": path.join(pathToFrontendRepository, 'ReleaseNotes.md'),
-  "6.2 Frontend changelog": path.join(pathToFrontendRepository, 'api/CHANGELOG.md'),
-  "6.3 Server release notes": path.join(pathToServerRepository, 'ReleaseNotes.md'),
-  "6.4 Migration guide": path.join(pathToServerRepository, 'MigrationGuide.md')
+  "Frontend release notes": path.join(pathToFrontendRepository, 'ReleaseNotes.md'),
+  "Frontend changelog": path.join(pathToFrontendRepository, 'api/CHANGELOG.md'),
+  "Server release notes": path.join(pathToServerRepository, 'ReleaseNotes.md'),
+  "Migration guide": path.join(pathToServerRepository, 'MigrationGuide.md')
 }
 
 // Go through the files one by one

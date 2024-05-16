@@ -4,10 +4,14 @@ import VersionSidebar from '@/components/VersionSidebar'
 import { compareSemanticVersions } from '@/utils/misc'
 import Link from 'next/link'
 import styles from '@/styles/accordion.module.scss'
-import {  getVersionIndex, readAndConcatMarkdownFiles } from '@/lib/utils'
+import {  cleanTags, getVersionIndex, readAndConcatMarkdownFiles } from '@/lib/utils'
 import availableVersions from '@/_content/docs';
 import Error from '@/components/Error'
 import { DocAnchorLinksType, MarkdownFileMetadata } from '@/types/types'
+import '@/styles/apidoc.scss'
+import '@fortawesome/fontawesome-free/js/fontawesome.min.js';
+import '@fortawesome/fontawesome-free/css/fontawesome.min.css';
+import '@fortawesome/fontawesome-free/css/solid.min.css';
 
 export const generateMetadata = async ({
   params,
@@ -33,7 +37,7 @@ const renderAccordionContent = (
           <Link
             href={item.slug === parentSlug ? item.slug : parentSlug + '#' + item.slug}
           >
-            {item.sectionNumber} {item.content}
+            {item.sectionNumber} {cleanTags(item.content)}
           </Link>
         </li>
       ))}
