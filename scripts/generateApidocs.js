@@ -1,6 +1,7 @@
 /*eslint @typescript-eslint/no-var-requires: 0*/
 const fs = require('fs');
 const path = require('path');
+const { generateDocumentationMetadata, getSubdirectories } = require('./documentationMetadataHelper');
 
 function copyContent(source, destination) {
   if (!fs.existsSync(source)) {
@@ -55,13 +56,6 @@ function hasTag(fileContent, tag) {
       return false;
   }
 }
-
-function getSubdirectories(rootDir) {
-  return fs.readdirSync(rootDir, { withFileTypes: true })
-      .filter(dirent => dirent.isDirectory())
-      .map(dirent => dirent.name);
-}
-
 
 function generateRequestsOrEvents(fullPath, moduleName, bundleName, type) {
   // type = request | event
@@ -162,17 +156,6 @@ function syncResourcesByVersion(sourcePath, destinationPath) {
   for (const version of subdirectories) {
     copyImagesRecursively(sourcePath + version, destinationPath + version);
   }
-}
-
-function generateDocumentationMetadata(fullPath) {
-  const subdirectories = getSubdirectories(fullPath);
-  // filter out version 'unreleased' so it will not show up in menus etc. but is still accessible for testing purposes
-  const sortedVersions = subdirectories
-    .filter((version) => version !== 'unreleased')
-    .sort((a, b) => parseFloat(a) - parseFloat(b));
-
-  const indexContent = `const availableVersions = ${JSON.stringify(sortedVersions)};\n\nexport default availableVersions;`;
-  fs.writeFileSync(path.join(fullPath, 'index.js'), indexContent);
 }
 
 /** API docs metadata generation */
