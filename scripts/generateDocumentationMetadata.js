@@ -4,12 +4,7 @@ const path = require('path');
 const grayMatter = require('gray-matter');
 const slugify = require('slugify');
 const syncResources = require('./syncResourcesFolder');
-
-function getSubdirectories(rootDir) {
-    return fs.readdirSync(rootDir, { withFileTypes: true })
-        .filter(dirent => dirent.isDirectory())
-        .map(dirent => dirent.name);
-}
+const { generateDocumentationMetadata, getSubdirectories } = require('./documentationMetadataHelper');
 
 function getFrontmatter(filePath) {
     const fileContent = fs.readFileSync(filePath, 'utf8');
@@ -93,13 +88,6 @@ function syncResourcesByVersion(resourcesCopyPath, resourcesRuntimePath) {
     for (const version of subdirectories) {
         syncResources(resourcesCopyPath + version, resourcesRuntimePath + version);
     }
-}
-
-function generateDocumentationMetadata(fullPath) {
-    const subdirectories = getSubdirectories(fullPath);
-    const sortedVersions = subdirectories.sort((a, b) => parseFloat(a) - parseFloat(b));
-    const indexContent = `const availableVersions = ${JSON.stringify(sortedVersions)};\n\nexport default availableVersions;`;
-    fs.writeFileSync(path.join(fullPath, 'index.js'), indexContent);
 }
 
 const docsRelativeDir = './_content/docs/';

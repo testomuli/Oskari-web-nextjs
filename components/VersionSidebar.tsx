@@ -21,7 +21,7 @@ export default async function VersionSidebar({
   baseHref: string
 }) {
   const versionsWithoutSelected =
-    versions?.filter((version) => selectedVersion !== version) || []
+    versions?.filter((version) => selectedVersion !== version && version !== 'unreleased') || []
 
   const renderVersionMenuContent = (items: string[]) => (
     <ul className={styles.accordionMenu}>
