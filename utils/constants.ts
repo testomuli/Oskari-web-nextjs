@@ -103,3 +103,5 @@ export const commitee = [
     title: '',
   },
 ]
+
+export const UNRELEASED_VERSION = 'unreleased'

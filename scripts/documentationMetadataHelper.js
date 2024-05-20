@@ -1,6 +1,7 @@
 /*eslint @typescript-eslint/no-var-requires: 0*/
 const fs = require('fs');
 const path = require('path');
+const UNRELEASED_VERSION = 'unreleased';
 
 function getSubdirectories(rootDir) {
   return fs.readdirSync(rootDir, { withFileTypes: true })
@@ -12,7 +13,7 @@ function generateDocumentationMetadata(fullPath) {
   const subdirectories = getSubdirectories(fullPath);
   // filter out version 'unreleased' so it will not show up in menus etc. but is still accessible for testing purposes
   const sortedVersions = subdirectories
-      .filter((version) => version !== 'unreleased')
+      .filter((version) => version !== UNRELEASED_VERSION)
       .sort((a, b) => parseFloat(a) - parseFloat(b));
 
   const indexContent = `const availableVersions = ${JSON.stringify(sortedVersions)};\n\nexport default availableVersions;`;
