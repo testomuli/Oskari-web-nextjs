@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import styles from '@/styles/accordion.module.scss'
 import Accordion from './Accordion/Accordion'
+import { UNRELEASED_VERSION } from '../utils/constants'
 
 type subtitleLinks = {
   slug: string
@@ -21,7 +22,7 @@ export default async function VersionSidebar({
   baseHref: string
 }) {
   const versionsWithoutSelected =
-    versions?.filter((version) => selectedVersion !== version && version !== 'unreleased') || []
+    versions?.filter((version) => selectedVersion !== version && version !== UNRELEASED_VERSION) || []
 
   const renderVersionMenuContent = (items: string[]) => (
     <ul className={styles.accordionMenu}>

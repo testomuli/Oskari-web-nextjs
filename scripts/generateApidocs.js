@@ -164,6 +164,12 @@ const version = process.argv.slice(2)[0] || 'latest';
 
 /** Copy the content from under oskari-frontend */
 const apidocsFullpath = './_content/api/versions/';
+const relativeUrlToContent = path.normalize(path.join(process.cwd(), apidocsFullpath));
+if (!fs.existsSync(relativeUrlToContent)) {
+  // create base dir if not available
+  fs.mkdirSync(relativeUrlToContent, { recursive: true });
+}
+
 const sourceDirectoryRelative = '../oskari-frontend/api';
 const destinationDirectoryRelative = apidocsFullpath+version+'/';
 const sourcePath = path.join(process.cwd(), sourceDirectoryRelative);
