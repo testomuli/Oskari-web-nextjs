@@ -113,7 +113,7 @@ export default function BlogsPage() {
             )}
           </div>
         </nav>
-        <div className='grid place-content-center text-center text-gray-400 text-sm'>
+        <div className='grid place-content-center text-center text-gray-500 text-sm'>
           {paginatedPosts && paginatedPosts.length > 0
             ? `Showing ${(currentPage - 1) * POSTS_PER_PAGE + 1} to ${Math.min(
                 currentPage * POSTS_PER_PAGE,
