@@ -49,7 +49,7 @@ export default function DiscoverPage() {
           karttaikkuna).
         </Text>
 
-        <h3>Oskari is developed together</h3>
+        <h2>Oskari is developed together</h2>
         <Text>
           Oskari is coordinated by the National Land Survey of Finland, but the
           software is developed according to the open-source principles - anyone
