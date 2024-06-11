@@ -27,7 +27,7 @@ export default function FeatureCard({
   return (
     <div className={featureCardClass}>
       <div className={styles.featureCard__content}>
-        {title && <h3>{title}</h3>}
+        {title && <h2>{title}</h2>}
         {features?.map((feature) => (
           <div
             className={styles['featureCard__content-item']}
@@ -37,7 +37,7 @@ export default function FeatureCard({
               {feature.icon}
             </div>
             <div className={styles['featureCard__content-item-text']}>
-              <h4>{feature.title}</h4>
+              <h3>{feature.title}</h3>
               <span>{feature.description}</span>
             </div>
           </div>
