@@ -25,7 +25,7 @@ export default function ContributePage() {
         </Text>
       </div>
       <div>
-        <h3 className='my-16'>Come and develop Oskari together!</h3>
+        <h2 className='my-16' style={{fontSize: '1.625rem'}}>Come and develop Oskari together!</h2>
         <div className='flex flex-wrap justify-center xl:justify-evenly gap-x-8 gap-y-16 [&_a]:underline [text-wrap:pretty]'>
           <IconCard
             className='!min-w-[24rem]'

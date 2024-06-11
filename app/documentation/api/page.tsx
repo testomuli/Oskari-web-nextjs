@@ -12,7 +12,7 @@ export default function ApiMainPage() {
         </Text>
         <HighlightBox>
           <div style={{ display: 'flex', flexDirection: 'column'}}>
-            <h3>Building a custom Oskari application</h3>
+            <h2 style={{fontSize: '1.625rem'}}>Building a custom Oskari application</h2>
             <div>
               <p>Choose the functionalities from bundle documentation</p>
               <Button
@@ -21,7 +21,7 @@ export default function ApiMainPage() {
                 href={'/documentation/api/bundles'}/>
             </div>
             <div style={{ marginTop: '2em'}}>
-              <h3>Working with an existing Oskari application</h3>
+              <h2 style={{fontSize: '1.625rem'}}>Working with an existing Oskari application</h2>
               <div style={{ gridColumn: '2' }} className='flex justify-center'>
                 <div className='flex w-full justify-center gap-4 items-center'>
                   <div>
