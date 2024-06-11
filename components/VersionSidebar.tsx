@@ -46,7 +46,7 @@ export default async function VersionSidebar({
   return (
     <aside style={{ display: 'flex', gap: '3rem', flexDirection: 'column' }}>
       <div>
-        <h3 style={{ fontSize: '1.125rem' }}>Select version</h3>
+        <h2 style={{ fontSize: '1.125rem' }}>Select version</h2>
         <Accordion
           title={selectedVersion || 'Select'}
           content={renderVersionMenuContent(versionsWithoutSelected)}
