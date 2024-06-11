@@ -48,26 +48,28 @@ div.apidocContentWrapper {
   font-size: 1.125rem;
 }
 
-.add {
-  background-color : green;
-}
-
-.mod {
-  background-color : orange;
-}
-
-.rem {
-  background-color : red;
-}
-
-.breaking {
-  background-color : red;
-}
 
   /*badges*/
   span.label.label-primary {
     margin-left: 4px;
     margin-right: 4px;
+
+    &.add {
+      background-color : green;
+    }
+
+    &.mod {
+      background-color : orange;
+    }
+
+    &.rem {
+      background-color : red;
+    }
+
+    &.breaking {
+      background-color : red;
+    }
+
   }
 
   .label-primary {
