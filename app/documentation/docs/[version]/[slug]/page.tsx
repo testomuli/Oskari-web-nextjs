@@ -12,6 +12,7 @@ import '@/styles/apidoc.scss'
 import '@fortawesome/fontawesome-free/js/fontawesome.min.js';
 import '@fortawesome/fontawesome-free/css/fontawesome.min.css';
 import '@fortawesome/fontawesome-free/css/solid.min.css';
+import ApiDocContentWrapper from '@/app/documentation/api/components/ApiDocContentWrapper'
 
 export const generateMetadata = async ({
   params,
@@ -91,7 +92,7 @@ export default async function SingleDocPage({
     <div>
       {activeSection ? (
         <div className='md-content max-w-[70ch] mt-7'>
-          <div dangerouslySetInnerHTML={{ __html: activeSection.html }}></div>
+          <ApiDocContentWrapper html={activeSection.html}/>
         </div>
     ) : (
         <h2>Document not found</h2>
