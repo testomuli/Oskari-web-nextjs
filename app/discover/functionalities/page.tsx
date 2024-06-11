@@ -30,7 +30,7 @@ export default function DiscoverPage() {
   }).sort((a, b) => b.date.getTime() - a.date.getTime());
 
   return (
-    <Layout heroSmall heroTitle='Discover Oskari'>
+    <Layout heroSmall heroTitle='Functionalities'>
       <Container
         style={{
           display: 'flex',

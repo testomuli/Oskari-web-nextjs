@@ -41,7 +41,7 @@ export default async function SingleBlogPage({
             <div className='breadcrumbs mb-8 text-sm'>
             <Link
                 href='/blog'
-                className='flex gap-2 font-bold items-center text-gray-400 transition'
+                className='flex gap-2 font-bold items-center text-gray-500 transition'
             >
                 <ArrowLeftIcon className='h-6 w-6' />
                 See all posts
