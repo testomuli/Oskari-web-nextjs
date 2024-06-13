@@ -71,6 +71,7 @@ export const commitee = [
     name: 'Sami Mäkinen',
     img: '/assets/images/people/Sami.jpeg',
     title: 'Chair',
+    organisation: "National Land Survey of Finland",
   },
   {
     name: 'Jussi Arpalahti',
