@@ -5,6 +5,7 @@ import Image from 'next/image'
 const AvatarCard = async ({
   name,
   title,
+  organisation,
   avatar,
   filePath,
   content,
@@ -12,6 +13,7 @@ const AvatarCard = async ({
 }: {
   name: string
   title?: string
+  organisation?: string
   avatar: string
   filePath?: string
   content?: string
@@ -30,13 +32,11 @@ const AvatarCard = async ({
         height={300}
         className='rounded-full aspect-square object-contain'
       />
-      <h3 className='font-bold text-xl flex flex-col my-10'>
-        <span>
-          {name}
-          {title && ','}
-        </span>
-        {title && <span>{title}</span>}
-      </h3>
+      <div>
+        <h3 className='font-bold text-xl flex flex-col my-4'>{name}</h3>
+      </div>
+      {title && <div>{title}</div>}
+      {organisation && <div className={'mb-2'}>{organisation}</div>}
       <p>
         { markdown && <MDXRemote source={markdown} options={{ parseFrontmatter: true }}/>}
         {!markdown && <>{content}</>}

@@ -90,12 +90,13 @@ export default function CommunityPage() {
           {allPosts
             .sort((a, b) => (!a.order || !b.order ? -1 : a.order - b.order))
             .map((coordinator) => {
-              const { name, title, avatar } = coordinator
+              const { name, title, organisation, avatar } = coordinator
               return (
                 <AvatarCard
                   key={name}
                   name={name}
                   title={title}
+                  organisation={organisation}
                   avatar={avatar || ''}
                   filePath={coordinator.path}
                 />
@@ -126,11 +127,12 @@ export default function CommunityPage() {
           Oskari PSC are adopted from GeoServer, GeoNode & other OSGeo projects.
         </Text>
         <div className='flex flex-wrap justify-center lg:justify-around py-16 gap-16 w-full'>
-          {commitee.map(({ name, title, img: avatar }) => (
+          {commitee.map(({ name, title, organisation, img: avatar }) => (
             <AvatarCard
               key={name}
               name={name}
               title={title}
+              organisation={organisation}
               avatar={avatar || '/assets/images/kuva_placeholder.png'}
               content=''
             />
