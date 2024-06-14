@@ -1,6 +1,7 @@
 ---
 name: Sami Mäkinen
-title: technical coordinator National Land Survey of Finland
+title: Technical coordinator
+organisation: National Land Survey of Finland
 avatar: /assets/images/people/Sami.jpeg
 order: 2
 ---
