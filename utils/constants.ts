@@ -38,6 +38,10 @@ export const NAVIGATION_ITEMS: Array<NavigationItemType> = [
       {
         name: 'RPC Example',
         path: '/examples/rpc-api/'
+      },
+      {
+        name: 'Database',
+        path: 'db/index.html'
       }
     ],
   },

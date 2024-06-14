@@ -14,3 +14,7 @@ execSync('node scripts/generateDocumentationMetadata.js');
 // always regenerate 'latest'
 execSync('node scripts/generateApidocs.js latest');
 execSync('node scripts/generateApidocs.js ' + requestedVersion);
+
+//run db generation script
+execSync('npm run db');
+

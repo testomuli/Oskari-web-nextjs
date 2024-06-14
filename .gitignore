@@ -44,3 +44,4 @@ next-env.d.ts
 /public/assets/api
 /public/assets/blog
 /public/assets/docs
+/public/db
