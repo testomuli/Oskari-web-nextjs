@@ -41,7 +41,7 @@ export const NAVIGATION_ITEMS: Array<NavigationItemType> = [
       },
       {
         name: 'Database',
-        path: '/examples/db/'
+        path: 'db/index.html'
       }
     ],
   },

@@ -11,6 +11,7 @@
     "metadata": "node scripts/generateContentMetadata.js",
     "docsmetadata": "node scripts/generateDocumentationMetadata.js",
     "apidocs": "node scripts/generateApidocs.js",
+    "db": "java -jar ./schemaspy/schemaspy-6.2.4.jar -configFile ./schemaspy/conf.properties -dp ./schemaspy/postgresql-42.2.5.jar -o public/db/",
     "test": "jest"
   },
   "browser": {
