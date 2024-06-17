@@ -22,23 +22,23 @@ export default function FaqPage() {
           gap: '5rem',
         }}
       >
-        <h2>For users</h2>
+        <h2>For end-users</h2>
         <AccordionGroup>
-          {allFaqUsers[0]?.questionsAndAnswers?.map(
-            ({ question, answer }: Record<string, string>) => (
-              <Accordion
-                title={question}
-                content={
-                  <div
-                    className='md-content'
-                    dangerouslySetInnerHTML={{
-                      __html: answer || '',
-                    }}
-                  />
-                }
-                key={question}
-              />
-            )
+          {allFaqDevelopers[0]?.questionsAndAnswers?.map(
+            ({ question, answer }: Record<string, string>) => {
+              return (
+                <Accordion
+                  title={question}
+                  content={
+                    <div
+                      className='md-content'
+                      dangerouslySetInnerHTML={{ __html: answer || '' }}
+                    />
+                  }
+                  key={question}
+                />
+              )
+            }
           )}
         </AccordionGroup>
 
@@ -61,6 +61,27 @@ export default function FaqPage() {
             }
           )}
         </AccordionGroup>
+
+        <h2>For admins</h2>
+        <AccordionGroup>
+          {allFaqUsers[0]?.questionsAndAnswers?.map(
+            ({ question, answer }: Record<string, string>) => (
+              <Accordion
+                title={question}
+                content={
+                  <div
+                    className='md-content'
+                    dangerouslySetInnerHTML={{
+                      __html: answer || '',
+                    }}
+                  />
+                }
+                key={question}
+              />
+            )
+          )}
+        </AccordionGroup>
+
       </Container>
       <HighlightBox
         style={{
