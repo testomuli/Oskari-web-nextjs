@@ -10,7 +10,7 @@ export const metadata: Metadata = {
   title: 'Getting Started',
 }
 
-export default function ResourcesPage() {
+export default function GettingStartedPage() {
   return (
     <Layout heroSmall heroTitle='Getting Started'>
       <div>
