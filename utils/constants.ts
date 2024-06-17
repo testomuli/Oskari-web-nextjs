@@ -109,4 +109,7 @@ export const commitee = [
   },
 ]
 
-export const UNRELEASED_VERSION = 'unreleased'
+export const UNRELEASED_VERSION = 'unreleased';
+export const LATEST_STABLE_VERSION = 'latest';
+export const UNRELEASED_VERSION_LABEL = 'Nightly build';
+export const LATEST_STABLE_VERSION_LABEL = 'Latest stable';
