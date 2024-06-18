@@ -8,6 +8,7 @@
     "start": "next start",
     "lint": "next lint",
     "docs": "node scripts/runAll.js",
+    "dummy_docs": "node scripts/generateDummyVersions.js",
     "metadata": "node scripts/generateContentMetadata.js",
     "docsmetadata": "node scripts/generateDocumentationMetadata.js",
     "apidocs": "node scripts/generateApidocs.js",
