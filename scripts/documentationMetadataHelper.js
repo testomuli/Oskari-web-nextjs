@@ -13,8 +13,11 @@ function generateDocumentationMetadata(fullPath) {
   const sortedVersions = subdirectories
       .sort((a, b) => parseFloat(a) - parseFloat(b));
 
-  const indexContent = `const availableVersions = ${JSON.stringify(sortedVersions)};\n\nexport default availableVersions;`;
-  fs.writeFileSync(path.join(fullPath, 'index.js'), indexContent);
+  const indexContent = `
+  const availableVersions: string[] = ${JSON.stringify(sortedVersions)};
+  export default availableVersions;
+  `;
+  fs.writeFileSync(path.join(fullPath, 'index.ts'), indexContent);
 }
 
 exports.getSubdirectories = getSubdirectories;
