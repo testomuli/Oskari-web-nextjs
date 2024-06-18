@@ -32,7 +32,7 @@ export default function GettingStartedPage() {
         <div>
           If you need help with the admin tools, see our FAQ for Oskari admins.
         </div>
-          If you want to understand Oskari's infrastructure, see Oskari architechture.
+        {"If you want to understand Oskari's infrastructure, see Oskari architechture."}
         </Text>
       </div>
       <div>
