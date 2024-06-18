@@ -36,5 +36,7 @@ jobs:
         run: npm run test
       - name: Generate docs metadata
         run: npm run metadata
+      - name: Generate dummy docs metadata
+        run: npm run dummy_docs
       - name: Run build
         run: npm run build
