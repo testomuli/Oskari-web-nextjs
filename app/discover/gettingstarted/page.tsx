@@ -1,9 +1,7 @@
-import IconCard from '@/components/Cards/IconCard'
 import Layout from '@/components/Layout'
 import Text from '@/components/Text'
 import { Metadata } from 'next'
 import HighlightBox from '@/components/HighlightBox'
-import { SITE_CONFIG } from '@/utils/config'
 import Button from '@/components/Button'
 
 export const metadata: Metadata = {
@@ -34,7 +32,7 @@ export default function GettingStartedPage() {
         <div>
           If you need help with the admin tools, see our FAQ for Oskari admins.
         </div>
-          If you want to understand Oskari's infrastructure, see Oskari architechture.
+        {"If you want to understand Oskari's infrastructure, see Oskari architechture."}
         </Text>
       </div>
       <div>
