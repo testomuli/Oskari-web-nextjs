@@ -34,5 +34,7 @@ jobs:
         run: npm install
       - name: Run tests
         run: npm run test
+      - name: Generate docs metadata
+        run: npm run metadata
       - name: Run build
         run: npm run build
