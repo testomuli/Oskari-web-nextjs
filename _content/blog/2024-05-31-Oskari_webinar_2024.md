@@ -1,10 +1,12 @@
 ---
-layout: post  
-title:  "Webinar: Getting started with Oskari 27.9.2024 9:00 - 11:00 AM"  
+layout: post
+title:  "Webinar: Getting started with Oskari 27.9.2024 9:00 - 11:00 AM"
 excerpt: "Join us for a comprehensive webinar about basics of Oskari. "
 date:   2024-05-31  10:00:00 +0300
 categories: [news]
----  
+tags:
+  - blog
+---
 
 # Are you new to the world of Oskari and eager to learn the basics?
 

@@ -4,6 +4,8 @@ title:  "SeutuMassa makes soil management easier"
 excerpt: "SeutuMassa is an open-source (Oskari) software designed to make soil management easier and more efficient"
 date:   2024-04-09  12:05:00 +0300
 categories: [news]
+tags:
+  - blog
 ---
 
 # SeutuMassa makes soil management easier
