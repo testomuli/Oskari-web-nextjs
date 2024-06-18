@@ -1,8 +1,8 @@
 ---
-name: Sinituuli Untamala
+name: Juho Rekilä
 title: Communications coordinator
-organisation: Sitowise
-avatar: /assets/images/people/Sinituuli.jpeg
+organisation: Gispo Oy
+avatar: /assets/images/kuva_placeholder.png
 order: 3
 ---
 
