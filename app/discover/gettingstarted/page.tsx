@@ -1,9 +1,7 @@
-import IconCard from '@/components/Cards/IconCard'
 import Layout from '@/components/Layout'
 import Text from '@/components/Text'
 import { Metadata } from 'next'
 import HighlightBox from '@/components/HighlightBox'
-import { SITE_CONFIG } from '@/utils/config'
 import Button from '@/components/Button'
 
 export const metadata: Metadata = {
