@@ -1,7 +1,4 @@
 import allPosts from '@/_content/blog/';
-
-import { MDXRemote } from 'next-mdx-remote/rsc'
-
 import HighlightBox from '@/components/HighlightBox'
 import Layout from '@/components/Layout'
 import Error from '@/components/Error'
@@ -10,7 +7,7 @@ import { format } from 'date-fns'
 import Link from 'next/link'
 import { ArrowLeftIcon } from '@heroicons/react/20/solid'
 import Image from 'next/image'
-import { readMarkdownFile } from '@/lib/utils';
+import { getMarkdownContentAsHtml } from '@/lib/utils';
 
 const getPostBySlug = (slug: string) => {
     const found = allPosts.find((entry) => {
@@ -34,7 +31,7 @@ export default async function SingleBlogPage({
     // should we have some dynamic content at some point, it would reside here.
     // TODO: might wanna rethink the path/structure, if we wanna have excels or pdfs or whatnot in resources...?
     const blogsResourcesPath = '/assets/blog/';
-    const markdown = await readMarkdownFile(post.path, blogsResourcesPath);
+    const html = await getMarkdownContentAsHtml(post.path, blogsResourcesPath);
     return (
         <Layout heroSmall heroTitle='Blog'>
         <div className='container--content'>
@@ -61,7 +58,7 @@ export default async function SingleBlogPage({
             />
             )}
             <div className='md-content max-w-full' style={{ maxWidth: '100%', marginTop: 0 }}>
-                <MDXRemote source={markdown} options={{ parseFrontmatter: true }} />
+                <div dangerouslySetInnerHTML={{ __html: html || '' }} />
             </div>
         </div>
         {post.author && (
