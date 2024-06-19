@@ -3,9 +3,13 @@ import Card from './Card'
 import Button from '../Button'
 import { CardItemType } from '@/types/types'
 
-const CardList = ({ title, data }: { title: string; data: CardItemType[] }) => {
+const CardList = ({ title, data, isFrontPage = false }: { title: string; data: CardItemType[], isFrontPage?: boolean }) => {
+  let className = 'section-padding';
+  if (isFrontPage) {
+    className += 'section-padding-top-0';
+  }
   return (
-    <section className='section-padding'>
+    <section className={`${className}`}>
       <h2 className={styles.cardList__heading}>{title}</h2>
       <div className={styles.cardList}>
         {data.map((item) => (
