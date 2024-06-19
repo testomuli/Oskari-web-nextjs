@@ -89,6 +89,6 @@ const processMarkdown = (markdown: string, imagesPath: string) => {
 
 export const getMarkdownContentAsHtml = async function(mdFilePath: string, imagesFilePath: string) {
   const markdown = await readMarkdownFile(mdFilePath, imagesFilePath);
-  const html = mdToHtml(markdown);
+  const html = matter(markdown).content;
   return html;
 }

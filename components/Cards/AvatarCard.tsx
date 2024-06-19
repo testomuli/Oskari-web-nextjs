@@ -1,5 +1,4 @@
-import { readMarkdownFile } from '@/lib/utils'
-import { MDXRemote } from 'next-mdx-remote/rsc'
+import { getMarkdownContentAsHtml } from '@/lib/utils'
 import Image from 'next/image'
 
 const AvatarCard = async ({
@@ -19,9 +18,9 @@ const AvatarCard = async ({
   content?: string
   resourcesPath?: string
 }) => {
-  let markdown = null;
+  let html = null;
   if (filePath) {
-    markdown = await readMarkdownFile(filePath, resourcesPath);
+    html = await getMarkdownContentAsHtml(filePath, resourcesPath || '');
   }
   return (
     <div className='flex flex-col items-center justify-start text-left w-[300px] aspect-square'>
@@ -38,8 +37,10 @@ const AvatarCard = async ({
       {title && <div>{title}</div>}
       {organisation && <div className={'mb-2'}>{organisation}</div>}
       <p>
-        { markdown && <MDXRemote source={markdown} options={{ parseFrontmatter: true }}/>}
-        {!markdown && <>{content}</>}
+      { html && <div className='md-content'>
+        <div dangerouslySetInnerHTML={{ __html: html || '' }} />
+      </div>}
+      { !html && <>{content}</> }
       </p>
     </div>
   )
