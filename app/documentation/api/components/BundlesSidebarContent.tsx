@@ -21,8 +21,8 @@ export default function BundlesSidebarContent(
             key={element.name}
             title={ element.name }
             content={<SidebarAccordionContent elements={element.bundles} baseHref={baseHref} showDescription={true} />}
-          />;
+          />
         })}
-      </AccordionGroup>;
+      </AccordionGroup>
     </div>
   }
