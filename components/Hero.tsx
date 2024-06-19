@@ -5,9 +5,11 @@ import Button from './Button'
 export default function Hero({
   small = false,
   title,
+  isFrontPage = false
 }: {
   title?: string
   small?: boolean
+  isFrontPage?: boolean
 }) {
   const heroClass = small
     ? styles['hero__container--small']
@@ -28,7 +30,7 @@ export default function Hero({
         <div className={heroContentClass}>
           <div>
             <h1 className={styles.hero__title}>{title}</h1>
-            {!small && (
+            {isFrontPage && (
               <div className={`${styles.hero__cta} flex gap-4`}>
                 <Button title='Download' variant='dark' href='/download' />
                 <Button
@@ -41,7 +43,7 @@ export default function Hero({
               </div>
             )}
           </div>
-          {!small && (
+          {isFrontPage && (
             <div className={styles.hero__imageContainer}>
               <Image
                 src='/assets/images/header-hero-image.png'

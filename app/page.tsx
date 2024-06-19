@@ -13,7 +13,7 @@ export default function HomePage() {
     .sort((a, b) => b.date.getTime() - a.date.getTime())
     .slice(0, 4)
   return (
-    <Layout>
+    <Layout heroSmall={true} isFrontPage={true}>
       <CardList data={whatsnew} title='What’s new' />
     </Layout>
   )
