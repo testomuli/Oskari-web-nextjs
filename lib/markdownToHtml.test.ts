@@ -1,5 +1,5 @@
 
-import { badgeTemplates, insertIdsToHeaders, processCodeBlocks, processHeaders, processJavascriptBlocks, updateMarkdownHtmlStyleTags, updateMarkdownImagePaths } from "./markdownToHtml";
+import { badgeTemplates, insertIdsToHeaders, processCodeBlocks, processHeaders, processJavascriptBlocks, processTripleQuoteCodeBlocks, updateMarkdownHtmlStyleTags, updateMarkdownImagePaths } from "./markdownToHtml";
 import slugify from 'slugify';
 
 const createTestHtml = () => {
@@ -163,6 +163,27 @@ describe('markdownToHtml tests', () => {
           console.log(a + b);
         \`\`\``;
       const processed = processJavascriptBlocks(markdown).trim();
+      expect(processed.indexOf('´')).toBe(-1);
+      expect(processed.startsWith('<pre><code')).toBe(true);
+    });
+  });
+
+  describe('processing triplequote codeblocks', () => {
+    it ('should prepare triple quote - blocks for highlight.js', () => {
+      const markdown = "``` var a = 0;```";
+      const processed = processTripleQuoteCodeBlocks(markdown);
+      expect(processed.indexOf('´')).toBe(-1);
+      expect(processed.startsWith('<pre><code')).toBe(true);
+    });
+
+    it ('should be able to handle triple quote blocks with multiple lines', () => {
+      const markdown = `
+        \`\`\`
+          var a = 0;
+          let b = 3;
+          console.log(a + b);
+        \`\`\``;
+      const processed = processTripleQuoteCodeBlocks(markdown).trim();
       expect(processed.indexOf('´')).toBe(-1);
       expect(processed.startsWith('<pre><code')).toBe(true);
     });
