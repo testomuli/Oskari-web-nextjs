@@ -19,14 +19,14 @@ export default function GettingStartedPage() {
       <div>
         <h2>Contents</h2>
         <ul>
-          <li><a href="#owners-procurers">Getting Started for Owners & Procurers</a></li>
+          <li><a href="#owners-procurers">Getting Started for Admins, Owners & Procurers</a></li>
           <li><a href="#developers">Getting Started for Developers</a></li>
           <li><a href="#commercial-partners">Getting Started for Commercial partners</a></li>
           <li><a href="#end-users">Getting Started for End-users</a></li>
         </ul>
       </div>
       <div>
-        <h2 id="owners-procurers">Getting Started for Owners & Procurers</h2>
+        <h2 id="owners-procurers">Getting Started for Admins, Owners & Procurers</h2>
         <Text>
           If you are thinking about procuring Oskari, see Instructions for Procurement. There you will get help for procuring new Oskari instance, updating an old Oskari instance or configuring an Oskari instance.
         <div>
@@ -38,15 +38,15 @@ export default function GettingStartedPage() {
       <div>
       <h2 id="developers">Getting Started for Developers</h2>
         <Text>
-          Developing Oskari.
+          Starting an Oskari instance
           <div>
           Updating an old Oskari instance.
           </div>
-          Starting an Oskari instance.
-          <div>
           Configuring Oskari.
-          </div>
+          <div>
           See the Oskari architechture.
+          </div>
+          Developing Oskari.
           <div>
           Open the demo and try out Oskari yourself!
           </div>
