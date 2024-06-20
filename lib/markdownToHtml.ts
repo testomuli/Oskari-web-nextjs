@@ -107,6 +107,17 @@ export const processJavascriptBlocks = (markdownContent: string) => {
   return replacedContent;
 }
 
+export const processTripleQuoteCodeBlocks = (markdownContent: string): string => {
+  const tripleQuoteRegex = /```\s*([^`]|\n)*```/g;
+  const replacedContent = markdownContent.replace(tripleQuoteRegex, (match) => {
+    const replaceTagRegex = /```/;
+    const codeContent = match.replace(replaceTagRegex, '').replace(replaceTagRegex, '').trim();
+    return `<pre><code class="hljs">${hljs.highlightAuto(codeContent).value}</code></pre>`;
+  });
+  return replacedContent;
+}
+
+
 export const processCodeBlocks = (markdownContent: string): string => {
   const codeRegex = /`(.*?)`/g;
   const contentWithCodeBlocks = markdownContent.replace(codeRegex, (match, codeContent) => {
