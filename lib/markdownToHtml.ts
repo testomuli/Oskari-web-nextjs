@@ -117,7 +117,6 @@ export const processTripleQuoteCodeBlocks = (markdownContent: string): string =>
   return replacedContent;
 }
 
-
 export const processCodeBlocks = (markdownContent: string): string => {
   const codeRegex = /`(.*?)`/g;
   const contentWithCodeBlocks = markdownContent.replace(codeRegex, (match, codeContent) => {
@@ -125,4 +124,14 @@ export const processCodeBlocks = (markdownContent: string): string => {
   });
 
   return contentWithCodeBlocks;
+}
+
+export const processMigrationGuideLinks = (markdownContent: string): string => {
+  const regex = /\[(.*?)\]\((MigrationGuide.md)\)/g;
+  const slugified = slugify('Migration guide');
+  const result = markdownContent.replaceAll(regex, (match, linkText) => {
+    // marked is constantly failing to recognize relative md-style links as links so we're we're using html here.
+    return `<a href="#${slugified}">${linkText}</a>`;
+  });
+  return result;
 }
