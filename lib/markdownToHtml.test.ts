@@ -1,5 +1,5 @@
 
-import { badgeTemplates, insertIdsToHeaders, processCodeBlocks, processHeaders, processJavascriptBlocks, updateMarkdownHtmlStyleTags, updateMarkdownImagePaths } from "./markdownToHtml";
+import { badgeTemplates, insertIdsToHeaders, processCodeBlocks, processHeaders, processJavascriptBlocks, processMigrationGuideLinks, processTripleQuoteCodeBlocks, updateMarkdownHtmlStyleTags, updateMarkdownImagePaths } from "./markdownToHtml";
 import slugify from 'slugify';
 
 const createTestHtml = () => {
@@ -168,6 +168,27 @@ describe('markdownToHtml tests', () => {
     });
   });
 
+  describe('processing triplequote codeblocks', () => {
+    it ('should prepare triple quote - blocks for highlight.js', () => {
+      const markdown = "``` var a = 0;```";
+      const processed = processTripleQuoteCodeBlocks(markdown);
+      expect(processed.indexOf('´')).toBe(-1);
+      expect(processed.startsWith('<pre><code')).toBe(true);
+    });
+
+    it ('should be able to handle triple quote blocks with multiple lines', () => {
+      const markdown = `
+        \`\`\`
+          var a = 0;
+          let b = 3;
+          console.log(a + b);
+        \`\`\``;
+      const processed = processTripleQuoteCodeBlocks(markdown).trim();
+      expect(processed.indexOf('´')).toBe(-1);
+      expect(processed.startsWith('<pre><code')).toBe(true);
+    });
+  });
+
   describe('processing codeblocks', () => {
     it ('should prepare code - blocks', () => {
       const markdown = "`var a = 0;`";
@@ -176,4 +197,19 @@ describe('markdownToHtml tests', () => {
       expect(processed.startsWith('<code')).toBe(true);
     });
   });
+
+  describe('Link to migration guide', () => {
+    it('should replace migration guide link with anchor', () => {
+      const markdown = `[Migrationguide](MigrationGuide.md)`;
+      const markdownAfter = `<a href="#Migration-guide">Migrationguide</a>`;
+      const processed = processMigrationGuideLinks(markdown).trim();
+      expect(processed).toEqual(markdownAfter);
+    });
+
+    it('should leave link with absolute path alone', () => {
+      const markdown = `[Migrationguide](http://www.migrationguideland.com/MigrationGuide.md)`;
+      const processed = processMigrationGuideLinks(markdown).trim();
+      expect(processed).toEqual(markdown);
+    });
+  })
 });
