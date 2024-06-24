@@ -2,7 +2,7 @@ import fs from 'fs'
 import path from 'path'
 import matter from 'gray-matter'
 import { MERMAID_SNIPPET, mdToHtml } from './customMarked'
-import { insertIdsToHeaders, processCodeBlocks, processHeaders, processJavascriptBlocks, processMigrationGuideLinks, processTripleQuoteCodeBlocks, updateMarkdownHtmlStyleTags, updateMarkdownImagePaths } from './markdownToHtml'
+import { insertIdsToHeaders, processAllLinks, processCodeBlocks, processHeaders, processJavascriptBlocks, processMigrationGuideLinks, processTripleQuoteCodeBlocks, updateMarkdownHtmlStyleTags, updateMarkdownImagePaths } from './markdownToHtml'
 import { MarkdownFileMetadata, VersionDocType } from '@/types/types'
 export function slugify(input: string): string {
   return input
@@ -97,8 +97,10 @@ const processMarkdown = (markdown: string, imagesPath: string) => {
   markdown = updateMarkdownImagePaths(markdown, imagesPath);
   markdown = updateMarkdownHtmlStyleTags(markdown);
   markdown = processHeaders(markdown);
+  // migration guide first, specific treatment for that
   markdown = processMigrationGuideLinks(markdown);
-
+  //process rest of the links from md style -> <a href... to help the lib that's supposed to be doing this in its efforts.
+  markdown = processAllLinks(markdown);
   // these are dependent to be run in this order
   markdown = processJavascriptBlocks(markdown);
   markdown = processTripleQuoteCodeBlocks(markdown);

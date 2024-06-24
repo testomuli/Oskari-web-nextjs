@@ -126,11 +126,21 @@ export const processCodeBlocks = (markdownContent: string): string => {
   return contentWithCodeBlocks;
 }
 
+export const processAllLinks = (markdownContent: string): string => {
+  const linkRegex = /(?<!\!)\[([^\]]+)\]\(([^)]+)\)/g;
+  const result = markdownContent.replaceAll(linkRegex, (match, linkText, linkUrl) => {
+    // marked is constantly failing to recognize relative md-style links as links so we're using html here.
+    return `<a href="${linkUrl}">${linkText}</a>`;
+  });
+  return result;
+
+}
+
 export const processMigrationGuideLinks = (markdownContent: string): string => {
   const regex = /\[(.*?)\]\((MigrationGuide.md)\)/g;
   const slugified = slugify('Migration guide');
   const result = markdownContent.replaceAll(regex, (match, linkText) => {
-    // marked is constantly failing to recognize relative md-style links as links so we're we're using html here.
+    // marked is constantly failing to recognize relative md-style links as links so we're using html here.
     return `<a href="#${slugified}">${linkText}</a>`;
   });
   return result;

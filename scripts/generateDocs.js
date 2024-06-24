@@ -42,7 +42,7 @@ fs.mkdirSync(pathToNewFiles, {recursive: true});
 const mdContent = `
 # Changelog
 
-In the following paragraphs we've listed an aggregated result of changes specific to this version of Oskari. Following the below links you can access full notes of different components.
+In the following paragraphs we've listed an aggregated result of changes specific to this version of Oskari. Following the links below you can access full notes of different components.
 
 - [Oskari frontend release notes](https://github.com/oskariorg/oskari-frontend/blob/master/ReleaseNotes.md)
 - [Oskari server release notes](https://github.com/oskariorg/oskari-server/blob/master/ReleaseNotes.md)
