@@ -5,13 +5,17 @@ import Accordion from '@/components/Accordion/Accordion'
 import AccordionGroup from '@/components/Accordion/AccordionGroup'
 import Button from '@/components/Button'
 import HighlightBox from '@/components/HighlightBox'
-import { allFaqDevelopers, allFaqUsers } from '@/.contentlayer/generated'
+import allPosts from '@/_content/faq';
 
 export const metadata: Metadata = {
   title: 'FAQ',
 }
 
 export default function FaqPage() {
+
+  const faqDevelopers = allPosts[0] || null;
+  const faqUsers = allPosts[1] || null;
+
   return (
     <Layout heroSmall heroTitle='FAQ'>
       <Container
@@ -24,27 +28,27 @@ export default function FaqPage() {
       >
         <h2>For end-users</h2>
         <AccordionGroup>
-          {allFaqDevelopers[0]?.questionsAndAnswers?.map(
-            ({ question, answer }: Record<string, string>) => {
-              return (
-                <Accordion
-                  title={question}
-                  content={
-                    <div
-                      className='md-content'
-                      dangerouslySetInnerHTML={{ __html: answer || '' }}
-                    />
-                  }
-                  key={question}
-                />
-              )
-            }
+          {faqUsers?.questionsAndAnswers?.map(
+            ({ question, answer }: Record<string, string>) => (
+              <Accordion
+                title={question}
+                content={
+                  <div
+                    className='md-content'
+                    dangerouslySetInnerHTML={{
+                      __html: answer || '',
+                    }}
+                  />
+                }
+                key={question}
+              />
+            )
           )}
         </AccordionGroup>
 
         <h2>For developers</h2>
         <AccordionGroup>
-          {allFaqDevelopers[0]?.questionsAndAnswers?.map(
+          {faqDevelopers?.questionsAndAnswers?.map(
             ({ question, answer }: Record<string, string>) => {
               return (
                 <Accordion
@@ -64,7 +68,7 @@ export default function FaqPage() {
 
         <h2>For admins</h2>
         <AccordionGroup>
-          {allFaqUsers[0]?.questionsAndAnswers?.map(
+          {faqUsers?.questionsAndAnswers?.map(
             ({ question, answer }: Record<string, string>) => (
               <Accordion
                 title={question}
