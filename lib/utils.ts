@@ -2,7 +2,7 @@ import fs from 'fs'
 import path from 'path'
 import matter from 'gray-matter'
 import { MERMAID_SNIPPET, mdToHtml } from './customMarked'
-import { insertIdsToHeaders, processCodeBlocks, processHeaders, processJavascriptBlocks, processMigrationGuideLinks, processTripleQuoteCodeBlocks, updateMarkdownHtmlStyleTags, updateMarkdownImagePaths } from './markdownToHtml'
+import { insertIdsToHeaders, processAllLinks, processCodeBlocks, processHeaders, processJavascriptBlocks, processMigrationGuideLinks, processTripleQuoteCodeBlocks, updateMarkdownHtmlStyleTags, updateMarkdownImagePaths } from './markdownToHtml'
 import { MarkdownFileMetadata, VersionDocType } from '@/types/types'
 export function slugify(input: string): string {
   return input
@@ -49,8 +49,18 @@ export const readAndConcatMarkdownFiles = async function(parentItem: MarkdownFil
     const cwdPath = path.resolve(process.cwd());
     const fullPath = path.normalize(path.join(cwdPath, element.path));
     const markdown = fs.readFileSync(fullPath, 'utf8');
-    const { content } = matter(markdown);
-    markdownAll += content;
+    let { content } = matter(markdown);
+
+    // TODO: this might be something other than 6. But on the other hand we might have other hierarchies that have
+    // changelog in the title so keeping this for now and dealing with this later if we need to.
+    // parentItem = the directory
+    // element = file.
+    // So, we are replacing every # heading with ## heading, unless it's the Changelog file itself...
+    if (parentItem.title.startsWith('6 Changelog') && element.fileName !== 'Changelog.md') {
+      content = replaceLevelOneHeadingsWithLevelTwo(content)
+    }
+
+    markdownAll += content +'\r\n\r\n';
   });
 
   markdownAll = processMarkdown(markdownAll, imagesPath);
@@ -77,12 +87,20 @@ export const cleanTags = (htmlString: string) => {
   return htmlString.replace(/<[^>]+>/g, '');
 }
 
+const replaceLevelOneHeadingsWithLevelTwo = (markdown: string): string => {
+  const headerRegex = /^# (.*)$/gm;
+  const replacedString = markdown.replace(headerRegex, '## $1');
+  return replacedString;
+}
+
 const processMarkdown = (markdown: string, imagesPath: string) => {
   markdown = updateMarkdownImagePaths(markdown, imagesPath);
   markdown = updateMarkdownHtmlStyleTags(markdown);
   markdown = processHeaders(markdown);
+  // migration guide first, specific treatment for that
   markdown = processMigrationGuideLinks(markdown);
-
+  //process rest of the links from md style -> <a href... to help the lib that's supposed to be doing this in its efforts.
+  markdown = processAllLinks(markdown);
   // these are dependent to be run in this order
   markdown = processJavascriptBlocks(markdown);
   markdown = processTripleQuoteCodeBlocks(markdown);

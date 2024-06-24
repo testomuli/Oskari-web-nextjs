@@ -38,7 +38,18 @@ const pathToServerRepository = path.join(pathToExternalRepos, 'oskari-server/');
 const pathToNewFiles = path.join(pathToVersionRoot, '/6 Changelog');
 // Init folder and heading file
 fs.mkdirSync(pathToNewFiles, {recursive: true});
-fs.writeFileSync(path.join(pathToNewFiles, "Changelog.md"), "# Changelog\n");
+
+const mdContent = `
+# Changelog
+
+In the following paragraphs we've listed an aggregated result of changes specific to this version of Oskari. Following the links below you can access full notes of different components.
+
+- [Oskari frontend release notes](https://github.com/oskariorg/oskari-frontend/blob/master/ReleaseNotes.md)
+- [Oskari server release notes](https://github.com/oskariorg/oskari-server/blob/master/ReleaseNotes.md)
+- [Migration guide](https://github.com/oskariorg/oskari-server/blob/master/MigrationGuide.md)
+`;
+
+fs.writeFileSync(path.join(pathToNewFiles, "Changelog.md"), mdContent);
 
 // Create a summary section highlighting the changes in new version from these files
 const filesToHandle = {
