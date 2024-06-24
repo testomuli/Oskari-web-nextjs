@@ -1,5 +1,5 @@
 
-import { badgeTemplates, insertIdsToHeaders, processCodeBlocks, processHeaders, processJavascriptBlocks, processMigrationGuideLinks, processTripleQuoteCodeBlocks, updateMarkdownHtmlStyleTags, updateMarkdownImagePaths } from "./markdownToHtml";
+import { badgeTemplates, insertIdsToHeaders, processAllLinks, processCodeBlocks, processHeaders, processJavascriptBlocks, processMigrationGuideLinks, processTripleQuoteCodeBlocks, updateMarkdownHtmlStyleTags, updateMarkdownImagePaths } from "./markdownToHtml";
 import slugify from 'slugify';
 
 const createTestHtml = () => {
@@ -209,6 +209,21 @@ describe('markdownToHtml tests', () => {
     it('should leave link with absolute path alone', () => {
       const markdown = `[Migrationguide](http://www.migrationguideland.com/MigrationGuide.md)`;
       const processed = processMigrationGuideLinks(markdown).trim();
+      expect(processed).toEqual(markdown);
+    });
+  })
+
+  describe('Rest of the links', () => {
+    it('should replace md-style link with anchor', () => {
+      const markdown = `[Some link text](http://somelink.com)`;
+      const markdownAfter = `<a href="http://somelink.com">Some link text</a>`;
+      const processed = processAllLinks(markdown).trim();
+      expect(processed).toEqual(markdownAfter);
+    });
+
+    it('should leave imagelink alone', () => {
+      const markdown = `![Some image](http://someimage.com)`;
+      const processed = processAllLinks(markdown).trim();
       expect(processed).toEqual(markdown);
     });
   })
