@@ -49,8 +49,18 @@ export const readAndConcatMarkdownFiles = async function(parentItem: MarkdownFil
     const cwdPath = path.resolve(process.cwd());
     const fullPath = path.normalize(path.join(cwdPath, element.path));
     const markdown = fs.readFileSync(fullPath, 'utf8');
-    const { content } = matter(markdown);
-    markdownAll += content;
+    let { content } = matter(markdown);
+
+    // TODO: this might be something other than 6. But on the other hand we might have other hierarchies that have
+    // changelog in the title so keeping this for now and dealing with this later if we need to.
+    // parentItem = the directory
+    // element = file.
+    // So, we are replacing every # heading with ## heading, unless it's the Changelog file itself...
+    if (parentItem.title.startsWith('6 Changelog') && element.fileName !== 'Changelog.md') {
+      content = replaceLevelOneHeadingsWithLevelTwo(content)
+    }
+
+    markdownAll += content +'\r\n';
   });
 
   markdownAll = processMarkdown(markdownAll, imagesPath);
@@ -75,6 +85,12 @@ export const readAndConcatMarkdownFiles = async function(parentItem: MarkdownFil
 /** cleans up html tags from a given string (used for cleaning up a heading from badges in documentation toc)  */
 export const cleanTags = (htmlString: string) => {
   return htmlString.replace(/<[^>]+>/g, '');
+}
+
+const replaceLevelOneHeadingsWithLevelTwo = (markdown: string): string => {
+  const headerRegex = /^# (.*)$/gm;
+  const replacedString = markdown.replace(headerRegex, '## $1');
+  return replacedString;
 }
 
 const processMarkdown = (markdown: string, imagesPath: string) => {
