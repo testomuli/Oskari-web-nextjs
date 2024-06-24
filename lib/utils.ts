@@ -60,7 +60,7 @@ export const readAndConcatMarkdownFiles = async function(parentItem: MarkdownFil
       content = replaceLevelOneHeadingsWithLevelTwo(content)
     }
 
-    markdownAll += content +'\r\n';
+    markdownAll += content +'\r\n\r\n';
   });
 
   markdownAll = processMarkdown(markdownAll, imagesPath);
