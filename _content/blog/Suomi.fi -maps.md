@@ -3,7 +3,7 @@ layout: ''
 title: Suomi.fi -maps
 excerpt: Suomi.fi-maps is part of Finnish e-services for public sector organisations. With Suomi.fi-maps municipalities and other public sector organisations can create and publish embedded maps to their own web-sites for either internal or public use.
 date: 2023-12-01 13:00:00 +0200
-image: /assets/images/blog/Suomifi-kartat.png
+image: /resources/Suomifi-kartat.png
 tags:
   - Use case
 ---
@@ -26,4 +26,4 @@ Users are, e.g., Finnish municipalities, regional councils, governmental organis
 
 ## Find out more!
 
-<http://www.maanmittauslaitos.fi/asioi-verkossa/suomifi-kartat>
+[http://www.maanmittauslaitos.fi/asioi-verkossa/suomifi-kartat](http://www.maanmittauslaitos.fi/asioi-verkossa/suomifi-kartat)

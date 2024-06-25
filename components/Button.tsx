@@ -25,12 +25,21 @@ const Button = ({
   external,
   newWindow,
 }: ButtonProps) => {
-  const variantStyle = variant ? `btn--${variant}` : ''
+  const variantStyle = variant ? `btn--${variant}` : '';
+  let btnLabel = label ? label : '';
+  if (btnLabel != '') {
+    if (title) {
+      btnLabel += ' - ';
+    }
+  }
+
+  btnLabel += title ? title : '';
+
   if (external) {
     ;<a
       className={`btn ${variantStyle}`}
       href={href}
-      aria-label={`${label} – ${title}`}
+      aria-label={btnLabel}
       target={newWindow ? '_blank' : '_self'}
       rel='noopener noreferrer'
     >
@@ -45,7 +54,7 @@ const Button = ({
       <Link
         className={`btn ${variantStyle}`}
         href={href}
-        aria-label={`${label} – ${title}`}
+        aria-label={btnLabel}
         target={newWindow ? '_blank' : '_self'}
         rel='noopener noreferrer'
       >

@@ -82,6 +82,9 @@ h6 {
   margin-block-start: 1.5em;
   margin-block-end: 1.5em;
 }
+h1 {
+  font-size: 3em;
+}
 
 h2 {
   font-size: 2.5rem;
@@ -123,6 +126,8 @@ h3 {
 }
 
 .layout--docs {
+  overflow: hidden;
+  word-break: break-word;
   display: grid;
   gap: 4rem;
   grid-template-columns: 1fr 3fr;

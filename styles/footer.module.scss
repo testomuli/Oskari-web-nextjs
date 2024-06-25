@@ -99,4 +99,9 @@
       max-width: 195px;
     }
   }
+
+  /*make h2 look like h3 to make both accessibility and design happy*/
+  h2 {
+    font-size: 1.625rem;
+  }
 }

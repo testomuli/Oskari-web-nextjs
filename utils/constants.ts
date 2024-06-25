@@ -10,6 +10,10 @@ export const NAVIGATION_ITEMS: Array<NavigationItemType> = [
     path: '/discover',
     children: [
       {
+          name: 'Getting started',
+          path: '/discover/gettingstarted',
+      },
+      {
         name: 'Functionalities',
         path: '/discover/functionalities',
       },
@@ -20,17 +24,25 @@ export const NAVIGATION_ITEMS: Array<NavigationItemType> = [
     ],
   },
   {
-    name: 'Resources',
-    path: '/resources',
+    name: 'Documentation',
+    path: '/documentation/docs',
     children: [
       {
         name: 'FAQ',
-        path: '/resources/faq',
+        path: '/documentation/faq',
       },
       {
-        name: 'Documentation',
-        path: '/resources/docs',
+        name: 'API',
+        path: '/documentation/api',
       },
+      {
+        name: 'RPC Example',
+        path: '/examples/rpc-api/'
+      },
+      {
+        name: 'Database',
+        path: 'db/index.html'
+      }
     ],
   },
   {
@@ -63,6 +75,7 @@ export const commitee = [
     name: 'Sami Mäkinen',
     img: '/assets/images/people/Sami.jpeg',
     title: 'Chair',
+    organisation: "National Land Survey of Finland",
   },
   {
     name: 'Jussi Arpalahti',
@@ -95,3 +108,8 @@ export const commitee = [
     title: '',
   },
 ]
+
+export const UNRELEASED_VERSION = 'unreleased';
+export const LATEST_STABLE_VERSION = 'latest';
+export const UNRELEASED_VERSION_LABEL = 'Nightly build';
+export const LATEST_STABLE_VERSION_LABEL = 'Latest stable';

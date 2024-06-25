@@ -38,7 +38,7 @@ export const SITE_CONFIG = {
     },
     {
       title: 'Documentation',
-      path: '/resources/docs',
+      path: '/documentation/docs',
     },
     {
       title: 'FAQ',

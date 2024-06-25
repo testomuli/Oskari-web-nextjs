@@ -1,4 +1,4 @@
-import { allCoordinators } from '@/.contentlayer/generated'
+import allPosts from '@/_content/coordinators/';
 import AvatarCard from '@/components/Cards/AvatarCard'
 import HighlightBox from '@/components/HighlightBox'
 import Layout from '@/components/Layout'
@@ -87,17 +87,18 @@ export default function CommunityPage() {
           product owners and the communication coordinator.
         </Text>
         <div className='flex flex-wrap justify-center lg:justify-around py-14 gap-16 w-full'>
-          {allCoordinators
-            ?.sort((a, b) => (!a.order || !b.order ? -1 : a.order - b.order))
-            ?.map((coordinator) => {
-              const { name, title, avatar } = coordinator
+          {allPosts
+            .sort((a, b) => (!a.order || !b.order ? -1 : a.order - b.order))
+            .map((coordinator) => {
+              const { name, title, organisation, avatar } = coordinator
               return (
                 <AvatarCard
                   key={name}
                   name={name}
                   title={title}
+                  organisation={organisation}
                   avatar={avatar || ''}
-                  content={coordinator.body.raw}
+                  filePath={coordinator.path}
                 />
               )
             })}
@@ -126,11 +127,12 @@ export default function CommunityPage() {
           Oskari PSC are adopted from GeoServer, GeoNode & other OSGeo projects.
         </Text>
         <div className='flex flex-wrap justify-center lg:justify-around py-16 gap-16 w-full'>
-          {commitee.map(({ name, title, img: avatar }) => (
+          {commitee.map(({ name, title, organisation, img: avatar }) => (
             <AvatarCard
               key={name}
               name={name}
               title={title}
+              organisation={organisation}
               avatar={avatar || '/assets/images/kuva_placeholder.png'}
               content=''
             />

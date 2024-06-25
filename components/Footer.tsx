@@ -17,14 +17,14 @@ const Footer = () => {
       <div className={`${styles.footer__wrapper} content-grid`}>
         <div className={`${styles.footer__container} container`}>
           <div className={styles.footer__contact}>
-            <h3>Contact</h3>
+            <h2>Contact</h2>
             <a href='mailto:info@oskari.org'>info@oskari.org</a>
             <p>
               Oskari project’s coordinator is National Land Survey of Finland
             </p>
           </div>
           <div className={styles.footer__sitemap}>
-            <h3>Sitemap</h3>
+            <h2>Sitemap</h2>
             <div role='navigation' aria-label='Footer navigation'>
               <ul className={styles['footer__sitemap-links']}>
                 {sitemap.map((item) => (
@@ -39,7 +39,7 @@ const Footer = () => {
             </div>
           </div>
           <div className={styles.footer__social}>
-            <h3>Follow us</h3>
+            <h2>Follow us</h2>
             <ul className={styles['footer__social-links']} aria-label='Socials'>
               {(Object.keys(socials) as Array<keyof typeof socials>).map(
                 (key) => {
@@ -65,7 +65,7 @@ const Footer = () => {
             </ul>
           </div>
           <div className={styles.footer__community}>
-            <h3>OSGeo community</h3>
+            <h2>OSGeo community</h2>
             <Image
               src='/assets/images/osgeo_logo.png'
               alt='OSGeo community logo'

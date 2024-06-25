@@ -39,8 +39,9 @@ Clone documentation repos in parallel folders next to this one
 
 1) clone https://github.com/oskariorg/oskari-documentation -> (Should be found in `../oskari-documentation`)
 2) clone https://github.com/oskariorg/oskari-frontend -> (Should be found in `../oskari-frontend`)
-3) Run `npm run docs [version]` where `[version]` is like `2.13.0`
+3) clone https://github.com/oskariorg/oskari-server -> (Should be found in `../oskari-server`)
+4) Run `npm run docs [version]` where `[version]` is like `2.13.0`
 
 This:
 - shovels in everything under `oskari-documentation` to `_content/docs/[version]/`
-- copies `ReleaseNotes.md` and `api/CHANGELOG.md` to  `_content/docs/[version]/2 Application functionality/`
+- copies `ReleaseNotes.md` and `api/CHANGELOG.md` to  `_content/docs/[version]/6 Changelog/`

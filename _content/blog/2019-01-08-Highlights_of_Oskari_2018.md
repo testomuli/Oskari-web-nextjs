@@ -54,4 +54,4 @@ This inspired us to collect all the known Oskari API examples together. Tell us 
 
 Last but not least. Oskari Otter traveled his way into people's hearts in Twitter<3! We had the privilege to start working with Oskari Otter - a laid back full stack developer who has been living most of his life in the basement of National Land Survey of Finland enjoying his share of fish and chips. In the fall 2018 Oskari Otter blew the roof and became the ambassador of open source. Now he travels everywhere Oskari software goes. If you see him, be sure to take a picture and tag him #oskariotter.
 
-![Oskari otter](/assets/images/blog/oskari_otter_tre.jpeg)
+![Oskari otter](/resources/oskari_otter_tre.jpeg)

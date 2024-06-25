@@ -16,7 +16,7 @@ The Oskari mapping service had a strong presence at the event. The presentations
 
 Sami Mäkinen from National Land Survey of Finland presented Oskari and its improvements to existing functionalities and new features introduced during the last year. In his presentation, Sami went through Oskari’s theme support, the UI rewrite progress and cloud compatibility improvements.
 
-![Man walking](/assets/images/blog/walk.png)
+![Man walking](/resources/walk.png)
 
 Oskari was also demonstrated in the presentation by Arto Sinkkonen from National Land Survey of Finland. Arto described with examples, how the Oskari platform and its features have been used to implement the Suomi.fi-maps service.
 

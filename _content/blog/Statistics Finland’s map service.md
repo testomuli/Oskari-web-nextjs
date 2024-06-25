@@ -3,7 +3,7 @@ layout: ''
 title: Statistics Finland's map service
 excerpt: All of Statistics Finland's open geospatial data sets are available through Statistics Finland's map service. Statistics Finland's open spatial data sets consist mainly of statistical regions and statistical data combined with them.
 date: 2023-12-01 13:00:00 +0200
-image: /assets/images/blog/Tilastokeskus.jpg
+image: /resources/Tilastokeskus.jpg
 tags:
   - Use case
 ---
@@ -25,5 +25,4 @@ In the map service, it is also possible to make statistical thematic maps. The a
 Anyone interested in statistical regions and statistical data.
 
 ## Find out more!
-
-<https://tilastokeskus-kartta.swgis.fi/>
+[https://tilastokeskus-kartta.swgis.fi/](https://tilastokeskus-kartta.swgis.fi/)

@@ -1,7 +1,8 @@
-import { allPosts, Post } from '@/.contentlayer/generated'
+import allPosts from '@/_content/blog/';
 import UseCasesCard from '@/components/Cards/UseCasesCard'
 import Container from '@/components/Container'
 import Layout from '@/components/Layout'
+import { format } from 'date-fns';
 import { Metadata } from 'next'
 
 export const metadata: Metadata = {
@@ -9,6 +10,20 @@ export const metadata: Metadata = {
 }
 
 export default function DiscoverPage() {
+  const postItems = allPosts.map((post) => {
+    const item = {
+      // TODO: we should probably have id other than slug
+      id: post.slug,
+      title: post.title || '',
+      date: new Date(post.date),
+      image: post.image || '',
+      description: post.excerpt,
+      href: 'blog/' + post.slug,
+      tags: post.tags,
+    }
+    return item
+  }).sort((a, b) => b.date.getTime() - a.date.getTime());
+
   return (
     <Layout heroSmall heroTitle='Use cases'>
       <Container
@@ -19,7 +34,7 @@ export default function DiscoverPage() {
         }}
       >
         <div className='flex gap-x-10 gap-y-12 flex-wrap justify-center'>
-          {allPosts
+          {postItems
             ?.filter(
               (post) =>
                 post.tags
@@ -29,14 +44,14 @@ export default function DiscoverPage() {
             .sort(
               (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
             )
-            ?.map(({ date, _id: id, title, excerpt, url, image }: Post) => (
+            ?.map(({ id, title, description, href, image, date }) => (
               <UseCasesCard
                 key={id}
                 image={image || ''}
-                date={date}
+                date={format(new Date(date), 'yyyy-MM-dd')}
                 title={title}
-                excerpt={excerpt}
-                url={url}
+                excerpt={description}
+                url={href}
               />
             ))}
         </div>

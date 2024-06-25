@@ -1,0 +1,100 @@
+div.overFlowHidden {
+  overflow: hidden;
+}
+
+div.apidocContentWrapper {
+  overflow: hidden;
+  word-wrap: break-word;
+
+  table {
+    font-size: 0.8em;
+  }
+
+  tr {
+    vertical-align: top;
+  }
+
+  td {
+    padding: 5px;
+  }
+
+  tr:nth-child(even) {
+    background: #EFEFEF
+  }
+
+  th {
+    text-align: left;
+  }
+}
+
+.apidocSidebarLink {
+  padding-bottom: 0.5rem;
+  color: #428bca;
+  font-size: 1rem;
+}
+
+.apidocSidebarDesc {
+  padding: 0 2rem;
+  font-size: 0.9rem;
+  overflow: hidden;
+  word-wrap: break-word;
+}
+
+.sidebarMainDiv {
+  top: 2em;
+}
+
+.sidebarCheckboxesTitle {
+  font-size: 1.125rem;
+}
+
+
+  /*badges*/
+  span.label.label-primary {
+    margin-left: 4px;
+    margin-right: 4px;
+
+    &.add {
+      background-color : green;
+    }
+
+    &.mod {
+      background-color : orange;
+    }
+
+    &.rem {
+      background-color : red;
+    }
+
+    &.breaking {
+      background-color : red;
+    }
+
+  }
+
+  .label-primary {
+    background-color: #428bca;
+  }
+
+  .label {
+    display: inline;
+    padding: .4em .6em .2em .6em;
+    font-size: 75%;
+    font-weight: 700;
+    line-height: 1;
+    color: #fff;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: baseline;
+    border-radius: .25em;
+  }
+
+  code:not(.hljs) {
+    padding: 2px 4px;
+    font-size: 90%;
+    color: #c7254e;
+    background-color: #f9f2f4;
+    border-radius: 4px;
+    overflow: hidden;
+    word-wrap: break-word;
+  }

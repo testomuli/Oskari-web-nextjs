@@ -1,0 +1,28 @@
+.checkbox_group {
+  display: flex;
+  flex-direction: row;
+  box-shadow: 10px 10px 20px 0px #0000001a;
+  border-radius: 1.875rem;
+  overflow: hidden;
+  padding: 1.25rem 1.25rem;
+  margin-bottom: 1rem;
+}
+
+.checkbox {
+  display: flex;
+  flex-direction: row;
+
+  &__header {
+    background-color: var(--color-light);
+    font-weight: 700;
+    font-family: var(--font-primary);
+    padding: 0 1rem;
+    cursor: pointer;
+    transition: background-color 0.25s ease-out 0.175s;
+    display: block;
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 1rem;
+  }
+}

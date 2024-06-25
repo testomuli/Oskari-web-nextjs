@@ -2,7 +2,7 @@
 title: City of Tampere
 date: 2023-12-01 13:00:00 +0200
 excerpt: The City of Tampere Map Service is a public view of the information the city provides to its citizens, but Oskari is also used internally by city officials.
-image: /assets/images/blog/Tampere.jpg
+image: /resources/Tampere.jpg
 tags:
   - blog
   - use case
@@ -28,4 +28,4 @@ The main use is for residents, City of Tampere staff and the city stakeholders.
 
 ## Find out more!
 
-<https://kartat.tampere.fi/oskari>
+[https://kartat.tampere.fi/oskari](https://kartat.tampere.fi/oskari)

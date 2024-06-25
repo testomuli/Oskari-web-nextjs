@@ -25,7 +25,7 @@ const Card = ({
           className={`${styles.card__cta} flex justify-between items-center`}
         >
           {tags && tags?.length > 0 && (
-            <span className='text-gray-300 text-xs font-medium me-2 px-2.5 py-0.5 rounded border border-gray-300'>
+            <span className='text-gray-500 text-xs font-medium me-2 px-2.5 py-0.5 rounded border border-gray-500'>
               {tags
                 .map(
                   (tag) =>
@@ -91,7 +91,7 @@ const Card = ({
             className={`${styles.card__cta} flex justify-between items-center`}
           >
             {tags && tags?.length > 0 && (
-              <span className='text-gray-300 text-xs font-medium me-2 px-2.5 py-0.5 rounded border border-gray-300'>
+              <span className='text-gray-500 text-xs font-medium me-2 px-2.5 py-0.5 rounded border border-gray-500'>
                 {tags
                   .map(
                     (tag) =>

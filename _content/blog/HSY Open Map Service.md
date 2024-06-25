@@ -3,7 +3,7 @@ layout: ''
 title: HSY Open Map Service
 excerpt: The HSY open map service provides open data for everyone to use.
 date: 2023-12-01 13:00:00 +0200
-image: /assets/images/blog/HSY_Open_Maps.jpg
+image: /resources/HSY_Open_Maps.jpg
 tags:
   - Use case
 ---
@@ -24,4 +24,4 @@ Everyone from citizens to GI Specialists.
 
 ## Find out more!
 
-<https:www.kartta.hsy.fi>
+[https:www.kartta.hsy.fi](https:www.kartta.hsy.fi)

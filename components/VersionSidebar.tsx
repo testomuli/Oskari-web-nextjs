@@ -1,6 +1,7 @@
 import Link from 'next/link'
 import styles from '@/styles/accordion.module.scss'
 import Accordion from './Accordion/Accordion'
+import { LATEST_STABLE_VERSION, LATEST_STABLE_VERSION_LABEL, UNRELEASED_VERSION, UNRELEASED_VERSION_LABEL } from '@/utils/constants'
 
 type subtitleLinks = {
   slug: string
@@ -12,24 +13,44 @@ export default async function VersionSidebar({
   subTitle,
   subTitleLinks = [],
   versions,
+  baseHref
 }: {
   selectedVersion: string
   subTitle?: string
   subTitleLinks?: subtitleLinks[]
-  versions?: string[]
+  versions?: string[],
+  baseHref: string
 }) {
-  const versionsWithoutSelected =
-    versions?.filter((version) => selectedVersion !== version) || []
 
-  const renderVersionMenuContent = (items: string[]) => (
+  const mapLabelToVersion = (item: string) => {
+    let displayVersion = item === UNRELEASED_VERSION ? UNRELEASED_VERSION_LABEL : item;
+    displayVersion = item === LATEST_STABLE_VERSION ? LATEST_STABLE_VERSION_LABEL : displayVersion;
+    return displayVersion;
+  }
+
+  const versionsWithoutSelected = versions?.filter((version) => selectedVersion !== version)
+    .sort((a, b) => {
+      if (a === UNRELEASED_VERSION) {
+        return -1
+      };
+
+      if (a === LATEST_STABLE_VERSION && b !== UNRELEASED_VERSION) {
+        return -1
+      }
+
+      return 0;
+    })|| [];
+
+    const renderVersionMenuContent = (items: string[]) => (
     <ul className={styles.accordionMenu}>
       {items?.map((item) => (
-        <li key={item}>
-          <Link href={`/resources/docs/${item}`}>{item}</Link>
-        </li>
-      ))}
+          <li key={item}>
+            <Link href={`${baseHref}${item}`}>{mapLabelToVersion(item)}</Link>
+          </li>
+        )
+      )}
     </ul>
-  )
+  );
 
   const renderMenuContent = (items: { slug: string; title: string }[]) => (
     <ul className={styles.accordionMenu}>
@@ -39,13 +60,14 @@ export default async function VersionSidebar({
         </li>
       ))}
     </ul>
-  )
+  );
+
   return (
     <aside style={{ display: 'flex', gap: '3rem', flexDirection: 'column' }}>
       <div>
-        <h3 style={{ fontSize: '1.125rem' }}>Select version</h3>
+        <h2 style={{ fontSize: '1.125rem' }}>Select version</h2>
         <Accordion
-          title={selectedVersion || 'Select'}
+          title={mapLabelToVersion(selectedVersion) || 'Select'}
           content={renderVersionMenuContent(versionsWithoutSelected)}
         />
       </div>

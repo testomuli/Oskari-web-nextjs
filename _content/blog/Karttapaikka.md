@@ -3,7 +3,7 @@ layout: ''
 title: Karttapaikka
 excerpt: The service provides access to the Land Survey of Finland's cadastral maps, aerial photographs and background maps.
 date: 2023-12-01 13:00:00 +0200
-image: /assets/images/blog/Karttapaikka.jpg
+image: /resources/Karttapaikka.jpg
 tags:
   - Use case
 ---
@@ -22,4 +22,4 @@ Users can also download geospatial data and purchase printed maps and customised
 
 The service is open and free of charge for everyone, and no registration is required to use it.
 
-<https://asiointi.maanmittauslaitos.fi/karttapaikka/>
+[https://asiointi.maanmittauslaitos.fi/karttapaikka/](https://asiointi.maanmittauslaitos.fi/karttapaikka/)

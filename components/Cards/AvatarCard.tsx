@@ -1,16 +1,27 @@
+import { getMarkdownContentAsHtml } from '@/lib/utils'
 import Image from 'next/image'
 
-const AvatarCard = ({
+const AvatarCard = async ({
   name,
   title,
+  organisation,
   avatar,
+  filePath,
   content,
+  resourcesPath
 }: {
   name: string
   title?: string
+  organisation?: string
   avatar: string
-  content: string
+  filePath?: string
+  content?: string
+  resourcesPath?: string
 }) => {
+  let html = null;
+  if (filePath) {
+    html = await getMarkdownContentAsHtml(filePath, resourcesPath || '');
+  }
   return (
     <div className='flex flex-col items-center justify-start text-left w-[300px] aspect-square'>
       <Image
@@ -20,14 +31,17 @@ const AvatarCard = ({
         height={300}
         className='rounded-full aspect-square object-contain'
       />
-      <h3 className='font-bold text-xl flex flex-col my-10'>
-        <span>
-          {name}
-          {title && ','}
-        </span>
-        {title && <span>{title}</span>}
-      </h3>
-      <p>{content}</p>
+      <div>
+        <h3 className='font-bold text-xl flex flex-col my-4'>{name}</h3>
+      </div>
+      {title && <div>{title}</div>}
+      {organisation && <div className={'mb-2'}>{organisation}</div>}
+      <p>
+      { html && <div className='md-content'>
+        <div dangerouslySetInnerHTML={{ __html: html || '' }} />
+      </div>}
+      { !html && <>{content}</> }
+      </p>
     </div>
   )
 }

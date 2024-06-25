@@ -23,29 +23,40 @@ fs.cpSync(pathToDocumentationRepository, pathToVersionRoot, {
   preserveTimestamps: true,
   recursive: true,
   // Filter out git metadata so we don't get accidental git submodules
-  filter: (src) => !path.basename(src).startsWith('.git')
+  filter: (src) => !path.basename(src).startsWith('.git') && !path.basename(src).startsWith('node_modules')
 });
 console.log('Initialized docs for version ' + version);
 
 // https://github.com/oskariorg/oskari-frontend
 const pathToFrontendRepository = path.join(pathToExternalRepos, 'oskari-frontend/');
 const pathToServerRepository = path.join(pathToExternalRepos, 'oskari-server/');
-const pathToBundlesDocumentation = path.join(pathToVersionRoot, '2 Application functionality/');
+// const pathToBundlesDocumentation = path.join(pathToVersionRoot, '2 Application functionality/');
 
 /*
-* Generate section 5 of documentation
+* Generate section 6 of documentation
 */
-const pathToNewFiles = path.join(pathToVersionRoot, '/5 Changelog');
+const pathToNewFiles = path.join(pathToVersionRoot, '/6 Changelog');
 // Init folder and heading file
 fs.mkdirSync(pathToNewFiles, {recursive: true});
-fs.writeFileSync(path.join(pathToNewFiles, "5 Changelog.md"), "# 5 Changelog\n");
+
+const mdContent = `
+# Changelog
+
+In the following paragraphs we've listed an aggregated result of changes specific to this version of Oskari. Following the links below you can access full notes of different components.
+
+- [Oskari frontend release notes](https://github.com/oskariorg/oskari-frontend/blob/master/ReleaseNotes.md)
+- [Oskari server release notes](https://github.com/oskariorg/oskari-server/blob/master/ReleaseNotes.md)
+- [Migration guide](https://github.com/oskariorg/oskari-server/blob/master/MigrationGuide.md)
+`;
+
+fs.writeFileSync(path.join(pathToNewFiles, "Changelog.md"), mdContent);
 
 // Create a summary section highlighting the changes in new version from these files
 const filesToHandle = {
-  "5.1 Frontend release notes": path.join(pathToFrontendRepository, 'ReleaseNotes.md'),
-  "5.2 Frontend changelog": path.join(pathToFrontendRepository, 'api/CHANGELOG.md'),
-  "5.3 Server release notes": path.join(pathToServerRepository, 'ReleaseNotes.md'),
-  "5.4 Migration guide": path.join(pathToServerRepository, 'MigrationGuide.md')
+  "Frontend release notes": path.join(pathToFrontendRepository, 'ReleaseNotes.md'),
+  "Frontend changelog": path.join(pathToFrontendRepository, 'api/CHANGELOG.md'),
+  "Server release notes": path.join(pathToServerRepository, 'ReleaseNotes.md'),
+  "Migration guide": path.join(pathToServerRepository, 'MigrationGuide.md')
 }
 
 // Go through the files one by one
@@ -73,6 +84,7 @@ for (const [sectionTitle, frontendPath] of Object.entries(filesToHandle)) {
 * filename: the filename to be generated
 * fileHeading: the section number of the file, i.e. 2.3, 2.4 etc.
 */
+/*
 const generateFlattenedFile = (filter, filename, fileHeading, includeLinks) => {
   // Get wanted filenames by reading all files in frontend/api and applying filter to result
   const files = fs.readdirSync(
@@ -85,7 +97,7 @@ const generateFlattenedFile = (filter, filename, fileHeading, includeLinks) => {
   // Construct filename and create the file
   const flattenedFileName = path.join(pathToBundlesDocumentation, `${fileHeading} ${filename}.md`);
   fs.writeFileSync(flattenedFileName, `# ${fileHeading} ${filename}\n\n`, {recursive: true});
-  
+
   // Copy each files' content to flattenedFilename and append subheading number
   let sectionHeadingNumber = 1;
   files.forEach(
@@ -97,32 +109,32 @@ const generateFlattenedFile = (filter, filename, fileHeading, includeLinks) => {
         ),
         'utf-8'
       );
-      
+
       const headingEnd = fileContent.indexOf('\n');
       // Write bundle heading
       fs.appendFileSync(
         flattenedFileName,
         `# ${fileHeading}.${sectionHeadingNumber}${fileContent.slice(1, headingEnd)}`
       );
-      
+
       const searchKey = "## Description"
       let descriptionStart = fileContent.indexOf(searchKey);
       let descriptionEnd = 0;
-      
+
       // If file does not contain the description subheading, append the whole file except the heading
       if (descriptionStart == -1) {
         descriptionStart = headingEnd;
         descriptionEnd = fileContent.length;
       } else {
         descriptionEnd = fileContent.indexOf("## ", descriptionStart + 1);
-        descriptionStart = descriptionStart + searchKey.length; 
+        descriptionStart = descriptionStart + searchKey.length;
       }
 
       fs.appendFileSync(
         flattenedFileName,
         `${fileContent.slice(descriptionStart, descriptionEnd)}\n`
       );
-      
+
       // Append links to oskari.org documentation for each request/event
       if (includeLinks) {
         const bundleName = path.dirname(dirent.path).split("api")[1].replaceAll('\\', '/');
@@ -140,3 +152,4 @@ const generateFlattenedFile = (filter, filename, fileHeading, includeLinks) => {
 generateFlattenedFile(dirent => dirent.name === "bundle.md", "Bundles", "2.3", false);
 generateFlattenedFile(dirent => dirent.name.toLowerCase().includes("request.md"), "Bundle requests", "2.4", true);
 generateFlattenedFile(dirent => dirent.name.toLowerCase().includes("event.md"), "Bundle events", "2.5", true);
+*/

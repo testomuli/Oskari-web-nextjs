@@ -1,4 +1,4 @@
-import { Post, allPosts } from '@/.contentlayer/generated'
+import allPosts from '@/_content/blog/';
 import Button from '@/components/Button'
 import CardCarousel from '@/components/Cards/CardCarousel'
 import FeatureCard from '@/components/Cards/FeatureCard'
@@ -14,8 +14,23 @@ export const metadata: Metadata = {
 }
 
 export default function DiscoverPage() {
+  // TODO: I guess there should not be a need to do all this, we should just be able to use the results from the js straight up.
+  const postItems = allPosts.map((post) => {
+    const item = {
+      // TODO: we should probably have id other than slug
+      id: post.slug,
+      title: post.title || '',
+      date: new Date(post.date),
+      image: post.image || '',
+      description: post.excerpt,
+      href: 'blog/' + post.slug,
+      tags: post.tags,
+    }
+    return item
+  }).sort((a, b) => b.date.getTime() - a.date.getTime());
+
   return (
-    <Layout heroSmall heroTitle='Discover Oskari'>
+    <Layout heroSmall heroTitle='Functionalities'>
       <Container
         style={{
           display: 'flex',
@@ -62,21 +77,21 @@ export default function DiscoverPage() {
       </HighlightBox>
       <CardCarousel
         title='Use cases'
-        items={allPosts
+        items={postItems
           ?.filter(
             (post) =>
               post.tags
                 ?.map((tag) => tag.toLowerCase().trim())
                 .includes('use case')
           )
-          ?.map(({ _id: id, title, excerpt, url, image }: Post) => (
+          ?.map(({ id, title, description, href, image }) => (
             <ImageCard
               key={id}
               imageSrc={image || '/assets/images/placeholder.png'}
               altText={title}
               title={title}
-              content={excerpt}
-              url={`/${url}`}
+              content={description}
+              url={`/${href}`}
             />
           ))}
       />

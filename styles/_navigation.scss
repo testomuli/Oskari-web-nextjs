@@ -244,6 +244,7 @@
   &:not(.open) {
     height: 0;
     overflow: hidden;
+    display: none;
   }
   @media screen and (max-width: 1280px) {
     display: grid;
