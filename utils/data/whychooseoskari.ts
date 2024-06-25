@@ -70,63 +70,87 @@ export const DISCOVER_FEATURE_DATA: Array<DiscoverFeatureDataType> = [
 
 export const DISCOVER_FUNCTIONALITIES = [
   {
-    title: 'Import, create and edit geospatial data',
+    title: 'Admin tools',
     img: '/assets/images/discover_4.webp',
     features: [
       {
         icon: '',
         title:
-          'Oskari can be used to combine many different sources of information',
+          'Publish data from various different sources',
         description:
-          'Oskari allows you to connect many different data sources through a variety of interfaces. This enables a wide geospatial data service.',
+          'Add map layers using APIs (e.g. WFS, WMS, OGC API Features, WMTS)',
       },
       {
         icon: '',
-        title: 'Oskari has tools for creating and editing vector data',
+        title: 'Grant rights to the map layers',
         description:
-          'Oskari has basic tools for creating vector data straight in the geoportal.',
+          'Admins set different rights for different users: control who can see map layers, edit them or add new map layers.',
+      },
+      {
+        icon: '',
+        title: 'Monitor the published map layers',
+        description:
+          'See easily which map layers are have become unavailable.',
+      },
+      {
+        icon: '',
+        title: 'Get reports',
+        description:
+          'Make reports etc.',
       },
     ],
   },
   {
-    title: 'Analyze and visualize geospatial data',
+    title: 'Tools for end-users',
     img: '/assets/images/discover_5.webp',
     features: [
       {
         icon: '',
-        title: 'Create thematic maps',
+        title: 'Embed maps',
         description:
-          'Users can easily view maps and sort information, such as statistics, based on their own interests.',
+          'Users can select layers from the map service and publish them on their own websites as an iFrame.',
       },
       {
         icon: '',
-        title: 'Visualize geospatial data with easy tools',
+        title: 'Add own map layers',
         description:
-          'Oskari has easy-to-use and user-friendly visualizing tools.',
+          'Users can create their own datasets in Oskari or import the datasets they have made with GIS software.',
+      },
+      {
+        icon: '',
+        title: 'Add own features on map layers',
+        description:
+          'Users can create their own features to the map layers.',
       },
     ],
   },
   {
-    title: 'Publish and manage geospatial data',
+    title: 'Other functionalities',
     img: '/assets/images/discover_6.webp',
     features: [
       {
         icon: '',
-        title: 'Use geoportal for viewing maps',
+        title: 'Mobile friendly',
         description:
-          'Oskari’s geoportal functions by itself as a tool for showing maps.',
+          'Oskari supports mobile use and adapts its UI when the map service for smaller screens.',
       },
       {
         icon: '',
-        title: 'Publish data as embedded maps via RPC',
+        title: 'Create thematic maps',
         description:
-          'You can publish and integrate your GIS data as an embedded map to wherever you want. The map reacts in real time to the user’s actions.',
+          'View statiscs on maps.',
       },
       {
         icon: '',
-        title: 'Admin tools for managing GIS data and Oskari',
+        title: 'RPC enables the user to interact with embedded maps',
         description:
-          'Oskari has various admin tools for managing the software, users as well as  GIS data.',
+          'The embedded map reacts in real time to the user’s actions. Users can add new features to the map, hide/show layers, and get info from the selected features.',
+      },
+      {
+        icon: '',
+        title: '3D support',
+        description:
+          'Oskari supports 3D data.',
       },
     ],
   },
