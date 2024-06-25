@@ -13,8 +13,9 @@ export const metadata: Metadata = {
 
 export default function FaqPage() {
 
-  const faqDevelopers = allPosts[0] || null;
-  const faqUsers = allPosts[1] || null;
+  const faqAdmins = allPosts[0] || null;
+  const faqDevelopers = allPosts[1] || null;
+  const faqUsers = allPosts[2] || null;  
 
   return (
     <Layout heroSmall heroTitle='FAQ'>
@@ -68,7 +69,7 @@ export default function FaqPage() {
 
         <h2>For admins</h2>
         <AccordionGroup>
-          {faqUsers?.questionsAndAnswers?.map(
+          {faqAdmins?.questionsAndAnswers?.map(
             ({ question, answer }: Record<string, string>) => (
               <Accordion
                 title={question}
