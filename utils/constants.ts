@@ -25,7 +25,7 @@ export const NAVIGATION_ITEMS: Array<NavigationItemType> = [
   },
   {
     name: 'Documentation',
-    path: '/documentation/docs',
+    path: '/documentation/docs/latest/',
     children: [
       {
         name: 'FAQ',
