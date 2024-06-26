@@ -2,17 +2,8 @@ import fs from 'fs'
 import path from 'path'
 import matter from 'gray-matter'
 import { MERMAID_SNIPPET, mdToHtml } from './customMarked'
-import { insertIdsToHeaders, processAllLinks, processCodeBlocks, processHeaders, processJavascriptBlocks, processMigrationGuideLinks, processTripleQuoteCodeBlocks, updateMarkdownHtmlStyleTags, updateMarkdownImagePaths } from './markdownToHtml'
+import { insertIdsToHeaders, processAllLinks, processCodeBlocks, processHeaders, processInternalMDLinks, processJavascriptBlocks, processMigrationGuideLinks, processTripleQuoteCodeBlocks, updateMarkdownHtmlStyleTags, updateMarkdownImagePaths } from './markdownToHtml'
 import { MarkdownFileMetadata, VersionDocType } from '@/types/types'
-export function slugify(input: string): string {
-  return input
-    .toLowerCase()
-    .replace(/[^\w\s.-]/g, '') // Remove special characters
-    .replace(/[\s]+/g, '-') // Replace spaces with hyphens
-    .replace(/[-]+/g, '-') // Replace consecutive hyphens with a single hyphen
-    .replace(/\.md$/, '') // Remove the ".md" extension
-    .trim() // Trim leading/trailing whitespace
-}
 
 function compileMarkdownToHTML(markdown: string, startingSectionNumber: string): {
   html: string
@@ -101,6 +92,9 @@ const processMarkdown = (markdown: string, imagesPath: string) => {
   markdown = processMigrationGuideLinks(markdown);
   //process rest of the links from md style -> <a href... to help the lib that's supposed to be doing this in its efforts.
   markdown = processAllLinks(markdown);
+  //documentation internal links to other mds to work with the compiled version
+  markdown = processInternalMDLinks(markdown);
+
   // these are dependent to be run in this order
   markdown = processJavascriptBlocks(markdown);
   markdown = processTripleQuoteCodeBlocks(markdown);

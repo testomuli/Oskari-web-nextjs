@@ -145,3 +145,38 @@ export const processMigrationGuideLinks = (markdownContent: string): string => {
   });
   return result;
 }
+
+const findLinksToMDDocs = (mdString: string) => {
+  //find all html-style links that have data-internal-anchor - attribute set
+  //and replace thos with links to internal anchors
+  const linkRegex = /<a\b[^>]*\bdata-internal-anchor[^>]*>(.*?)<\/a>/gi;
+  const links = [];
+  let match;
+  while ((match = linkRegex.exec(mdString)) !== null) {
+    links.push({
+      html: match[0],
+      text: match[1]
+    });
+  }
+
+  return links;
+}
+
+export const processInternalMDLinks = (mdString: string): string => {
+  const links = findLinksToMDDocs(mdString);
+  links.forEach(link => {
+    const hrefRegex = /href=["']([^"']+)["']/i;
+    const datalinkRegex =  /data-internal-anchor=["']([^"']+)["']/i;
+    const datalinkMatch = datalinkRegex.exec(link.html);
+
+    if (datalinkMatch) {
+      const datalinkRef = datalinkMatch[1];
+      const slugifiedHref = slugify(datalinkRef);
+      const newLinkHtml = link.html.replace(hrefRegex, `href="#${slugifiedHref}"`);
+      mdString = mdString.replace(link.html, newLinkHtml);
+    }
+  });
+
+  return mdString;
+}
+
