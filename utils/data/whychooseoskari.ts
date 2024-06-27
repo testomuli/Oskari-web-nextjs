@@ -90,7 +90,7 @@ export const DISCOVER_FUNCTIONALITIES = [
         icon: '',
         title: 'Monitor the published map layers',
         description:
-          'See easily which map layers are have become unavailable.',
+          'See easily which map layers have become unavailable.',
       },
       {
         icon: '',
