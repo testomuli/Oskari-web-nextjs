@@ -30,8 +30,6 @@ Pressing the Add a new layer from the same service button opens a list of all th
 
 # Different map layer types
 
-WMS layers are raster type layers. Their common version is 1.3.0. Raster layers can be defined to have a default style. 
-
 WFS/OAPIF layers are vector type layers. Their common version is 1.1.0. Vector type layers can be defined to have a style made in the editor or added with JSON code. The style can be modified for point, line and area depending on the map layer.
 
 # Data provider
@@ -54,7 +52,7 @@ Press the Delete button if you want to remove the theme. There must not be any m
 
 Announcements show current, upcoming and outdated announcements together with making new ones.
 
-There are two types of announcements: banner and popup. When adding a new announcement, you must specify the time and what type of announcement it is. The types are Title only, Title and contents, and Title and external link. Add a title and alternatively contents or an external link if needed for every language.
+There are two types of announcements: banner and pop-up. When adding a new announcement, you must specify the time and what type of announcement it is. The types are Title only, Title and contents, and Title and external link. Add a title and alternatively contents or an external link if needed for every language.
 
 You can preview, edit or delete announcements from the icons at the right of the window. Remember to press the Save button when you have done the desired changes.
 
