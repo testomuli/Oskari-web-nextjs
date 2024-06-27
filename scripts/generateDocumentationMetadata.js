@@ -32,10 +32,6 @@ function sortByParagraphNumber(a, b) {
     return aParts.length - bParts.length;
 }
 
-function sortByOrdinal(itemA, itemB) {
-    return itemA?.ordinal - itemB.ordinal;
-}
-
 function listContentsRecursively(fullPath, docsRelativePath, results = []) {
     const filesAndDirectories = fs.readdirSync(fullPath, { withFileTypes: true });
     filesAndDirectories.sort(sortByParagraphNumber);
@@ -44,7 +40,7 @@ function listContentsRecursively(fullPath, docsRelativePath, results = []) {
         const itemRelativePath = path.join(docsRelativePath, item.name);
         if (item.isDirectory() && item.name !== 'resources') {
             const sectionNumber = path.basename(itemPath).split(' ')[0];
-            const children = listContentsRecursively(itemPath, itemRelativePath)?.sort(sortByOrdinal);
+            const children = listContentsRecursively(itemPath, itemRelativePath)?.sort();
             results.push({
                 slug: slugify(item.name),
                 path: itemRelativePath,
@@ -54,13 +50,14 @@ function listContentsRecursively(fullPath, docsRelativePath, results = []) {
             });
         } else {
             if (path.extname(itemPath).toLowerCase() === '.md') {
-                const { data } = getFrontmatter(itemPath);
-                const fileNameWithoutExtension = path.parse(item.name).name;
+                let fileNameWithoutExtension = path.parse(item.name).name;
+                if (fileNameWithoutExtension.indexOf('-') > -1) {
+                    fileNameWithoutExtension = fileNameWithoutExtension.split('-')[1] || fileNameWithoutExtension;
+                }
                 const slug = slugify(fileNameWithoutExtension);
                 results.push({
                     path: itemRelativePath,
                     fileName: item.name,
-                    ...data,
                     slug
                 });
             }
