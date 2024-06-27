@@ -56,7 +56,7 @@ export const readAndConcatMarkdownFiles = async function(parentItem: MarkdownFil
 
   markdownAll = processMarkdown(markdownAll, imagesPath);
 
-  const compiled = compileMarkdownToHTML(markdownAll, parentItem.ordinal);
+  const compiled = compileMarkdownToHTML(markdownAll, parentItem.ordinal || '1');
   // inject script to make mermaid js work its magic
   if (compiled.html.includes(MERMAID_SNIPPET)) {
     compiled.html += `<script src="https://cdn.jsdelivr.net/npm/mermaid@10.6.1/dist/mermaid.min.js"></script>

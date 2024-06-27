@@ -1,15 +1,9 @@
 /*eslint @typescript-eslint/no-var-requires: 0*/
 const fs = require('fs');
 const path = require('path');
-const grayMatter = require('gray-matter');
 const slugify = require('slugify');
 const syncResources = require('./syncResourcesFolder');
 const { generateDocumentationMetadata, getSubdirectories } = require('./documentationMetadataHelper');
-
-function getFrontmatter(filePath) {
-    const fileContent = fs.readFileSync(filePath, 'utf8');
-    return grayMatter(fileContent);
-}
 
 function sortByParagraphNumber(a, b) {
     // directories first
