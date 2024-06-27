@@ -44,7 +44,7 @@ export type VersionDocType = {
 export type MarkdownFileMetadata = {
   path: string,
   fileName: string,
-  ordinal: string,
+  ordinal?: string,
   slug: string,
   title: string,
   anchorLinks: Array<DocAnchorLinksType>,
