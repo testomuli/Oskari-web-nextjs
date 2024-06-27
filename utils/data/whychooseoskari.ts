@@ -84,7 +84,7 @@ export const DISCOVER_FUNCTIONALITIES = [
         icon: '',
         title: 'Grant rights to the map layers',
         description:
-          'Admins set different rights for different users: control who can see map layers, edit them or add new map layers.',
+          'Admins can set different rights for different users: control who can see map layers, edit them or add new map layers.',
       },
       {
         icon: '',
