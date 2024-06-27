@@ -142,7 +142,7 @@ export const DISCOVER_FUNCTIONALITIES = [
       },
       {
         icon: '',
-        title: 'RPC enables the user to interact with embedded maps',
+        title: 'Create interactive maps using the API for embedded maps',
         description:
           'The embedded map reacts in real time to the user’s actions. Users can add new features to the map, hide/show layers, and get info from the selected features.',
       },
