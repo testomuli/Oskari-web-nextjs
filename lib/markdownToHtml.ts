@@ -169,10 +169,15 @@ export const processInternalMDLinks = (mdString: string): string => {
     const datalinkRegex =  /data-internal-anchor=["']([^"']+)["']/i;
     const datalinkMatch = datalinkRegex.exec(link.html);
 
+
     if (datalinkMatch) {
+      // datalinkmatch ../5 Operating Instructions#How to create a custom Oskari Server Extension"
+      // where ../<directory>#<first heading text In the file being referred>
+      // TODO: this syntax / mechanism is plain horror for someone trying to maintain these manually in source docs.
+      // We need to come up with better solution but leaving this to simmer for now.
       const datalinkRef = datalinkMatch[1];
-      const slugifiedHref = slugify(datalinkRef);
-      const newLinkHtml = link.html.replace(hrefRegex, `href="#${slugifiedHref}"`);
+      const parsedHref = parseRef(datalinkRef);
+      const newLinkHtml = link.html.replace(hrefRegex, `href="${parsedHref}"`);
       mdString = mdString.replace(link.html, newLinkHtml);
     }
   });
@@ -180,3 +185,18 @@ export const processInternalMDLinks = (mdString: string): string => {
   return mdString;
 }
 
+const parseRef = (ref: string): string => {
+  //1) split at #
+  //2) if startswith ../ add that manually
+  //3) final link ../ + slugify(datalinkSplit[0]) + '#' + slugify(datalinkSplit[1])
+  const split = ref.split('#');
+  if (split.length === 2) {
+
+    const pathStart = ''; //split[0].startsWith('../') ? '../' : '';
+    const pathSlug = slugify(split[0].replace('../', ''));
+    const headerSlug = slugify(split[1]);
+    return pathStart + pathSlug + '#' + headerSlug;
+  }
+
+  return '#' + slugify(ref);
+}
