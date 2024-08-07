@@ -13,8 +13,9 @@ export const metadata: Metadata = {
 
 export default function FaqPage() {
 
-  const faqDevelopers = allPosts[0] || null;
-  const faqUsers = allPosts[1] || null;
+  const faqAdmins = allPosts[0] || null;
+  const faqDevelopers = allPosts[1] || null;
+  const faqUsers = allPosts[2] || null;  
 
   return (
     <Layout heroSmall heroTitle='FAQ'>
@@ -26,7 +27,7 @@ export default function FaqPage() {
           gap: '5rem',
         }}
       >
-        <h2>For users</h2>
+        <h2>For end-users</h2>
         <AccordionGroup>
           {faqUsers?.questionsAndAnswers?.map(
             ({ question, answer }: Record<string, string>) => (
@@ -65,6 +66,28 @@ export default function FaqPage() {
             }
           )}
         </AccordionGroup>
+        
+        <h2>For admins</h2>
+        <AccordionGroup>
+          {faqAdmins?.questionsAndAnswers?.map(
+            ({ question, answer }: Record<string, string>) => (
+              <Accordion
+                title={question}
+                content={
+                  <div
+                    className='md-content'
+                    dangerouslySetInnerHTML={{
+                      __html: answer || '',
+                    }}
+                  />
+                }
+                key={question}
+              />
+            )
+          )}
+        </AccordionGroup>
+
+
       </Container>
       <HighlightBox
         style={{
