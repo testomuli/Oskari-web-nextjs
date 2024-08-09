@@ -105,9 +105,9 @@ describe('markdownToHtml tests', () => {
       const h3 = '### FUU3';
       const expectedh3 = '<h3>FUU3</h3>';
 
-      expect(processHeaders(h1)).toBe(expectedh1);
-      expect(processHeaders(h2)).toBe(expectedh2);
-      expect(processHeaders(h3)).toBe(expectedh3);
+      expect(processHeaders(h1).indexOf(expectedh1)).toBe(0);
+      expect(processHeaders(h2).indexOf(expectedh2)).toBe(0);
+      expect(processHeaders(h3).indexOf(expectedh3)).toBe(0);
     });
 
     it ('should be able to recognize given tags', () => {
@@ -122,11 +122,11 @@ describe('markdownToHtml tests', () => {
       const h5 = '##### [breaking] FUU5';
       const expectedh5 = '<h5> FUU5' + badgeTemplates['[breaking]'] + '</h5>';
 
-      expect(processHeaders(h1)).toBe(expectedh1);
-      expect(processHeaders(h2)).toBe(expectedh2);
-      expect(processHeaders(h3)).toBe(expectedh3);
-      expect(processHeaders(h4)).toBe(expectedh4);
-      expect(processHeaders(h5)).toBe(expectedh5);
+      expect(processHeaders(h1).indexOf(expectedh1)).toBe(0);
+      expect(processHeaders(h2).indexOf(expectedh2)).toBe(0);
+      expect(processHeaders(h3).indexOf(expectedh3)).toBe(0);
+      expect(processHeaders(h4).indexOf(expectedh4)).toBe(0);
+      expect(processHeaders(h5).indexOf(expectedh5)).toBe(0);
     });
 
     it ('should handle multiple tags per heading', () => {
@@ -145,6 +145,15 @@ describe('markdownToHtml tests', () => {
       expect(processed.indexOf(badgeTemplates['[rpc]'])).toBeGreaterThan(-1);
       expect(processed.indexOf(badgeTemplates['[breaking]'])).toBeGreaterThan(-1);
     });
+
+    it('should add a span after a heading to avoid problems resulting from a "missing" paragraph', () => {
+      const h1 = '# FUU';
+      const expectedh1 = '<h1>FUU</h1>';
+      const expectedSuffix = '<span/>';
+      const processed = processHeaders(h1);
+      expect(processed).toContain(expectedh1);
+      expect(processed).toContain(expectedSuffix);
+    })
   });
 
   describe('processing javascript blocks', () => {
