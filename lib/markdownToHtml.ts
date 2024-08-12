@@ -90,9 +90,9 @@ export const processHeaders = (markdownContent:string): string => {
       cleanTitle = `<h${hashes.length}>${cleanTitle}</h${hashes.length}>`;
     }
 
-    // additional <span/> needs to be added cos marked is failing in a load of ways,
-    // when the first element after heading is a link or a list or whatnot. Sigh.
-    return cleanTitle + '\r\n<span/>\r\n';
+    // additional \r\n needs to be added cos marked is failing in a load of ways,
+    // when the first element after heading is a link or a list or whatnot and this is missing in source.
+    return cleanTitle + '\r\n';
   });
 
   return processedContent;
