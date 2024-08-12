@@ -146,10 +146,10 @@ describe('markdownToHtml tests', () => {
       expect(processed.indexOf(badgeTemplates['[breaking]'])).toBeGreaterThan(-1);
     });
 
-    it('should add a span after a heading to avoid problems resulting from a "missing" paragraph', () => {
+    it('should add \r\n after a heading to avoid problems resulting from a "missing" paragraph', () => {
       const h1 = '# FUU';
       const expectedh1 = '<h1>FUU</h1>';
-      const expectedSuffix = '<span/>';
+      const expectedSuffix = '\r\n';
       const processed = processHeaders(h1);
       expect(processed).toContain(expectedh1);
       expect(processed).toContain(expectedSuffix);
