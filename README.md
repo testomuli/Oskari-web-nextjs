@@ -44,4 +44,4 @@ Clone documentation repos in parallel folders next to this one
 
 This:
 - shovels in everything under `oskari-documentation` to `_content/docs/[version]/`
-- copies `ReleaseNotes.md` and `api/CHANGELOG.md` to  `_content/docs/[version]/6 Changelog/`
+- copies `ReleaseNotes.md` and `api/CHANGELOG.md` to  `_content/docs/[version]/8 Changelog/`

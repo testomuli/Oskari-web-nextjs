@@ -35,7 +35,7 @@ const pathToServerRepository = path.join(pathToExternalRepos, 'oskari-server/');
 /*
 * Generate section 6 of documentation
 */
-const pathToNewFiles = path.join(pathToVersionRoot, '/6 Changelog');
+const pathToNewFiles = path.join(pathToVersionRoot, '/8 Changelog');
 // Init folder and heading file
 fs.mkdirSync(pathToNewFiles, {recursive: true});
 

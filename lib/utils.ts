@@ -47,7 +47,7 @@ export const readAndConcatMarkdownFiles = async function(parentItem: MarkdownFil
     // parentItem = the directory
     // element = file.
     // So, we are replacing every # heading with ## heading, unless it's the Changelog file itself...
-    if (parentItem.title.startsWith('6 Changelog') && element.fileName !== 'Changelog.md') {
+    if (parentItem.title.startsWith('8 Changelog') && element.fileName !== 'Changelog.md') {
       content = replaceLevelOneHeadingsWithLevelTwo(content)
     }
 
