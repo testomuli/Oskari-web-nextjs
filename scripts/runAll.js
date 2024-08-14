@@ -5,8 +5,9 @@ const { execSync } = require('child_process');
 
 // if not provided build "nightly build"
 const requestedVersion = process.argv.slice(2)[0] || UNRELEASED_VERSION
+const isLatest = process.argv.slice(2)[1] || 'false'
 
-execSync('node scripts/generateDocs.js ' + requestedVersion);
+execSync('node scripts/generateDocs.js ' + requestedVersion + ' ' + isLatest);
 execSync('node scripts/generateContentMetadata.js');
 execSync('node scripts/generateDocumentationMetadata.js');
 

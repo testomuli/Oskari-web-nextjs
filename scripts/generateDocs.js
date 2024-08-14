@@ -1,15 +1,16 @@
 const UNRELEASED_VERSION = 'unreleased';
+const LATEST_VERSION = 'latest';
 /* eslint-disable @typescript-eslint/no-var-requires */
 const fs = require('fs');
-
 const fsExtra = require('fs-extra');
 //const { lstatSync, readdirSync, existsSync } = require('fs');
 const path = require('path');
 
 const pathToExternalRepos = path.normalize(path.join(__dirname, '/../../'));
 
-// npm run docs 2.13.0
+// npm run docs 2.13.0 is_latest
 const version = process.argv.slice(2)[0];
+const isLatest = process.argv.slice(2)[1];
 const isUnreleased = version === UNRELEASED_VERSION;
 
 if (!version) {
@@ -85,80 +86,12 @@ for (const [sectionTitle, frontendPath] of Object.entries(filesToHandle)) {
   }
 }
 
-/*
-* Used for generating a file with listings of bundles, requests, events
-* TODO: add links from requests and events to bundle which includes said request/event, currently includes the old links to oskari.org
-* TODO: images need to be included
-* filter: used for filtering the list of dirent objects
-* filename: the filename to be generated
-* fileHeading: the section number of the file, i.e. 2.3, 2.4 etc.
-*/
-/*
-const generateFlattenedFile = (filter, filename, fileHeading, includeLinks) => {
-  // Get wanted filenames by reading all files in frontend/api and applying filter to result
-  const files = fs.readdirSync(
-    path.join(pathToFrontendRepository, "api/"),
-    { withFileTypes: true,
-    recursive: true }
-  )
-    .filter(filter);
-
-  // Construct filename and create the file
-  const flattenedFileName = path.join(pathToBundlesDocumentation, `${fileHeading} ${filename}.md`);
-  fs.writeFileSync(flattenedFileName, `# ${fileHeading} ${filename}\n\n`, {recursive: true});
-
-  // Copy each files' content to flattenedFilename and append subheading number
-  let sectionHeadingNumber = 1;
-  files.forEach(
-    dirent => {
-      const fileContent = fs.readFileSync(
-        path.join(
-          dirent.path,
-          dirent.name
-        ),
-        'utf-8'
-      );
-
-      const headingEnd = fileContent.indexOf('\n');
-      // Write bundle heading
-      fs.appendFileSync(
-        flattenedFileName,
-        `# ${fileHeading}.${sectionHeadingNumber}${fileContent.slice(1, headingEnd)}`
-      );
-
-      const searchKey = "## Description"
-      let descriptionStart = fileContent.indexOf(searchKey);
-      let descriptionEnd = 0;
-
-      // If file does not contain the description subheading, append the whole file except the heading
-      if (descriptionStart == -1) {
-        descriptionStart = headingEnd;
-        descriptionEnd = fileContent.length;
-      } else {
-        descriptionEnd = fileContent.indexOf("## ", descriptionStart + 1);
-        descriptionStart = descriptionStart + searchKey.length;
-      }
-
-      fs.appendFileSync(
-        flattenedFileName,
-        `${fileContent.slice(descriptionStart, descriptionEnd)}\n`
-      );
-
-      // Append links to oskari.org documentation for each request/event
-      if (includeLinks) {
-        const bundleName = path.dirname(dirent.path).split("api")[1].replaceAll('\\', '/');
-        fs.appendFileSync(
-          flattenedFileName,
-          `\n\nIncluded in bundle: [${bundleName}](https://oskari.org/api/bundles#${version}${bundleName})\n\n`
-        );
-      }
-
-      sectionHeadingNumber++;
-    }
-  );
+// isLatest and version not 'latest -> clean up old 'latest' folder and copy version contents to 'latest'
+if (isLatest === 'true' && version !== LATEST_VERSION) {
+  const latestPath = path.normalize(path.join(__dirname, '/../_content/docs/latest'));
+  if (fsExtra.existsSync(latestPath)) {
+    fsExtra.rmSync(latestPath, { recursive: true });
+    fsExtra.mkdirSync(latestPath);
+  }
+  fsExtra.copySync(pathToVersionRoot, path.normalize(path.join(__dirname, '../_content/docs/latest')));
 }
-
-generateFlattenedFile(dirent => dirent.name === "bundle.md", "Bundles", "2.3", false);
-generateFlattenedFile(dirent => dirent.name.toLowerCase().includes("request.md"), "Bundle requests", "2.4", true);
-generateFlattenedFile(dirent => dirent.name.toLowerCase().includes("event.md"), "Bundle events", "2.5", true);
-*/
