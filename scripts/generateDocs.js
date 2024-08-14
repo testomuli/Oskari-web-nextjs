@@ -1,5 +1,8 @@
+const UNRELEASED_VERSION = 'unreleased';
 /* eslint-disable @typescript-eslint/no-var-requires */
 const fs = require('fs');
+
+const fsExtra = require('fs-extra');
 //const { lstatSync, readdirSync, existsSync } = require('fs');
 const path = require('path');
 
@@ -7,9 +10,15 @@ const pathToExternalRepos = path.normalize(path.join(__dirname, '/../../'));
 
 // npm run docs 2.13.0
 const version = process.argv.slice(2)[0];
+const isUnreleased = version === UNRELEASED_VERSION;
 
 if (!version) {
   throw new Error('\'npm run docs {version}\' - version is required');
+}
+
+// nightly build -> clean old contents of 'unreleased'
+if (isUnreleased) {
+  fsExtra.rmSync(path.normalize(path.join(__dirname, '/../_content/docs/unreleased')), { recursive: true });
 }
 
 // Init folder for version
