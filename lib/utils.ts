@@ -42,12 +42,11 @@ export const readAndConcatMarkdownFiles = async function(parentItem: MarkdownFil
     const markdown = fs.readFileSync(fullPath, 'utf8');
     let { content } = matter(markdown);
 
-    // TODO: this might be something other than 6. But on the other hand we might have other hierarchies that have
-    // changelog in the title so keeping this for now and dealing with this later if we need to.
+    // Replace every # with ## in changelog to avoid additional no 1 headings
     // parentItem = the directory
     // element = file.
     // So, we are replacing every # heading with ## heading, unless it's the Changelog file itself...
-    if (parentItem.title.startsWith('11 Changelog') && element.fileName !== 'Changelog.md') {
+    if (isReplacableChangeLogItem(parentItem.title, element.fileName)) {
       content = replaceLevelOneHeadingsWithLevelTwo(content)
     }
 
@@ -72,6 +71,13 @@ export const readAndConcatMarkdownFiles = async function(parentItem: MarkdownFil
 
   return compiled;
 };
+
+
+/** Return true if this is a file under <nn> Changelog but not the changelog.md file itself, cos that's a no 1 heading we DO wanna keep. */
+export const isReplacableChangeLogItem = (parentTitle: string, elementFileName: string) => {
+  const regex = /^[0-9]+ Changelog$/;
+  return regex.test(parentTitle) && elementFileName !== 'Changelog.md';
+}
 
 /** cleans up html tags from a given string (used for cleaning up a heading from badges in documentation toc)  */
 export const cleanTags = (htmlString: string) => {
