@@ -13,6 +13,23 @@ const version = process.argv.slice(2)[0];
 const isLatest = process.argv.slice(2)[1];
 const isUnreleased = version === UNRELEASED_VERSION;
 
+// Get the next running number to prefix changelog with.
+function getNextRunningNumber(directoryPath) {
+  const items = fs.readdirSync(directoryPath, { withFileTypes: true });
+
+  const folderNumbers = items
+      .filter(item => item.isDirectory()) // Suodatetaan vain hakemistot
+      .map(dir => parseInt(dir.name.split(' ')[0]))
+      .filter(num => !isNaN(num));
+
+  if (folderNumbers.length === 0) {
+      return 1;
+  }
+
+  return Math.max(...folderNumbers) + 1;
+}
+
+
 if (!version) {
   throw new Error('\'npm run docs {version}\' - version is required');
 }
@@ -51,7 +68,8 @@ const pathToServerRepository = path.join(pathToExternalRepos, 'oskari-server/');
 /*
 * Generate section 11 of documentation
 */
-const pathToNewFiles = path.join(pathToVersionRoot, '/12 Changelog');
+const changeLogNumber = getNextRunningNumber(pathToVersionRoot);
+const pathToNewFiles = path.join(pathToVersionRoot, '/' + changeLogNumber + ' Changelog');
 // Init folder and heading file
 fs.mkdirSync(pathToNewFiles, {recursive: true});
 
