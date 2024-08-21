@@ -24,6 +24,12 @@ if (isUnreleased) {
 
 // Init folder for version
 const pathToVersionRoot = path.normalize(path.join(__dirname, '/../_content/docs/', version));
+
+// remove old if exists (numbering etc. might've changed and we wanna rid ourselves from the stuff of previous build)
+if (fsExtra.existsSync(pathToVersionRoot)) {
+  fsExtra.rmSync(pathToVersionRoot, { recursive: true });
+}
+
 fs.mkdirSync(pathToVersionRoot, { recursive: true });
 console.log(`Created folder for version ${version} in ${pathToVersionRoot}`);
 
