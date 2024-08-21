@@ -1,7 +1,9 @@
 /*eslint @typescript-eslint/no-var-requires: 0*/
 const fs = require('fs');
+const fsExtra = require('fs-extra');
 const path = require('path');
 const { generateDocumentationMetadata, getSubdirectories } = require('./documentationMetadataHelper');
+const LATEST_VERSION = 'latest';
 
 function copyContent(source, destination) {
   if (!fs.existsSync(source)) {
@@ -9,9 +11,12 @@ function copyContent(source, destination) {
     return;
   }
 
-  if (!fs.existsSync(destination)) {
-    fs.mkdirSync(destination, { recursive: true });
+  // remove old folder if existis (avoid duplicated stuff)
+  if (fs.existsSync(destination)) {
+    fsExtra.rmSync(destination, { recursive: true });
   }
+
+  fs.mkdirSync(destination, { recursive: true });
 
   const files = fs.readdirSync(source);
   files.forEach(file => {
@@ -160,7 +165,9 @@ function syncResourcesByVersion(sourcePath, destinationPath) {
 
 /** API docs metadata generation */
 // npm run apidocs 2.13.0
-const version = process.argv.slice(2)[0] || 'latest';
+const version = process.argv.slice(2)[0];
+const isLatest = process.argv.slice(2)[1];
+
 
 /** Copy the content from under oskari-frontend */
 const apidocsFullpath = './_content/api/versions/';
@@ -203,6 +210,13 @@ apiJSON.forEach(module => {
 fs.writeFileSync(path.join(destinationPath, 'bundles.json'), JSON.stringify(apiJSON, null, 2));
 fs.writeFileSync(path.join(destinationPath, 'events.json'), JSON.stringify(events, null, 2));
 fs.writeFileSync(path.join(destinationPath, 'requests.json'), JSON.stringify(requests, null, 2));
+
+// isLatest and version not 'latest -> clean up old 'latest' folder and copy version contents to 'latest'
+if (isLatest === 'true' && version !== LATEST_VERSION) {
+  const latestDestinationPath = apidocsFullpath +'latest/';
+  copyContent(destinationPath, latestDestinationPath);
+}
+
 
 /** copy apidoc images*/
 const resourcesRootSourceDir = '/_content/api/versions/';

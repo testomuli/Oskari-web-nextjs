@@ -1,4 +1,3 @@
-const UNRELEASED_VERSION = 'unreleased';
 const LATEST_VERSION = 'latest';
 /* eslint-disable @typescript-eslint/no-var-requires */
 const fs = require('fs');
@@ -11,7 +10,6 @@ const pathToExternalRepos = path.normalize(path.join(__dirname, '/../../'));
 // npm run docs 2.13.0 is_latest
 const version = process.argv.slice(2)[0];
 const isLatest = process.argv.slice(2)[1];
-const isUnreleased = version === UNRELEASED_VERSION;
 
 // Get the next running number to prefix changelog with.
 function getNextRunningNumber(directoryPath) {
@@ -32,11 +30,6 @@ function getNextRunningNumber(directoryPath) {
 
 if (!version) {
   throw new Error('\'npm run docs {version}\' - version is required');
-}
-
-// nightly build -> clean old contents of 'unreleased'
-if (isUnreleased) {
-  fsExtra.rmSync(path.normalize(path.join(__dirname, '/../_content/docs/unreleased')), { recursive: true });
 }
 
 // Init folder for version
