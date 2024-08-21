@@ -7,20 +7,26 @@ export const DISCOVER_FEATURE_DATA: Array<DiscoverFeatureDataType> = [
     features: [
       {
         icon: '',
-        title: 'Viewing maps is user-friendly',
+        title: 'User-friendly map viewing',
         description:
-          'Users can easily view maps and sort information, such as statistics, based on their own interests.',
+          'Users can easily view different map layers and sort information, such as statistics, based on their interests.',
       },
       {
         icon: '',
-        title: 'Enables versatile geospatial data analysis',
-        description: 'Oskari allows its users to view precise regional data.',
+        title: 'Versatile geospatial data analysis',
+        description: 'Oskari allows its users to access, analyse and visualise various spatial data.',
       },
       {
         icon: '',
-        title: 'The map can be easily embedded on a website',
+        title: 'Easy map embedding to other websites',
         description:
-          'The easy-to-use Oskari is handy to embed on a website, where users can easily find it. Oskari also works as a mobile version.',
+          'Oskari is simple to embed on websites, providing users with interactive map of the selected map layers.',
+      },
+      {
+        icon: '',
+        title: 'Works on mobile devices',
+        description:
+          'Oskari’s UI adapts to mobile use, ensuring a good user experience across devices.',
       },
     ],
   },
@@ -30,15 +36,20 @@ export const DISCOVER_FEATURE_DATA: Array<DiscoverFeatureDataType> = [
     features: [
       {
         icon: '',
-        title: 'Customize maps according to your needs',
-        description: 'Oskari is a tool for data management and sharing.',
+        title:
+          'Integrate multiple data sources into one map service',
+        description:
+          'Oskari allows you to use different data sources through a wide range of interfaces.',
       },
       {
         icon: '',
-        title:
-          'Oskari can be used to combine many different sources of information',
-        description:
-          'Oskari allows you to connect many different data sources through a variety of interfaces. This enables a wide geospatial data service.',
+        title: 'Tailor maps according to your needs',
+        description: 'Oskari offers a variety of  tools for map customisation: adjust visualisations, add your own features or import new datasets from your hard drive.',
+      },
+      {
+        icon: '',
+        title: 'Tailor the software',
+        description: 'Oskari is highly customizable, from altering the interface and selecting the tools to creating new configurations for your spesific needs.',
       },
     ],
   },
@@ -50,13 +61,13 @@ export const DISCOVER_FEATURE_DATA: Array<DiscoverFeatureDataType> = [
         icon: '',
         title: 'Oskari is continuously developed together',
         description:
-          'Oskari stays up-to-date. An active community is constantly involved in the development work to improve Oskari’s features.',
+          'Oskari stays up-to-date thanks to the active community that contributes to enhancing its features.',
       },
       {
         icon: '',
         title: 'Anyone is welcome to join the development',
         description:
-          'Whether you are an amateur interested in geospatial software or a representative of a large organization, everyone is welcome to join the Oskari community!',
+          'Whether you’re a geospatial enthusiast or represent a large organization, everyone is welcome to join and contribute to the Oskari community!',
       },
       {
         icon: '',
@@ -78,25 +89,25 @@ export const DISCOVER_FUNCTIONALITIES = [
         title:
           'Publish data from various different sources',
         description:
-          'Add map layers using APIs (e.g. WFS, WMS, OGC API Features, WMTS)',
+          'Integrate map layers from various APIs, including WFS, WMS, OGC API Features, and WMTS.',
+      },
+      {
+        icon: '',
+        title: 'Control map layer visibility',
+        description:
+          'Choose what you share: admins can decide what map layers are visible to everyone and which are limited only to certain logged-in user groups.',
       },
       {
         icon: '',
         title: 'Grant rights to the map layers',
         description:
-          'Admins can set different rights for different users: control who can see map layers, edit them or add new map layers.',
+          'Admins can give different rights for different users and control who can add or edit map layers.',
       },
       {
         icon: '',
-        title: 'Monitor the published map layers',
+        title: 'Monitor and report the published map layers',
         description:
-          'See easily which map layers have become unavailable.',
-      },
-      {
-        icon: '',
-        title: 'Get reports',
-        description:
-          'Make reports etc.',
+          'Get reports about the availability of layers to easily identify and resolve issues.',
       },
     ],
   },
@@ -106,21 +117,21 @@ export const DISCOVER_FUNCTIONALITIES = [
     features: [
       {
         icon: '',
-        title: 'Embed maps',
+        title: 'Embed maps on your website',
         description:
-          'Users can select layers from the map service and publish them on their own websites as an iFrame.',
+          'Users can select layers from the map service and publish them as standalone iFrame maps.',
       },
       {
         icon: '',
-        title: 'Add own map layers',
+        title: 'Import or create own map layers',
         description:
-          'Users can create their own datasets in Oskari or import the datasets they have made with GIS software.',
+          'Users can bring in their own datasets or create new map layers directly in Oskari .',
       },
       {
         icon: '',
         title: 'Add own features on map layers',
         description:
-          'Users can create their own features to the map layers.',
+          'Users can add, edit or delete features on map layers based on their assigned permissions.',
       },
     ],
   },
@@ -130,27 +141,27 @@ export const DISCOVER_FUNCTIONALITIES = [
     features: [
       {
         icon: '',
-        title: 'Mobile friendly',
+        title: 'Mobile-friendly interface',
         description:
-          'Oskari supports mobile use and adapts its UI when the map service for smaller screens.',
+          'Oskari’s UI adapts to mobile devices and works seamlessly on smaller screens.',
       },
       {
         icon: '',
-        title: 'Create thematic maps',
+        title: 'Generate thematic maps',
         description:
-          'View statiscs on maps.',
+          'Bring statistics to life by creating corophletic maps with various filtering and visualisation possibilities.',
       },
       {
         icon: '',
-        title: 'Create interactive maps using the API for embedded maps',
+        title: 'Create interactive embedded maps via API',
         description:
-          'The embedded map reacts in real time to the user’s actions. Users can add new features to the map, hide/show layers, and get info from the selected features.',
+          'The RPC API lets developers control the map programmatically and react to user actions, enabling features like adding elements, toggling layers, and retrieving information.',
       },
       {
         icon: '',
-        title: '3D support',
+        title: '3D data support',
         description:
-          'Oskari supports 3D data.',
+          'Oskari can be used to view 3D data, including point cloud data and CityGML.',
       },
     ],
   },
