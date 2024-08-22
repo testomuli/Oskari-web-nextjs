@@ -1,7 +1,6 @@
 .error {
   font-family: system-ui, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif,
     'Apple Color Emoji', 'Segoe UI Emoji';
-  height: 100vh;
   text-align: center;
   display: flex;
   flex-direction: column;
@@ -11,6 +10,13 @@
   &__container {
     display: flex;
     align-items: center;
+    flex-direction: row;
+
+    div {
+      flex-basis: auto;
+      flex-grow: 0;
+      flex-shrink: 0;
+    }
   }
 
   &__code {
