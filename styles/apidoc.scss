@@ -1,3 +1,8 @@
+/*fix elements sliding away from view when clicking links in documentation.*/
+html {
+  scroll-padding-top: 5em;
+}
+
 div.overFlowHidden {
   overflow: hidden;
 }
