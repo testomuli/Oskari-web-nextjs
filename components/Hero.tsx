@@ -9,23 +9,21 @@ export default function Hero({
   title?: string
   small?: boolean
 }) {
-  const heroClass = small
+  const containerClass = small
     ? styles['hero__container--small']
     : styles.hero__container
 
-  const heroContentClass = small
+  const contentClass = small
     ? styles['hero__content--small']
     : styles.hero__content
 
-  const heroImageClass = small
-    ? "bg-[url('/assets/images/hero-blob-small.svg')] h-[calc(500px+var(--navigation-height))] !bg-cover"
-    : "bg-[url('/assets/images/hero-blob.svg')] aspect-auto min-h-[100svh] lg:min-h-[unset] lg:h-auto lg:aspect-video pt-[calc(var(--navigation-height)+1rem)] pb-[calc(var(--navigation-height)*2+1rem)]"
+  const imageClass = "bg-[url('/assets/images/hero-blob.svg')] aspect-auto min-h-[100svh] lg:min-h-[unset] lg:h-auto lg:aspect-video pt-[calc(var(--navigation-height)+1rem)] pb-[calc(var(--navigation-height)*2+1rem)]"
   return (
     <div
-      className={`relative full-width ${heroImageClass} bg-no-repeat bg-cover lg:bg-contain inset-0 lg:bg-center`}
+      className={`relative full-width ${imageClass} bg-no-repeat bg-cover lg:bg-contain inset-0 lg:bg-center`}
     >
-      <div className={`${heroClass}`}>
-        <div className={heroContentClass}>
+      <div className={`${containerClass}`}>
+        <div className={contentClass}>
           <div>
             <h1 className={styles.hero__title}>{title}</h1>
             {!small && (
