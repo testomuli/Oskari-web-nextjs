@@ -137,7 +137,12 @@ h3 {
 }
 
 .content-wrapper {
-  margin-top: 6rem;
+  /*bring this further up so it's closer to balloons.*/
+  margin-top: -20rem;
+  /*make sure this appears on top of balloons*/
+  z-index: 2;
+  /*make sure we can use z-index and thus sure this stays on top of the balloons*/
+  position: relative;
 }
 
 .content-grid,
