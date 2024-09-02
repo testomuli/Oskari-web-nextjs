@@ -62,13 +62,6 @@ export default function CommunityPage() {
           different ways people can join Oskari development community.
         </Text>
       </div>
-      <Image
-        src='/assets/images/oskari_organisaatiokaavio.png'
-        alt='Oskari organization chart'
-        width={800}
-        height={600}
-        className='object-contain h-auto mx-auto'
-      />
       <HighlightBox
         otter
         style={{
@@ -143,7 +136,7 @@ export default function CommunityPage() {
         <h2>Joint development forum</h2>
         <Text>
           Joint Development Forum is a tight group of organisations that have an
-          interest in developing Oskari togerther. It is formed by several
+          interest in developing Oskari together. It is formed by several
           organisational members providing funding for joint development,
           communication and bug fixing.
         </Text>
