@@ -1,5 +1,5 @@
 
-import { badgeTemplates, insertIdsToHeaders, processAllLinks, processCodeBlocks, processHeaders, processJavascriptBlocks, processMigrationGuideLinks, processTripleQuoteCodeBlocks, updateMarkdownHtmlStyleTags, updateMarkdownImagePaths } from "./markdownToHtml";
+import { badgeTemplates, insertIdsToHeaders, processAllLinks, processCodeBlocks, processHeaders, processInternalMDLinks, processJavascriptBlocks, processMigrationGuideLinks, processTripleQuoteCodeBlocks, updateMarkdownHtmlStyleTags, updateMarkdownImagePaths } from "./markdownToHtml";
 import slugify from 'slugify';
 
 const createTestHtml = () => {
@@ -236,4 +236,80 @@ describe('markdownToHtml tests', () => {
       expect(processed).toEqual(markdown);
     });
   })
+
+  describe("processInternalMDLinks", function() {
+    // eslint-disable-next-line  @typescript-eslint/no-explicit-any
+    const indexJSON: any[] = [
+      {
+        "slug": "section-one",
+        "title": "Section One",
+        "children": [
+          {
+            "fileName": "file1.md",
+            "anchor": "anchor1"
+          },
+          {
+            "fileName": "file2.md",
+            "anchor": "anchor2"
+          }
+        ]
+      },
+      {
+        "slug": "section-two",
+        "title": "Section Two",
+        "children": [
+          {
+            "fileName": "file3.md",
+            "anchor": "anchor3"
+          },
+          {
+            "fileName": "file4.md",
+            "anchor": "anchor4"
+          }
+        ]
+      }
+    ];
+
+    it("replaces a relative link with the correct link from indexJSON", function() {
+      const markdownContent = "Check this [link](file1.md) in the content.";
+      const activeSectionTitle = "Section One";
+      const result = processInternalMDLinks(markdownContent, indexJSON, activeSectionTitle);
+      expect(result).toBe("Check this [link](section-one#anchor1) in the content.");
+    });
+
+    it("does not replace external links", function() {
+      const markdownContent = "Visit [Google](https://www.google.com) for more info.";
+      const activeSectionTitle = "Section One";
+      const result = processInternalMDLinks(markdownContent, indexJSON, activeSectionTitle);
+      expect(result).toBe("Visit [Google](https://www.google.com) for more info.");
+    });
+
+    it("replaces a relative link with a path and correct link from indexJSON", function() {
+      const markdownContent = "More info [here](../Section Two/file3.md).";
+      const activeSectionTitle = "Section One";
+      const result = processInternalMDLinks(markdownContent, indexJSON, activeSectionTitle);
+      expect(result).toBe("More info [here](section-two#anchor3).");
+    });
+
+    it("does not replace a link if no matching file is found in indexJSON", function() {
+      const markdownContent = "Check this [link](nonexistent.md) in the content.";
+      const activeSectionTitle = "Section One";
+      const result = processInternalMDLinks(markdownContent, indexJSON, activeSectionTitle);
+      expect(result).toBe("Check this [link](nonexistent.md) in the content.");
+    });
+
+    it("handles multiple links in the same content", function() {
+      const markdownContent = "Links: [file1](file1.md), [file4](../Section Two/file4.md), and [external](https://www.example.com).";
+      const activeSectionTitle = "Section One";
+      const result = processInternalMDLinks(markdownContent, indexJSON, activeSectionTitle);
+      expect(result).toBe("Links: [file1](section-one#anchor1), [file4](section-two#anchor4), and [external](https://www.example.com).");
+    });
+
+    it("leaves content unchanged if there are no links", function() {
+      const markdownContent = "This content has no links.";
+      const activeSectionTitle = "Section One";
+      const result = processInternalMDLinks(markdownContent, indexJSON, activeSectionTitle);
+      expect(result).toBe("This content has no links.");
+    });
+  });
 });

@@ -34,7 +34,7 @@ export const readMarkdownFile = async function(filePath: string, imagesPath: str
   return markdown;
 };
 
-export const readAndConcatMarkdownFiles = async function(parentItem: MarkdownFileMetadata, imagesPath: string = '') {
+export const readAndConcatMarkdownFiles = async function(parentItem: MarkdownFileMetadata, imagesPath: string = '', indexJSON: MarkdownFileMetadata[] = [], activeSectionSlug: string = '') {
   let markdownAll = '';
   parentItem.children.forEach(element => {
     const cwdPath = path.resolve(process.cwd());
@@ -53,7 +53,7 @@ export const readAndConcatMarkdownFiles = async function(parentItem: MarkdownFil
     markdownAll += content +'\r\n\r\n';
   });
 
-  markdownAll = processMarkdown(markdownAll, imagesPath);
+  markdownAll = processMarkdown(markdownAll, imagesPath, indexJSON, activeSectionSlug);
 
   const compiled = compileMarkdownToHTML(markdownAll, parentItem.ordinal || '1');
   // inject script to make mermaid js work its magic
@@ -90,16 +90,21 @@ const replaceLevelOneHeadingsWithLevelTwo = (markdown: string): string => {
   return replacedString;
 }
 
-const processMarkdown = (markdown: string, imagesPath: string) => {
+const processMarkdown = (markdown: string, imagesPath: string, indexJSON: MarkdownFileMetadata[] = [], activeSectionTitle: string = '') => {
   markdown = updateMarkdownImagePaths(markdown, imagesPath);
   markdown = updateMarkdownHtmlStyleTags(markdown);
   markdown = processHeaders(markdown);
   // migration guide first, specific treatment for that
   markdown = processMigrationGuideLinks(markdown);
+
+  //documentation internal links to other mds to work with the compiled version
+  //Note! At this point the following condition is true only for documentation-section
+  if (indexJSON && activeSectionTitle) {
+    markdown = processInternalMDLinks(markdown, indexJSON, activeSectionTitle);
+  }
+
   //process rest of the links from md style -> <a href... to help the lib that's supposed to be doing this in its efforts.
   markdown = processAllLinks(markdown);
-  //documentation internal links to other mds to work with the compiled version
-  markdown = processInternalMDLinks(markdown);
 
   // these are dependent to be run in this order
   markdown = processJavascriptBlocks(markdown);

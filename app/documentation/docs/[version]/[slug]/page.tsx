@@ -62,7 +62,7 @@ export default async function SingleDocPage({
   }
 
   await indexJSON.forEach(async (element: MarkdownFileMetadata) => {
-    const { html, anchorLinks } = await readAndConcatMarkdownFiles(element, imagesRuntimePath);
+    const { html, anchorLinks } = await readAndConcatMarkdownFiles(element, imagesRuntimePath, indexJSON, element.title);
     element.anchorLinks = anchorLinks;
     element.html = html;
   });
