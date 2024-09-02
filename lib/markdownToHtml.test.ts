@@ -1,5 +1,4 @@
 
-import { MarkdownFileMetadata } from "@/types/types";
 import { badgeTemplates, insertIdsToHeaders, processAllLinks, processCodeBlocks, processHeaders, processInternalMDLinks, processJavascriptBlocks, processMigrationGuideLinks, processTripleQuoteCodeBlocks, updateMarkdownHtmlStyleTags, updateMarkdownImagePaths } from "./markdownToHtml";
 import slugify from 'slugify';
 
