@@ -49,7 +49,8 @@ export type MarkdownFileMetadata = {
   title: string,
   anchorLinks: Array<DocAnchorLinksType>,
   children: Array<MarkdownFileMetadata>,
-  html: string
+  html: string,
+  anchor?: string
 }
 
 export type VersionedResourceLink = {
