@@ -17,14 +17,23 @@ function compileMarkdownToHTML(markdown: string, startingSectionNumber: string):
     anchorLinks,
   }
 }
-
-export async function getVersionIndex(version: string) {
+export async function getVersionIndex(version: string, fetchHtmlContent: boolean = false) {
   const rootFolder = `_content/docs/${version}`;
   if (!fs.existsSync(rootFolder) || !fs.statSync(rootFolder).isDirectory()) {
     return null;
   }
-  const allDocs = (await import(`_content/docs/${version}/index.js`)).default;
-  return allDocs;
+  const indexJSON = (await import(`_content/docs/${version}/index.js`)).default;
+
+  if (fetchHtmlContent) {
+    const imagesRuntimePath = '/assets/docs/' + version + '/resources/';
+    await indexJSON.forEach(async (element: MarkdownFileMetadata) => {
+      const { html, anchorLinks } = await readAndConcatMarkdownFiles(element, imagesRuntimePath, indexJSON, element.title);
+      element.anchorLinks = anchorLinks;
+      element.html = html;
+    });
+  }
+
+  return indexJSON;
 }
 
 export const readMarkdownFile = async function(filePath: string, imagesPath: string = '') {

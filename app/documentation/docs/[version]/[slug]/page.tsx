@@ -4,7 +4,7 @@ import VersionSidebar from '@/components/VersionSidebar'
 import { compareSemanticVersions } from '@/utils/misc'
 import Link from 'next/link'
 import styles from '@/styles/accordion.module.scss'
-import {  cleanTags, getVersionIndex, readAndConcatMarkdownFiles } from '@/lib/utils'
+import {  cleanTags, getVersionIndex } from '@/lib/utils'
 import availableVersions from '@/_content/docs';
 import Error from '@/components/Error'
 import { DocAnchorLinksType, MarkdownFileMetadata } from '@/types/types'
@@ -14,12 +14,16 @@ import '@fortawesome/fontawesome-free/css/fontawesome.min.css';
 import '@fortawesome/fontawesome-free/css/solid.min.css';
 import ApiDocContentWrapper from '@/app/documentation/api/components/ApiDocContentWrapper'
 
+let indexJSON: MarkdownFileMetadata[] | null = null;
+
 export const generateMetadata = async ({
   params,
 }: {
   params: { slug: string; version: string }
 }) => {
-  const indexJSON = await getVersionIndex(params.version);
+  if (!indexJSON) {
+    indexJSON = await getVersionIndex(params.version, true);
+  }
   const section = indexJSON?.find((item: MarkdownFileMetadata) => item.slug === params.slug);
 
   if (section) {
@@ -52,20 +56,16 @@ export default async function SingleDocPage({
   params: { slug: string; version: string }
 }) {
 
-  const indexJSON = await getVersionIndex(params.version);
+  const { version } = params;
+  if (!indexJSON) {
+    indexJSON = await getVersionIndex(version, true);
+  }
+
   const activeSection = indexJSON?.find((item: MarkdownFileMetadata) => item.slug === params.slug);
   const path = activeSection?.children[0].path;
-
-  const imagesRuntimePath = '/assets/docs/' + params.version + '/resources/';
   if (!activeSection || !path) {
     return <Error text='No documents found' code='404' />;
   }
-
-  await indexJSON.forEach(async (element: MarkdownFileMetadata) => {
-    const { html, anchorLinks } = await readAndConcatMarkdownFiles(element, imagesRuntimePath, indexJSON, element.title);
-    element.anchorLinks = anchorLinks;
-    element.html = html;
-  });
 
   const versions = [
     ...new Set(
