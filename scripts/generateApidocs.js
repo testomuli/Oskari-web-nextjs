@@ -35,7 +35,10 @@ function getMdDesc(fileContent) {
   // reads text after the first heading in md file and stops at either line change or EOF
   const match = fileContent.match(/#\s+(.*)\r?\n\r?\n([^]*?)(?=\r?\n\r?\n|$)/);
   if (match && match.length > 1) {
-    return match[2];
+    // if the content that follows after the first heading if another heading, just return empty (=there is no paragraph marking the short description)
+    if (!match[2].startsWith('#')) {
+      return match[2];
+    }
   }
 
   return '';
