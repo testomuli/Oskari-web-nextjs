@@ -10,6 +10,7 @@ div.overFlowHidden {
 div.apidocContentWrapper {
   overflow: hidden;
   word-wrap: break-word;
+  max-width: 85vw;
 
   table {
     font-size: 0.8em;
