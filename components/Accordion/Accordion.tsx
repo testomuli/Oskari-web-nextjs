@@ -1,16 +1,20 @@
 'use client'
-import React, { useEffect, useRef, useState } from 'react'
+import React, { KeyboardEvent, useEffect, useRef, useState } from 'react'
 import styles from '@/styles/accordion.module.scss'
 import Image from 'next/image'
 
 export default function Accordion({
+  id,
   title,
   content,
   initialOpen = false,
+  updateIsOpen,
 }: {
+  id?: string
   title: string
   content: string | React.ReactNode
-  initialOpen?: boolean
+  initialOpen?: boolean,
+  updateIsOpen?: (key: string, isOpen: boolean) => void,
 }) {
   const [isOpen, setIsOpen] = useState(initialOpen)
   const [isAccordionGroup, setIsAccordionGroup] = useState(false)
@@ -29,9 +33,19 @@ export default function Accordion({
           child.classList.toggle(styles.open)
         })
       }
-      return
     }
-    setIsOpen((prev) => !prev)
+    setIsOpen((prev) => {
+      if (updateIsOpen && id) {
+        updateIsOpen(id, !prev);
+      }
+      return !prev;
+    })
+  }
+
+  const accordionKeyUp = (event: KeyboardEvent) => {
+    if (event.key === 'Enter') {
+      toggleAccordion();
+    }
   }
 
   useEffect(() => {
@@ -49,8 +63,10 @@ export default function Accordion({
     >
       <div
         role='button'
+        tabIndex={0}
         className={styles.accordion__header}
         onClick={toggleAccordion}
+        onKeyUp={accordionKeyUp}
       >
         {title}
         <span className={styles.arrowIndicator}>
