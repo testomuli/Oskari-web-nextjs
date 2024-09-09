@@ -54,16 +54,77 @@
 .accordionGroup {
   & > * {
     &:first-child {
+      outline: none;
       border-bottom-left-radius: 0;
       border-bottom-right-radius: 0;
+
+      div[role="button"] {
+        &:active, &:focus {
+          outline: none;
+          border-top-left-radius: 1.875rem;
+          border-top-right-radius: 1.875rem;
+          border: 1px solid;
+        }
+      }
     }
+
     &:not(:first-child) {
       border-radius: 0;
       border-top: 1px solid #f3f3f3;
     }
+
     &:last-child {
       border-bottom-left-radius: 1.875rem;
       border-bottom-right-radius: 1.875rem;
+
+      div[role="button"] {
+        &:active, &:focus {
+          outline: none;
+          border: 1px solid;
+        }
+      }
+
+      li:first-child {
+        margin-top: 0.225rem;
+        outline: none;
+        border-bottom-left-radius: 0;
+        border-bottom-right-radius: 0;
+
+        a:active, a:focus {
+          margin-top: 0.225rem;
+          outline: none;
+          border: 1px solid;
+        }
+      }
+
+      li:last-child {
+        outline: none;
+        border-bottom-left-radius: 1.875rem;
+        border-bottom-right-radius: 1.875rem;
+
+        a:active, a:focus {
+          border-bottom-left-radius: 1.875rem;
+          border-bottom-right-radius: 1.875rem;
+          outline: none;
+          border: 1px solid;
+        }
+      }
+    }
+
+    &:last-child:not(.accordion.open) {
+      div[role="button"] {
+        &:active, &:focus {
+          outline: none;
+          border-bottom-left-radius: 1.875rem;
+          border-bottom-right-radius: 1.875rem;
+          border: 1px solid;
+        }
+      }
+    }
+
+    /*uncover the top border of active link of the first list element*/
+    li:first-child {
+      margin-top: 0.2rem;
     }
   }
 }
@@ -89,10 +150,29 @@
       padding: 1.25rem 2rem;
       width: 100%;
       display: block;
+
+      &:active, &:focus {
+        outline: none;
+        border: 1px solid black;
+      }
+
     }
 
     &:not(:first-child) {
       border-top: 1px solid #f3f3f3;
     }
+
+    &:last-child {
+      border-bottom-left-radius: 1.875rem;
+      border-bottom-right-radius: 1.875rem;
+    }
+/*
+    &:last-child {
+      a:active, a:focus {
+        border-bottom-left-radius: 1.875rem;
+        border-bottom-right-radius: 1.875rem;
+      }
+    }
+    */
   }
 }
