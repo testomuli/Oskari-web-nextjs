@@ -28,24 +28,6 @@ export const generateMetadata = async ({
 
 }
 
-const renderAccordionContent = (
-  items: Array<DocAnchorLinksType>, parentSlug: string
-) => {
-  return (
-    <ul className={styles.accordionMenu}>
-      {items?.map((item, index) => (
-        <li key={item.slug + '_' + index}>
-          <Link
-            href={item.slug === parentSlug ? item.slug : parentSlug + '#' + item.slug}
-          >
-            {item.sectionNumber} {cleanTags(item.content)}
-          </Link>
-        </li>
-      ))}
-    </ul>
-  )
-}
-
 const initIndexJSON = async (version: string) => {
   if (!indexJSON || !indexJSON[version]) {
     if (!indexJSON) {
