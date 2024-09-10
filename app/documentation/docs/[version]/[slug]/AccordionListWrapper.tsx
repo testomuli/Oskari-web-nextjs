@@ -8,13 +8,13 @@ import { cleanTags } from '@/lib/utils';
 
 export default function AccordionListWrapper({
   items,
-  initialOpenSections
+  initialOpenSection
 }: {
   items: MarkdownFileMetadata[] | null,
-  initialOpenSections: string[]
+  initialOpenSection: string
 }) {
 
-  const [openSections, setOpenSections] = useState(initialOpenSections);
+  const [openSection, setOpenSection] = useState(initialOpenSection);
   const renderAccordionContent = (
     items: Array<DocAnchorLinksType>, parentSlug: string, isOpen: boolean
   ) => {
@@ -36,28 +36,19 @@ export default function AccordionListWrapper({
   }
 
   const updateOpenAccordion = (id: string, isOpen: boolean) => {
-    let newOpenSections: string[] = Object.assign([], openSections);
-    if (isOpen) {
-      if (!newOpenSections.includes(id)) {
-        newOpenSections.push(id);
-      }
-    } else {
-      newOpenSections = openSections.filter(accordionId => accordionId !== id);
-    }
-
-    setOpenSections(newOpenSections);
+    const newOpenSection = isOpen ? id : '';
+    setOpenSection(newOpenSection);
   }
-
 
   return <>
     {items?.map((item: MarkdownFileMetadata) => (
       <Accordion
         key={item.slug}
         id={item.slug}
-        initialOpen = { openSections?.includes(item.slug) }
+        initialOpen = { openSection === item.slug }
         updateIsOpen={updateOpenAccordion}
         title={ item?.title || `Chapter ${item.slug}`}
-        content={renderAccordionContent(item.anchorLinks, item.slug, openSections.includes(item.slug))}
+        content={renderAccordionContent(item.anchorLinks, item.slug, openSection === item.slug)}
       />
     ))}
   </>;
