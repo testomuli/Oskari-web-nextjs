@@ -12,21 +12,29 @@ import '@fortawesome/fontawesome-free/css/solid.min.css';
 import ApiDocContentWrapper from '@/app/documentation/api/components/ApiDocContentWrapper'
 import AccordionListWrapper from '@/app/documentation/docs/[version]/[slug]/AccordionListWrapper'
 
-let indexJSON: MarkdownFileMetadata[] | null = null;
+let indexJSON: { [key: string]: MarkdownFileMetadata[] } = {};
+
 export const generateMetadata = async ({
   params,
 }: {
   params: { slug: string; version: string }
 }) => {
-  if (!indexJSON) {
-    indexJSON = await getVersionIndex(params.version, true);
-  }
-  const section = indexJSON?.find((item: MarkdownFileMetadata) => item.slug === params.slug);
+  await initIndexJSON(params.version)
+  const section = indexJSON[params.version]?.find((item: MarkdownFileMetadata) => item.slug === params.slug);
 
   if (section) {
     return { title: section.title }
   }
 
+}
+
+const initIndexJSON = async (version: string) => {
+  if (!indexJSON || !indexJSON[version]) {
+    if (!indexJSON) {
+      indexJSON = {};
+    }
+    indexJSON[version] = await getVersionIndex(version);
+  }
 }
 
 export default async function SingleDocPage({
@@ -37,11 +45,8 @@ export default async function SingleDocPage({
 
 
   const { version } = params;
-  if (!indexJSON) {
-    indexJSON = await getVersionIndex(version, true);
-  }
-
-  const activeSection = indexJSON?.find((item: MarkdownFileMetadata) => item.slug === params.slug);
+  await initIndexJSON(params.version)
+  const activeSection = indexJSON[version]?.find((item: MarkdownFileMetadata) => item.slug === params.slug);
   const path = activeSection?.children[0].path;
   if (!activeSection || !path) {
     return <Error text='No documents found' code='404' />;
@@ -59,7 +64,7 @@ export default async function SingleDocPage({
     <div style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
       <VersionSidebar selectedVersion={params.version} versions={versions} baseHref='/documentation/docs/' />
       <AccordionGroup>
-        <AccordionListWrapper items={indexJSON} initialOpenSections={[activeSection.slug]}/>
+        <AccordionListWrapper items={indexJSON[params.version]} initialOpenSections={[activeSection.slug]}/>
       </AccordionGroup>
     </div>
     <div>
