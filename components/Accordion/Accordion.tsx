@@ -34,12 +34,11 @@ export default function Accordion({
         })
       }
     }
-    setIsOpen((prev) => {
-      if (updateIsOpen && id) {
-        updateIsOpen(id, !prev);
-      }
-      return !prev;
-    })
+    setIsOpen((prev) => !prev)
+    if (updateIsOpen && id) {
+      updateIsOpen(id, !isOpen);
+    }
+
   }
 
   const accordionKeyUp = (event: KeyboardEvent) => {
@@ -68,7 +67,7 @@ export default function Accordion({
         onClick={toggleAccordion}
         onKeyUp={accordionKeyUp}
       >
-        {title}
+        {title} - { initialOpen } - { isOpen }
         <span className={styles.arrowIndicator}>
           <Image
             src='/assets/icons/arrow_down.svg'
