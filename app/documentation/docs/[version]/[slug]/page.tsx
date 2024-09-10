@@ -33,7 +33,7 @@ const initIndexJSON = async (version: string) => {
     if (!indexJSON) {
       indexJSON = {};
     }
-    indexJSON[version] = await getVersionIndex(version);
+    indexJSON[version] = await getVersionIndex(version, true);
   }
 }
 
