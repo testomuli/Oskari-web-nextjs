@@ -2,7 +2,7 @@ import fs from 'fs'
 import path from 'path'
 import matter from 'gray-matter'
 import { MERMAID_SNIPPET, mdToHtml } from './customMarked'
-import { insertIdsToHeaders, processAllLinks, processCodeBlocks, processHeaders, processInternalMDLinks, processJavascriptBlocks, processMigrationGuideLinks, processTripleQuoteCodeBlocks, updateMarkdownHtmlStyleTags, updateMarkdownImagePaths } from './markdownToHtml'
+import { insertIdsToHeaders, processAllLinks, processCodeBlocks, processHeaders, processInternalMDLinks, processLanguageSpecificCodeBlocks, processMigrationGuideLinks, processTripleQuoteCodeBlocks, updateMarkdownHtmlStyleTags, updateMarkdownImagePaths } from './markdownToHtml'
 import { MarkdownFileMetadata, VersionDocType } from '@/types/types'
 
 function compileMarkdownToHTML(markdown: string, startingSectionNumber: string): {
@@ -116,7 +116,11 @@ const processMarkdown = (markdown: string, imagesPath: string, indexJSON: Markdo
   markdown = processAllLinks(markdown);
 
   // these are dependent to be run in this order
-  markdown = processJavascriptBlocks(markdown);
+  markdown = processLanguageSpecificCodeBlocks(markdown, 'javascript');
+  markdown = processLanguageSpecificCodeBlocks(markdown, 'java');
+  markdown = processLanguageSpecificCodeBlocks(markdown, 'sql');
+  markdown = processLanguageSpecificCodeBlocks(markdown, 'json');
+
   markdown = processTripleQuoteCodeBlocks(markdown);
   markdown = processCodeBlocks(markdown);
   return markdown;

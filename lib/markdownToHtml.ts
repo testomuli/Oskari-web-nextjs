@@ -98,13 +98,15 @@ export const processHeaders = (markdownContent:string): string => {
   return processedContent;
 }
 
-export const processJavascriptBlocks = (markdownContent: string) => {
-  const javascriptRegex = /```javascript\s*([^`]|\n)*```/g;
-  const replacedContent = markdownContent.replace(javascriptRegex, (match) => {
-    const startTagRegex = /```javascript/;
+export const processLanguageSpecificCodeBlocks = (markdownContent: string, language: string) => {
+  //const codeRegex = /```javascript\s*([^`]|\n)*```/g;
+  const codeRegex = new RegExp(`\`\`\`${language}\\s*([^\\\`]|\\n)*\`\`\``, 'g')
+
+  const replacedContent = markdownContent.replace(codeRegex, (match) => {
+    const startTagRegex = new RegExp(`\`\`\`${language}`);
     const endTagRegex = /```/;
     const codeContent = match.replace(startTagRegex, '').replace(endTagRegex, '').trim();
-    return `<pre><code class="language-javascript hljs">${hljs.highlightAuto(codeContent).value}</code></pre>`;
+    return `<pre><code class="language-${language} hljs">${hljs.highlightAuto(codeContent).value}</code></pre>`;
   });
   return replacedContent;
 }

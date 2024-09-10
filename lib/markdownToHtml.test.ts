@@ -1,5 +1,5 @@
 
-import { badgeTemplates, insertIdsToHeaders, processAllLinks, processCodeBlocks, processHeaders, processInternalMDLinks, processJavascriptBlocks, processMigrationGuideLinks, processTripleQuoteCodeBlocks, updateMarkdownHtmlStyleTags, updateMarkdownImagePaths } from "./markdownToHtml";
+import { badgeTemplates, insertIdsToHeaders, processAllLinks, processCodeBlocks, processHeaders, processInternalMDLinks, processLanguageSpecificCodeBlocks, processMigrationGuideLinks, processTripleQuoteCodeBlocks, updateMarkdownHtmlStyleTags, updateMarkdownImagePaths } from "./markdownToHtml";
 import slugify from 'slugify';
 
 const createTestHtml = () => {
@@ -156,24 +156,30 @@ describe('markdownToHtml tests', () => {
     })
   });
 
-  describe('processing javascript blocks', () => {
-    it ('should prepare javascript - blocks for highlight.js', () => {
-      const markdown = "```javascript var a = 0;```";
-      const processed = processJavascriptBlocks(markdown);
-      expect(processed.indexOf('´')).toBe(-1);
-      expect(processed.startsWith('<pre><code')).toBe(true);
+  describe('processing code blocks where language is specified', () => {
+    const langs = ['javascript', 'java', 'sql', 'json'];
+
+    it ('should prepare a block in given language for highlight.js', () => {
+      langs.forEach((lang) => {
+        const markdown = "```" + lang + " var a = 0;```";
+        const processed = processLanguageSpecificCodeBlocks(markdown, lang);
+        expect(processed.indexOf('´')).toBe(-1);
+        expect(processed.startsWith('<pre><code class="language-' + lang)).toBe(true);
+      });
     });
 
-    it ('should be able to handle javascript blocks with multiple lines', () => {
-      const markdown = `
-        \`\`\`javascript
+    it ('should be able to handle code blocks in given language with multiple lines', () => {
+      langs.forEach((lang) => {
+        const markdown = `
+        \`\`\`${lang}
           var a = 0;
           let b = 3;
           console.log(a + b);
         \`\`\``;
-      const processed = processJavascriptBlocks(markdown).trim();
-      expect(processed.indexOf('´')).toBe(-1);
-      expect(processed.startsWith('<pre><code')).toBe(true);
+        const processed = processLanguageSpecificCodeBlocks(markdown, lang).trim();
+        expect(processed.indexOf('´')).toBe(-1);
+        expect(processed.startsWith('<pre><code class="language-' + lang)).toBe(true);
+      });
     });
   });
 
