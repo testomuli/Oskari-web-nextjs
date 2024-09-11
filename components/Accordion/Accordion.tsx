@@ -67,7 +67,7 @@ export default function Accordion({
         onClick={toggleAccordion}
         onKeyUp={accordionKeyUp}
       >
-        {title} - { initialOpen } - { isOpen }
+        {title}
         <span className={styles.arrowIndicator}>
           <Image
             src='/assets/icons/arrow_down.svg'
