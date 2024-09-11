@@ -1,6 +1,7 @@
 import { DocAnchorLinksType, MarkdownFileMetadata } from '@/types/types';
 import slugify from 'slugify';
-import hljs from 'highlight.js'
+import hljs from 'highlight.js';
+import 'highlight.js/scss/a11y-dark.scss';
 
 export const insertIdsToHeaders = (htmlString: string, startingSectionNumber: string) => {
   const headerRegex = /<h([1-3])>(.*?)<\/h\1>/g
