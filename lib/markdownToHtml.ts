@@ -99,6 +99,19 @@ export const processHeaders = (markdownContent:string): string => {
   return processedContent;
 }
 
+export const processMermaidCodeBlocks = (markdownContent: string) => {
+  //const codeRegex = /```javascript\s*([^`]|\n)*```/g;
+  const codeRegex = new RegExp(`\`\`\`mermaid\\s*([^\\\`]|\\n)*\`\`\``, 'g')
+
+  const replacedContent = markdownContent.replace(codeRegex, (match) => {
+    const startTagRegex = new RegExp(`\`\`\`mermaid`);
+    const endTagRegex = /```/;
+    const codeContent = match.replace(startTagRegex, '').replace(endTagRegex, '').trim();
+    return `<pre class="mermaid">${codeContent}</pre>`;
+  });
+  return replacedContent;
+}
+
 export const processLanguageSpecificCodeBlocks = (markdownContent: string, language: string) => {
   //const codeRegex = /```javascript\s*([^`]|\n)*```/g;
   const codeRegex = new RegExp(`\`\`\`${language}\\s*([^\\\`]|\\n)*\`\`\``, 'g')
