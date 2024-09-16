@@ -7,7 +7,7 @@ import NavigationSubMenu from './NavigationSubMenu'
 import Button from '../Button'
 import useWindowDimensions from '@/hooks/useWindowDimensions'
 import { usePathname } from 'next/navigation'
-import React, { FocusEvent } from 'react'
+import React from 'react'
 
 export default function NavigationMenu() {
   const [isOpen, setIsOpen] = useState(false)
