@@ -34,7 +34,7 @@ export default function NavigationMenu() {
 
   const itemFocus = (item: string) => {
     if (!!menuItemOpen && item !== menuItemOpen) {
-      closeMenu();
+      setMenuitemOpen('');
     }
   }
   const toggleSubmenuCallback = (menuitem: string, itemIsOpen: boolean) => {
