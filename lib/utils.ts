@@ -85,15 +85,15 @@ const injectMermaid = (htmlContent: string) => {
       themeVariables: {
         primaryColor: '#ffd400',
         primaryTextColor: '#222222',
-        primaryBorderColor: 'rgb(163, 196, 188)',
-        lineColor: '#F8B229',
-        secondaryColor: 'rgb(163, 196, 188)',
-        tertiaryColor: '#f00'
+        primaryBorderColor: '#222222',
+        lineColor: '#222222',
+        secondaryColor: '#A3C4BC'
       }
     });
     </script>
     `;
 }
+// ThemeVariables could also have tertiaryColor: '#f00'
 
 
 /** Return true if this is a file under <nn> Changelog but not the changelog.md file itself, cos that's a no 1 heading we DO wanna keep. */
