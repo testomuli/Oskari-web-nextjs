@@ -65,21 +65,35 @@ export const readAndConcatMarkdownFiles = async function(parentItem: MarkdownFil
   markdownAll = processMarkdown(markdownAll, imagesPath, indexJSON, activeSectionSlug);
 
   const compiled = compileMarkdownToHTML(markdownAll, parentItem.ordinal || '1');
-  // inject script to make mermaid js work its magic
-  if (compiled.html.includes(MERMAID_SNIPPET)) {
-    compiled.html += `<script src="https://cdn.jsdelivr.net/npm/mermaid@10.6.1/dist/mermaid.min.js"></script>
+  compiled.html = injectMermaid(compiled.html);
+  return compiled;
+};
+
+// inject script to make mermaid js work its magic
+const injectMermaid = (htmlContent: string) => {
+  if (!htmlContent || !htmlContent.includes(MERMAID_SNIPPET)) {
+    // Mermaid syntax not present, return as-is
+    return htmlContent;
+  }
+  // Inject script at the end
+  return htmlContent + `<script src="https://cdn.jsdelivr.net/npm/mermaid@11.2.0/dist/mermaid.min.js"></script>
     <script>
     mermaid.initialize({
       startOnLoad:true,
       htmlLabels:true,
-      theme: 'base'
+      theme: 'base',
+      themeVariables: {
+        primaryColor: '#ffd400',
+        primaryTextColor: '#222222',
+        primaryBorderColor: '#222222',
+        lineColor: '#222222',
+        secondaryColor: '#A3C4BC'
+      }
     });
     </script>
-    `
-  }
-
-  return compiled;
-};
+    `;
+}
+// ThemeVariables could also have tertiaryColor: '#f00'
 
 
 /** Return true if this is a file under <nn> Changelog but not the changelog.md file itself, cos that's a no 1 heading we DO wanna keep. */
