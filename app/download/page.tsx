@@ -8,7 +8,6 @@ import { LATEST_STABLE_VERSION, UNRELEASED_VERSION } from '@/utils/constants'
 import { compareSemanticVersions } from '@/utils/misc'
 import { getVersionIndex } from '@/lib/utils'
 import { MarkdownFileMetadata } from '@/types/types'
-import Link from 'next/link'
 
 export const metadata: Metadata = {
   title: 'Download',
