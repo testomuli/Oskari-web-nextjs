@@ -14,5 +14,7 @@ execSync('node scripts/generateDocumentationMetadata.js');
 execSync('node scripts/generateApidocs.js ' + requestedVersion + ' ' + isLatest);
 
 //run db generation script
-execSync('npm run db');
+// generated database description is disabled for now, but hopefully we can use it later
+// see utils/constants.ts for enabling the route to the page
+// execSync('npm run db');
 
