@@ -28,15 +28,13 @@ export default function VersionAccordionWrapper({
     <ul className={styles.accordionMenu}>
       {items?.map((item) => {
           const versionText = mapLabelToVersion(item);
-          return <>
-            <li key={item} role="option" aria-label={versionText} aria-selected={item === selectedVersion}>
+          return <li key={item} role="option" aria-label={versionText} aria-selected={item === selectedVersion}>
               <Link
                 // not navigable by keyboard when accordion isn't open
                 tabIndex={isOpen ? 0 : -1}
                 href={`${baseHref}${item}`}>{versionText}</Link>
-            </li>
-          </>
-      }
+            </li>;
+        }
       )}
     </ul>
   );
