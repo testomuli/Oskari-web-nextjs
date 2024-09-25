@@ -74,8 +74,16 @@ export const badgeTemplates: {[key: string]: string} = {
 export const processHeaders = (markdownContent:string): string => {
   const headerRegex = /^(#+)\s+(.*?)\s*$/gm;
   const tagRegex = /\[(.*?)\]/g;
+  const codeBlockRegex = /(```[\s\S]*?```)/g;
 
-  const processedContent = markdownContent.replace(headerRegex, (match, hashes, title) => {
+  // substitute codeblocks with placeholders to avoid # inside being changed into h1
+  const codeBlocks: string[] = [];
+  const withoutCodeBlocks = markdownContent.replace(codeBlockRegex, (match) => {
+    codeBlocks.push(match);
+    return `[[CODEBLOCK-${codeBlocks.length - 1}]]`;
+  });
+
+  const headingsReplaced = withoutCodeBlocks.replace(headerRegex, (match, hashes, title) => {
     const tags = title.match(tagRegex);
     let cleanTitle = title.replace(tagRegex, '');
 
@@ -94,6 +102,11 @@ export const processHeaders = (markdownContent:string): string => {
     // additional \r\n needs to be added cos marked is failing in a load of ways,
     // when the first element after heading is a link or a list or whatnot and this is missing in source.
     return cleanTitle + '\r\n';
+  });
+
+  // restore codeblocks
+  const processedContent = headingsReplaced.replace(/\[\[CODEBLOCK-(\d+)\]\]/g, (match, index) => {
+    return codeBlocks[index];
   });
 
   return processedContent;
