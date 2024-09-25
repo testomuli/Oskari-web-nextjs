@@ -22,6 +22,8 @@ const Footer = () => {
             <p>
               Oskari project’s coordinator is National Land Survey of Finland
             </p>
+            <a href='https://www.maanmittauslaitos.fi/tietoa-maanmittauslaitoksesta/organisaatio/saavutettavuus-huomioitu/oskariorg' target="_blank">Accessibility statement</a>
+
           </div>
           <div className={styles.footer__sitemap}>
             <h2>Sitemap</h2>
