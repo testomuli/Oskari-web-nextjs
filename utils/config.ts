@@ -3,10 +3,10 @@ export const SITE_CONFIG = {
   description: 'My Blog Description',
 
   socials: {
-    twitter: {
-      name: 'Twitter - Oskari.org',
-      url: 'https://twitter.com/oskari_org',
-      icon: '/assets/icons/twitter.svg',
+    x: {
+      name: 'X - Oskari.org',
+      url: 'https://x.com/oskari_org',
+      icon: '/assets/icons/x.svg',
     },
     github: {
       name: 'GitHub - Oskari.org',
