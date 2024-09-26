@@ -3,10 +3,10 @@ export const SITE_CONFIG = {
   description: 'My Blog Description',
 
   socials: {
-    twitter: {
-      name: 'Twitter - Oskari.org',
-      url: 'https://twitter.com/oskari_org',
-      icon: '/assets/icons/twitter.svg',
+    x: {
+      name: 'X - Oskari.org',
+      url: 'https://x.com/oskari_org',
+      icon: '/assets/icons/x.svg',
     },
     github: {
       name: 'GitHub - Oskari.org',
@@ -33,16 +33,12 @@ export const SITE_CONFIG = {
       path: 'https://demo.oskari.org/',
     },
     {
-      title: 'Resources',
-      path: '/resources',
-    },
-    {
       title: 'Documentation',
-      path: '/documentation/docs',
+      path: '/documentation/docs/latest',
     },
     {
       title: 'FAQ',
-      path: '/resources/faq',
+      path: '/documentation/faq',
     },
     {
       title: 'Blog',
