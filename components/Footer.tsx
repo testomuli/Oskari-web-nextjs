@@ -68,12 +68,18 @@ const Footer = () => {
           </div>
           <div className={styles.footer__community}>
             <h2>OSGeo community</h2>
-            <Image
-              src='/assets/images/osgeo_logo.png'
-              alt='OSGeo community logo'
-              width={593}
-              height={228}
-            />
+            <a
+              href="https://wiki.osgeo.org/wiki/Oskari_Incubation_Status"
+              rel='noopener noreferrer'
+              target='_blank'
+            >
+              <Image
+                src='/assets/images/osgeo_logo.png'
+                alt='OSGeo community logo'
+                width={593}
+                height={228}
+              />
+            </a>
           </div>
         </div>
       </div>
