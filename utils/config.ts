@@ -33,16 +33,12 @@ export const SITE_CONFIG = {
       path: 'https://demo.oskari.org/',
     },
     {
-      title: 'Resources',
-      path: '/resources',
-    },
-    {
       title: 'Documentation',
-      path: '/documentation/docs',
+      path: '/documentation/docs/latest',
     },
     {
       title: 'FAQ',
-      path: '/resources/faq',
+      path: '/documentation/faq',
     },
     {
       title: 'Blog',
