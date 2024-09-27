@@ -1,7 +1,7 @@
 import fs from 'fs'
 import path from 'path'
 import matter from 'gray-matter'
-import { MERMAID_SNIPPET, mdToHtml } from './customMarked'
+import { mdToHtml } from './customMarked'
 import { insertIdsToHeaders, processAllLinks, processCodeBlocks, processHeaders, processInternalMDLinks, processMermaidCodeBlocks, processLanguageSpecificCodeBlocks, processMigrationGuideLinks, processTripleQuoteCodeBlocks, updateMarkdownHtmlStyleTags, updateMarkdownImagePaths } from './markdownToHtml'
 import { MarkdownFileMetadata, VersionDocType } from '@/types/types'
 
@@ -65,36 +65,8 @@ export const readAndConcatMarkdownFiles = async function(parentItem: MarkdownFil
   markdownAll = processMarkdown(markdownAll, imagesPath, indexJSON, activeSectionSlug);
 
   const compiled = compileMarkdownToHTML(markdownAll, parentItem.ordinal || '1');
-  compiled.html = injectMermaid(compiled.html);
   return compiled;
 };
-
-// inject script to make mermaid js work its magic
-const injectMermaid = (htmlContent: string) => {
-  if (!htmlContent || !htmlContent.includes(MERMAID_SNIPPET)) {
-    // Mermaid syntax not present, return as-is
-    return htmlContent;
-  }
-  // Inject script at the end
-  return htmlContent + `<script src="https://cdn.jsdelivr.net/npm/mermaid@11.2.0/dist/mermaid.min.js"></script>
-    <script>
-    mermaid.initialize({
-      startOnLoad:true,
-      htmlLabels:true,
-      theme: 'base',
-      themeVariables: {
-        primaryColor: '#ffd400',
-        primaryTextColor: '#222222',
-        primaryBorderColor: '#222222',
-        lineColor: '#222222',
-        secondaryColor: '#A3C4BC'
-      }
-    });
-    </script>
-    `;
-}
-// ThemeVariables could also have tertiaryColor: '#f00'
-
 
 /** Return true if this is a file under <nn> Changelog but not the changelog.md file itself, cos that's a no 1 heading we DO wanna keep. */
 export const isReplacableChangeLogItem = (parentTitle: string, elementFileName: string) => {
