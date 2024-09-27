@@ -12,7 +12,7 @@ import { MarkdownFileMetadata } from '@/types/types'
 export const metadata: Metadata = {
   title: 'Download',
 }
-
+/*
 const findLatestVersionNumber = (): string => {
   const versions = availableVersions
     .filter((version) => version !== UNRELEASED_VERSION && version !== LATEST_STABLE_VERSION)
@@ -22,6 +22,8 @@ const findLatestVersionNumber = (): string => {
   return versions && versions[0] ? versions[0] : 'latest';
 }
 
+*/
+
 const findSlugForSection = async (versionNumber: string, title: string) => {
   const index = await getVersionIndex(versionNumber);
   const setupInstructionsSlug = index.filter((item: MarkdownFileMetadata) => item?.title?.indexOf(title) > -1);
@@ -30,7 +32,8 @@ const findSlugForSection = async (versionNumber: string, title: string) => {
 
 export default async function DownloadPage() {
 
-  const versionNumber = findLatestVersionNumber();
+  // just fix 'latest' as version for now, until the documentation stabilizes and we actually start producing docs / version.
+  const versionNumber = 'latest'; //findLatestVersionNumber();
   const setupInstructionsSlug = await findSlugForSection(versionNumber, 'Setup instructions');
   const releaseNotesSlug = await findSlugForSection(versionNumber, 'Changelog');
 
@@ -45,7 +48,8 @@ export default async function DownloadPage() {
               <div className='flex justify-center'>
                 <Button
                   variant='dark'
-                  title={ 'Download ' + versionNumber}
+                  //title={ 'Download ' + versionNumber}
+                  title={ 'Download'}
                   href='https://oskari.org/build/server/oskari-latest-stable.zip'
                   external
                 />
