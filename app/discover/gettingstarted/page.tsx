@@ -17,66 +17,55 @@ export default function GettingStartedPage() {
         </Text>
       </div>
       <div>
-        <h2>Contents</h2>
-        <ul>
-          <li><a href="#owners-procurers">Getting Started for Admins, Owners & Procurers</a></li>
-          <li><a href="#developers">Getting Started for Developers</a></li>
-          <li><a href="#commercial-partners">Getting Started for Commercial partners</a></li>
-          <li><a href="#end-users">Getting Started for End-users</a></li>
-        </ul>
-      </div>
-      <div>
         <h2 id="owners-procurers">Getting Started for Admins, Owners & Procurers</h2>
         <Text>
-          If you are thinking about procuring Oskari, see Instructions for Procurement. There you will get help for procuring new Oskari instance, updating an old Oskari instance or configuring an Oskari instance.
         <div>
           If you need help with the admin tools, see our FAQ for Oskari admins.
         </div>
-        {"If you want to understand Oskari's infrastructure, see Oskari architechture."}
+        {"If you want to understand Oskari's infrastructure, see Oskari framework."}
         </Text>
       </div>
       <div>
       <h2 id="developers">Getting Started for Developers</h2>
         <Text>
-          Starting an Oskari instance
+        <Link href='/documentation/docs/latest/3-Setup-instructions#Setup-instructions'>Setting up an Oskari instance</Link>
           <div>
-          Updating an old Oskari instance.
+          <a href='https://github.com/oskariorg/oskari-server/blob/master/MigrationGuide.md'>Updating an old Oskari instance (Migration Guide)</a>
           </div>
-          Configuring Oskari.
+          <Link href='/documentation/docs/latest/9-Configuration-instructions#Configuration-instructions'>Configuring Oskari</Link>
           <div>
-          See the Oskari architechture.
+          <Link href='/documentation/docs/latest/2-Application-environment#Framework'>See an example of Oskari framework</Link>
           </div>
-          Developing Oskari.
+          <Link href='/documentation/docs/latest/8-Developing-instructions#Developing-instructions'>Developing Oskari-based applications</Link>
           <div>
-          Open the demo and try out Oskari yourself!
+          <a href='https://demo.oskari.org'>Open the demo and try out Oskari yourself!</a>
           </div>
-          Try out the RPC and its features.
+          <Link href='/examples/rpc-api'>Try out the RPC and its features</Link>
         </Text>
       </div>
       <div>
       <h2 id="commercial-partners">Getting Started for Commercial partners</h2>
         <Text>
-          Understanding Oskari: what skills do you need?
+        <Link href='/documentation/docs/latest/1-Introduction#Technical-overview'>What skills do you need to develop Oskari?</Link>
           <div>
-          See the Oskari architechture.
+          <Link href='/documentation/docs/latest/2-Application-environment#Framework'>An example of Oskari framework</Link>
           </div>
-          Why to join Oskari Joint Development Forum (JDF)?
         </Text>
       </div>
       <div>
       <h2 id="end-users">Getting Started for End-users</h2>
         <Text>
-          What is Oskari?
+          <Link href='/discover'> What is Oskari?</Link>
           <div>
-          How to report bugs in Oskari?
+          <Link href='/documentation/faq#for-developers'>How to report bugs in Oskari?</Link>
           </div>
-          How to contact Oskari Joint Development Forum?
+          To contact Oskari Joint Development Forum, <Link href='mailto:info@oskari.fi'>send us an e-mail</Link>
           <div>
           Tutorials:
           </div>
-            Embedding maps
+          <Link href='/documentation/faq#for-endusers'>Embedding maps</Link>
           <div>
-            Various other tutorials
+          <Link href='/documentation/faq#for-endusers'>Various other tutorials</Link>
           </div>
         </Text>
       </div>
