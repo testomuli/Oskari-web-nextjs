@@ -13,8 +13,8 @@ export default function ContributePage() {
     <Layout heroSmall heroTitle='Contribute'>
       <div>
         <Text>
-          Oskari is an open source software, which means that its source code is
-          open to anyone for modifying and enhancing. Oskari stays up-to-date
+          Oskari is an open source software. Its source code is
+          open to anyone to view, use and enhance. Oskari stays up-to-date
           and is constantly developed by an active community.
         </Text>
         <Text>
@@ -32,13 +32,13 @@ export default function ContributePage() {
             title='Report a bug'
             content={
               <div>
-                If you encounter a problem while using Oskari, please{' '}
+                If you encounter a problem while using Oskari, please report it to us - {' '}
                 <a
                   href='https://github.com/oskariorg/oskari-docs/issues'
                   target='_blank'
                   rel='noopener noreferrer'
                 >
-                  report it to us
+                  open a GitHub issue!
                 </a>
                 .
               </div>
@@ -57,7 +57,7 @@ export default function ContributePage() {
                 >
                   creating a pull request
                 </a>{' '}
-                you can propose and collaborate on changes to a repository.
+                you can propose and collaborate on changes to Oskari repository.
               </div>
             }
           />
@@ -82,17 +82,17 @@ export default function ContributePage() {
             title='Write in our blog'
             content={
               <div>
-                Would you like to share your findings or{' '}
+                Would you like to share your findings, give your view on Oskari or{' '}
                 <a href='mailto:info@oskari.org'>
                   tell how your organization uses Oskari?
                 </a>{' '}
-                Oskari&apos;s blog is the platform for your ideas.
+                <Link href='/blog'>Oskari&apos;s blog</Link>{' '} is the platform for your ideas.
               </div>
             }
           />
           <IconCard
             className='!min-w-[24rem]'
-            title='Join community groups'
+            title='Join the Oskari community'
             content={
               <div>
                 Join the regular <Link href='/community'>Oskari community</Link>{' '}

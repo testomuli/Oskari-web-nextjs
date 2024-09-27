@@ -15,13 +15,13 @@ export default function DownloadPage() {
         <IconCard
           className='!bg-[var(--color-accent)]'
           title='Latest version'
-          subtitle='2.12.1'
+          subtitle='2.13.2'
           content={
             <>
               <div className='mb-8'>
-                The UI has seen a number of improvements for users with small
-                screens. There has also been improvements in map layer
-                management.
+                2.13.2 fixes various issues and enables semi-transparent fill
+                for polygons. The previously released 2.13.0 had numerous
+                improvements for end-users with small screens and better admin functionalities.
               </div>
               <div className='flex justify-center'>
                 <Button
@@ -36,12 +36,11 @@ export default function DownloadPage() {
         />
         <IconCard
           className='!bg-[var(--color-accent)]'
-          title='Other versions'
+          title='Release notes'
           content={
             <>
               <div className='mb-8'>
-                Have a look of the release notes of the previous Oskari
-                versions.
+                See what updates, fixes and new features have been added in previous versions.
               </div>
               <div className='flex justify-center'>
                 <Button
