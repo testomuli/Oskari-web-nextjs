@@ -3,9 +3,9 @@ import IconCard from '@/components/Cards/IconCard'
 import HighlightBox from '@/components/HighlightBox'
 import Layout from '@/components/Layout'
 import { Metadata } from 'next'
-import availableVersions from '@/_content/docs';
-import { LATEST_STABLE_VERSION, UNRELEASED_VERSION } from '@/utils/constants'
-import { compareSemanticVersions } from '@/utils/misc'
+// import availableVersions from '@/_content/docs';
+// import { LATEST_STABLE_VERSION, UNRELEASED_VERSION } from '@/utils/constants'
+// import { compareSemanticVersions } from '@/utils/misc'
 import { getVersionIndex } from '@/lib/utils'
 import { MarkdownFileMetadata } from '@/types/types'
 
