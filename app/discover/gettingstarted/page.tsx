@@ -3,7 +3,7 @@ import Text from '@/components/Text'
 import { Metadata } from 'next'
 import HighlightBox from '@/components/HighlightBox'
 import Button from '@/components/Button'
-
+import Link from 'next/link'
 export const metadata: Metadata = {
   title: 'Getting Started',
 }
@@ -20,7 +20,7 @@ export default function GettingStartedPage() {
         <h2 id="owners-procurers">Getting Started for Admins, Owners & Procurers</h2>
         <Text>
         <div>
-          If you need help with the admin tools, see our FAQ for Oskari admins.
+          If you need help with the admin tools, see our <Link href='/documentation/faq#for-admins'>FAQ for Oskari admins.</Link>
         </div>
         {"If you want to understand Oskari's infrastructure, see Oskari framework."}
         </Text>
