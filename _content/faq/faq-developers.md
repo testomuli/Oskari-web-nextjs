@@ -14,11 +14,11 @@ You can ask Oskari related issues by sending a query to Oskari user mailing list
 
 # What skills do I need to setup/develop Oskari?
 
-The techinical requirements have been listed [in the documentation.](https://oskari.org/documentation/docs/latest/1-Introduction#Requirements-for-developing-Oskari)
+The technical requirements have been listed [in the documentation.](https://oskari.org/documentation/docs/latest/1-Introduction#Requirements-for-developing-Oskari)
 
 We recommend that you see the first two sections of Oskari's documentation (Introduction and Application environment). Then ask if you need assistance!
 
-Oskari is not a software you can set up by just pushing a execute button. It is a comprehensive setup that requires understanding about server side and different software libraries. The setup is also dependant on the operating system and server environment. 
+Oskari is not a software you can set up by just pushing a execute button. It is a comprehensive setup that requires understanding about server side and different software libraries. The setup is also dependant on the operating system and server environment.
 
 # How to develop Oskari?
 
