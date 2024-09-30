@@ -62,14 +62,13 @@ export const NAVIGATION_ITEMS: Array<NavigationItemType> = [
 ]
 
 export const jointLogos = [
-  'tilastokeskus_fi 1.png',
   'tampere.png',
   'hsy.png',
   'museovirasto.png',
   'nls.png',
   'varsinais_suomen_liitto.png',
-  'sitowise.png',
   'vayla.png',
+  'joensuu.jpg',
 ]
 
 export const commitee = [
