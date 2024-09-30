@@ -7,12 +7,14 @@ import styles from '@/styles/accordion.module.scss'
 
 export default function VersionAccordionWrapper({
   selectedVersion,
-  versionsWithoutSelected,
-  baseHref
+  allVersions,
+  baseHref,
+  labelId
 }: {
   selectedVersion: string,
-  versionsWithoutSelected: string[],
-  baseHref: string
+  allVersions: string[],
+  baseHref: string,
+  labelId?: string
 }) {
 
   const [isOpen, setIsOpen] = useState(false);
@@ -22,16 +24,17 @@ export default function VersionAccordionWrapper({
     return displayVersion;
   }
 
-  const renderVersionMenuContent = (items: string[]) => (
+  const renderVersionMenuContent = (items: string[], selectedVersion: string) => (
     <ul className={styles.accordionMenu}>
-      {items?.map((item) => (
-          <li key={item}>
-            <Link
-              // not navigable by keyboard when accordion isn't open
-              tabIndex={isOpen ? 0 : -1}
-              href={`${baseHref}${item}`}>{mapLabelToVersion(item)}</Link>
-          </li>
-        )
+      {items?.map((item) => {
+          const versionText = mapLabelToVersion(item);
+          return <li key={item} role="option" aria-label={versionText} aria-selected={item === selectedVersion}>
+              <Link
+                // not navigable by keyboard when accordion isn't open
+                tabIndex={isOpen ? 0 : -1}
+                href={`${baseHref}${item}`}>{versionText}</Link>
+            </li>;
+        }
       )}
     </ul>
   );
@@ -41,10 +44,11 @@ export default function VersionAccordionWrapper({
   };
 
   return <Accordion
+    labelId={labelId}
     id={'versionAccordion'}
     initialOpen={isOpen}
     title={mapLabelToVersion(selectedVersion) || 'Select'}
-    content={renderVersionMenuContent(versionsWithoutSelected)}
+    content={renderVersionMenuContent(allVersions, selectedVersion)}
     updateIsOpen={updateIsOpen}
   />
 }

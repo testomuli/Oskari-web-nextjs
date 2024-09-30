@@ -12,6 +12,10 @@
   display: flex;
   flex-direction: row;
 
+  &:has(input:active), &:has(input:focus) {
+    outline: auto;
+  }
+
   &__header {
     background-color: var(--color-light);
     font-weight: 700;

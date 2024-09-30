@@ -22,6 +22,8 @@ const Footer = () => {
             <p>
               Oskari project’s coordinator is National Land Survey of Finland
             </p>
+            <a href='https://www.maanmittauslaitos.fi/tietoa-maanmittauslaitoksesta/organisaatio/saavutettavuus-huomioitu/oskariorg' target="_blank">Accessibility statement</a>
+
           </div>
           <div className={styles.footer__sitemap}>
             <h2>Sitemap</h2>
@@ -66,12 +68,18 @@ const Footer = () => {
           </div>
           <div className={styles.footer__community}>
             <h2>OSGeo community</h2>
-            <Image
-              src='/assets/images/osgeo_logo.png'
-              alt='OSGeo community logo'
-              width={593}
-              height={228}
-            />
+            <a
+              href="https://wiki.osgeo.org/wiki/Oskari_Incubation_Status"
+              rel='noopener noreferrer'
+              target='_blank'
+            >
+              <Image
+                src='/assets/images/osgeo_logo.png'
+                alt='OSGeo community logo'
+                width={593}
+                height={228}
+              />
+            </a>
           </div>
         </div>
       </div>

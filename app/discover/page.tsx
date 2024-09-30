@@ -35,11 +35,11 @@ export default function DiscoverPage() {
           Oskari is a Finnish open-source tool that allows
           anyone to create easy-to-use map services for websites. The goal of
           Oskari is to help businesses and public sector organizations offer better online
-          and mobile map services to consumers and citizens. 
-          
-          With Oskari, you can build a whole geoportal service or embed an interactive map to your website. 
+          and mobile map services to consumers and citizens.
+
+          With Oskari, you can build a whole geoportal service or embed an interactive map to your website.
           By adding different map layers to the service, customizing the interface and choosing
-          the tools for your application, you can build a map service that is suited exactly to your needs. 
+          the tools for your application, you can build a map service that is suited exactly to your needs.
         </Text>
         <Text>
           Oskari supports the INSPIRE directive of EU and OGC standards. The name
@@ -81,7 +81,7 @@ export default function DiscoverPage() {
         <Button
           variant='primary'
           title='Read more in documentation'
-          href='/documentation/docs'
+          href='/documentation/docs/latest/'
           style={{ alignSelf: 'center', color: 'red' }}
           label="Why to choose Oskari? Go to Oskari's documentation"
         />

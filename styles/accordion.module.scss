@@ -34,6 +34,10 @@
     transition: padding 0.25s ease;
   }
 
+  &__label {
+    font-size: 1.125rem;
+  }
+
   &.open {
     .accordion {
       &__header {
@@ -85,13 +89,13 @@
       }
 
       li:first-child {
-        margin-top: 0.225rem;
+        margin-top: 0.3rem;
         outline: none;
         border-bottom-left-radius: 0;
         border-bottom-right-radius: 0;
 
         a:active, a:focus {
-          margin-top: 0.225rem;
+          margin-top: 0.3rem;
           outline: none;
           border: 1px solid;
         }
@@ -124,7 +128,7 @@
 
     /*uncover the top border of active link of the first list element*/
     li:first-child {
-      margin-top: 0.2rem;
+      margin-top: 0.3rem;
     }
   }
 }
@@ -176,3 +180,4 @@
     */
   }
 }
+

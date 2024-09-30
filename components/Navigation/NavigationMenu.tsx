@@ -28,9 +28,15 @@ export default function NavigationMenu() {
   const closeMenu = () => {
     const bodyEl = document.getElementsByTagName('body')[0]
     setIsOpen(false)
+    setMenuitemOpen('');
     bodyEl.classList.remove('nav-open')
   }
 
+  const itemFocus = (item: string) => {
+    if (!!menuItemOpen && item !== menuItemOpen) {
+      setMenuitemOpen('');
+    }
+  }
   const toggleSubmenuCallback = (menuitem: string, itemIsOpen: boolean) => {
     setMenuitemOpen(itemIsOpen ? menuitem : '');
   };
@@ -53,7 +59,10 @@ export default function NavigationMenu() {
           </div>
           <ul className='navMenu__list'>
             {NAVIGATION_ITEMS.map((item) => (
-              <li className='navMenu__item' key={item.path}>
+              <li className='navMenu__item'
+                key={item.path}
+                onFocus={() => { itemFocus(item.name); }}>
+
                 {item.children && item.children.length > 0 ? (
                   <NavigationSubMenu
                     title={item.name}
@@ -68,6 +77,7 @@ export default function NavigationMenu() {
                     }`}
                     href={item.path}
                     onClick={closeMenu}
+                    onFocus={() => { itemFocus(item.name); }}
                   >
                     {item.name}
                   </Link>
