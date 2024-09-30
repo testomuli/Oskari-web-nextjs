@@ -2,6 +2,7 @@ import { DocAnchorLinksType, MarkdownFileMetadata } from '@/types/types';
 import slugify from 'slugify';
 import hljs from 'highlight.js';
 import 'highlight.js/scss/a11y-dark.scss';
+import { MERMAID_SNIPPET } from './customMarked';
 
 export const insertIdsToHeaders = (htmlString: string, startingSectionNumber: string) => {
   const headerRegex = /<h([1-3])>(.*?)<\/h\1>/g
@@ -120,7 +121,7 @@ export const processMermaidCodeBlocks = (markdownContent: string) => {
     const startTagRegex = new RegExp(`\`\`\`mermaid`);
     const endTagRegex = /```/;
     const codeContent = match.replace(startTagRegex, '').replace(endTagRegex, '').trim();
-    return `<pre class="mermaid">${codeContent}</pre>`;
+    return `${MERMAID_SNIPPET}${codeContent}</pre>`;
   });
   return replacedContent;
 }
