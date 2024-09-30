@@ -107,8 +107,8 @@ export default function FaqPage() {
           <h3 style={{ fontSize: '1.625rem' }}>Got a question?</h3>
           <Button
             variant='primary'
-            title='Ask in GIS Stack Exchange'
-            href='https://gis.stackexchange.com/'
+            title='Ask us about Oskari in Gitter'
+            href='https://app.gitter.im/#/room/#oskariorg_chat:gitter.im'
             external
             newWindow
           />
