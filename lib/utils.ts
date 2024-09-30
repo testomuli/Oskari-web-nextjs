@@ -143,6 +143,6 @@ const processMarkdown = (markdown: string, imagesPath: string, indexJSON: Markdo
 
 export const getMarkdownContentAsHtml = async function(mdFilePath: string, imagesFilePath: string) {
   const markdown = await readMarkdownFile(mdFilePath, imagesFilePath);
-  const html = matter(markdown).content;
-  return html;
+  const content = matter(markdown).content;
+  return mdToHtml(content);
 }
