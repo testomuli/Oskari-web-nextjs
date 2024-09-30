@@ -27,7 +27,7 @@ export default function FaqPage() {
           gap: '5rem',
         }}
       >
-        <h2>For end-users</h2>
+        <h2 id="for-endusers">For end-users</h2>
         <AccordionGroup>
           {faqUsers?.questionsAndAnswers?.map(
             ({ question, answer }: Record<string, string>) => (
@@ -47,7 +47,7 @@ export default function FaqPage() {
           )}
         </AccordionGroup>
 
-        <h2>For developers</h2>
+        <h2 id="for-developers">For developers</h2>
         <AccordionGroup>
           {faqDevelopers?.questionsAndAnswers?.map(
             ({ question, answer }: Record<string, string>) => {
@@ -67,7 +67,7 @@ export default function FaqPage() {
           )}
         </AccordionGroup>
         
-        <h2>For admins</h2>
+        <h2 id="for-admins">For admins</h2>
         <AccordionGroup>
           {faqAdmins?.questionsAndAnswers?.map(
             ({ question, answer }: Record<string, string>) => (
