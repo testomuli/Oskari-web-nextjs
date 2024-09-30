@@ -2,7 +2,7 @@
 
 You found a bug? Can you repeat it? Yes: file a bug report at GitHub issues.
 
-- Go to: [Oskari's GitHub page](https://github.org/oskariorg)
+- Go to: [Oskari's GitHub page](https://github.com/oskariorg)
 - Sign up
 - Click **New issue** button
 - Include helpful information: what Oskari version you used, with what browser and what are the steps to reproduce the error
@@ -14,7 +14,7 @@ You can ask Oskari related issues by sending a query to Oskari user mailing list
 
 # What skills do I need to setup/develop Oskari?
 
-The techinical requirements have been listed [in the documentation.](https://oskari.org/documentation/docs/latest/1-Introduction#Requirements-for-developing-Oskari)
+The technical requirements have been listed [in the documentation.](https://oskari.org/documentation/docs/latest/1-Introduction#Requirements-for-developing-Oskari)
 
 We recommend that you see the first two sections of Oskari's documentation (Introduction and Application environment). Then ask if you need assistance!
 
