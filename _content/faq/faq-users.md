@@ -16,7 +16,7 @@ If you are registered to the Oskari site you want to use, add the map layers you
 
 # Why are there no layers in an embedded map?
 
-Check access rights. It might be that users with guest role (most of the people looking at embedded maps) don't have permission to see layers included in the embedded map.
+Check access rights. It might be that users with guest-role (most of the people looking at embedded maps) don't have permission to see layers included in the embedded map.
 
 # How do I tailor my embedded maps?
 

@@ -1,5 +1,5 @@
 
-import { badgeTemplates, insertIdsToHeaders, processAllLinks, processCodeBlocks, processHeaders, processInternalMDLinks, processLanguageSpecificCodeBlocks, processMigrationGuideLinks, processTripleQuoteCodeBlocks, updateMarkdownHtmlStyleTags, updateMarkdownImagePaths } from "./markdownToHtml";
+import { badgeTemplates, insertIdsToHeaders, processAllLinks, processCodeBlocks, processHeaders, processInternalMDLinks, processLanguageSpecificCodeBlocks, processMigrationGuideLinks, processTripleQuoteCodeBlocks, processMermaidCodeBlocks, updateMarkdownHtmlStyleTags, updateMarkdownImagePaths } from "./markdownToHtml";
 import slugify from 'slugify';
 
 const createTestHtml = () => {
@@ -316,6 +316,19 @@ describe('markdownToHtml tests', () => {
       const activeSectionTitle = "Section One";
       const result = processInternalMDLinks(markdownContent, indexJSON, activeSectionTitle);
       expect(result).toBe("This content has no links.");
+    });
+  });
+
+  describe('processing mermaid codeblocks', () => {
+    it ('should ignore non-mermaid code-blocks', () => {
+      const markdown = "``` var a = 0;```";
+      const processed = processMermaidCodeBlocks(markdown);
+      expect(processed).toEqual(markdown);
+    });
+    it ('should wrap mermaid content to HTML pre.mermaid', () => {
+      const markdown = "```mermaid\ntesting stuff```";
+      const processed = processMermaidCodeBlocks(markdown);
+      expect(processed.startsWith('<pre class="mermaid">testing stuff</pre>')).toEqual(true);
     });
   });
 });

@@ -8,7 +8,7 @@ export default function HomePage() {
       title: post.title || '',
       date: new Date(post.date),
       description: post.excerpt || '',
-      href: post.slug || '',
+      href: '/blog/' + post.slug || '',
     }))
     .sort((a, b) => b.date.getTime() - a.date.getTime())
     .slice(0, 4)

@@ -3,53 +3,65 @@ import IconCard from '@/components/Cards/IconCard'
 import HighlightBox from '@/components/HighlightBox'
 import Layout from '@/components/Layout'
 import { Metadata } from 'next'
+// import availableVersions from '@/_content/docs';
+// import { LATEST_STABLE_VERSION, UNRELEASED_VERSION } from '@/utils/constants'
+// import { compareSemanticVersions } from '@/utils/misc'
+import { getVersionIndex } from '@/lib/utils'
+import { MarkdownFileMetadata } from '@/types/types'
 
 export const metadata: Metadata = {
   title: 'Download',
 }
+/*
+const findLatestVersionNumber = (): string => {
+  const versions = availableVersions
+    .filter((version) => version !== UNRELEASED_VERSION && version !== LATEST_STABLE_VERSION)
+    .sort((a, b) => compareSemanticVersions(a, b))
+    .reverse();
 
-export default function DownloadPage() {
+  return versions && versions[0] ? versions[0] : 'latest';
+}
+
+*/
+
+const findSlugForSection = async (versionNumber: string, title: string) => {
+  const index = await getVersionIndex(versionNumber);
+  const setupInstructionsSlug = index.filter((item: MarkdownFileMetadata) => item?.title?.indexOf(title) > -1);
+  return setupInstructionsSlug && setupInstructionsSlug[0] ? setupInstructionsSlug[0].slug : '';
+}
+
+export default async function DownloadPage() {
+
+  // just fix 'latest' as version for now, until the documentation stabilizes and we actually start producing docs / version.
+  const versionNumber = 'latest'; //findLatestVersionNumber();
+  const setupInstructionsSlug = await findSlugForSection(versionNumber, 'Setup instructions');
+  const releaseNotesSlug = await findSlugForSection(versionNumber, 'Changelog');
+
   return (
     <Layout heroTitle='Download' heroSmall>
       <div className='my-24 flex flex-wrap justify-center gap-16 items-start'>
         <IconCard
           className='!bg-[var(--color-accent)]'
           title='Latest version'
-          subtitle='2.13.2'
           content={
             <>
-              <div className='mb-8'>
-                2.13.2 fixes various issues and enables semi-transparent fill
-                for polygons. The previously released 2.13.0 had numerous
-                improvements for end-users with small screens and better admin functionalities.
-              </div>
               <div className='flex justify-center'>
                 <Button
                   variant='dark'
-                  title='Download'
+                  //title={ 'Download ' + versionNumber}
+                  title={ 'Download'}
                   href='https://oskari.org/build/server/oskari-latest-stable.zip'
                   external
                 />
               </div>
-            </>
-          }
-        />
-        <IconCard
-          className='!bg-[var(--color-accent)]'
-          title='Release notes'
-          content={
-            <>
-              <div className='mb-8'>
-                See what updates, fixes and new features have been added in previous versions.
-              </div>
-              <div className='flex justify-center'>
-                <Button
-                  variant='dark'
-                  title='Release notes'
-                  href='https://github.com/oskariorg/oskari-frontend/blob/master/ReleaseNotes.md'
-                  external
-                  newWindow
-                />
+              <div className='flex flex-col justify-center '>
+                <div className='mt-8 mb-4'>
+                  See what changed in the latest version.
+                </div>
+                <div className="flex justify-center">
+                  <Button variant='dark' title={'Release notes'} href={'/documentation/docs/'+versionNumber+'/'+releaseNotesSlug}/> <br/>
+                </div>
+
               </div>
             </>
           }
@@ -60,8 +72,17 @@ export default function DownloadPage() {
         <Button
           variant='dark'
           title='Read installation instructions'
-          href='/documentation/docs'
+          href={'/documentation/docs/'+versionNumber+'/'+setupInstructionsSlug}
         />
+
+        <h2 className='mb-8 mt-8'>Download old versions</h2>
+        <Button
+          variant='dark'
+          title='Download from archive'
+          external={true}
+          href='https://download.osgeo.org/oskari/'
+        />
+
       </HighlightBox>
     </Layout>
   )

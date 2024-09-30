@@ -74,8 +74,16 @@ export const badgeTemplates: {[key: string]: string} = {
 export const processHeaders = (markdownContent:string): string => {
   const headerRegex = /^(#+)\s+(.*?)\s*$/gm;
   const tagRegex = /\[(.*?)\]/g;
+  const codeBlockRegex = /(```[\s\S]*?```)/g;
 
-  const processedContent = markdownContent.replace(headerRegex, (match, hashes, title) => {
+  // substitute codeblocks with placeholders to avoid # inside being changed into h1
+  const codeBlocks: string[] = [];
+  const withoutCodeBlocks = markdownContent.replace(codeBlockRegex, (match) => {
+    codeBlocks.push(match);
+    return `[[CODEBLOCK-${codeBlocks.length - 1}]]`;
+  });
+
+  const headingsReplaced = withoutCodeBlocks.replace(headerRegex, (match, hashes, title) => {
     const tags = title.match(tagRegex);
     let cleanTitle = title.replace(tagRegex, '');
 
@@ -96,7 +104,25 @@ export const processHeaders = (markdownContent:string): string => {
     return cleanTitle + '\r\n';
   });
 
+  // restore codeblocks
+  const processedContent = headingsReplaced.replace(/\[\[CODEBLOCK-(\d+)\]\]/g, (match, index) => {
+    return codeBlocks[index];
+  });
+
   return processedContent;
+}
+
+export const processMermaidCodeBlocks = (markdownContent: string) => {
+  //const codeRegex = /```javascript\s*([^`]|\n)*```/g;
+  const codeRegex = new RegExp(`\`\`\`mermaid\\s*([^\\\`]|\\n)*\`\`\``, 'g')
+
+  const replacedContent = markdownContent.replace(codeRegex, (match) => {
+    const startTagRegex = new RegExp(`\`\`\`mermaid`);
+    const endTagRegex = /```/;
+    const codeContent = match.replace(startTagRegex, '').replace(endTagRegex, '').trim();
+    return `<pre class="mermaid">${codeContent}</pre>`;
+  });
+  return replacedContent;
 }
 
 export const processLanguageSpecificCodeBlocks = (markdownContent: string, language: string) => {

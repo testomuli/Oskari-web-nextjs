@@ -9,12 +9,14 @@ export default function Accordion({
   content,
   initialOpen = false,
   updateIsOpen,
+  labelId
 }: {
   id?: string
   title: string
   content: string | React.ReactNode
   initialOpen?: boolean,
   updateIsOpen?: (key: string, isOpen: boolean) => void,
+  labelId?: string | undefined
 }) {
   const [isOpen, setIsOpen] = useState(initialOpen)
   const [isAccordionGroup, setIsAccordionGroup] = useState(false)
@@ -53,14 +55,13 @@ export default function Accordion({
     if (hasAccordionGroupParent) {
       setIsAccordionGroup(true)
     }
-  }, [])
+  }, []);
 
-  return (
-    <div
-      className={`${styles.accordion} ${isOpen ? styles.open : ''}`}
-      ref={accordionRef}
-    >
+  return <div
+    className={`${styles.accordion} ${isOpen ? styles.open : ''}`}
+    ref={accordionRef}>
       <div
+        aria-labelledby={labelId ? labelId : ''}
         role='button'
         tabIndex={0}
         className={styles.accordion__header}
@@ -81,5 +82,4 @@ export default function Accordion({
         <div className={styles.accordion__content}>{content}</div>
       </div>
     </div>
-  )
 }

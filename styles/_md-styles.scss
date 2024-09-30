@@ -16,19 +16,10 @@
 
   & a {
     position: relative;
-  }
-
-  & a::before {
-    content: '';
-    position: absolute;
-    bottom: -0.3em;
-    left: 0;
-    right: 0;
-    height: 3px;
-    width: 100%;
-    pointer-events: none;
-    background-color: var(--color-accent);
-    transition: all 0.15s ease-out;
+    text-decoration: underline;
+    text-decoration-color: var(--color-accent);
+    text-decoration-thickness: 3px;
+    text-underline-offset: 0.25rem;
   }
 
   & a:hover::before,
