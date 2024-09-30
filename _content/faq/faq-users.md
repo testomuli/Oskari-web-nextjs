@@ -1,6 +1,6 @@
 # How much does Oskari cost?
 
-The open source code is available free of charge.
+Oskari is open source, meaning the source code is available to view, edit, enhance and use free of charge.
 
 # How do I get the license for Oskari?
 

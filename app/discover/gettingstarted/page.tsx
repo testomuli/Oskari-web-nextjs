@@ -22,7 +22,9 @@ export default function GettingStartedPage() {
         <div>
           If you need help with the admin tools, see our <Link href='/documentation/faq#for-admins'>FAQ for Oskari admins.</Link>
         </div>
-        {"If you want to understand Oskari's infrastructure, see Oskari framework."}
+        <div>
+          If you want to understand Oskari&apos;s infrastructure, <Link href='/documentation/docs/latest/2-Application-environment#Framework'>see an example of Oskari&apos;s framework.</Link>
+        </div>
         </Text>
       </div>
       <div>

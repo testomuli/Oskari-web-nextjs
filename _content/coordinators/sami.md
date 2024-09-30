@@ -6,4 +6,4 @@ avatar: /assets/images/people/Sami.jpeg
 order: 2
 ---
 
-Technical Coordinator is responsible for the instructions for using, configuring and developing the Oskari software. GitHub:ZakarFin
+The Technical Coordinator is responsible for the instructions for using, configuring and developing the Oskari software.

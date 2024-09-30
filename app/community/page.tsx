@@ -21,12 +21,12 @@ const COMMERCIAL_SUPPORT = [
     url: 'https://www.cgi.com/fi/fi',
   },
   {
-    name: 'Sitowise Oy',
-    url: 'https://www.sitowise.com/fi',
+    name: 'Sitowise',
+    url: 'https://www.sitowise.com/',
   },
   {
-    name: 'Gispo Ltd',
-    url: 'https://gispo.fi/',
+    name: 'Gispo Finland Ltd',
+    url: 'https://gispo.fi/en/',
   },
   {
     name: 'Hubble',
@@ -38,11 +38,11 @@ const COMMERCIAL_SUPPORT = [
   },
   {
     name: 'Siili',
-    url: 'https://www.siili.com/fi',
+    url: 'https://www.siili.com/',
   },
   {
     name: 'Ubigu',
-    url: 'https://ubigu.fi/',
+    url: 'https://ubigu.fi/en/',
   },
 ]
 
@@ -77,7 +77,7 @@ export default function CommunityPage() {
         <Text>
           The community is coordinated by the National Land Survey of Finland.
           Oskari coordination is carried out by the technical coordinator, the
-          product owners and the communication coordinator.
+          product owner and the communications coordinator.
         </Text>
         <div className='flex flex-wrap justify-center lg:justify-around py-14 gap-16 w-full'>
           {allPosts
