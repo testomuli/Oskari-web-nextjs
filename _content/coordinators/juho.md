@@ -2,7 +2,7 @@
 name: Juho Rekilä
 title: Communications coordinator
 organisation: Gispo Finland Ltd.
-avatar: /assets/images/Juho.PNG
+avatar: /assets/images/Juho.png
 order: 3
 ---
 
