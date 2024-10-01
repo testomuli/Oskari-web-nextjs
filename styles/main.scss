@@ -143,14 +143,6 @@ h3 {
   z-index: 2;
   /*make sure we can use z-index and thus sure this stays on top of the balloons*/
   position: relative;
-
-  a[href] {
-    position: relative;
-    text-decoration: underline;
-    text-decoration-color: var(--color-accent);
-    text-decoration-thickness: 3px;
-    text-underline-offset: 0.25rem;
-  }
 }
 
 .content-grid,
