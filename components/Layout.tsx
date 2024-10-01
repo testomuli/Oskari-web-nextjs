@@ -5,19 +5,21 @@ import Navigation from '@/components/Navigation/Navigation'
 interface LayoutProps {
   children: React.ReactNode
   heroSmall?: boolean
-  heroTitle?: string
+  heroTitle?: string,
+  decorateLinks?: boolean
 }
 
 export default function Layout({
   children,
   heroSmall = false,
   heroTitle = 'Oskari – a mapping tool that adapts to your needs',
+  decorateLinks = false
 }: LayoutProps) {
   return (
     <>
       <Navigation />
       <Hero small={heroSmall} title={heroTitle} />
-      <main className='content-wrapper content-grid'>{children}</main>
+      <main className={`content-wrapper content-grid  ${decorateLinks ? 'decorate-links' : ''}`}>{children}</main>
       <Footer />
     </>
   )
