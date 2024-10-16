@@ -8,5 +8,21 @@ const nextConfig = {
   sassOptions: {
     includePaths: [path.join(__dirname, 'styles')],
   },
+  experimental: {
+    missingSuspenseWithCSRBailout: false,
+  },
 }
 module.exports = nextConfig;
+
+
+
+/**
+ *
+  experimental: {
+    missingSuspenseWithCSRBailout: false,
+  },
+  typescript: {
+    ignoreBuildErrors: true,
+  }
+
+ */
