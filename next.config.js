@@ -7,10 +7,7 @@ const nextConfig = {
   swcMinify: true,
   sassOptions: {
     includePaths: [path.join(__dirname, 'styles')],
-  },
-  experimental: {
-    missingSuspenseWithCSRBailout: false,
-  },
+  }
 }
 module.exports = nextConfig;
 
