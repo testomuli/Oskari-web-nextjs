@@ -4,8 +4,7 @@ import DefaultLayout from "@/components/Layout";
 import Text from '@/components/Text'
 
 export default function ApiMainPage() {
-  return <>
-    <DefaultLayout heroSmall heroTitle='Oskari API'>
+  return <DefaultLayout heroSmall heroTitle="Oskari API">
         <Text>
           Oskari API is defined as bundles. Bundle is a definition of functionality that may provide external API to control the functionality.
         </Text>
@@ -40,6 +39,5 @@ export default function ApiMainPage() {
             </div>
           </div>
         </HighlightBox>
-    </DefaultLayout>
-  </>;
+    </DefaultLayout>;
 }
