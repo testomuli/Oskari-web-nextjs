@@ -1,6 +1,6 @@
 {
   "name": "oskari-web",
-  "version": "0.1.0",
+  "version": "1.1.0",
   "private": true,
   "scripts": {
     "dev": "next dev",
@@ -18,6 +18,10 @@
   "browser": {
     "fs": false,
     "os": false
+  },
+  "engines": {
+    "node": ">=18.17.0",
+    "npm": ">=6.0.0"
   },
   "dependencies": {
     "@fortawesome/fontawesome-free": "6.5.2",
