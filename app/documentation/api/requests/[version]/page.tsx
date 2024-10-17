@@ -15,6 +15,5 @@ export default async function RequestsVersionPage({
     version={params.version}
     sideBarContent={<EventsAndRequestsSidebarContent title='Select request' elements={requests} baseHref={requestsBaseRef}/>}
     mainContent={<ApiDocChangeLog version={params.version}/>}
-    title='Oskari API documentation'
     baseHref='/documentation/api/requests/'/>;
 }

@@ -15,6 +15,5 @@ export default async function BundlesVersionPage({
     version={params.version}
     sideBarContent={<BundlesSidebarContent elements={bundles} baseHref={bundleBaseRef}/>}
     mainContent={<ApiDocChangeLog version={params.version}/>}
-    title='Oskari API documentation'
     baseHref='/documentation/api/bundles/'/>;
 }
