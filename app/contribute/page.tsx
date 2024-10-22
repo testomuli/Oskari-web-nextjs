@@ -34,7 +34,7 @@ export default function ContributePage() {
               <div>
                 If you encounter a problem while using Oskari, please report it to us - {' '}
                 <a
-                  href='https://github.com/oskariorg/oskari-docs/issues'
+                  href='https://github.com/oskariorg/oskari-documentation/issues'
                   target='_blank'
                   rel='noopener noreferrer'
                 >
@@ -51,7 +51,7 @@ export default function ContributePage() {
               <div>
                 By{' '}
                 <a
-                  href='https://github.com/oskariorg/oskari-docs/pulls'
+                  href='https://github.com/oskariorg/oskari-documentation/pulls'
                   target='_blank'
                   rel='noopener noreferrer'
                 >
@@ -67,7 +67,7 @@ export default function ContributePage() {
             content={
               <div>
                 <a
-                  href='https://github.com/oskariorg/oskari-docs/issues'
+                  href='https://github.com/oskariorg/oskari-documentation/issues'
                   target='_blank'
                   rel='noopener noreferrer'
                 >

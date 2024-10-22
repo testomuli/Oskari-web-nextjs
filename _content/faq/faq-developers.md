@@ -4,7 +4,7 @@ You found a bug? Can you repeat it? Yes: file a bug report at GitHub issues.
 
 - Go to: [Oskari's GitHub page](https://github.com/oskariorg)
 - Sign up
-- Click **New issue** button
+- Click **New issue** button on [oskari-documentation](https://github.com/oskariorg/oskari-documentation/issues) repository
 - Include helpful information: what Oskari version you used, with what browser and what are the steps to reproduce the error
 - Click **Submit new issue**
 
