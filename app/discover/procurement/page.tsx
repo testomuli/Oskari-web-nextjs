@@ -113,7 +113,7 @@ You can see <a href='https://github.com/oskariorg/oskari-server/blob/master/Migr
 
 Before updating you should find out when the instance was last updated - that is, what version is in use now? 
 
-Easiest way to find out which version you are using now is to open your web browser’s console and type <b>Oskari.VERSION</b>. The console can be opened, for example, by pressing F12.
+Easiest way to find out which version you are using now is to open your web browser&apos;s console and type <b>Oskari.VERSION</b>. The console can be opened, for example, by pressing F12.
 
 <h3>Release notes / changelog</h3>
 
@@ -129,7 +129,7 @@ If your Oskari instance has been configured, it might complicate the updating pr
 
 <h2>Configuring an existing Oskari service</h2>
 
-Usually configurations are made to Oskari’s sample application (Oskari out of the box) when there is a need either from the main users (adminstrators) or the end-users. First, of course, you have to find out what is <b>the need for the configuration</b>. What Oskari enables now and what you wish it enables in the future? There are various different ways to configure Oskari, and the amount of time/money depends on the need.
+Usually configurations are made to Oskari&apos;s sample application (Oskari out of the box) when there is a need either from the main users (adminstrators) or the end-users. First, of course, you have to find out what is <b>the need for the configuration</b>. What Oskari enables now and what you wish it enables in the future? There are various different ways to configure Oskari, and the amount of time/money depends on the need.
 
 <b><link href='/documentation/docs/latest/1-Introduction#Requirements-for-developing-Oskari'>The requirements for developing Oskari (programming languages) have been listed in the Introduction section of Oskari’s documentation.</link></b> The introduction will also give you an overview of Oskari’s architecture and the general idea of when it is required to develop Oskari’s front-end and when the back-end.
 
@@ -149,9 +149,9 @@ In some cases you might want to develop functionalities that already exist eithe
 
 In some cases a certain functionality is in heavy use and other organisations might have similar wishes to develop it further, but that requires communication between organisations.
 
-On the other hand, the functionality might not be used by anyone and hasn't been maintained, so the project steering committee of Oskari is about to drop it out of the development. 
+On the other hand, the functionality might not be used by anyone and hasn&apos;t been maintained, so the project steering committee of Oskari is about to drop it out of the development. 
 
-The easiest way to find out where Oskari is heading next, see Oskari’s roadmap.
+The easiest way to find out where Oskari is heading next, see Oskari&apos;s roadmap.
 
 <h3>Creating new functionalities</h3>
 
@@ -159,7 +159,7 @@ Before creating new functionalities, see the list of existing functionalities in
 
 If you want to create new functionalities for Oskari, it might be a good idea to gather together all the ideas that you have and hand them over to the development team. Thus they can see which are top of your priorities now and what kind of things to expect next - and also suggest to you which of your ideas could be fulfilled at the same time quite easily. By coming up with multiple ideas at once they can also take the upcoming ideas into consideration when developing the first new functionalities.
 
-With new functionalities, one should remember that they must be maintained. When you create new functionalities to your Oskari service, remember to inform NLS both beforehand and after the development has taken place. By contacting the NLS FI’s Oskari technical team before you start the development, your developers can get best practices for the development process and further ideas on how to create the functionalities that you want. 
+With new functionalities, one should remember that they must be maintained. When you create new functionalities to your Oskari service, remember to inform NLS both beforehand and after the development has taken place. By contacting the NLS FI&apos;s Oskari technical team before you start the development, your developers can get best practices for the development process and further ideas on how to create the functionalities that you want. 
 
 When the new functionalities are in use, one should publish the code in a GitHub repository and inform the Oskari technical team - this helps them to take into account the dependencies of the new functionality when they are making new versions of Oskari. There might be dependencies, libraries or functionalities in the Oskari core that are affect the new functionality, and if you don’t inform the Oskari technical team about what you are doing or what you have done, it is possible that something gets broken when it&#39;s the time to update the Oskari instance next time.
 
@@ -190,7 +190,7 @@ Database-related work:
 * Updating and maintenance of database connections
 
 HTML, CSS, SCSS experience:
-* Competence related to Oskari’s front-end and its configurations
+* Competence related to Oskari&apos;s front-end and its configurations
 
 ??? experience:
 * Updating Oskari (step-by-step instructions in <Link href='https://github.com/oskariorg/oskari-server/blob/master/MigrationGuide.md'>the migration guide</Link>)
