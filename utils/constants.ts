@@ -21,6 +21,10 @@ export const NAVIGATION_ITEMS: Array<NavigationItemType> = [
         name: 'Use cases',
         path: '/discover/use-cases',
       },
+      {
+        name: 'Instructions for Procurement',
+        path: '/discover/procurement',
+      },
     ],
   },
   {
