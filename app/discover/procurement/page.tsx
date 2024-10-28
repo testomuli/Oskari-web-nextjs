@@ -15,7 +15,7 @@ export default function ProcurementPage() {
         <Text>
 
 <h1>Introduction</h1>
-This document was created to answer the need of JDF (Joint Development Forum) to get some help for procuring Oskari. In this document procuring refers to purchasing work related to Oskari. But not only that, the purchasement should be done so that the right supplier is chosen and the contract takes into account the needs of the procurer and Oskari’s general guidelines. And of course the results of the work should enable the procurer organisation to fulfil its objectives related to Oskari.
+This document was created to answer the need of JDF (Joint Development Forum) to get some help for procuring Oskari. In this document procuring refers to purchasing work related to Oskari. But not only that, the purchasement should be done so that the right supplier is chosen and the contract takes into account the needs of the procurer and Oskari&apos;s general guidelines. And of course the results of the work should enable the procurer organisation to fulfil its objectives related to Oskari.
 
 The instructions have been divided into several chapters. The introduction goes briefly through the background of Oskari and some general thoughts about procuring Oskari. The next three sections tackle three different needs for procuring: procuring a new instance, procuring an update to an existing Oskari instance and procuring configurations to an existing Oskari instance.The aim is to make these processes easier and help the procurer to provide both themselves and the suppliers the information needed for a successful procurement.
 
@@ -24,10 +24,10 @@ Introduction
 
 As Oskari is an open-source project that is coordinated by the National Land Survey of Finland (NLS FI), it has certain preconditions that should be taken into account. By doing so, the procurement process ensures on its part the continuous development of Oskari and makes it a long-lasting mapping solution for everyone.
 
-As NLS FI coordinates the project, it is recommended that the procurers of Oskari would contact the representatives of NLS before the actual Oskari-related work begins, as the expertise of NLS will very likely make the process much easier and smoother while helping them to know what kind of Oskari use cases and needs there are “in the field”. For the procurers of a new Oskari instance, joining Oskari’s Joint Development Forum (JDF) is highly recommended.
+As NLS FI coordinates the project, it is recommended that the procurers of Oskari would contact the representatives of NLS before the actual Oskari-related work begins, as the expertise of NLS will very likely make the process much easier and smoother while helping them to know what kind of Oskari use cases and needs there are “in the field”. For the procurers of a new Oskari instance, joining Oskari&apos;s Joint Development Forum (JDF) is highly recommended.
 
 <b>Some quick links to make procurement easier:</b>
-* The requirements for developing Oskari (programming languages) have been listed in <Link href= '/documentation/docs/latest/1-Introduction#Requirements-for-developing-Oskari'>the Introduction section of Oskari’s documentation.</Link> The introduction will also give you the general idea of when it is required to develop Oskari’s front-end and when the back-end. 
+* The requirements for developing Oskari (programming languages) have been listed in <Link href= '/documentation/docs/latest/1-Introduction#Requirements-for-developing-Oskari'>the Introduction section of Oskari&apos;s documentation.</Link> The introduction will also give you the general idea of when it is required to develop Oskari&apos;s front-end and when the back-end. 
 * <Link href='/documentation/docs/latest/2-Application-environment#Framework'>An example of Oskari architecture</Link>
 * <Link href='/documentation/docs/latest/1-Introduction'>The Introduction section</Link> and <Link href='/documentation/docs/latest/2-Application-environment'>Application environment section</Link> give a good overview of what Oskari is in technical perspective.
 
@@ -59,7 +59,7 @@ Procuring a new instance refers to a situation where the procurer has realised t
 
 What are the needs for Oskari? Why are you procuring Oskari in the first place? Is there a specific need that needs to be fulfilled, a task that needs to be performed, a dataset that has to be shared publicly or to a closed group of users? 
 
-Many organisations use Oskari or related map services to let the public view their datasets. Aside from sharing a certain organisation’s own datasets, Oskari is suitable for sharing datasets produced by different providers. The end-user can easily select different layers to be viewed or compared next to each other. Oskari can also be used to share certain datasets openly while limiting certain data only to be viewed by a limited group of users. The needs can affect which functionalities of Oskari will be used and which are secondary - or can be even taken off altogether from the user interface (the front-end). 
+Many organisations use Oskari or related map services to let the public view their datasets. Aside from sharing a certain organisation&apos;s own datasets, Oskari is suitable for sharing datasets produced by different providers. The end-user can easily select different layers to be viewed or compared next to each other. Oskari can also be used to share certain datasets openly while limiting certain data only to be viewed by a limited group of users. The needs can affect which functionalities of Oskari will be used and which are secondary - or can be even taken off altogether from the user interface (the front-end). 
 
 In a very basic scenario, where there is only a need to get a map service up and running without further ado, a sample app can be used as-is. 
 
@@ -85,7 +85,7 @@ And, of course, whether you are expecting 10 or 10 000 users per day to visit th
 
 When you are procuring a new Oskari instance, you will need to have a database where the data is stored. If your organisation has a database cluster that Oskari can use, use that. If not, you will have a database setup with the Oskari instance.
 
-Like all technical instances, also the databases need maintenance and updating. If your organisation has or has had databases that you maintain, the same people can also take care of the Oskari’s database(s). If not, ask for a hosting/maintenance service when you are procuring a new Oskari instance.
+Like all technical instances, also the databases need maintenance and updating. If your organisation has or has had databases that you maintain, the same people can also take care of the Oskari&apos;s database(s). If not, ask for a hosting/maintenance service when you are procuring a new Oskari instance.
 
 <h3>After the procurement</h3>
 
@@ -93,15 +93,15 @@ A brief summary of what happens after the procurement: you will have a new Oskar
 
 <b>Someone needs to be the main user / admin of the new map service:</b> The person(s) needs to add the map layers to the service, grant the user rights and look after the service. Someone should also be the main contact person for the end-users should they notice any errors in the data, metadata or bugs with the service.
 
-The admin(s) should join Oskari’s Joint development forum (JDF) and the Oskari user list to keep up with Oskari’s latest releases, bug fixes and new features and make sure that the updates are installed. Keeping up with what’s happening in Oskari’s development makes it also possible to better understand the possibilities of Oskari. Joining the JDF supports Oskari as a long-lasting open source solution.
+The admin(s) should join Oskari&apos;s Joint development forum (JDF) and the Oskari user list to keep up with Oskari&apos;s latest releases, bug fixes and new features and make sure that the updates are installed. Keeping up with what&apos;s happening in Oskari&apos;s development makes it also possible to better understand the possibilities of Oskari. Joining the JDF supports Oskari as a long-lasting open source solution.
 
-After Oskari is up and running, it needs maintenance and updating. A good practice could be to follow Oskari’s schedule with updates to make sure that it operates smoothly and stays up-to-date. Updating between the consecutive versions of Oskari is quite straightforward, but if you are updating Oskari after a long gap, it will be more time-consuming as the updates have to be done version by version. If your organization has an ICT / dev team in the house, the update could be done by them. But if there has been a long gap before you last updated, it might be easier to procure the update from developers that have longer experience with Oskari.
+After Oskari is up and running, it needs maintenance and updating. A good practice could be to follow Oskari&apos;s schedule with updates to make sure that it operates smoothly and stays up-to-date. Updating between the consecutive versions of Oskari is quite straightforward, but if you are updating Oskari after a long gap, it will be more time-consuming as the updates have to be done version by version. If your organization has an ICT / dev team in the house, the update could be done by them. But if there has been a long gap before you last updated, it might be easier to procure the update from developers that have longer experience with Oskari.
 
 And last but not least, remember to tell about your new Oskari service both to your colleagues in your organisation and the public. When the people know about your service, they can use it!
 
 <h2>Procuring an update (Updating an existing Oskari service)</h2>
 
-After Oskari is up and running, it needs maintenance and updating. A good practice could be to <b>follow Oskari’s schedule with updates</b> to make sure that it operates smoothly and stays up-to-date. This means updates 2-4 times a year. To make sure that the updates will be done, it is recommended that for the Oskari map service there is a main user / admin who will look for the new Oskari releases and procure the update.
+After Oskari is up and running, it needs maintenance and updating. A good practice could be to <b>follow Oskari&apos;s schedule with updates</b> to make sure that it operates smoothly and stays up-to-date. This means updates 2-4 times a year. To make sure that the updates will be done, it is recommended that for the Oskari map service there is a main user / admin who will look for the new Oskari releases and procure the update.
 
 <h3>How to estimate the time (and money) that it takes to update your Oskari instance?</h3>
 
@@ -131,7 +131,7 @@ If your Oskari instance has been configured, it might complicate the updating pr
 
 Usually configurations are made to Oskari&apos;s sample application (Oskari out of the box) when there is a need either from the main users (adminstrators) or the end-users. First, of course, you have to find out what is <b>the need for the configuration</b>. What Oskari enables now and what you wish it enables in the future? There are various different ways to configure Oskari, and the amount of time/money depends on the need.
 
-<b><link href='/documentation/docs/latest/1-Introduction#Requirements-for-developing-Oskari'>The requirements for developing Oskari (programming languages) have been listed in the Introduction section of Oskari’s documentation.</link></b> The introduction will also give you an overview of Oskari’s architecture and the general idea of when it is required to develop Oskari’s front-end and when the back-end.
+<b><Link href='/documentation/docs/latest/1-Introduction#Requirements-for-developing-Oskari'>The requirements for developing Oskari (programming languages) have been listed in the Introduction section of Oskari’s documentation.</Link></b> The introduction will also give you an overview of Oskari’s architecture and the general idea of when it is required to develop Oskari’s front-end and when the back-end.
 
 <h3>Changes to layout / theme</h3>
 
