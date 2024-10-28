@@ -2,7 +2,15 @@ import fs from 'fs'
 import path from 'path'
 import matter from 'gray-matter'
 import { mdToHtml } from './customMarked'
-import { insertIdsToHeaders, processAllLinks, processCodeBlocks, processHeaders, processInternalMDLinks, processMermaidCodeBlocks, processLanguageSpecificCodeBlocks, processMigrationGuideLinks, processTripleQuoteCodeBlocks, updateMarkdownHtmlStyleTags, updateMarkdownImagePaths } from './markdownToHtml'
+import {
+  insertIdsToHeaders,
+  processAllLinks,
+  processHeaders,
+  processInternalMDLinks,
+  processMigrationGuideLinks,
+  updateMarkdownHtmlStyleTags,
+  updateMarkdownImagePaths
+} from './markdownToHtml'
 import { MarkdownFileMetadata, VersionDocType } from '@/types/types'
 
 function compileMarkdownToHTML(markdown: string, startingSectionNumber: string): {
@@ -100,16 +108,6 @@ const processMarkdown = (markdown: string, imagesPath: string, indexJSON: Markdo
 
   //process rest of the links from md style -> <a href... to help the lib that's supposed to be doing this in its efforts.
   markdown = processAllLinks(markdown);
-
-  // these are dependent to be run in this order
-  markdown = processMermaidCodeBlocks(markdown);
-  markdown = processLanguageSpecificCodeBlocks(markdown, 'javascript');
-  markdown = processLanguageSpecificCodeBlocks(markdown, 'java');
-  markdown = processLanguageSpecificCodeBlocks(markdown, 'sql');
-  markdown = processLanguageSpecificCodeBlocks(markdown, 'json');
-
-  markdown = processTripleQuoteCodeBlocks(markdown);
-  markdown = processCodeBlocks(markdown);
   return markdown;
 }
 
