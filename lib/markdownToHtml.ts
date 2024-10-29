@@ -1,8 +1,6 @@
 import { DocAnchorLinksType, MarkdownFileMetadata } from '@/types/types';
 import slugify from 'slugify';
-import hljs from 'highlight.js';
 import 'highlight.js/scss/a11y-dark.scss';
-import { MERMAID_SNIPPET } from './customMarked';
 
 export const insertIdsToHeaders = (htmlString: string, startingSectionNumber: string) => {
   const headerRegex = /<h([1-3])>(.*?)<\/h\1>/g
@@ -113,51 +111,6 @@ export const processHeaders = (markdownContent:string): string => {
   return processedContent;
 }
 
-export const processMermaidCodeBlocks = (markdownContent: string) => {
-  //const codeRegex = /```javascript\s*([^`]|\n)*```/g;
-  const codeRegex = new RegExp(`\`\`\`mermaid\\s*([^\\\`]|\\n)*\`\`\``, 'g')
-
-  const replacedContent = markdownContent.replace(codeRegex, (match) => {
-    const startTagRegex = new RegExp(`\`\`\`mermaid`);
-    const endTagRegex = /```/;
-    const codeContent = match.replace(startTagRegex, '').replace(endTagRegex, '').trim();
-    return `${MERMAID_SNIPPET}${codeContent}</pre>`;
-  });
-  return replacedContent;
-}
-
-export const processLanguageSpecificCodeBlocks = (markdownContent: string, language: string) => {
-  //const codeRegex = /```javascript\s*([^`]|\n)*```/g;
-  const codeRegex = new RegExp(`\`\`\`${language}\\s*([^\\\`]|\\n)*\`\`\``, 'g')
-
-  const replacedContent = markdownContent.replace(codeRegex, (match) => {
-    const startTagRegex = new RegExp(`\`\`\`${language}`);
-    const endTagRegex = /```/;
-    const codeContent = match.replace(startTagRegex, '').replace(endTagRegex, '').trim();
-    return `<pre><code class="language-${language} hljs">${hljs.highlightAuto(codeContent).value}</code></pre>`;
-  });
-  return replacedContent;
-}
-
-export const processTripleQuoteCodeBlocks = (markdownContent: string): string => {
-  const tripleQuoteRegex = /```\s*([^`]|\n)*```/g;
-  const replacedContent = markdownContent.replace(tripleQuoteRegex, (match) => {
-    const replaceTagRegex = /```/;
-    const codeContent = match.replace(replaceTagRegex, '').replace(replaceTagRegex, '').trim();
-    return `<pre><code class="hljs">${hljs.highlightAuto(codeContent).value}</code></pre>`;
-  });
-  return replacedContent;
-}
-
-export const processCodeBlocks = (markdownContent: string): string => {
-  const codeRegex = /`(.*?)`/g;
-  const contentWithCodeBlocks = markdownContent.replace(codeRegex, (match, codeContent) => {
-    return `<code>${codeContent}</code>`;
-  });
-
-  return contentWithCodeBlocks;
-}
-
 export const processAllLinks = (markdownContent: string): string => {
   const linkRegex = /(?<!\!)\[([^\]]+)\]\(([^)]+)\)/g;
   const result = markdownContent.replaceAll(linkRegex, (match, linkText, linkUrl) => {
@@ -177,66 +130,6 @@ export const processMigrationGuideLinks = (markdownContent: string): string => {
   });
   return result;
 }
-
-/*
-const findLinksToMDDocs = (mdString: string) => {
-  //find all html-style links that have data-internal-anchor - attribute set
-  //and replace thos with links to internal anchors
-  const linkRegex = /<a\b[^>]*\bdata-internal-anchor[^>]*>(.*?)<\/a>/gi;
-  const links = [];
-  let match;
-  while ((match = linkRegex.exec(mdString)) !== null) {
-    links.push({
-      html: match[0],
-      text: match[1]
-    });
-  }
-
-  return links;
-}
-
-export const processInternalMDLinks = (mdString: string): string => {
-  const links = findLinksToMDDocs(mdString);
-  links.forEach(link => {
-    const hrefRegex = /href=["']([^"']+)["']/i;
-    const datalinkRegex =  /data-internal-anchor=["']([^"']+)["']/i;
-    const datalinkMatch = datalinkRegex.exec(link.html);
-
-
-    if (datalinkMatch) {
-      // datalinkmatch ../5 Operating Instructions#How to create a custom Oskari Server Extension"
-      // where ../<directory>#<first heading text In the file being referred>
-      // TODO: this syntax / mechanism is plain horror for someone trying to maintain these manually in source docs.
-      // We need to come up with better solution but leaving this to simmer for now.
-      const datalinkRef = datalinkMatch[1];
-      const parsedHref = parseRef(datalinkRef);
-      const newLinkHtml = link.html.replace(hrefRegex, `href="${parsedHref}"`);
-      mdString = mdString.replace(link.html, newLinkHtml);
-    }
-  });
-
-  return mdString;
-}
-
-const parseRef = (ref: string): string => {
-  //1) split at #
-  //2) if startswith ../ add that manually
-  //3) final link ../ + slugify(datalinkSplit[0]) + '#' + slugify(datalinkSplit[1])
-  const split = ref.split('#');
-  if (split.length === 2) {
-
-    const pathStart = ''; //split[0].startsWith('../') ? '../' : '';
-    const pathSlug = slugify(split[0].replace('../', ''));
-    const headerSlug = slugify(split[1]);
-    return pathStart + pathSlug + '#' + headerSlug;
-  }
-
-  return '#' + slugify(ref);
-}
-
-*/
-
-
 
 /**
  * Creates a slugified url for use in documentation section

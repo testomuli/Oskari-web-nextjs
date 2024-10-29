@@ -1,5 +1,5 @@
 
-import { badgeTemplates, insertIdsToHeaders, processAllLinks, processCodeBlocks, processHeaders, processInternalMDLinks, processLanguageSpecificCodeBlocks, processMigrationGuideLinks, processTripleQuoteCodeBlocks, processMermaidCodeBlocks, updateMarkdownHtmlStyleTags, updateMarkdownImagePaths } from "./markdownToHtml";
+import { badgeTemplates, insertIdsToHeaders, processAllLinks, processHeaders, processInternalMDLinks, processMigrationGuideLinks, updateMarkdownHtmlStyleTags, updateMarkdownImagePaths } from "./markdownToHtml";
 import slugify from 'slugify';
 
 const createTestHtml = () => {
@@ -156,63 +156,6 @@ describe('markdownToHtml tests', () => {
     })
   });
 
-  describe('processing code blocks where language is specified', () => {
-    const langs = ['javascript', 'java', 'sql', 'json'];
-
-    it ('should prepare a block in given language for highlight.js', () => {
-      langs.forEach((lang) => {
-        const markdown = "```" + lang + " var a = 0;```";
-        const processed = processLanguageSpecificCodeBlocks(markdown, lang);
-        expect(processed.indexOf('´')).toBe(-1);
-        expect(processed.startsWith('<pre><code class="language-' + lang)).toBe(true);
-      });
-    });
-
-    it ('should be able to handle code blocks in given language with multiple lines', () => {
-      langs.forEach((lang) => {
-        const markdown = `
-        \`\`\`${lang}
-          var a = 0;
-          let b = 3;
-          console.log(a + b);
-        \`\`\``;
-        const processed = processLanguageSpecificCodeBlocks(markdown, lang).trim();
-        expect(processed.indexOf('´')).toBe(-1);
-        expect(processed.startsWith('<pre><code class="language-' + lang)).toBe(true);
-      });
-    });
-  });
-
-  describe('processing triplequote codeblocks', () => {
-    it ('should prepare triple quote - blocks for highlight.js', () => {
-      const markdown = "``` var a = 0;```";
-      const processed = processTripleQuoteCodeBlocks(markdown);
-      expect(processed.indexOf('´')).toBe(-1);
-      expect(processed.startsWith('<pre><code')).toBe(true);
-    });
-
-    it ('should be able to handle triple quote blocks with multiple lines', () => {
-      const markdown = `
-        \`\`\`
-          var a = 0;
-          let b = 3;
-          console.log(a + b);
-        \`\`\``;
-      const processed = processTripleQuoteCodeBlocks(markdown).trim();
-      expect(processed.indexOf('´')).toBe(-1);
-      expect(processed.startsWith('<pre><code')).toBe(true);
-    });
-  });
-
-  describe('processing codeblocks', () => {
-    it ('should prepare code - blocks', () => {
-      const markdown = "`var a = 0;`";
-      const processed = processCodeBlocks(markdown).trim();
-      expect(processed.indexOf('´')).toBe(-1);
-      expect(processed.startsWith('<code')).toBe(true);
-    });
-  });
-
   describe('Link to migration guide', () => {
     it('should replace migration guide link with anchor', () => {
       const markdown = `[Migrationguide](MigrationGuide.md)`;
@@ -316,19 +259,6 @@ describe('markdownToHtml tests', () => {
       const activeSectionTitle = "Section One";
       const result = processInternalMDLinks(markdownContent, indexJSON, activeSectionTitle);
       expect(result).toBe("This content has no links.");
-    });
-  });
-
-  describe('processing mermaid codeblocks', () => {
-    it ('should ignore non-mermaid code-blocks', () => {
-      const markdown = "``` var a = 0;```";
-      const processed = processMermaidCodeBlocks(markdown);
-      expect(processed).toEqual(markdown);
-    });
-    it ('should wrap mermaid content to HTML pre.mermaid', () => {
-      const markdown = "```mermaid\ntesting stuff```";
-      const processed = processMermaidCodeBlocks(markdown);
-      expect(processed.startsWith('<pre class="mermaid">testing stuff</pre>')).toEqual(true);
     });
   });
 });
