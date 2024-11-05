@@ -74,7 +74,7 @@ Depending on what you are procuring, a good tender could have, for example:
 <li>- When your Oskari service has been last updated</li>
 <li>- Where the Oskari instance is hosted now</li>
 <li>- The possible customisations that have been done to your Oskari service</li>
-<li>- A link to the documentation of customisations</li>
+<li>- The documentation of customisations</li>
 <li>- Oskari functionalities (bundles) that are used</li>
 <li>- Application specific functionalities/customisations</li>
 <li>- Documentation of the process (what has been done, when and how)</li>
@@ -364,8 +364,6 @@ Minor Java/Maven and npm/NodeJS experience:
 Should you have any questions about your wishes, use cases or problems with Oskari, please contact <Link href='/community'>the project coordinators</Link>. Ask for help and tell your developers to contact us if they are facing problems. Report bugs by making issues on <a href='https://github.com/oskariorg/oskari-documentation/issues'>Oskari&apos;s GitHub repository</a> and create pull requests that include your proposals for new, better solutions both in Oskari software and its documentation. As a procurer of Oskari-related projects, try to make sure that the new admin, developer or end-user of your Oskari service has an easy start with Oskari. That is our aim, too.
 </Text>
 
-          </Text>
-        </Layout>
       </div>
 
       <HighlightBox
