@@ -292,7 +292,7 @@ Once it&apos;s documented on the Oskari side, the technical coordinator should b
 </Text>
 
 <Text>
-If you want something maintained, the best bet is to have it on the Oskari repositories ("the core of Oskari"). The next best solution is to have it as application specific code on the application repository.
+If you want something maintained, the best bet is to have it on the Oskari repositories (&quot;the core of Oskari&quot;). The next best solution is to have it as application specific code on the application repository.
 What you don&apos;t want is having your own branched off fork of Oskari that might be difficult to update as the official repositories have changes that conflict with ones on the branched off fork.
 </Text>
 
