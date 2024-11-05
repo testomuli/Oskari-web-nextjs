@@ -245,13 +245,13 @@ What Oskari enables now and what you wish it enables in the future? There are va
 <h3>Changes to layout / theme</h3>
 
 <Text>
-Changing the theme of Oskari can be done using Oskari Theming configuration. The other solution is to use CSS to configure the UI, yet this isn't as usable and/or compatible with embedded maps. This is because the CSS overrides what the user (the publisher of embedded maps) configures to the embedded map.
+Changing the theme of Oskari can be done using Oskari Theming configuration. The other solution is to use CSS to configure the UI, yet this isn&apos;t as usable and/or compatible with embedded maps. This is because the CSS overrides what the user (the publisher of embedded maps) configures to the embedded map.
 </Text>
 
 <h3>Enabling/disabling existing functionalities</h3>
 
 <Text>
-Oskari&apos;s sample application (Oskari installation “out of the box”) includes certain functionalities and some of them are enabled by default ie. visible in the menu of the map service and ready to be used. To see the complete list Oskari's functionalities, see <Link href='https://oskari.org/documentation/api/bundles/latest'>the bundle documentation</Link>. A bundle in Oskari is a technical term used to describe a frontend code package that implements a specific functionality.
+Oskari&apos;s sample application (Oskari installation “out of the box”) includes certain functionalities and some of them are enabled by default ie. visible in the menu of the map service and ready to be used. To see the complete list Oskari&apos;s functionalities, see <Link href='https://oskari.org/documentation/api/bundles/latest'>the bundle documentation</Link>. A bundle in Oskari is a technical term used to describe a frontend code package that implements a specific functionality.
 </Text>
 
 <Text>
@@ -288,12 +288,12 @@ With new functionalities, one should remember that they must be maintained. When
 
 <Text>
 When the new functionalities are in use one should document it in the Oskari documentation, either by contributing to the Oskari documentation about what you needed to do and how you did it or create a request/event API to do what you need and contribute just the API to Oskari.
-Once it's documented on the Oskari side, the technical coordinator should be able to document any changes to it on the migration guide.
+Once it&apos;s documented on the Oskari side, the technical coordinator should be able to document any changes to it on the migration guide.
 </Text>
 
 <Text>
 If you want something maintained, the best bet is to have it on the Oskari repositories ("the core of Oskari"). The next best solution is to have it as application specific code on the application repository.
-What you don't want is having your own branched off fork of Oskari that might be difficult to update as the official repositories have changes that conflict with ones on the branched off fork.
+What you don&apos;t want is having your own branched off fork of Oskari that might be difficult to update as the official repositories have changes that conflict with ones on the branched off fork.
 </Text>
 
 <Text>
@@ -353,7 +353,7 @@ JavaScript, npm, NodeJS (and possibly CSS/SCSS) experience:
 <Text>
 <ul>
 Minor Java/Maven and npm/NodeJS experience:
-<li>- Updating Oskari when it's only updating the dependencies (what is usually done when updating Oskari can be found in <Link href='/documentation/docs/latest/3-Setup-instructions#Updating-Oskari-version'>the documentation</Link>)</li>
+<li>- Updating Oskari when it&apos;s only updating the dependencies (what is usually done when updating Oskari can be found in <Link href='/documentation/docs/latest/3-Setup-instructions#Updating-Oskari-version'>the documentation</Link>)</li>
 <li>- If the version update requires further work, it has been documented in <a href='https://github.com/oskariorg/oskari-server/blob/master/MigrationGuide.md'>the migration guide</a></li>
 </ul>
 </Text>
