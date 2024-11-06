@@ -2,7 +2,7 @@
 name: Sini Pöytäniemi
 title: Product owner
 organisation: National Land Survey of Finland
-avatar: /assets/images/kuva_placeholder.png
+avatar: /assets/images/sini.jpg
 order: 1
 ---
 
