@@ -20,7 +20,7 @@ This document was created to answer the need of JDF (Joint Development Forum) to
 </Text>
 
 <Text>
-The instructions have been divided into several chapters. The introduction goes briefly through the background of Oskari and some general thoughts about procuring Oskari. The next three sections tackle three different needs for procuring: procuring a new instance, procuring an update to an existing Oskari instance and procuring customisation to an existing Oskari instance.The aim is to make these processes easier and help the procurer to provide both themselves and the suppliers the information needed for a successful procurement.
+The instructions have been divided into several chapters. The introduction goes briefly through the background of Oskari and some general thoughts about procuring Oskari. The next three sections tackle three different needs for procuring: procuring a new instance, procuring an update to an existing Oskari instance and procuring customisation to an existing Oskari instance. The aim is to make these processes easier and help the procurer to provide both themselves and the suppliers the information needed for a successful procurement.
 </Text>
 
 <Text>
