@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 
 export default function GettingStartedPage() {
   return (
-    <Layout heroSmall heroTitle='Getting Started'>
+    <Layout heroSmall heroTitle='Getting Started' decorateLinks={true}>
       <div>
         <Text>
           This site contains all the relevant links for finding the information you need about Oskari. The material has been divided under different user groups and customed to their needs.

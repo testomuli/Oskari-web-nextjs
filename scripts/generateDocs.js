@@ -44,12 +44,21 @@ fs.mkdirSync(pathToVersionRoot, { recursive: true });
 console.log(`Created folder for version ${version} in ${pathToVersionRoot}`);
 
 // Shovel in the documentation from the other repo (https://github.com/oskariorg/oskari-documentation)
-const pathToDocumentationRepository = path.join(pathToExternalRepos, 'oskari-documentation/');
+const pathToDocumentationRepository = path.join(pathToExternalRepos, 'oskari-documentation');
 fs.cpSync(pathToDocumentationRepository, pathToVersionRoot, {
   preserveTimestamps: true,
   recursive: true,
-  // Filter out git metadata so we don't get accidental git submodules
-  filter: (src) => !path.basename(src).startsWith('.git') && !path.basename(src).startsWith('node_modules')
+  // Filter out git metadata, node_modules and possible root - level .md's as to not screw up documentation toc (and so we don't get accidental git submodules)
+  filter: (src) => {
+    const dirname = path.dirname(src);
+
+    // ignore the windows "extended path" \\?\ at the beginning of the string the path returns. *sigh*
+    const dirnameWithoutWinPrefix = dirname.substring(dirname.indexOf(pathToDocumentationRepository));
+    // filter out .git* , node_modules and .md documents in the root (such as SECURITY.md, LICENCE.md and some such)
+    return !path.basename(src).startsWith('.git') &&
+      !path.basename(src).startsWith('node_modules') &&
+      !(dirnameWithoutWinPrefix === pathToDocumentationRepository && path.extname(src) === '.md');
+  }
 });
 console.log('Initialized docs for version ' + version);
 

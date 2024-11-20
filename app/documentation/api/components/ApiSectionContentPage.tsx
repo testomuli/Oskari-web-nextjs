@@ -2,16 +2,13 @@
 import VersionSidebar from '@/components/VersionSidebar';
 import { compareSemanticVersions } from '@/utils/misc';
 import availableVersions from '_content/api/versions'
-import Layout from '../../docs/layout';
 import { ReactNode } from 'react';
 export default function ApiSectionContentPage({
-    title,
     sideBarContent,
     mainContent,
     baseHref,
     version
 }: {
-    title: string,
     sideBarContent: ReactNode,
     mainContent: ReactNode,
     baseHref: string,
@@ -25,7 +22,7 @@ export default function ApiSectionContentPage({
     ),
   ];
 
-  return <Layout heroTitle={title}>
+  return <>
     <div>
         <VersionSidebar selectedVersion={version} versions={versions} baseHref={baseHref} />
         {sideBarContent}
@@ -33,5 +30,5 @@ export default function ApiSectionContentPage({
     <div className={'overFlowHidden'}>
         {mainContent}
     </div>
-  </Layout>;
+  </>;
 }

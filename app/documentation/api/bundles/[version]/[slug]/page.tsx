@@ -29,6 +29,5 @@ export default async function BundlesContentPage({
     version={params.version}
     sideBarContent={<BundlesSidebarContent elements={bundles} baseHref={bundleBaseRef}/>}
     mainContent={<HtmlContentPage mdPath={bundlesBasePath + '/' + foundItem.path + '/bundle.md'} imagesPath={imagesPath} />}
-    title='Oskari API documentation'
     baseHref='/documentation/api/bundles/'/>;
 }

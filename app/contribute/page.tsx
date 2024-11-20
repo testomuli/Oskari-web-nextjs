@@ -30,7 +30,7 @@ export default function ContributePage() {
         <div className='flex flex-wrap justify-center xl:justify-evenly gap-x-8 gap-y-16 [&_a]:underline [text-wrap:pretty]'>
           <IconCard
             className='!min-w-[24rem]'
-            title='Report a bug & suggest improvements'
+            title='Report a bug or suggest improvements'
             content={
               <div>
                 If you encounter a problem while using Oskari, please report it to us - {' '}

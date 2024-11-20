@@ -26,7 +26,7 @@ function listFilesRecursively(baseRelativePath, fileRelativePath, resourcesRunti
                     data = replaceImagePaths(data, content, resourcesRuntimePath);
                 }
 
-                const slug = slugify(pathForSlug + file);
+                const slug = slugify(pathForSlug + path.parse(file).name);
                 const fileData = {
                     ...data,
                     path: newRelativePath,
