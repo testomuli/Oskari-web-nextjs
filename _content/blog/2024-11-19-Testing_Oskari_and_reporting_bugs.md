@@ -10,6 +10,8 @@ tags:
 
 # Testing Oskari and reporting bugs
 
+An article written by Ina Högström (trainee, NLS FI).
+
 I came on board to the National Land Survey’s team in the later stages of Oskari’s development cycle in January 2024. One of the new features that the team worked on was changing the thematic map feature to be done with React instead of jQuery: the whole user interface related to thematic maps was re-written with the new library. First I familiarised myself with [Paikkatietoikkuna](https://kartta.paikkatietoikkuna.fi/) and its demo version.
 
 Most of my testing I did on the demo version of Paikkatietoikkuna, which is updated to the newest version when there is a fix or a new implementation. Mostly my testing was centred around using thematic maps and problems that arise when using them. 
@@ -18,21 +20,21 @@ Most of my testing I did on the demo version of Paikkatietoikkuna, which is upda
 
 Thematic maps allow the user to present statistics on a map. The statistics are fetched from different data sources, e.g. via an API or from data the user has made themselves. The user can present indicators that either already exist or the ones they create. The indicators can be specified for example by year or by regional division. Some indicators have other specific options. Indicators can also be presented in a table or a bar chart. See an example below.
 
-![thematic1](https://github.com/user-attachments/assets/cdc1657b-1603-47e7-b51e-280f1719717f)
+![A screenshot of a thematic map](/content/blog/resources/2024/thematic1.png)
 
 My testing with thematic maps began with searching indicators and seeing if something unexpected happened. During the testing I tried different indicators with different parameters and wrote down whether there was an issue or if it worked as intended. 
 
 The issues could be tracked via an error message in the “Developer tools” console of the web browser. The console can be opened by clicking with the map window the right button of the mouse and selecting “Inspect” from the menu that appears. Usually errors show in an error message - yet some errors don’t even though they appear.
 
-![search_data](https://github.com/user-attachments/assets/397edd9e-f1a6-4366-8ec6-cc233057a492)
+![A screenshot showing search data feature in Paikkatietoikkuna](/content/blog/resources/2024/search_data.png)
 
 There are two kinds of error messages. Some have a yellow background in the console, the others a red/pink background. The red notifications are almost always critical problems which need to be reported as fast as possible. The yellow notifications are not always as critical but they, too, should be reported. Below is an example of these.
 
-![errors](https://github.com/user-attachments/assets/ad7aff94-c8a0-468d-a5c6-88d695e17570)
+![A screenshot of different errors](/content/blog/resources/2024/errors.png)
 
 The classifier of thematic maps had to be tested, too. The classifier has many different options on how indicators can be presented on the map and all of them need to work correctly.
 
-![classifier](https://github.com/user-attachments/assets/8b7ba793-2731-437f-bf92-2da44c98ee3f)
+![A screenshot of the classifier](/content/blog/resources/2024/classifier.png)
 
 “My indicators” (the ones the user can make themselves) were worked on a little longer and became testable later. Their testing didn’t differ from the testing of already existing indicators apart from the fact that they had to be made first.
 
@@ -40,17 +42,17 @@ When creating My indicators, I did the process both correctly and incorrectly in
 
 Sometimes My indicators brought to light some weird cases that didn’t present themselves unless I was using smaller values or areas.  
 
-![indicator](https://github.com/user-attachments/assets/975b4b2f-0c84-4c88-ab59-fcd6e1094701)
+![A screenshot of indicators](/content/blog/resources/2024/indicator.png)
 
-![indicator2](https://github.com/user-attachments/assets/5543279c-6889-4f88-be5b-817fafbff738)
+![A screenshot of indicators](/content/blog/resources/2024/indicator2.png)
 
-![indicator3](https://github.com/user-attachments/assets/1b744972-9d9e-4306-ad22-1e49f3bd70b4)
+![A screenshot of indicators](/content/blog/resources/2024/indicator3.png)
 
 Another case that I tested was thematic maps in published (embedded) maps. Thematic maps change some things in the map publisher that needed to be tested. These features need to work independently and together with other map publishing features. 
 
 One can view a published map in a separate window through “My Data” or in the map publisher itself. In both cases the thematic maps need to function as expected. 
 
-![embedded](https://github.com/user-attachments/assets/176c656d-ed95-49eb-bba2-666dab735b29)
+![A screenshot of Create and embedded map feature](/content/blog/resources/2024/embedded.png)
 
 Sometimes I would test Paikkatietoikkuna with other members of our team. For example, we would review new items that needed testing or revisit previously identified bugs that required further information about their severity. 
 
