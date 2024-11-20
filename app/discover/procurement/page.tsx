@@ -24,7 +24,9 @@ The instructions have been divided into several chapters. The introduction goes 
 </Text>
 
 <Text>
-The ideas in this document are not set in stone - on the contrary, they are open for discussion and improvement. The author welcomes all constructive criticism and further ideas to develop what is offered here. Hopefully this document gives a general idea of what to take into consideration when procuring something Oskari-related.
+The ideas in this document are not set in stone - on the contrary, they are open for discussion and improvement. This is a living document and constructive criticism and further ideas to develop what is offered here is welcomed. Send your input <Link href='/contribute'>through the existing channels</Link> or create a pull request on GitHub.
+
+Hopefully this document gives a general idea of what to take into consideration when procuring something Oskari-related.
 </Text>
 
 <h2>Background</h2>
@@ -34,7 +36,7 @@ Oskari is an open-source project that is coordinated by the National Land Survey
 </Text>
 
 <Text>
-As NLS FI coordinates the project, it is recommended that the procurers of Oskari would contact the representatives of NLS before the actual Oskari-related work begins, as the expertise of NLS will very likely make the process much easier and smoother while helping them to know what kind of Oskari use cases and needs there are “in the field”. For the procurers of a new Oskari instance, joining Oskari&apos;s Joint Development Forum (JDF) is highly recommended.
+As NLS FI coordinates the project, it is recommended that the procurers of Oskari would <Link href='/contribute'>contact the project coordinators</Link> before the actual Oskari-related work begins, as their expertise will very likely make the process much easier and smoother while helping them to know what kind of Oskari use cases and needs there are “in the field”. For the procurers of a new Oskari instance, joining Oskari&apos;s Joint Development Forum (JDF) is highly recommended.
 </Text>
 
 <Text>
@@ -119,7 +121,7 @@ In a very basic scenario, where there is only a need to get a map service up and
 </Text>
 
 <Text>
-If the use case is complex, do a bit of research if there is already an Oskari use case that resembles yours or if the functionality that you need exists. If no one has used Oskari before the same way you are planning to, it could be useful to contact NLS FI about your plans. Oskari can be customised and developed extensively, but well planned is half made.
+If the use case is complex, do a bit of research if there is already an Oskari use case that resembles yours or if the functionality that you need exists. If no one has used Oskari before the same way you are planning to, it could be useful to <Link href='/contribute'>contact the project coordinators</Link> about your plans. Oskari can be customised and developed extensively, but well planned is half made.
 </Text>
 
 <h3>Data - to whom, by whom?</h3>
@@ -261,7 +263,7 @@ If you want to enable or disable the functionalities available to the end-user o
 <h3>Developing existing functionalities</h3>
 
 <Text>
-In some cases you might want to develop functionalities that already exist either in the Oskari sample application or that are made by other Oskari users. In this case you should first contact NLS FI to find out whether or not the functionality is still actively maintained. 
+In some cases you might want to develop functionalities that already exist either in the Oskari sample application or that are made by other Oskari users. In this case you should first <Link href='/contribute'>contact the project coordinators of Oskari</Link> to find out whether or not the functionality is still actively maintained.
 </Text>
 
 <Text>
@@ -283,12 +285,12 @@ If you want to create new functionalities for Oskari, it might be a good idea to
 </Text>
 
 <Text>
-With new functionalities, one should remember that they must be maintained. When you create new functionalities to your Oskari service, remember to inform NLS both beforehand and after the development has taken place. By contacting the NLS FI&apos;s Oskari technical team before you start the development, your developers can get best practices for the development process and further ideas on how to create the functionalities that you want. 
+With new functionalities, one should remember that they must be maintained. When you create new functionalities to your Oskari service, remember to inform NLS both beforehand and after the development has taken place. <Link href='/contribute'>By contacting Oskari project coordinators</Link> before you start the development, your developers can get best practices for the development process and further ideas on how to create the functionalities that you want. 
 </Text>
 
 <Text>
 When the new functionalities are in use one should document it in the Oskari documentation, either by contributing to the Oskari documentation about what you needed to do and how you did it or create a request/event API to do what you need and contribute just the API to Oskari.
-Once it&apos;s documented on the Oskari side, the technical coordinator should be able to document any changes to it on the migration guide.
+Once it&apos;s documented on the Oskari side, the technical coordinator(s) should be able to document any changes to it on the migration guide.
 </Text>
 
 <Text>
@@ -361,7 +363,7 @@ Minor Java/Maven and npm/NodeJS experience:
 <h2>Closing thoughts</h2>
 
 <Text>
-Should you have any questions about your wishes, use cases or problems with Oskari, please contact <Link href='/community'>the project coordinators</Link>. Ask for help and tell your developers to contact us if they are facing problems. Report bugs by making issues on <a href='https://github.com/oskariorg/oskari-documentation/issues'>Oskari&apos;s GitHub repository</a> and create pull requests that include your proposals for new, better solutions both in Oskari software and its documentation. As a procurer of Oskari-related projects, try to make sure that the new admin, developer or end-user of your Oskari service has an easy start with Oskari. That is our aim, too.
+Should you have any questions about your wishes, use cases or problems with Oskari, please contact <Link href='/contribute'>the project coordinators of Oskari</Link>. Ask for help and tell your developers to contact us if they are facing problems. Report bugs by making issues on <a href='https://github.com/oskariorg/oskari-documentation/issues'>Oskari&apos;s GitHub repository</a> and create pull requests that include your proposals for new, better solutions both in Oskari software and its documentation. As a procurer of Oskari-related projects, try to make sure that the new admin, developer or end-user of your Oskari service has an easy start with Oskari. That is our aim, too.
 </Text>
 
       </div>
