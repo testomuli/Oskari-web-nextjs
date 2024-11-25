@@ -91,7 +91,7 @@ Depending on what you are procuring, a good tender could have, for example:
 <li>- Where the Oskari instance is hosted now</li>
 <li>- A general overview of what you are doing with Oskari now</li>
 <li>- Your needs: what you wish to do with Oskari in the future</li>
-<li>- Are you creating a customisation that is spesific to your applicationor is it something that you hope to contribute to be a part of Oskari in the future?</li>
+<li>- Are you creating a customisation that is spesific to your application or is it something that you hope to contribute to be a part of Oskari in the future?</li>
 <li>- Documentation of the process (what has been done, which files have been added/edited)</li>
 </ul>
 </Text>
