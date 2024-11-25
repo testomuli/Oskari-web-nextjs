@@ -227,7 +227,7 @@ For every Oskari version there are release notes. See <Link href='/documentation
 By going through the release notes you can also decide if you want to skip the updating this time and update through two versions at once. That can be a solid option if, for example, the changes are very minor or there are only very few changes between versions. On the other hand, you take the risk of using older and possibly vulnerable dependencies in your Oskari.
 </Text>
 
-<h3>Updating a heavily customszed Oskari instance</h3>
+<h3>Updating a heavily customized Oskari instance</h3>
 
 <Text>
 If your Oskari instance has been highly customised and includes application spesific functionalities, they might complicate the updating process. Depending on how the customisations and new functionalities have been made and documented, they affect the total time that the updating process takes. But whether the customisations are big or small, if they have been done and documented well, the updating can be very straightforward.
