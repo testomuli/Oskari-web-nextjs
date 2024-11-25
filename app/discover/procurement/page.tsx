@@ -131,7 +131,7 @@ Thinking through the datasets that are shared via Oskari and what are the possib
 </Text>
 
 <Text>
-As you are planning to use Oskari, there is some data that you are planning to share. Who will update the data? Are the layers maintained by other organisations? This is important considering what happens if there is an error in the data or the data is not for some reason available. If you or the users of the service have to contact the provider of the data, you should know who and where to contact. If the data is produced within your organization, then the communication between the producers of the data and the end-users might be more straightforward. But if some of the data is from another source maintained by a third party, those datasets might not always be there when you need them - APIs or the permissions of datasets might change.
+As you are planning to use Oskari, there is some data that you are planning to share. Who will update the data? Are the layers maintained by other organisations? This is important considering what happens if there is an error in the data or the data is not for some reason available. If you or the users of the service have to contact the provider of the data, you should know who and where to contact. If the data is produced within your organisation, then the communication between the producers of the data and the end-users might be more straightforward. But if some of the data is from another source maintained by a third party, those datasets might not always be there when you need them - APIs or the permissions of datasets might change.
 </Text>
 
 <Text>
@@ -180,7 +180,7 @@ The admin(s) should join Oskari&apos;s Joint development forum (JDF) and the Osk
 <Text>
 After Oskari is up and running, it needs maintenance and updating. A good practice could be to follow Oskari&apos;s schedule with updates to make sure that it operates smoothly and stays up-to-date. Updating between the consecutive versions of Oskari is quite straightforward, but if you are updating Oskari after a long gap, it requires more manual migration needs. If there have been multiple new releases between the version you are using now and the latest Oskari version, you have to do all the migration changes for the whole gap. 
 The amount of work this requires depends on what needs to be done: with custom created components the process might be taxing.
-If your organization has an ICT / dev team in the house, the updating could be done by them. But if there has been a long gap before you last updated, it might be easier to procure the update from developers that have longer experience with Oskari.
+If your organisation has an ICT / dev team in the house, the updating could be done by them. But if there has been a long gap before you last updated, it might be easier to procure the update from developers that have longer experience with Oskari.
 </Text>
 
 <Text>
@@ -196,7 +196,7 @@ After Oskari is up and running, it needs maintenance and updating. A good practi
 <h3>How to estimate the time (and money) that it takes to update your Oskari instance?</h3>
 
 <Text>
-Updating between the consecutive versions of Oskari is quite straightforward, but if you are updating Oskari after a long time period, it will be more time-consuming as the updates have to be done version by version. If your organization has an ICT / developer team in the house, the update could be done by them. But if there has been a long gap before you last updated, it might be easier to procure the update from developers that have longer experience with Oskari.
+Updating between the consecutive versions of Oskari is quite straightforward, but if you are updating Oskari after a long time period, it will be more time-consuming as the updates have to be done version by version. If your organisation has an ICT / developer team in the house, the update could be done by them. But if there has been a long gap before you last updated, it might be easier to procure the update from developers that have longer experience with Oskari.
 </Text>
 
 <Text>
@@ -204,7 +204,7 @@ The usual update of Oskari means updating the Oskari versions on dependencies (o
 
 <Link href='/documentation/docs/latest/12-Changelog'>The change log</Link> has information on the new implementations of bundles. The removal of implementations, if any, are mentioned on the migration guide.
 
-<Link href='/documentation/docs/latest/3-Setup-instructions#Updating-Oskari-version'>The documentation</Link> has all the required information for updating. If your organization has its own ICT department / developers, you can share the documentation with them to get feedback.
+<Link href='/documentation/docs/latest/3-Setup-instructions#Updating-Oskari-version'>The documentation</Link> has all the required information for updating. If your organisation has its own ICT department / developers, you can share the documentation with them to get feedback.
 </Text>
 
 <h3>Which version are you using now?</h3>
