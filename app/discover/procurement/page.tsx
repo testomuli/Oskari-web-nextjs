@@ -155,7 +155,7 @@ And, of course, whether you are expecting 10 or 10 000 users per day to visit th
 <h3>Other architecture</h3>
 
 <Text>
-For setting up a dedicated website for your Oskari service a hosting srevice, domain name and TLS certificate are required. You will also need a server or cloud computing to run the software.
+For setting up a dedicated website for your Oskari service a hosting service, domain name and TLS certificate are required. You will also need a server or cloud computing to run the software.
 When you are procuring a new Oskari instance, you will need to have a database where the data is stored. If your organisation has a database cluster that Oskari can use, use that. If not, you will have a database setup with the Oskari instance.
 </Text>
 
