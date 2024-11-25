@@ -285,7 +285,7 @@ If you want to create new functionalities for Oskari, it might be a good idea to
 </Text>
 
 <Text>
-With new functionalities, one should remember that they must be maintained. When you create new functionalities to your Oskari service, it could be beneficial <Link href='/contribute'>to contact the project coordinators</Link> beforehand. They might be able to offer feedback and help coordinate development of similar functionalities if you contact them before you start the development.Your developers can get best practices for the development process of Oskari and further ideas on how to create the functionalities. 
+With new functionalities, one should remember that they must be maintained. When you create new functionalities to your Oskari service, it could be beneficial <Link href='/contribute'>to contact the project coordinators</Link> beforehand. They might be able to offer feedback and help coordinate development of similar functionalities if you contact them before you start the development. Your developers can get best practices for the development process of Oskari and further ideas on how to create the functionalities. 
 </Text>
 
 <Text>
