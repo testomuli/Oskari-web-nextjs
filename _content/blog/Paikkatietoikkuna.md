@@ -37,7 +37,9 @@ Admin-user:
 * administrative tools for managing map layers were improved a lot
 * map layer monitoring tool
 * user role management was improved
-* property xxx filtering
+* styling for vector features
+* property-based filtering of vector features
+* renaming and ordering of feature properties
 
 In the future, we've identified e.g. the following needs, that we will try to eventually work on: 
 * updating the Java version on server side
