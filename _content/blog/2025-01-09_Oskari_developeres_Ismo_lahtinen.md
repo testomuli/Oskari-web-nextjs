@@ -3,7 +3,7 @@ layout: post
 title: 'Oskari developers: Ismo Lahtinen'
 excerpt: 'We interviewed Ismo Lahtinen about his experiences in developing Oskari.'
 date: 2025-01-09 11:00:00 +0200
-categories: [developing] [commercial support]
+categories: [developing, commercial support]
 tags:
   - blog
 ---
