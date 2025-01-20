@@ -43,6 +43,7 @@ export default async function DownloadPage() {
         <IconCard
           className='!bg-[var(--color-accent)]'
           title='Latest version'
+          subtitle='A Jetty 9 package of Oskari. Recommended for preview use.'
           content={
             <>
               <div className='flex justify-center'>
@@ -53,7 +54,7 @@ export default async function DownloadPage() {
                   href='https://oskari.org/build/server/oskari-latest-stable.zip'
                   external
                 />
-              </div>
+                </div>
               <div className='flex flex-col justify-center '>
                 <div className='mt-8 mb-4'>
                   See what changed in the latest version.
