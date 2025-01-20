@@ -72,7 +72,7 @@ export const jointLogos = [
   'nls.png',
   'varsinais_suomen_liitto.png',
   'vayla.png',
-  'joensuu.jpg',
+  'joensuu.png',
 ]
 
 export const commitee = [
