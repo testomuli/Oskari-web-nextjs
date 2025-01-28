@@ -3,12 +3,12 @@ layout: post
 title: 'Oskari developers: Ismo Lahtinen'
 excerpt: 'We interviewed Ismo Lahtinen about his experiences in developing Oskari.'
 date: 2025-01-09 11:00:00 +0200
-image: /resources/2025/ismo_gispo.png
 categories: [developing, commercial support]
 tags:
   - blog
 ---
 
+![A photograph of Ismo Lahtinen](/resources/2025/ismo_gispo.png)
 
 # Oskari developers: Ismo Lahtinen
 
@@ -32,7 +32,7 @@ In the current project, challenges could have been solved mostly by reading the 
 
 The challenges that Lahtinen has had with Oskari now have been related to the slight vagueness of the documentation. 
 
-“I would like things to be presented more precisely. It shows in small things, for example when I looked at the old RPC implementation, which used a metadata bundle. Somewhere I find a mention that a new one had been made, maybe "metadata-service" or "metadata-catalog". If you try to search with these names, then in the Oskari API under the bundles section there is surprisingly "metadata", "metadata-flyout" and of these, "metadata" is the one that is deprecated. These have been really confusing for me, i.e. which metadata bundle should be used. But at the same time, these have developed a lot and when you fix them, it is easy. But being able to extract the right information is difficult for me.”
+“I would like things to be presented more precisely. It shows in small things, for example when I looked at the old RPC implementation, which used a metadata bundle. Somewhere I find a mention that a new one had been made, maybe "metadatasearch" or "metadatacatalogue". If you try to search with these names, then in the Oskari API under the bundles section there is surprisingly "metadata" and "metadataflyout". Of these, "metadata" is the one that replaced metadataflyout and metadataflyout is deprecated. These have been really confusing for me, i.e. which metadata bundle should be used. But at the same time, these have developed a lot and when you fix them, it is easy. But being able to extract the right information is difficult for me.”
 
 ## Oskari on the code level
 
