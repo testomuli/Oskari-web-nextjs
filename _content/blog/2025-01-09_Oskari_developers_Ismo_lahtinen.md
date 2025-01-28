@@ -3,12 +3,12 @@ layout: post
 title: 'Oskari developers: Ismo Lahtinen'
 excerpt: 'We interviewed Ismo Lahtinen about his experiences in developing Oskari.'
 date: 2025-01-09 11:00:00 +0200
-image: /resources/2025/ismo_gispo.png
 categories: [developing, commercial support]
 tags:
   - blog
 ---
 
+![A photograph of Ismo Lahtinen](/resources/2025/ismo_gispo.png)
 
 # Oskari developers: Ismo Lahtinen
 
